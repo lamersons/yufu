@@ -1,7 +1,8 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :language do
-    sequence(:name) {|n| "lan-#{n}"}
+  factory :city do
+    sequence(:name) {|n| "city-#{n}"}
+    association :language
   end
 end
