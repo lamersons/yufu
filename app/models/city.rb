@@ -2,7 +2,7 @@ class City
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :name, type: String
+  field :name, localize: true
 
   belongs_to :language
 
