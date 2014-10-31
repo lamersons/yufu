@@ -4,9 +4,10 @@ Yufu::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :languages, only: [:index, :show]
-      resources :cities,    only: [:index, :show]
-      resources :users,     only: [:index, :show, :update]
+      resources :languages,          only: [:index, :show]
+      resources :service_categories, only: [:index, :show]
+      resources :cities,             only: [:index, :show]
+      resources :users,              only: [:index, :show, :update]
     end
   end
 
