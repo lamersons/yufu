@@ -23,6 +23,8 @@ module Profile
       belongs_to :native_language, class_name: 'Language'
       belongs_to :primary_city,    class_name: 'City'
 
+      embeds_many :services, class_name: 'Profile::Translator::Service'
+
       has_and_belongs_to_many :nearby_city,                class_name: 'City'
       has_and_belongs_to_many :nearby_city_with_surcharge, class_name: 'City'
 

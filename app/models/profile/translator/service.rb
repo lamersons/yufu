@@ -1,6 +1,6 @@
 module Profile
   module Translator
-    class Services
+    class Service
       include Mongoid::Document
 
       field :level
@@ -10,6 +10,8 @@ module Profile
       field :written_translate_type
 
       belongs_to :language
+      belongs_to :service_category
+
       embedded_in :profile_translator_individual
     end
   end
