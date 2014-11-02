@@ -2,7 +2,7 @@ class Language
   include Mongoid::Document
   include Mongoid::Paperclip
 
-  field :name,  localize: true
+  field :name, localize: true
 
   has_mongoid_attached_file :flag
   validates_attachment_content_type :flag, content_type: /\Aimage\/.*\Z/
