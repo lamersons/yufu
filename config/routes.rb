@@ -2,7 +2,7 @@ Yufu::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  devise_for :admin
+  devise_for :admin, skip: :registrations
   devise_for :users
 
   namespace :api do
