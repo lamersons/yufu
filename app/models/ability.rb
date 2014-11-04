@@ -9,5 +9,7 @@ class Ability
         can permission.action.to_sym, permission.subject_class.constantize, id: permission.subject_id
       end
     end
+
+    can :manage, :all if user.is_a? Admin
   end
 end
