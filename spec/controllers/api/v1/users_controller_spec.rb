@@ -6,6 +6,24 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
 
   let(:user) {create :user}
 
+  describe 'POST create' do
+    include EmailSpec::Helpers
+    include EmailSpec::Matchers
+
+    let(:attr) { {email: 'user@example.com'} }
+
+    subject{post :create, user: attr}
+
+    it 'creates new user' do
+      expect{subject}.to change{User.count}.by(1)
+    end
+    it 'should deliver the signup email' do
+      subject
+      email = UsersMailer.create(assigns(:user))
+      expect(email).to deliver_to('user@example.com')
+    end
+  end
+
   describe "GET show" do
     it 'returns http success' do
       get :show, id: user.to_param

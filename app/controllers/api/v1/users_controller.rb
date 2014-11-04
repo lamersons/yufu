@@ -5,6 +5,19 @@ module Api
 
       respond_to :json
 
+      # Registration
+      def create
+        @user = User.new user_params
+        @user.password = Devise.friendly_token.first(8)
+        if @user.save
+          UsersMailer.create(@user).deliver
+          render json: {success: true}
+        else
+          @user.try :clean_up_passwords
+          render json: {:success => false}
+        end
+      end
+
       def update
         if current_user.update(user_params)
           head :ok

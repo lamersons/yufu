@@ -6,7 +6,7 @@ require 'rspec/rails'
 require 'database_cleaner'
 require 'coveralls'
 require 'delorean'
-
+require 'email_spec'
 
 Coveralls.wear_merged!
 
