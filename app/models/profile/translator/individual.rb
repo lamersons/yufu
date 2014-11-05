@@ -3,8 +3,6 @@ module Profile
     class Individual < Base
       include Mongoid::Paperclip
 
-      field :first_name, localize: true
-      field :last_name,  localize: true
       field :additions,  localize: true
 
       field :sex
@@ -16,8 +14,6 @@ module Profile
       field :additional_email
       field :qq
       field :skype
-      field :phone
-      field :additional_phone
 
       belongs_to :native_language, class_name: 'Language'
       belongs_to :primary_city,    class_name: 'City'
