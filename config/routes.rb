@@ -13,6 +13,7 @@ Yufu::Application.routes.draw do
       resources :service_categories, only: [:index, :show]
       resources :cities,             only: [:index, :show]
       resources :users,              only: [:index, :show, :update, :create]
+      resources :profiles
     end
   end
 
