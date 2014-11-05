@@ -35,5 +35,8 @@ class User
   # field :locked_at,       type: Time
 
   embeds_many :permissions
-  accepts_nested_attributes_for :permissions
+  embeds_many :profiles, class_name: 'Profile::Base'
+  accepts_nested_attributes_for :permissions, :profiles
+
+  alias :name :email
 end
