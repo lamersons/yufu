@@ -8,6 +8,9 @@ gem 'mongoid', '~>4.0.0'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'will_paginate_mongoid'
 
+# Redis for I18n backend
+gem 'redis'
+
 gem 'active_model_serializers'
 
 # Search engine
