@@ -8,3 +8,5 @@
 
 # Admin
 Admin.create email: 'admin@example.com', password: 'password'
+admin = Admin.first
+admin.permissions << Permission.new(action: :manage, subject_class: :all)
