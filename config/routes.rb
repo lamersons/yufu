@@ -1,6 +1,7 @@
 Yufu::Application.routes.draw do
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/administration', as: 'rails_admin'
+  mount I18nDashboard::Engine => '/i18n_dashboard'
 
   devise_for :admin
   devise_for :users
