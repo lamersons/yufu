@@ -8,6 +8,7 @@ module Profile
     field :middle_name, localize: true
     field :phone
     field :additional_phone
+    field :approved, type: Boolean, default: false
 
     embedded_in :user
   end
