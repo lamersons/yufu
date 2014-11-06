@@ -1,12 +1,12 @@
 module Api
   module V1
+    #TODO: implement this
     class ProfilesController < ApplicationController
       respond_to :json
       def show
       end
 
       def index
-        respond_with User.first.profiles
       end
 
       def create
