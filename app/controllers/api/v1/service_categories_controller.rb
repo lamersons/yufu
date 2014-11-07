@@ -3,12 +3,12 @@ module Api
     class ServiceCategoriesController < ApplicationController
       respond_to :json
       def index
-        @service_categories = ServiceCategory.all
+        @service_categories = Direction.all
         respond_with @service_categories
       end
 
       def show
-        @service_category = ServiceCategory.find params[:id]
+        @service_category = Direction.find params[:id]
         respond_with @service_category
       end
     end

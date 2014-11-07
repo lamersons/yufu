@@ -1,4 +1,4 @@
-class ServiceCategory
+class Direction
   include Mongoid::Document
 
   field :name, localize: true
