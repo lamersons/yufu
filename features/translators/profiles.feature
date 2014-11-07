@@ -1,4 +1,4 @@
-Feature: Fill up translator's profile after registration
+Feature: Profiles
 
 
   Scenario: Redirect to profile edit after changing password
