@@ -27,5 +27,15 @@ module Yufu
     config.autoload_paths += %W(#{config.root}/lib)
 
     ActionMailer::Base.default from: 'Yufu <noreply.yufu@gmail.com>'
+
+    config.action_mailer.smtp_settings = {
+        address:              'smtp.gmail.com',
+        port:                  587,
+        domain:               'gmail.com',
+        user_name:            'noreply.yufu@gmail.com',
+        password:             'qwerty7777',
+        authentication:       'plain',
+        enable_starttls_auto:  true  }
+
   end
 end
