@@ -1,0 +1,13 @@
+//Письменный перевод. Первый шаг
+.section-form.written.written-step-2 {
+	//Поля для дропа файла
+	DIV.drop {
+		border: 3px solid #ededed;
+		@include border-radius(10px);
+		text-align: center;
+		color: darken(#ededed, 5%);
+		font-weight: 700;
+		padding: 22px 0 22px 0;
+		margin-top: 10px;
+	}
+}//.section-form.written.written-step-2

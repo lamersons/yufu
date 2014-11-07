@@ -1,0 +1,135 @@
+.section-cabinet {
+	//Заказы
+	DIV.orders {
+		float: right;
+		margin-top: 5px;
+		A {
+			float: right;
+			display: inline-block;
+			padding: 3px 25px 3px 25px;
+			border-right: 1px solid #ececec;
+			&:first-of-type {
+				border-right: none;
+			}
+			&.active {
+				color: white;
+				background: $font-pink-bright-color;
+				border-right: none;
+				@include border-radius(10px);
+			}
+		}
+	}//DIV.orders
+	//Заголовок
+	H1.main {
+		margin-top: 0;
+		SUP {
+			position: relative;
+			bottom: 0.8em;
+			left: 0.2em;
+			font-size: 0.6em;
+			color: $font-pink-bright-color;
+			font-weight: 300;
+		}
+	}//H1.main
+	//Типы
+	DIV.types {
+		border-top: 3px solid #ededed;
+		border-bottom: 3px solid #ededed;
+		padding: 10px 0 10px 0;
+		margin: 30px 0 25px 0;
+		A {
+			display: block;
+			padding: 10px 10px 5px 10px;
+			&.verbal .icon {
+				@include icons-sprite(verbal-small);
+			}
+			&.written .icon {
+				@include icons-sprite(written-small);
+			}
+			&.local .icon {
+				@include icons-sprite(local-small);
+			}
+			&.active {
+				background: image-url("dotted-gray-bg.png");
+				@include border-radius(10px);
+			}
+		}
+		SPAN.icon {
+			display: inline-block;
+			float: left;
+		}
+		P {
+			margin-left: 55px;
+			padding-top: 3px;
+			B {
+				font-weight: 700;
+				color: $font-pink-bright-color;
+			}
+		}
+	}//DIV.types
+	//Таблица
+	DIV.table-container {
+		background: #ececec;
+		margin: 20px 0 30px 0;
+		@include border-radius(10px);
+		padding: 10px;
+		//Сама таблица
+		TABLE {
+			width: 100%;
+			border-collapse: collapse;
+			THEAD {
+				background: #e0e0e0;
+				TD {
+					padding: 5px 10px;
+					font-weight: 400;
+					&.center {
+						text-align: center;
+					}
+					&.access {
+						color: $font-pink-color;
+						text-align: center;
+					}
+					&.number {
+						.icon {
+							display: inline-block;
+							@include icons-sprite(calendar-dropdown);
+							position: relative;
+							left: 4px;
+						}
+					}
+				}//TD
+			}//THEAD
+			TBODY {
+				TR.white {
+					background: white;
+				}
+				TD {
+					padding: 5px 10px;
+					border-right: 1px solid #e0e0e0;
+					border-bottom: 1px solid #bdbdbd;
+					font-weight: 300;
+					&:last-of-type {
+						border-right: none;
+					}
+					&.center {
+						text-align: center;
+					}
+					&.access {
+						text-align: center;
+						font-size: 0.82em;
+						color: $font-pink-color;
+						B {
+							font-weight: 600;
+							color: $font-pink-bright-color;
+						}
+					}
+					SUP {
+						font-size: 0.6em;
+						position: relative;
+						top: -0.8em;
+					}
+				}//TD
+			}//TBODY
+		}//TABLE
+	}//DIV.table-container
+}//.section-cabinet

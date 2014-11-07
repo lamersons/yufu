@@ -1,0 +1,36 @@
+//Письменный перевод. Первый шаг
+.section-form.written.written-step-1 {
+	//Выбор языков
+	DIV.lang {
+		margin-top: -55px;
+		position: relative;
+		//Тригер
+		P.trigger {
+			cursor: pointer;
+			color: $font-pink-bright-color;
+			B {
+				font-weight: 700;
+			}
+		}//P.trigger
+		//Выбранные языки
+		DIV.choosen {
+			font-size: 0.82em;
+			margin: -3px 0 0 15px;
+			B {
+				font-weight: 400;
+			}
+		}//DIV.choosen
+	}//DIV.lang
+	//Радиокнопки
+	LABEL.radio {
+		//Дели парагрфа должны быть блочными
+		P > SPAN {
+			display: block;
+			line-height: 1.3;
+		}
+		SPAN.price {
+			font-size: 1.23em;
+		}
+		//Цена
+	}//LABEL.radio
+}//.section-form.written.written-step-1

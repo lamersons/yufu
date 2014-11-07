@@ -1,0 +1,203 @@
+//Первый шаг формы
+.section-form.step-1 {
+	//Серая линия слева
+	DIV.line-grey-right {
+		position: relative;
+		//Сама линия
+		DIV.line {
+			position: absolute;
+			right: -$grid-single-int;
+			top: 10px;
+			width: 0;
+			border-left: 1px solid #e5e5e5;
+			height: 310px;
+		}
+	}//DIV.line-grey-right
+	//Подсказка около города
+	DIV.js-tooltip-block-city {
+		background: #fff7c5;
+		font-size: 0.82em;
+		@include border-radius(5px);
+		box-sizing: border-box;
+		padding: 5px 15px 5px 15px;
+		position: absolute;
+		z-index: 3;
+		display: none;
+		P {
+			margin-top: 7px;
+			margin-bottom: 7px;
+		}
+		SPAN.icon {
+			display: inline-block;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			@include icons-sprite(tooltip-big);
+		}
+	}
+	//Календарь
+	DIV.calendar {
+		background: #ededed;
+		padding: 10px;
+		margin: 20px 0 30px 0;
+		position: relative;
+		@include border-radius(10px);
+		text-align: center;
+		//Обертка секции календаря
+		DIV.interval {
+			display: none;
+			&.active {
+				display: block;
+			}
+		}
+		//Заголовок календаря
+		P.calendar-title {
+			color: $font-pink-color;
+			SPAN {
+				font-weight: 700;
+			}
+		}
+		//Стрелки
+		SPAN.arrow {
+			position: absolute;
+			top: 10px;
+			display: inline-block;
+			cursor: pointer;
+			&.left {
+				@include icons-sprite(calendar-left);
+				left: 10px;
+			}
+			&.right {
+				@include icons-sprite(calendar-right);
+				right: 10px;
+			}
+		}
+		//Таблица
+		TABLE {
+			width: 100%;
+			border-collapse: collapse;
+			TR {
+				TD {
+					position: relative;
+					font-weight: 300;
+					font-size: 1em;
+					text-align: center;
+					border-bottom: 1px solid #ccc;
+					border-right: 1px solid white;
+					box-sizing: border-box;
+					vertical-align: middle;
+					height: 40px;
+					width: ($grid-container-width - 10px * 2 - 35px * 2) / 14;
+					//Следующий месяц
+					&.next-month {
+						color: lighten($font-main-color, 30%);
+					}
+					//Выходные
+					&.weekend {
+						//Лиса глючит, когда у ячейки задано относительное позиционирование - бек становится выше рамок
+						//поэтому делаем бэк светло-серого прозрачного цвета, чтобы сквозь него была видна рамка
+						background: linear-gradient(to top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+						color: $font-pink-color;
+						
+						&.next-month {
+							color: lighten($font-pink-color, 20%);
+						}
+						&.choosen {
+							color: white;
+						}
+					}
+					//Овер
+					&:hover {
+						background: white;
+						@include border-radius(10px);
+						cursor: pointer;
+					}
+					//Выбранные даты
+					&.choosen {
+						font-weight: 700;
+						color: white;
+						background: $font-pink-bright-color;
+						//Лиса глючит, когда у ячейки задано относительное позиционирование - бек становится выше рамок
+						//поэтому делаем для лисы бек прозрачным, чтобы сквозь него была видна рамка
+						background: -moz-linear-gradient(to top, transparentize($font-pink-bright-color, 0.4), transparentize($font-pink-bright-color, 0.4));
+					}//.choosen
+					&:first-of-type {
+						width: 35px;
+						&:hover {
+							background: no-repeat;
+							cursor: default;
+						}
+					}
+					&:last-of-type {
+						width: 35px;
+						border-right: none;
+						&:hover {
+							background: no-repeat;
+							cursor: default;
+						}
+					}
+					//Выбранные часы
+					SUP {
+						font-size: 0.6em;
+						font-weight: 400;
+						position: relative;
+						bottom: 5px;
+						left: 5px;
+					}
+					//Дропдаун
+					DIV.dropdown {
+						display: none;
+						position: absolute;
+						z-index: 2;
+						left: 0;
+						top: 100%;
+						width: 100%;
+						color: white;
+						padding: 5px 0 10px 0;
+						background: $font-pink-color;
+						@include border-radius(0 0 5px 5px);
+						EM {
+							display: block;
+							text-align: center;
+							padding: 2px 0 2px 0;
+							font-weight: 300;
+							&.selected {
+								font-weight: 800;
+							}
+							&:hover {
+								background: darken($font-pink-color, 10%);
+							}
+						}
+					}//DIV.dropdown
+				}//TD
+				
+				//У первого ряда с днями неделе не должно быть оверов
+				&:first-of-type TD:hover {
+					background: transparent;
+					cursor: default;
+					@include border-radius(0);
+				}
+				&:first-of-type TD.weekend:hover {
+					background: #e0e0e0;
+					//Лиса глючит, когда у ячейки задано относительное позиционирование - бек становится выше рамок
+					//поэтому делаем бек светло-серым прозрачным, чтобы сквозь него была видна рамка
+					background: linear-gradient(to top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+					
+				}
+				//И размер шрифта меньше
+				&:first-of-type TD {
+					font-size: 0.9em;
+				}
+			}//TR
+		}//TABLE
+	}//DIV.calendar
+	//Дополнительные параметры
+	P.additional-trigger {
+		cursor: pointer;
+		& SPAN.icons-caret-pink-right {
+			position: relative;
+			top: 4px;
+			left: 3px;
+		}
+	}
+}//.section-form.step-1

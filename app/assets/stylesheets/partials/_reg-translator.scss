@@ -1,0 +1,71 @@
+//Общие стили шагов регистрации переводчика
+.section-reg-translator {
+	//Пунты второго шага
+	UL.second-step-points {
+		border-bottom: 3px solid #ececec;
+		padding: 0 0 15px 0;
+		margin: 25px 0 0 0;
+		LI {
+			display: inline-block;
+			border-right: 1px solid #ececec;
+			&:last-of-type {
+				border-right: none;
+			}
+			SPAN {
+				display: inline-block;
+				margin: 0 20px 0 20px;
+				padding: 3px 10px 3px 10px;
+				color: $font-pink-color;
+				color: transparentize($font-pink-color, 0.6);
+			}//SPAN
+			&.active SPAN {
+				color: white;
+				background: $font-pink-bright-color;
+				border-radius: 8px;
+			}
+		}//LI
+	}//UL.second-step-points
+	//Ссылка "Добавить" для модального окна с чекбоксами и текстовая область куда добавляются
+	DIV.add {
+		A.trigger {
+			display: inline-block;
+			margin-left: 10px;
+			float: left;
+			color: $font-pink-bright-color;
+			B {
+				font-weight: 700;
+			}
+		}
+		DIV.textarea {
+			margin-left: 180px;
+		}
+		&.short {
+			DIV.textarea {
+				margin-left: 120px;
+			}
+		}
+	}//DIV.add
+}//.section-reg-translator
+
+//Отдельные стили шагов
+//Третий шаг
+.section-reg-translator.section-reg-translator-3 {
+	//Зона дропа при загрузке фото
+	DIV.photo {
+		DIV.dropzone {
+			float: right;
+			width: 75%;
+		}
+	}
+}//.section-reg-translator.section-reg-translator-3
+
+//Шестой шаг
+.section-reg-translator.section-reg-translator-6 {
+	//Зона дропа при загрузке теста на языковую пригодность
+	DIV.lang-test {
+		DIV.dropzone {
+			float: right;
+			width: 75%;
+		}
+	}
+}//.section-reg-translator.section-reg-translator-6

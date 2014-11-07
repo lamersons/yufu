@@ -1,0 +1,497 @@
+//Общие стили для всех трех шагов формы
+.section-form {
+	//Блок шириной в 1 колонку
+	DIV.col-1 {
+		@include grid-col-basic;
+		min-height: 2px;
+		//Последний блок
+		&.last {
+			@include grid-col-last;
+		}
+	}//DIV.col-1
+	//Блок шириной в 2 колонки
+	DIV.col-2 {
+		float: left;
+		box-sizing: border-box;
+		width: $grid-col-width * 2 + $grid-double-int;
+		margin-right: $grid-double-int;
+		min-height: 2px;
+		//Последний блок
+		&.last {
+			margin-right: 0;
+		}
+	}
+	
+	//Главный заголовок
+	H1.main {
+		font-size: 1.5em;
+		font-weight: 700;
+		color: $font-pink-color;
+		margin: 10px 0 10px 0;
+	}
+	//Второстепенный заголовок
+	P.title {
+		color: $font-pink-bright-color;
+		font-weight: 600;
+		font-size: 1.23em;
+		margin: 5px 0 10px 0;
+	}
+	//Простой параграф
+	P {
+		margin: 5px 0 15px 0;
+	}
+	//Подсказка
+	.tooltip-icon-small {
+		@include icons-sprite(tooltip-small);
+		display: inline-block;
+		position: relative;
+		top: 3px;
+		margin-left: 3px;
+	}
+	//Параграф с большой иконкой подсказки
+	P.big-tooltip {
+		position: relative;
+		padding-left: 45px;
+		//Когда текст на 1 строку
+		&.short-text {
+			padding-top: 7px;
+		}
+		SPAN.icon {
+			display: inline-block;
+			position: absolute;
+			left: 5px;
+			top: 5px;
+			@include icons-sprite(tooltip-big);
+		}
+	}//P.big-tooltip
+	//Всплывающая подсказка
+	DIV.hover-tooltip {
+		background: #fff7c5;
+		font-size: 0.82em;
+		@include border-radius(5px);
+		box-sizing: border-box;
+		padding: 5px 15px 5px 15px;
+		position: absolute;
+		z-index: 3;
+		display: none;
+		width: 100%;
+		P {
+			margin-top: 7px;
+			margin-bottom: 7px;
+		}
+		SPAN.icon {
+			display: inline-block;
+			float: right;
+			margin: 5px -5px 5px 5px;
+			@include icons-sprite(tooltip-big);
+		}
+	}
+	//Стрелки
+	.caret {
+		display: inline-block;
+	}
+	//Обязательное поле
+	SPAN.required {
+		color: $font-pink-bright-color;
+		font-size: 0.7em;
+		display: inline-block;
+		position: relative;
+		top: -4px;
+		margin-left: 1px;
+	}
+	//Подсказка
+	SPAN.help-text {
+		font-size: 0.7em;
+		display: inline-block;
+		position: relative;
+		top: -4px;
+		margin-left: 3px;
+		color: lighten($font-main-color, 20%);
+	}
+	//Толстая серая линия
+	DIV.grey-line-thick {
+		border-top: 3px solid #ededed;
+	}
+	//Тонкая серая линия
+	DIV.grey-line {
+		border-top: 1px solid #ededed;
+	}
+	//Текстовое поле, Текстовая область
+	INPUT[type=text], INPUT[type=email], TEXTAREA {
+		display: block;
+		box-shadow: none;
+		outline: none;
+		background-color: #ededed;
+		width: 100%;
+		box-sizing: border-box;
+		font-size: 1em;
+		font-family: 'Open Sans', sans-serif;
+		font-weight: 300;
+		color: $font-main-color;
+		border: 2px solid #ededed;
+		@include border-radius(8px);
+		padding: 0 10px 0 10px;
+		height: 39px;
+		margin: 15px 0 15px 0;
+		line-height: 1.2;
+		//Заблокированное
+		&[disabled] {
+			background-image: image-url("select-disabled-bg.png");
+			border: none;
+		}
+	}
+	TEXTAREA {
+		height: auto;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	//Чекбокс, Радио
+	LABEL.checkbox, LABEL.radio {
+		display: block;
+		box-sizing: border-box;
+		//Это сам видимый чекбокс
+		EM {
+			@include icons-sprite(form-checkbox);
+			float: left;
+			margin: 12px 0 12px 8px;
+		}
+		//Сам чекбокс спрятан
+		INPUT {
+			display: none;
+			&:checked + EM {
+				@include icons-sprite(form-checkbox-checked);
+			}
+		}
+		//Текст
+		P {
+			margin-left: 42px;
+			margin-top: 10px;
+			margin-bottom: 0;
+			//Жирный текст
+			B {
+				font-weight: 600;
+			}
+		}
+		&.long P {
+			margin-top: 0;
+		}
+		//Чек или Радио без отступа слева
+		&.no-left {
+			EM {
+				margin-left: 0;
+			}
+			P {
+				margin-left: 36px;
+			}
+		}
+	}//LABEL.checkbox, LABEL.radio
+	//Другой бэк для радио
+	LABEL.radio {
+		//Это сам видимый чекбокс
+		EM {
+			@include icons-sprite(form-radio);
+		}
+		//Сам чекбокс спрятан
+		INPUT {
+			&:checked + EM {
+				@include icons-sprite(form-radio-checked);
+			}
+		}
+	}//LABEL.radio
+	//Файл
+	LABEL.file {
+		display: block;
+		INPUT[type=file] {
+			display: none;
+		}
+		EM {
+			color: white;
+			background: $font-pink-bright-color;
+			@include border-radius(10px);
+			display: inline-block;
+			padding: 3px 30px 3px 10px;
+			
+		}
+	}//LABEL.file
+	//Дата в виде день месяц год
+	DIV.date {
+		& > DIV {
+			float: left;
+			margin-top: 0;
+			&.day {
+				width: 25%;
+				margin-right: 2%;
+			}
+			&.month {
+				width: 41%;
+				
+			}
+			&.year {
+				width: 29%;
+				float: right;
+			}
+		}
+	}//DIV.date
+	//Зона дропа файла
+	DIV.dropzone {
+		border: 3px solid #ededed;
+		@include border-radius(10px);
+		text-align: center;
+		color: darken(#ededed, 5%);
+		font-weight: 700;
+		padding: 22px 0 22px 0;
+	}//DIV.dropzone
+	//Блок с розовой границей
+	DIV.bordered-block {
+		padding: 10px 20px 5px 20px;
+		//Блок с тоникими отступами
+		&.thin {
+			padding: 0 10px 0 10px;
+		}
+		border: 1px solid $font-pink-color;
+		@include border-radius(10px);
+		//Разделитель внутри блока
+		DIV.line {
+			border-top: 1px solid $font-pink-color;
+			height: 1px;
+		}
+		//Параграфы
+		P {
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+	}
+	//Модальное окно
+	//Бекграунд модального окна выбора языков
+	DIV.modal-bg {
+		position: fixed;
+		visibility: hidden;
+		visibility: visible;
+		height: 100%;
+		width: 100%;
+		background: rgba(black, 0.3);
+		z-index: 1000;
+		top: 0;
+		left: 0;
+	}
+	//Модальное окно выбора языков
+	DIV.modal {
+		left: 50%;
+		top: 250px;
+		margin-left: -($grid-container-width + $grid-double-int)/2;
+		width: $grid-container-width + $grid-double-int;
+		background: white;
+		position: fixed;
+		visibility: visible;
+		z-index: 1001;
+		padding: $grid-single-int;
+		@include border-radius(10px);
+		//Заголовок
+		P.title {
+			margin-top: 0;
+		}
+		//Кнопка закрыть
+		BUTTON.close {
+			font-weight: 300;
+			color: white;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 1em;
+			border: none;
+			background: $font-pink-bright-color;
+			@include border-radius(10px);
+			display: inline-block;
+			padding: 5px 10px 5px 10px;
+			cursor: pointer;
+			float: right;
+		}//BUTTON.close
+		//Серая линия
+		DIV.line {
+			border-top: 3px solid #ededed;
+			margin: 15px 0 15px 0;
+		}
+		//Обертка для скроллбара
+		DIV.scroll {
+			max-height: 200px;
+			overflow: scroll;
+			//Уголки скроллбара
+			.jspArrowUp {
+				@include icons-sprite(form-scroll-up);
+				background-color: white;
+			}
+			.jspArrowUp.jspDisabled {
+				@include icons-sprite(form-scroll-up-disabled);
+				background-color: white;
+			}
+			.jspArrowDown {
+				@include icons-sprite(form-scroll-down);
+				background-color: white;
+			}
+			.jspArrowDown.jspDisabled {
+				@include icons-sprite(form-scroll-down-disabled);
+				background-color: white;
+			}
+		}//DIV.scroll
+	}//DIV.modal
+	//Шаги внизу
+	DIV.steps {
+		border-top: 3px solid #ededed;
+		padding: 25px 0 0 0;
+		//Круги. По умолчанию 5 шагов
+		DIV.circles {
+			//3 шага.
+			&.circles-3 {
+				padding-left: ($grid-col-width - 10 * 13px) / 5 + 13px * 2;
+			}
+			SPAN {
+				display: block;
+				float: left;
+				background: #e1e1e1;
+				font-weight: 700;
+				font-size: 1.2em;
+				line-height: 1;
+				color: white;
+				text-align: center;
+				box-sizing: border-box;
+				width: ($grid-col-width - 10 * 13px) / 5 ;
+				height: 30px;
+				padding: 5px 0 0 0;
+				margin: 0 13px 0 13px;
+				@include border-radius(30px);
+				&.active {
+					background: $font-pink-bright-color;
+				}
+			}//SPAN
+		}//DIV.circles
+		DIV.last {
+			text-align: right;
+		}
+		//Кнопка
+		BUTTON {
+			font-weight: 300;
+			color: white;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 1em;
+			border: none;
+			background: $font-pink-bright-color;
+			@include border-radius(10px);
+			display: inline-block;
+			padding: 5px 10px 5px 10px;
+			cursor: pointer;
+			&.button-grey {
+				background: #e1e1e1;
+			}
+			&.button-disabled {
+				background: image-url("select-disabled-bg.png");
+				cursor: default;
+			}
+		}//BUTTON
+	}//DIV.steps
+	//Аккордион
+	DIV.accordion {
+		//Тригер
+		P.trigger {
+			position: relative;
+			background: #ededed;
+			border-radius: 8px;
+			padding: 3px 10px 3px 40px;
+			color: $font-pink-bright-color;
+			font-weight: 600;
+			font-size: 1.23em;
+			cursor: pointer;
+			.icon {
+				display: inline-block;
+				position: absolute;
+				left: 7px;
+				top: 6px;
+				@include icons-sprite(accordion-closed);
+			}
+			&.opened {
+				.icon {
+					@include icons-sprite(accordion-opened);
+				}
+			}
+		}//P.triger
+	}//DIV.accordion
+}//.section-form
+
+
+
+
+//Кастомный селект. Не хочет работать, если его засовывать по-человечески в иерархию. Пришлось выдернуть
+.custom-select {
+	position: relative;
+	z-index: 1;
+	background-color: #ededed;
+	box-sizing: border-box;
+	border: 2px solid #ededed;
+	@include border-radius(8px);
+	margin: 15px 0 15px 0;
+	padding: 0;
+	//С розовой рамкой
+	&.bordered {
+		border-color: $font-pink-bright-color;
+	}
+	//Заблокированный
+	&.disabled {
+		background-image: image-url("select-disabled-bg.png");
+	}
+}
+
+.custom-select:before {
+	color: transparent;
+	display: block;
+	content: open-quote;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	background: image-url("icons/caret-pink.png") no-repeat 2px 11px;
+	height: 100%;
+	width: 30px;
+	
+}
+
+.custom-select SELECT {
+	background-color: transparent;
+	border: 0 none;
+	@include border-radius(8px);
+	box-shadow: none;
+	display: block;
+	margin: 0;
+	width: 100%;
+	padding: 2px 5px 0 10px;
+	height: 35px;
+	line-height: 1.2;
+	font-size: 1em;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	color: $font-main-color;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	//Заблокированный
+	&[disabled] {
+		color: lighten($font-main-color, 50%);
+	}
+}
+
+.custom-select SELECT::-ms-expand {
+	display: none; /* to ie 10 */
+}
+
+.custom-select SELECT:focus {
+	outline: none;
+}
+
+/* little trick for custom select elements in mozilla firefox  17/06/2014 @rodrigoludgero */
+
+/* pseudo class https://developer.mozilla.org/en-US/docs/Web/CSS/:any */
+
+:-moz-any(.custom-select):before {
+	background-color: #ededed; /* this is necessary for overcome the caret default browser */
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	pointer-events: none; /* https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events  */
+	z-index: 1; /* this is necessary for overcome the pseudo element */
+}

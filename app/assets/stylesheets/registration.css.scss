@@ -1,0 +1,25 @@
+@import "compass/css3";
+
+#native_language {
+  text-align: center;
+  padding-top: 36px;
+  BUTTON[type=submit] {
+    height: 32px;
+    width: 32px;
+    padding: 12px;
+    @include border-radius(7px);
+    border: none;
+    position: relative;
+    cursor: pointer;
+    SPAN.caret {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border: 5px solid transparent;
+      border-left-color: #ef269d;
+      position: absolute;
+      left: 14px;
+      top: 11px;
+    }
+  }
+}

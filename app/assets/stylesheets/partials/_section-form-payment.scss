@@ -1,0 +1,108 @@
+//Третий шаг
+.section-form.payment {
+	//Пункты заказа
+	DIV.points {
+		P.point {
+			position: relative;
+			padding-left: 1.3em;
+			SPAN.number {
+				position: absolute;
+				width: 2em;
+				text-align: right;
+				left: -1em;
+				top: 0;
+			}
+		}
+	}//DIV.points
+	//Дата рождения
+	DIV.birth {
+        & > DIV {
+          	& > DIV {
+            	float: left;
+              	margin-top: 0;
+              	&.day {
+              		width: 25%;
+               		margin-right: 2%;
+              	}
+              	&.month {
+                	width: 41%;
+              	}
+              	&.year {
+                	width: 29%;
+                	float: right;
+              	}
+            }
+		}
+	}//DIV.birth
+	//Способы оплаты
+	DIV.payment-method {
+		text-align: center;
+		position: relative;
+		DIV.line {
+			position: absolute;
+			width: 0;
+			border-left: 1px solid #e5e5e5;
+			top: 0;
+			right: -$grid-single-int;
+			height: 150px;
+		}
+		LABEL {
+			display: inline-block;
+		}
+		> SPAN.icon {
+			display: inline-block;
+			margin-top: 15px;
+		}
+		&.plastic-card > SPAN.icon {
+			@include icons-sprite(plastic-card);
+		}
+		&.bank-transfer > SPAN.icon {
+			@include icons-sprite(bank-transfer);
+		}
+		&.alipay > SPAN.icon {
+			@include icons-sprite(alipay);
+		}
+	}//DIV.payment-method
+	//Платежная карта годна до
+	DIV.card-expired {
+		& > DIV {
+            & > DIV {
+            	float: left;
+            	margin-top: 0;
+            	&.month {
+            		width: 49%;
+              		float: left;
+            	}
+            	&.year {
+              		width: 49%;
+              		float: right;
+            	}
+          	}
+		}
+	}//DIV.card-expired
+	//CVC
+	DIV.cvc {
+		INPUT[type=text] {
+			width: 5em;
+			float: left;
+			margin-top: 0;
+		}
+		P.tip {
+			width: 30em;
+			float: left;
+			margin-left: 10px;
+			padding-top: 5px;
+		}
+	}//DIV.cvc
+	//Параграф внизу с сообщением об оплате
+	P.payment {
+		position: relative;
+		padding-left: 40px;
+		SPAN.icon {
+			position: absolute;
+			left: 0;
+			top: 7px;
+			@include icons-sprite(tooltip-big);
+		}
+	}
+}//.form-section.step-3

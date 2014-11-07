@@ -1,0 +1,127 @@
+//Тегу BODY на странице кабинета присваиваем класс cabinet-body, чтобы изменить верх страницы
+BODY.cabinet-body {
+	background: $bg-pink;
+	//Бекгруанд верхней навигации
+	DIV.nav-top {
+		background: $bg-pink-bright;
+		DIV.auth {
+			SPAN.icon {
+				@include icons-sprite(log-out-icon);
+			}
+		}
+	}
+	//Хедер
+	DIV.header {
+		height: 150px;
+		background-position: center bottom;
+		//Логотип
+		A.logo {
+			@include icons-sprite(yufu-logo-top-small);
+			top: 35px;
+			left: 20px;
+		}
+		//Аватар
+		A.avatar {
+			position: absolute;
+			display: inline-block;
+			top: 20px;
+			right: 30px;
+			//Аватар если человек авторизован
+			&.authorized {
+				background: white;
+				top: 10px;
+				text-align: center;
+				border-radius: 10px;
+				padding: 0px 15px 5px 15px;
+				height: 115px;
+				box-sizing: border-box;
+				color: $font-pink-bright-color;
+			}
+			IMG {
+				display: inline-block;
+				border-radius: (50%);
+			}
+			P {
+				font-size: 0.75em;
+				line-height: 1.3;
+			}
+		}
+		//Лента событий
+		DIV.list {
+			background: white;
+			@include border-radius(10px);
+			margin: 0 150px 0 180px;
+			padding: 5px 10px 10px 10px;
+			DIV.wrapper {
+				max-height: 100px;
+				overflow: scroll;
+				//Уголки скроллбара
+				.jspArrowUp {
+					@include icons-sprite(form-scroll-up);
+					background-color: white;
+				}
+				.jspArrowUp.jspDisabled {
+					@include icons-sprite(form-scroll-up-disabled);
+					background-color: white;
+				}
+				.jspArrowDown {
+					@include icons-sprite(form-scroll-down);
+					background-color: white;
+				}
+				.jspArrowDown.jspDisabled {
+					@include icons-sprite(form-scroll-down-disabled);
+					background-color: white;
+				}
+			}
+			A.item {
+				display: block;
+				@include link-colors($font-main-color, $font-pink-bright-color);
+				font-size: 0.75em;
+				border-bottom: 1px solid #e5e5e5;
+				padding: 1px 0 1px 0;
+				margin-right: 3px;
+			}
+		}//DIV.list
+	}//DIV.header
+}//BODY.cabinet-body
+
+
+//Общие стили страниц кабинета
+.section-cabinet-common {
+	background: white;
+	//Верхнее меню
+	DIV.cabinet-top-menu {
+		position: relative;
+		top: -20px;
+		background: image-url("cabinet-top-menu-bg.png") center top repeat-x;
+		height: 53px;
+		box-sizing: border-box;
+		padding-top: 15px;
+		&.cabinet-top-menu-center {
+			text-align: center;
+		}
+		A, EM {
+			display: inline-block;
+			text-align: center;
+			text-transform: uppercase;
+			color: rgba(255, 255, 255, 0.6);
+			font-weight: 700;
+			padding: 0 17px 0 17px;
+			font-size: 1em;
+			&.active {
+				color: white;
+				position: relative;
+				.caret {
+					position: absolute;
+					left: 50%;
+					top: 37px;
+					border: 7px solid transparent;
+					border-top-color: $bg-pink;
+				}
+			}
+			&:hover {
+				color: white;
+			}
+		}
+	}//DIV.cabinet-top-menu
+}//.section-cabinet-common

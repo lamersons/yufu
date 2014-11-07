@@ -1,0 +1,138 @@
+//Вспомогательные стили
+//Распорки
+.height-1 {
+	height: 1px;
+	padding: 0;
+	margin: 0;
+}
+.height-2 {
+	height: 2px;
+	padding: 0;
+	margin: 0;
+}
+.height-3 {
+	height: 3px;
+	padding: 0;
+	margin: 0;
+}
+.height-5 {
+	height: 5px;
+	padding: 0;
+	margin: 0;
+}
+.height-7 {
+	height: 7px;
+	padding: 0;
+	margin: 0;
+}
+.height-10 {
+	height: 10px;
+	padding: 0;
+	margin: 0;
+}
+.height-15 {
+	height: 15px;
+	padding: 0;
+	margin: 0;
+}
+.height-20 {
+	height: 20px;
+	padding: 0;
+	margin: 0;
+}
+.height-30 {
+	height: 30px;
+	padding: 0;
+	margin: 0;
+}
+.height-40 {
+	height: 40px;
+	padding: 0;
+	margin: 0;
+}
+.height-50 {
+	height: 50px;
+	padding: 0;
+	margin: 0;
+}
+.height-60 {
+	height: 60px;
+	padding: 0;
+	margin: 0;
+}
+.height-70 {
+	height: 70px;
+	padding: 0;
+	margin: 0;
+}
+.height-80 {
+	height: 80px;
+	padding: 0;
+	margin: 0;
+}
+.height-90 {
+	height: 90px;
+	padding: 0;
+	margin: 0;
+}
+
+//Работа со свойством float
+.clear {
+	clear: both;
+}
+.clear-left {
+	clear: left;
+}
+.clear-right {
+	clear: right;
+}
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	display: table;
+}
+.clearfix:after {
+	clear: both;
+}
+.pull-right {
+	float: right;
+}
+.pull-left {
+	float: left;
+}
+
+//Невидимый элемент
+.hide {
+	display: none;
+}
+
+//Относительно позиционированный элемент
+.position-relative {
+	position: relative;
+}
+
+//Типографика
+//Розовый цвет
+.pink {
+	color: $font-pink-color;
+}
+//Ярко розовый цвет
+.pink-bright {
+	color: $font-pink-bright-color;
+}
+//Тонкий шрифт
+.light {
+	font-weight: 300;
+}
+//Полужирный шрифт
+.semi-bold {
+	font-weight: 600;
+}
+//Жирный шрифт
+.bold {
+	font-weight: 700;
+}
+//Мелкий шрифт
+.text-small {
+	font-size: 0.82em;
+}

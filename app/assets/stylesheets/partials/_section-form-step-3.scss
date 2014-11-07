@@ -1,0 +1,33 @@
+//Третий шаг формы
+.section-form.step-3 {
+	//Время прибытия
+	.arr-date-time {
+		INPUT[type=text] {
+			float: left;
+			width: 48%;
+			display: inline-block;
+			margin-top: 0;
+			&.time {
+				float: right;
+			}
+		}
+	}//.arr-date-time
+	//Автомобиль
+	DIV.car {
+		width: $grid-col-width;
+		position: absolute;
+		right: 120px;
+		top: 37px;
+	}//DIV.car
+	//Встреча
+	DIV.greeting {
+		width: $grid-col-width;
+		position: absolute;
+		left: 305px;
+		top: -8px;
+	}
+	SPAN.greeting-interval {
+		display: inline-block;
+		width: $grid-col-width + 20px;
+	}
+}//.section-form.step-3

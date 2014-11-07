@@ -1,0 +1,17 @@
+//= require plugins/jquery.jscrollpane
+//= require_self
+
+//.ng-invalid{
+//  border: 1px solid red;
+//}
+input.ng-invalid-required{
+  border-bottom: 1px solid red;
+}
+
+.modal{
+  transition: 0.2s linear all;
+  opacity: 1;
+  &.ng-hide {
+    opacity: 0;
+  }
+}

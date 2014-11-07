@@ -1,0 +1,221 @@
+//Первый шаг формы
+.section-form.step-2 {
+	//Календарь
+	DIV.calendar {
+		background: #ededed;
+		padding: 10px 10px 20px 10px;
+		margin: 20px 0 15px 0;
+		position: relative;
+		@include border-radius(10px);
+		text-align: center;
+		//Заголовок календаря
+		P.calendar-title {
+			color: $font-pink-color;
+			SPAN {
+				font-weight: 700;
+			}
+		}
+		//Стрелки
+		SPAN.arrow {
+			position: absolute;
+			top: 10px;
+			display: inline-block;
+			cursor: pointer;
+			z-index: 2;
+			&.left {
+				@include icons-sprite(calendar-left);
+				left: 170px;
+			}
+			&.right {
+				@include icons-sprite(calendar-right);
+				right: 10px;
+			}
+		}//SPAN.arrow
+		//Интервал
+		DIV.interval {
+			display: none;
+			&.active {
+				display: block;
+			}
+		}
+		//Таблица
+		TABLE {
+			width: 100%;
+			border-collapse: collapse;
+			TR {
+				TD {
+					font-weight: 300;
+					font-size: 1em;
+					text-align: center;
+					border-bottom: 1px solid #ccc;
+					border-right: 1px solid white;
+					box-sizing: border-box;
+					vertical-align: middle;
+					height: 70px;
+					width: ($grid-container-width - 10px * 2 - 40px - 200px) / 7;
+					position: relative;
+					//Первый столбец
+					&:first-of-type {
+						width: 200px;
+						text-align: left;
+						padding-left: 5px;
+						SUP {
+							font-size: 0.6em;
+							position: relative;
+							bottom: 5px;
+						}
+						&:hover {
+							background: transparent;
+						}
+					}
+					&:last-of-type {
+						width: 40px;
+						border-right: none;
+						&:hover {
+							background: transparent;
+						}
+					}
+					//Выходные
+					&.weekend {
+						//Лиса глючит, когда у ячейки задано относительное позиционирование - бек становится выше рамок
+						//поэтому делаем бек светло-серым прозрачным, чтобы сквозь него была видна рамка
+						background: linear-gradient(to top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+					}
+					//Внимание
+					&.attention {
+						color: $font-pink-bright-color;
+						SPAN {
+							color: $font-main-color;
+						}
+						B.attention-text {
+							font-size: 0.6em;
+							font-weight: 600;
+							display: block;
+							line-height: 1;
+						}
+					}
+					//Подсказка
+					P.attention-tooltip {
+						display: none;
+						position: absolute;
+						z-index: 2;
+						left: -90%;
+						top: 64px;
+						width: 280%;
+						@include border-radius(5px);
+						background: #fff7c5;
+						color: $font-main-color;
+						text-align: left;
+						box-sizing: border-box;
+						padding: 10px 5px 10px 55px;
+						B.icon {
+							display: inline-block;
+							position: absolute;
+							left: 15px;
+							top: 18px;
+							@include icons-sprite(tooltip-big);
+						}
+					}
+					//Овер
+					&:hover {
+						background: white;
+						@include border-radius(10px);
+					}
+					//Выбранные
+					&.choosen {
+						background: $font-pink-bright-color;
+						//Лиса глючит, когда у ячейки задано относительное позиционирование - бек становится выше рамок
+						//поэтому делаем для лисы бек прозрачным, чтобы сквозь него была видна рамка
+						background: -moz-linear-gradient(to top, transparentize($font-pink-bright-color, 0.4), transparentize($font-pink-bright-color, 0.4));
+						& B, & I, & SPAN, & EM {
+							color: white;
+						}
+					}
+					//Те, по которым можно кликнуть
+					&.active {
+						cursor: pointer;
+					}
+					SPAN {
+						display: block;
+					}
+					//Крестик
+					I.cross {
+						display: inline-block;
+						@include icons-sprite(calendar-cross);
+					}
+					//Иконка выпадающего списка
+					I.dropdown-icon {
+						display: inline-block;
+						@include icons-sprite(calendar-dropdown);
+					}
+					//Дропдаун
+					DIV.dropdown {
+						display: none;
+						position: absolute;
+						z-index: 3;
+						left: 22%;
+						top: 48%;
+						width: 56px;
+						color: white;
+						padding: 0 0 5px 0;
+						background: $font-pink-color;
+						@include border-radius(9px);
+						B.icon {
+							display: inline-block;
+							@include icons-sprite(calendar-dropdown-header);
+						}
+						EM {
+							display: block;
+							text-align: center;
+							padding: 2px 0 2px 0;
+							font-weight: 300;
+							&.selected {
+								font-weight: 800;
+							}
+							&:hover {
+								background: darken($font-pink-color, 10%);
+							}
+						}
+					}//DIV.dropdown
+				}//TD
+			}//TR
+			//Первый ряд
+			TR:first-of-type {
+				TD {
+					height: 45px;
+					SPAN {
+						display: block;
+						font-size: 0.6em;
+					}
+					&:hover {
+						background: transparent;
+					}
+					//Цвет у выходных у первого ряда - розовый
+					&.weekend {
+						color: $font-pink-color;
+						&:hover {
+							//Лиса глючит, когда у ячейки задано относительное позиционирование - бек становится выше рамок
+							//поэтому делаем бек светло-серым прозрачным, чтобы сквозь него была видна рамка
+							background: linear-gradient(to top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+							@include border-radius(0);
+						}
+					}
+				}//TD
+			}//TR:first-of-type
+		}//TABLE
+	}//DIV.calendar
+	//Описание
+	P.description {
+		font-size: 0.82em;
+		color: lighten($font-main-color, 30%);
+		padding-left: 10px;
+	}
+	//Сумма
+	P.sum {
+		padding-left: 10px;
+	}
+	//У блока с розовой рамкой на этой странице поля меньше
+	DIV.bordered-block {
+		padding: 0 10px 0 10px;
+	}
+}//.section-form.step-2
