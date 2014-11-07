@@ -2,7 +2,7 @@ module Profile::Translator
   class Company < Base
 
     field :name, localize: true
-    field :reg_number
+    field :company_uid
     field :years_in_business, type: Integer
     field :location
     field :service_phone

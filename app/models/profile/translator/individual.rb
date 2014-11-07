@@ -8,7 +8,6 @@ module Profile
       field :sex
       field :visa
       field :needs_job_resident_permit, type: Mongoid::Boolean
-      has_mongoid_attached_file :avatar
 
       field :can_travel,          type: Mongoid::Boolean
       field :has_driving_license, type: Mongoid::Boolean
@@ -23,6 +22,7 @@ module Profile
       has_and_belongs_to_many :nearby_city_with_surcharge,   class_name: 'City'
       has_and_belongs_to_many :directions
 
+      has_mongoid_attached_file :avatar
       validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
     end
   end
