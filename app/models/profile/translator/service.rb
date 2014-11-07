@@ -10,7 +10,6 @@ module Profile
       field :written_translate_type
 
       belongs_to :language
-      belongs_to :service_category
 
       embedded_in :profile_translator_individual
     end

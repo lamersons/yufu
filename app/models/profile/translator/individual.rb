@@ -21,8 +21,9 @@ module Profile
       embeds_many :services,   class_name: 'Profile::Translator::Service'
       embeds_many :educations, class_name: 'Profile::Education'
 
-      has_and_belongs_to_many :nearby_city,                class_name: 'City'
-      has_and_belongs_to_many :nearby_city_with_surcharge, class_name: 'City'
+      has_and_belongs_to_many :nearby_city,                  class_name: 'City'
+      has_and_belongs_to_many :nearby_city_with_surcharge,   class_name: 'City'
+      has_and_belongs_to_many :available_service_categories, class_name: 'ServiceCategory'
 
       validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
     end

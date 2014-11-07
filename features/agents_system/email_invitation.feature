@@ -15,7 +15,7 @@ Feature: email invitation
      And the user with email "vassal@eample.com" has overlord: user with email: "overlord@example.com"
 
 
-    
+
   Scenario: User with email exist
     Given a user with email "vassal@example.com"
     When I go to "/cabinet"
