@@ -7,8 +7,12 @@ module Profile
 
       field :sex
       field :visa
-      field :needs_job_resident_permit, type: Boolean
+      field :needs_job_resident_permit, type: Mongoid::Boolean
       has_mongoid_attached_file :avatar
+
+      field :can_travel,          type: Mongoid::Boolean
+      field :has_driving_license, type: Mongoid::Boolean
+      field :has_car,             type: Mongoid::Boolean
 
       # contacts info
       field :additional_email
