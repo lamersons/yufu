@@ -24,6 +24,13 @@ module Yufu
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    locale = :ru
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.i18n.available_locales = [:ru, :en]
+    config.i18n.default_locale = locale
+    config.i18n.locale = locale
+
+
     config.autoload_paths += %W(#{config.root}/lib)
 
     ActionMailer::Base.default from: 'Yufu <noreply.yufu@gmail.com>'
