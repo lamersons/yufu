@@ -1,0 +1,7 @@
+= form_for @user, url: url_for(controller: 'api/v1/users', action: 'create'), remote: true do |f|
+  = label_tag I18n.t(:client)
+  = radio_button_tag 'user[_type]', 'Profile::Client', checked: true
+  = label_tag I18n.t(:translator)
+  = radio_button_tag 'user[_type]', 'Profile::Translator::Base'
+  = f.email_field :email
+  = f.submit

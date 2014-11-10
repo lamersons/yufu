@@ -8,6 +8,7 @@ module Api
       # Registration
       def create
         @user = User.new user_params
+        @user.profiles << params[:user][:profiles_attributes][0][:_type].constantize.new
         @user.password = Devise.friendly_token.first(8)
         if @user.save
           UsersMailer.create(@user).deliver

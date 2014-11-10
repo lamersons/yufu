@@ -1,5 +1,7 @@
 Yufu::Application.routes.draw do
 
+  root to: 'main#index'
+
   mount RailsAdmin::Engine => '/administration', as: 'rails_admin'
   mount I18nDashboard::Engine => '/i18n_dashboard'
 
