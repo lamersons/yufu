@@ -8,4 +8,6 @@ class Permission
   field :description
 
   embedded_in :user
+
+  validates_inclusion_of :action ,in: %w(read creat update destroy manage)
 end

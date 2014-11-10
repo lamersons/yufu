@@ -31,4 +31,8 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.navigation_static_links = {
+      'I18n Dashboard' => '/i18n_dashboard'
+  }
 end
