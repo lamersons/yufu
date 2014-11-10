@@ -14,6 +14,8 @@ gem 'i18n_dashboard', github: 'fourmach/i18n_dashboard'
 
 gem 'active_model_serializers'
 
+gem 'state_machine'
+
 # Search engine
 gem 'ransack', github: 'Zhomart/ransack', branch: 'mongoid'
 
