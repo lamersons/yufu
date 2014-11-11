@@ -23,4 +23,7 @@ Yufu::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  locale = :en
+  config.i18n.default_locale = locale
+  config.i18n.locale = locale
 end

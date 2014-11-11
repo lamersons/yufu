@@ -33,4 +33,8 @@ Yufu::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  locale = :en
+  config.i18n.default_locale = locale
+  config.i18n.locale = locale
+
 end
