@@ -28,10 +28,13 @@ require 'cucumber/rails'
 #
 ActionController::Base.allow_rescue = false
 
+require 'email_spec' # add this line if you use spork
+require 'email_spec/cucumber'
+
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 begin
-  DatabaseCleaner.strategy = :transaction
+  DatabaseCleaner.strategy = :truncation
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end

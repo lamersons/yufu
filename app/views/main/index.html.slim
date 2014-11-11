@@ -1,7 +1,12 @@
 = form_for @user, url: url_for(controller: 'api/v1/users', action: 'create'), remote: true do |f|
   = label_tag I18n.t(:client)
-  = radio_button_tag 'user[_type]', 'Profile::Client', checked: true
+  = radio_button_tag 'user[_type]', 'Profile::Client', true, class: 'client'
   = label_tag I18n.t(:translator)
-  = radio_button_tag 'user[_type]', 'Profile::Translator::Base'
+  = radio_button_tag 'user[_type]', 'Profile::Translator::Base', false, class: 'translator'
   = f.email_field :email
   = f.submit
+.message.success На Ваш email отправлено письмо с данными для входа на сайт
+.message.error Пользователь с таким email уже зарегистрирован в системе
+
+coffee:
+  new RegForm
