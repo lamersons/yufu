@@ -10,7 +10,8 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
     include EmailSpec::Helpers
     include EmailSpec::Matchers
 
-    let(:attr) { {email: 'user@example.com'} }
+    let(:attr) { {email: 'user@example.com', profiles_attributes: [{'_type' => 'Profile::Client'}]} }
+    let(:attr_for_translator) { {email: 'user@example.com', profiles_attributes: [{'_type' => 'Profile::Translator::Base'}]} }
 
     subject{post :create, user: attr}
 
@@ -22,6 +23,17 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
       email = UsersMailer.create(assigns(:user))
       expect(email).to deliver_to('user@example.com')
     end
+
+    it 'should create client' do
+      subject
+      expect(assigns(:user).profiles.first.class).to eq(Profile::Client)
+    end
+
+    it 'should create translator' do
+      post :create, user: attr_for_translator
+      expect(assigns(:user).profiles.first.class).to eq(Profile::Translator::Base)
+    end
+
   end
 
   describe "GET show" do
