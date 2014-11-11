@@ -10,8 +10,8 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
     include EmailSpec::Helpers
     include EmailSpec::Matchers
 
-    let(:attr) { {email: 'user@example.com', profiles_attributes: [{'_type' => 'Profile::Client'}]} }
-    let(:attr_for_translator) { {email: 'user@example.com', profiles_attributes: [{'_type' => 'Profile::Translator::Base'}]} }
+    let(:attr) { {email: 'user@example.com', _type: 'Profile::Client'} }
+    let(:attr_for_translator) { {email: 'user@example.com', _type: 'Profile::Translator::Base'} }
 
     subject{post :create, user: attr}
 
