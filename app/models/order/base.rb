@@ -12,6 +12,8 @@ module Order
     embeds_one :car_rent,        class_name: 'Order::CarRent'
     embeds_one :hotel,           class_name: 'Order::Hotel'
 
+    has_many :applications, class_name: 'Order::Application', dependent: :destroy
+
     accepts_nested_attributes_for :airport_pick_up, :car_rent, :hotel
 
     # Order's workflow
