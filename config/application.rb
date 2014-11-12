@@ -44,5 +44,8 @@ module Yufu
         authentication:       'plain',
         enable_starttls_auto:  true  }
 
+    config.ember.ember_path = "#{Rails.root}/app/assets/javascripts/ember"
+    config.handlebars.templates_root = "ember/templates"
+
   end
 end

@@ -1,13 +1,14 @@
 Yufu::Application.routes.draw do
 
-
+  put 'translations/update'
+  mount Mercury::Engine => '/'
   root to: 'main#index'
 
   mount RailsAdmin::Engine => '/administration', as: 'rails_admin'
   mount I18nDashboard::Engine => '/i18n_dashboard'
 
   devise_for :admin
-  devise_for :user, controllers: { registrations: 'users/registrations', passwords: 'users/passwords' }
+  devise_for :users
 
   resource :user
 
@@ -16,8 +17,10 @@ Yufu::Application.routes.draw do
       resources :languages,  only: [:index, :show]
       resources :directions, only: [:index, :show]
       resources :cities,     only: [:index, :show]
-      resources :user,      only: [:index, :show, :update, :create]
-      resources :profiles
+      resources :users,      only: [:index, :show, :update, :create] do
+        resources :profiles
+      end
+
     end
   end
 
