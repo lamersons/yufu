@@ -43,698 +43,698 @@ $icons-sprite-dimensions: true;
 
 //Базовые стили
 BODY {
-	font-family: 'Open Sans', sans-serif;
-	font-weight: 300;
-	color: $font-main-color;
-	line-height: 1.5;
-	overflow-x: hidden;
-	-ms-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  color: $font-main-color;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 //Ссылки
 A {
-	@include link-colors($font-pink-color, $font-pink-bright-color);
-	text-decoration: none;
+  @include link-colors($font-pink-color, $font-pink-bright-color);
+  text-decoration: none;
 }
 
 
 //Контейнер
 DIV.container {
-	width: $grid-container-width;
-	margin-left: auto;
-	margin-right: auto;
+  width: $grid-container-width;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 //Верхняя навигация
 DIV.nav-top {
-	background: $bg-pink;
-	color: white;
-	padding: 10px 0 10px 0;
-	height: 30px;
-	DIV.container {
-		position: relative;
-	}
-	//Ссылки
-	A {
-		@include link-colors(white);
-		text-decoration: none;
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-	//Язык
-	DIV.lang {
-		@include grid-col-basic;
-		font-size: 0.82em;
-		padding-left: 25px;
-		A {
-			display: inline-block;
-			position: relative;
-			SPAN {
-				float: left;
-				display: inline-block;
-				&.icon {
-					@include icons-sprite(lang-icon);
-					margin-right: 10px;
-					&.cabinet {
-						@include icons-sprite(lang-icon-bright-pink);
-					}
-				}
-				&.text {
-					position: relative;
-					top: 5px;
-				}
-			}//SPAN
-			&:hover SPAN.text {
-				text-decoration: underline;
-			}
-		}//A
-	}//DIV.lang
-	//Навигация
-	DIV.nav {
-		@include grid-col-basic;
-		font-weight: 700;
-		text-transform: uppercase;
-		padding-top: 4px;
-		A {
-			display: inline-block;
-			&:first-of-type {
-				margin-right: 2.7em;
-			}
-			&:last-of-type {
-				margin-left: 2.7em;
-			}
-		}
-	}//DIV.nav
-	//Вход/регистрация
-	DIV.auth {
-		@include grid-col-basic;
-		@include grid-col-last;
-		padding-right: 25px;
-		font-size: 0.82em;
-		A, SPAN {
-			float: right;
-			display: inline-block;
-			position: relative;
-		}
-		SPAN.icon {
-			@include icons-sprite(login-icon);
-			margin-left: 10px;
-		}
-		SPAN.slash {
-			margin-left: 3px;
-			margin-right: 3px;
-			top: 5px;
-		}
-		A {
-			top: 5px;
-		}
-	}//DIV.auth
-	//Выбор языка
-	DIV.select-lang {
-		position: absolute;
-		top: 40px;
-		width: $grid-container-width - 20;
-		box-sizing: border-box;
-		@include border-radius(7px);
-		padding: 15px 0 10px 9px;
-		left: 10px;
-		background: white;
-		z-index: 2;
-		display: none;
-		SPAN.caret {
-			position: absolute;
-			left: 25px;
-			top: -10px;
-			display: inline-block;
-			width: 0;
-			height: 0;
-			border: 5px solid transparent;
-			border-bottom-color: white;
-		}
-		//Колонка
-		DIV.col {
-			float: left;
-			width: 284px;
-			margin-right: $grid-double-int;
-			box-sizing: border-box;
-			&.last {
-				margin-right: 0;
-			}
-			//Блок в колонке
-			DIV {
-				float: left;
-				width: 50%;
-				box-sizing: border-box;
-				height: 28px;
-				A {
-					@include link-colors($font-main-color, $font-pink-bright-color);
-					font-size: 0.85em;
-					display: inline-block;
-					padding: 1px 6px 3px 6px;
-					&:hover {
-						text-decoration: none;
-					}
-					&.active {
-						color: white;
-						border-radius: 7px;
-						background: $font-pink-bright-color;
-					}
-				}
-			}
-		}//DIV.col
-	}//DIV.select-lang
+  background: $bg-pink;
+  color: white;
+  padding: 10px 0 10px 0;
+  height: 30px;
+  DIV.container {
+    position: relative;
+  }
+  //Ссылки
+  A {
+    @include link-colors(white);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  //Язык
+  DIV.lang {
+    @include grid-col-basic;
+    font-size: 0.82em;
+    padding-left: 25px;
+    A {
+      display: inline-block;
+      position: relative;
+      SPAN {
+        float: left;
+        display: inline-block;
+        &.icon {
+          @include icons-sprite(lang-icon);
+          margin-right: 10px;
+          &.cabinet {
+            @include icons-sprite(lang-icon-bright-pink);
+          }
+        }
+        &.text {
+          position: relative;
+          top: 5px;
+        }
+      }//SPAN
+      &:hover SPAN.text {
+        text-decoration: underline;
+      }
+    }//A
+  }//DIV.lang
+  //Навигация
+  DIV.nav {
+    @include grid-col-basic;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-top: 4px;
+    A {
+      display: inline-block;
+      &:first-of-type {
+        margin-right: 2.7em;
+      }
+      &:last-of-type {
+        margin-left: 2.7em;
+      }
+    }
+  }//DIV.nav
+  //Вход/регистрация
+  DIV.auth {
+    @include grid-col-basic;
+    @include grid-col-last;
+    padding-right: 25px;
+    font-size: 0.82em;
+    A, SPAN {
+      float: right;
+      display: inline-block;
+      position: relative;
+    }
+    SPAN.icon {
+      @include icons-sprite(login-icon);
+      margin-left: 10px;
+    }
+    SPAN.slash {
+      margin-left: 3px;
+      margin-right: 3px;
+      top: 5px;
+    }
+    A {
+      top: 5px;
+    }
+  }//DIV.auth
+  //Выбор языка
+  DIV.select-lang {
+    position: absolute;
+    top: 40px;
+    width: $grid-container-width - 20;
+    box-sizing: border-box;
+    @include border-radius(7px);
+    padding: 15px 0 10px 9px;
+    left: 10px;
+    background: white;
+    z-index: 2;
+    display: none;
+    SPAN.caret {
+      position: absolute;
+      left: 25px;
+      top: -10px;
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border: 5px solid transparent;
+      border-bottom-color: white;
+    }
+    //Колонка
+    DIV.col {
+      float: left;
+      width: 284px;
+      margin-right: $grid-double-int;
+      box-sizing: border-box;
+      &.last {
+        margin-right: 0;
+      }
+      //Блок в колонке
+      DIV {
+        float: left;
+        width: 50%;
+        box-sizing: border-box;
+        height: 28px;
+        A {
+          @include link-colors($font-main-color, $font-pink-bright-color);
+          font-size: 0.85em;
+          display: inline-block;
+          padding: 1px 6px 3px 6px;
+          &:hover {
+            text-decoration: none;
+          }
+          &.active {
+            color: white;
+            border-radius: 7px;
+            background: $font-pink-bright-color;
+          }
+        }
+      }
+    }//DIV.col
+  }//DIV.select-lang
 }//DIV.nav-top
 
 
 //Хедер
 DIV.header {
-	height: 240px;
-	background: image-url("header-bg.png") repeat-x center bottom;
-	DIV.container {
-		position: relative;
-	}
-	//Логотип
-	A.logo {
-		position: absolute;
-		top: 50px;
-		left: 40px;
-		@include icons-sprite(yufu-logo-top);
-	}
-	//Текст
-	P.slogan {
-		font-size: 2.65em;
-		text-align: right;
-		margin-left: 250px;
-		padding-top: 60px;
-		padding-right: 10px;
-		line-height: 1;
-	}
+  height: 240px;
+  background: image-url("header-bg.png") repeat-x center bottom;
+  DIV.container {
+    position: relative;
+  }
+  //Логотип
+  A.logo {
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    @include icons-sprite(yufu-logo-top);
+  }
+  //Текст
+  P.slogan {
+    font-size: 2.65em;
+    text-align: right;
+    margin-left: 250px;
+    padding-top: 60px;
+    padding-right: 10px;
+    line-height: 1;
+  }
 }//DIV.header
 
 //Блоки - общие стили
 DIV.block {
-	//Заголовок блоков
-	P.h1 {
-		color: $font-pink-color;
-		text-align: center;
-		font-size: 1.5em;
-		font-weight: 700;
-		margin-top: 20px;
-	}
-	//Блок
-	DIV.item {
-		margin-top: 30px;
-		float: left;
-		box-sizing: border-box;
-		//Большая ссылка в блоке
-		A {
-			@include link-colors($font-pink-color);
-			text-decoration: none;
-			display: block;
-			text-align: center;
-		}
-		//Заголовок в блоке
-		P.h2 { 
-			font-size: 1.23em;
-			font-weight: 400;
-		}
-		//Иконка в блоке
-		SPAN.icon {
-			display: inline-block;
-			margin-bottom: 30px;
-		}
-	}//DIV.item
+  //Заголовок блоков
+  P.h1 {
+    color: $font-pink-color;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-top: 20px;
+  }
+  //Блок
+  DIV.item {
+    margin-top: 30px;
+    float: left;
+    box-sizing: border-box;
+    //Большая ссылка в блоке
+    A {
+      @include link-colors($font-pink-color);
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+    //Заголовок в блоке
+    P.h2 {
+      font-size: 1.23em;
+      font-weight: 400;
+    }
+    //Иконка в блоке
+    SPAN.icon {
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+  }//DIV.item
 }//DIV.block
 
 //Первый ряд блоков
 DIV.block.first {
-	padding-bottom: 20px;
-	DIV.item {
-		position: relative;
-	}
-	//Устный перевод
-	DIV.verbal {
-		width: $grid-col-width + $grid-single-int;
-		padding-right: $grid-single-int;
-		border-right: 1px solid #e5e5e5;
-		SPAN.icon {
-			@include icons-sprite(first-verbal);
-		}
-	}//DIV.verbal
-	//Письменный перевод
-	DIV.writing {
-		width: $grid-col-width;
-		margin-left: $grid-single-int;
-		margin-right: $grid-single-int;
-		SPAN.icon {
-			@include icons-sprite(first-writing);
-		}
-	}//DIV.writing
-	//Локальный эксперт
-	DIV.local{
-		width: $grid-col-width + $grid-single-int;
-		padding-left: $grid-single-int;
-		border-left: 1px solid #e5e5e5;
-		SPAN.icon {
-			@include icons-sprite(first-local);
-		}
-	}//DIV.local
-	//Оверы
-	DIV.item {
-		DIV.over {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: $grid-col-width;
-			box-sizing: border-box;
-			padding: 12px 15px 15px 15px;
-			text-align: center;
-			height: 70%;
-			background: #ececec;
-			display: none;
-			@include border-radius(10px);
-			//Текст
-			P {
-				position: relative;
-				font-size: 0.9em;
-				padding-top: 0.3em;
-			}
-			
-			//Стрелка внизу
-			SPAN {
-				position: absolute;
-				bottom: -23px;
-				left: $grid-col-width / 2 - 35px;
-				display: inline-block;
-				@include icons-sprite(arrow-pink-grey-bg);
-				background-color: #ececec;
-				@include border-radius(35px);
-			}
-		}//DIV.over
-	}//DIV.item
-	//В блоке с локальным экспертом нужно подвинуть овер
-	DIV.local DIV.over {
-		left: $grid-single-int;
-	}
+  padding-bottom: 20px;
+  DIV.item {
+    position: relative;
+  }
+  //Устный перевод
+  DIV.verbal {
+    width: $grid-col-width + $grid-single-int;
+    padding-right: $grid-single-int;
+    border-right: 1px solid #e5e5e5;
+    SPAN.icon {
+      @include icons-sprite(first-verbal);
+    }
+  }//DIV.verbal
+  //Письменный перевод
+  DIV.writing {
+    width: $grid-col-width;
+    margin-left: $grid-single-int;
+    margin-right: $grid-single-int;
+    SPAN.icon {
+      @include icons-sprite(first-writing);
+    }
+  }//DIV.writing
+  //Локальный эксперт
+  DIV.local{
+    width: $grid-col-width + $grid-single-int;
+    padding-left: $grid-single-int;
+    border-left: 1px solid #e5e5e5;
+    SPAN.icon {
+      @include icons-sprite(first-local);
+    }
+  }//DIV.local
+  //Оверы
+  DIV.item {
+    DIV.over {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: $grid-col-width;
+      box-sizing: border-box;
+      padding: 12px 15px 15px 15px;
+      text-align: center;
+      height: 70%;
+      background: #ececec;
+      display: none;
+      @include border-radius(10px);
+      //Текст
+      P {
+        position: relative;
+        font-size: 0.9em;
+        padding-top: 0.3em;
+      }
+
+      //Стрелка внизу
+      SPAN {
+        position: absolute;
+        bottom: -23px;
+        left: $grid-col-width / 2 - 35px;
+        display: inline-block;
+        @include icons-sprite(arrow-pink-grey-bg);
+        background-color: #ececec;
+        @include border-radius(35px);
+      }
+    }//DIV.over
+  }//DIV.item
+  //В блоке с локальным экспертом нужно подвинуть овер
+  DIV.local DIV.over {
+    left: $grid-single-int;
+  }
 }//DIV.block.first
 
 //Второй ряд блоков
 DIV.block.second {
-	background: image-url("dotted-gray-bg.png");
-	margin-top: 30px;
-	padding-top: 15px;
-	//Немного подправим контейнер
-	DIV.container {
-		width: $grid-container-width + $grid-single-int * 2;
-		position: relative;
-	}
-	//Блоки
-	DIV.item {
-		width: $grid-col-width + $grid-single-int * 2;
-		padding-top: 30px;
-		padding-bottom: 30px;
-		margin-top: 10px;
-		cursor: pointer;
-		&:hover, &.active {
-			background: rgba(255, 255, 255, 0.5);
-			@include border-radius(10px 10px 0 0);
-		}
-		//Обретки
-		DIV.wrap {
-			text-align: center;
-			color: $font-pink-color;
-			//Для того чтобы стрелка была снизу
-			P.h2 {
-				position: relative;
-			}
-		}//DIV.wrap
-	}//DIV.item
-	//Переводчик
-	DIV.translator {
-		SPAN.icon {
-			@include icons-sprite(second-translator);
-		}
-	}//DIV.translator
-	//Поставщик
-	DIV.supplier {
-		padding-top: 38px;
-		DIV.wrap {
-			border-right: 1px solid rgba(255, 255, 255, 0.5);
-			border-left: 1px solid rgba(255, 255, 255, 0.5);
-		}
-		SPAN.icon {
-			@include icons-sprite(second-supplier);
-		}
-	}//DIV.supplier
-	//Агент
-	DIV.agent {
-		SPAN.icon {
-			@include icons-sprite(second-agent);
-		}//DIV.agent
-	}//DIV.agent
-	//Текстовые блоки
-	P.text-block {
-		padding-left: $grid-single-int;
-		padding-right: $grid-single-int;
-		padding-top: 25px;
-		padding-bottom: 40px;
-		background: rgba(255, 255, 255, 0.5);
-		display: none;
-		&.translator {
-			@include border-radius(0 10px 10px 10px);
-		}
-		&.supplier {
-			@include border-radius(10px 10px 10px 10px);
-		}
-		&.agent {
-			@include border-radius(10px 0 10px 10px);
-		}
-	}//P.text-blocks
-	
-	//Стрелки
-	SPAN.arrow {
-		position: absolute;
-		bottom: -20px;
-		display: inline-block;
-		background-color: #ececec;
-		@include border-radius(35px);
-		//@include icons-sprite(arrow-second-default);
-		&.translator {
-			left: ($grid-col-width + $grid-single-int * 2) / 2 - 35px;
-		}
-		&.supplier {
-			left: ($grid-container-width + $grid-single-int * 2) / 2 - 35px;
-		}
-		&.agent {
-			right: ($grid-col-width + $grid-single-int * 2) / 2 - 35px;
-		}
-		&.icons-arrow-second-h, &.icons-arrow-second-click {
-			background-color: #f5f5f5;
-		}
-	}//SPAN.arrow
+  background: image-url("dotted-gray-bg.png");
+  margin-top: 30px;
+  padding-top: 15px;
+  //Немного подправим контейнер
+  DIV.container {
+    width: $grid-container-width + $grid-single-int * 2;
+    position: relative;
+  }
+  //Блоки
+  DIV.item {
+    width: $grid-col-width + $grid-single-int * 2;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    &:hover, &.active {
+      background: rgba(255, 255, 255, 0.5);
+      @include border-radius(10px 10px 0 0);
+    }
+    //Обретки
+    DIV.wrap {
+      text-align: center;
+      color: $font-pink-color;
+      //Для того чтобы стрелка была снизу
+      P.h2 {
+        position: relative;
+      }
+    }//DIV.wrap
+  }//DIV.item
+  //Переводчик
+  DIV.translator {
+    SPAN.icon {
+      @include icons-sprite(second-translator);
+    }
+  }//DIV.translator
+  //Поставщик
+  DIV.supplier {
+    padding-top: 38px;
+    DIV.wrap {
+      border-right: 1px solid rgba(255, 255, 255, 0.5);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    SPAN.icon {
+      @include icons-sprite(second-supplier);
+    }
+  }//DIV.supplier
+  //Агент
+  DIV.agent {
+    SPAN.icon {
+      @include icons-sprite(second-agent);
+    }//DIV.agent
+  }//DIV.agent
+  //Текстовые блоки
+  P.text-block {
+    padding-left: $grid-single-int;
+    padding-right: $grid-single-int;
+    padding-top: 25px;
+    padding-bottom: 40px;
+    background: rgba(255, 255, 255, 0.5);
+    display: none;
+    &.translator {
+      @include border-radius(0 10px 10px 10px);
+    }
+    &.supplier {
+      @include border-radius(10px 10px 10px 10px);
+    }
+    &.agent {
+      @include border-radius(10px 0 10px 10px);
+    }
+  }//P.text-blocks
+
+  //Стрелки
+  SPAN.arrow {
+    position: absolute;
+    bottom: -20px;
+    display: inline-block;
+    background-color: #ececec;
+    @include border-radius(35px);
+    //@include icons-sprite(arrow-second-default);
+    &.translator {
+      left: ($grid-col-width + $grid-single-int * 2) / 2 - 35px;
+    }
+    &.supplier {
+      left: ($grid-container-width + $grid-single-int * 2) / 2 - 35px;
+    }
+    &.agent {
+      right: ($grid-col-width + $grid-single-int * 2) / 2 - 35px;
+    }
+    &.icons-arrow-second-h, &.icons-arrow-second-click {
+      background-color: #f5f5f5;
+    }
+  }//SPAN.arrow
 }//DIV.block.second
 
 //Пункты первого блока
 DIV.first-points {
-	//Контейнер с полями и рамкой
-	DIV.container {
-		padding-left: $grid-single-int;
-		padding-right: $grid-single-int;
-		margin-top: 35px;
-		border-left: 1px solid #e5e5e5;
-		border-right: 1px solid #e5e5e5;
-	}
-	//Розовый цвет
-	SPAN.pink {
-		color: $font-pink-bright-color;
-	}
-	
-	//Жирный текст
-	SPAN.bold {
-		font-weight: 700;
-	}
-	//Блоки
-	DIV.item {
-		float: left;
-		width: $grid-col-width + $grid-double-int;
-		box-sizing: border-box;
-		padding-left: $grid-single-int;
-		padding-right: $grid-single-int;
-		padding-bottom: 15px;
-		margin-bottom: 25px;
-		position: relative;
-		&.third {
-			margin-right: -$grid-single-int;
-		}
-		&.first {
-			margin-left: -$grid-single-int;
-		}
-		&.active {
-			background: #f7f7f7;
-			@include border-radius(15px);
-		}
-		
-		P {
-			B {
-				font-weight: 600;
-				color: $font-pink-bright-color;
-			}
-		}
-		//Иконки
-		DIV.icon {
-			text-align: center;
-			SPAN {
-				display: inline-block;
-				margin-bottom: 25px;
-				//Устный
-				&.verbal.gid {
-					@include icons-sprite(first-verbal-gid);
-				}
-				&.verbal.business {
-					@include icons-sprite(first-verbal-business);
-				}
-				&.verbal.expert {
-					@include icons-sprite(first-verbal-expert);
-				}
-				//Письменный
-				&.writing.ur {
-					@include icons-sprite(first-writing-ur);
-				}
-				&.writing.tech {
-					@include icons-sprite(first-writing-tech);
-				}
-				&.writing.st {
-					@include icons-sprite(first-writing-st);
-				}
-				&.writing.hud {
-					@include icons-sprite(first-writing-hud);
-				}
-				&.writing.loc {
-					@include icons-sprite(first-writing-loc);
-				}
-				&.writing.lang {
-					@include icons-sprite(first-writing-lang);
-				}
-				//Локальный эксперт
-				&.local.ur {
-					@include icons-sprite(first-local-ur);
-				}
-				&.local.reg {
-					@include icons-sprite(first-local-reg);
-				}
-				&.local.business {
-					@include icons-sprite(first-local-business);
-				}
-				&.local.arenda {
-					@include icons-sprite(first-local-arenda);
-				}
-				&.local.fabrika {
-					@include icons-sprite(first-local-fabrika);
-				}
-				&.local.other {
-					@include icons-sprite(first-local-other);
-				}
-			}//SPAN
-		}//DIV.icon
-		//Овер
-		DIV.over {
-			position: absolute;
-			top: -20px;
-			left: ($grid-col-width + $grid-double-int) / 2 - 60px;
-			@include icons-sprite(first-place-order-bg);
-			color: white;
-			text-align: center;
-			cursor: pointer;
-			P.zakaz {
-				font-size: 0.9em;
-				font-weight: 700;
-				line-height: 1;
-				margin-top: 45px;
-			}
-		}
-	}//DIV.item
+  //Контейнер с полями и рамкой
+  DIV.container {
+    padding-left: $grid-single-int;
+    padding-right: $grid-single-int;
+    margin-top: 35px;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+  }
+  //Розовый цвет
+  SPAN.pink {
+    color: $font-pink-bright-color;
+  }
+
+  //Жирный текст
+  SPAN.bold {
+    font-weight: 700;
+  }
+  //Блоки
+  DIV.item {
+    float: left;
+    width: $grid-col-width + $grid-double-int;
+    box-sizing: border-box;
+    padding-left: $grid-single-int;
+    padding-right: $grid-single-int;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    &.third {
+      margin-right: -$grid-single-int;
+    }
+    &.first {
+      margin-left: -$grid-single-int;
+    }
+    &.active {
+      background: #f7f7f7;
+      @include border-radius(15px);
+    }
+
+    P {
+      B {
+        font-weight: 600;
+        color: $font-pink-bright-color;
+      }
+    }
+    //Иконки
+    DIV.icon {
+      text-align: center;
+      SPAN {
+        display: inline-block;
+        margin-bottom: 25px;
+        //Устный
+        &.verbal.gid {
+          @include icons-sprite(first-verbal-gid);
+        }
+        &.verbal.business {
+          @include icons-sprite(first-verbal-business);
+        }
+        &.verbal.expert {
+          @include icons-sprite(first-verbal-expert);
+        }
+        //Письменный
+        &.writing.ur {
+          @include icons-sprite(first-writing-ur);
+        }
+        &.writing.tech {
+          @include icons-sprite(first-writing-tech);
+        }
+        &.writing.st {
+          @include icons-sprite(first-writing-st);
+        }
+        &.writing.hud {
+          @include icons-sprite(first-writing-hud);
+        }
+        &.writing.loc {
+          @include icons-sprite(first-writing-loc);
+        }
+        &.writing.lang {
+          @include icons-sprite(first-writing-lang);
+        }
+        //Локальный эксперт
+        &.local.ur {
+          @include icons-sprite(first-local-ur);
+        }
+        &.local.reg {
+          @include icons-sprite(first-local-reg);
+        }
+        &.local.business {
+          @include icons-sprite(first-local-business);
+        }
+        &.local.arenda {
+          @include icons-sprite(first-local-arenda);
+        }
+        &.local.fabrika {
+          @include icons-sprite(first-local-fabrika);
+        }
+        &.local.other {
+          @include icons-sprite(first-local-other);
+        }
+      }//SPAN
+    }//DIV.icon
+    //Овер
+    DIV.over {
+      position: absolute;
+      top: -20px;
+      left: ($grid-col-width + $grid-double-int) / 2 - 60px;
+      @include icons-sprite(first-place-order-bg);
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      P.zakaz {
+        font-size: 0.9em;
+        font-weight: 700;
+        line-height: 1;
+        margin-top: 45px;
+      }
+    }
+  }//DIV.item
 }//DIV.first-points
 
 //Форма регистрации
 FORM.reg-form {
-	background: image-url("striped-pink-bg.png");
-	color: white;
-	padding: 30px 0 15px 0;
-	//Первая колонка
-	DIV.now {
-		@include grid-col-single-int;
-		text-align: right;
-		font-weight: 600;
-		font-size: 1.23em;
-		padding-top: 5px;
-		line-height: 1.1;
-	}//DIV.now
-	//Вторая колонка
-	DIV.email {
-		@include grid-col-basic;
-		INPUT.email {
-			background-color: white;
-			@include border-radius(7px);
-			display: inline-block;
-			width: $grid-col-width;
-			font-size: 1em;
-			padding: 8px 15px 8px 15px;
-			height: 32px;
-			box-sizing: border-box;
-			border: none;
-			&[readonly] {
-				background-image: image-url("inout-disabled-bg.png");
-			}
-		}
-		P {
-			font-size: 0.7em;
-			text-align: center;
-			margin-top: 10px;
-		}
-		
-		
-		//Всплывающая подсказка
-		DIV.tooltip-wrap {
-			position: relative;
-			height: 1px;
-			DIV.tooltip {
-				background: #fff7c5;
-				@include border-radius(5px);
-				position: absolute;
-				color: black;
-				text-align: left;
-				font-size: 1.2em;
-				left: $grid-single-int - 8px;
-				top: -15px;
-				width: $grid-col-width - $grid-double-int + 16px;
-				box-sizing: border-box;
-				padding: 10px 10px 10px 10px;
-				display: none;
-				SPAN {
-					float: left;
-					@include icons-sprite(second-tooltip-alert);
-				}
-				P {
-					float: left;
-					margin-top: 0;
-					padding-top: 0;
-					margin-left: 10px;
-					width: 80%;
-					line-height: 1.2;
-					text-align: left;
-				}
-			}//DIV.tooltip
-		}//DIV.tooltip-wrap
-	}//DIV.email
-	//Третья колонка
-	DIV.check {
-		@include grid-col-basic;
-		@include grid-col-last;
-		margin-left: -$grid-single-int;
-		P {
-			font-size: 0.82em;
-			float: left;
-			margin-left: 30px;
-			width: 150px;
-			line-height: 1.35;
-		}
-		BUTTON[type=submit] {
-			display: inline-block;
-			float: left;
-			height: 32px;
-			width: 32px;
-			padding: 8px;
-			background: white;
-			@include border-radius(7px);
-			border: none;
-			position: relative;
-			cursor: pointer;
-			SPAN.caret {
-				display: inline-block;
-				width: 0;
-				height: 0;
-				border: 5px solid transparent;
-				border-left-color: #ef269d;
-				position: absolute;
-				left: 14px;
-				top: 11px;
-			}
-		}//BUTTON
-	}//DIV.check
+  background: image-url("striped-pink-bg.png");
+  color: white;
+  padding: 30px 0 15px 0;
+  //Первая колонка
+  DIV.now {
+    @include grid-col-single-int;
+    text-align: right;
+    font-weight: 600;
+    font-size: 1.23em;
+    padding-top: 5px;
+    line-height: 1.1;
+  }//DIV.now
+  //Вторая колонка
+  DIV.email {
+    @include grid-col-basic;
+    INPUT.email {
+      background-color: white;
+      @include border-radius(7px);
+      display: inline-block;
+      width: $grid-col-width;
+      font-size: 1em;
+      padding: 8px 15px 8px 15px;
+      height: 32px;
+      box-sizing: border-box;
+      border: none;
+      &[readonly] {
+        background-image: image-url("inout-disabled-bg.png");
+      }
+    }
+    P {
+      font-size: 0.7em;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+
+    //Всплывающая подсказка
+    DIV.tooltip-wrap {
+      position: relative;
+      height: 1px;
+      DIV.tooltip {
+        background: #fff7c5;
+        @include border-radius(5px);
+        position: absolute;
+        color: black;
+        text-align: left;
+        font-size: 1.2em;
+        left: $grid-single-int - 8px;
+        top: -15px;
+        width: $grid-col-width - $grid-double-int + 16px;
+        box-sizing: border-box;
+        padding: 10px 10px 10px 10px;
+        display: none;
+        SPAN {
+          float: left;
+          @include icons-sprite(second-tooltip-alert);
+        }
+        P {
+          float: left;
+          margin-top: 0;
+          padding-top: 0;
+          margin-left: 10px;
+          width: 80%;
+          line-height: 1.2;
+          text-align: left;
+        }
+      }//DIV.tooltip
+    }//DIV.tooltip-wrap
+  }//DIV.email
+  //Третья колонка
+  DIV.check {
+    @include grid-col-basic;
+    @include grid-col-last;
+    margin-left: -$grid-single-int;
+    P {
+      font-size: 0.82em;
+      float: left;
+      margin-left: 30px;
+      width: 150px;
+      line-height: 1.35;
+    }
+    BUTTON[type=submit] {
+      display: inline-block;
+      float: left;
+      height: 32px;
+      width: 32px;
+      padding: 8px;
+      background: white;
+      @include border-radius(7px);
+      border: none;
+      position: relative;
+      cursor: pointer;
+      SPAN.caret {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border: 5px solid transparent;
+        border-left-color: #ef269d;
+        position: absolute;
+        left: 14px;
+        top: 11px;
+      }
+    }//BUTTON
+  }//DIV.check
 }//FORM.reg-form
 
 //О компании
 DIV.about {
-	padding-bottom: 30px;
-	DIV.container {
-		position: relative;
-	}
-	DIV.col1 {
-		@include grid-col-basic;
-		P.title {
-			color: $font-pink-color;
-			font-weight: 600;
-			font-size: 1.5em;
-			height: 45px;
-			margin-top: 25px;
-		}
-	}
-	DIV.col2 {
-		@include grid-col-basic;
-		margin-top: 65px;
-	}
-	DIV.col3 {
-		@include grid-col-basic;
-		@include grid-col-last;
-		margin-top: 65px;
-	}
-	//Стрелка внизу
-	SPAN.bottom-arrow {
-		display: inline-block;
-		position: absolute;
-		@include icons-sprite(arrow-grey-white-cropped-bg);
-		bottom: -50px;
-		left: $grid-container-width / 2 - 35px;
-	}
+  padding-bottom: 30px;
+  DIV.container {
+    position: relative;
+  }
+  DIV.col1 {
+    @include grid-col-basic;
+    P.title {
+      color: $font-pink-color;
+      font-weight: 600;
+      font-size: 1.5em;
+      height: 45px;
+      margin-top: 25px;
+    }
+  }
+  DIV.col2 {
+    @include grid-col-basic;
+    margin-top: 65px;
+  }
+  DIV.col3 {
+    @include grid-col-basic;
+    @include grid-col-last;
+    margin-top: 65px;
+  }
+  //Стрелка внизу
+  SPAN.bottom-arrow {
+    display: inline-block;
+    position: absolute;
+    @include icons-sprite(arrow-grey-white-cropped-bg);
+    bottom: -50px;
+    left: $grid-container-width / 2 - 35px;
+  }
 }//DIV.about
 
 //Футер
 DIV.footer {
-	background: $bg-pink;
-	padding: 50px 0 40px 0;
-	color: white;
-	DIV.col1 {
-		@include grid-col-basic;
-		position: relative;
-		A.logo {
-			display: inline-block;
-			@include icons-sprite(yufu-logo-bottom);
-		}
-		DIV.social {
-			position: absolute;
-			left: 180px;
-			top: 30px;
-			A {
-				display: inline-block;
-				&.facebook {
-					@include icons-sprite(facebook);
-					margin-right: 5px;
-				}
-				&.twitter {
-					@include icons-sprite(twitter);
-				}
-			}
-		}
-	}
-	DIV.col2 {
-		@include grid-col-basic;
-		font-size: 0.82em;
-		line-height: 2;
-	}
-	DIV.col3 {
-		@include grid-col-basic;
-		@include grid-col-last;
-		font-size: 0.7em;
-	}
+  background: $bg-pink;
+  padding: 50px 0 40px 0;
+  color: white;
+  DIV.col1 {
+    @include grid-col-basic;
+    position: relative;
+    A.logo {
+      display: inline-block;
+      @include icons-sprite(yufu-logo-bottom);
+    }
+    DIV.social {
+      position: absolute;
+      left: 180px;
+      top: 30px;
+      A {
+        display: inline-block;
+        &.facebook {
+          @include icons-sprite(facebook);
+          margin-right: 5px;
+        }
+        &.twitter {
+          @include icons-sprite(twitter);
+        }
+      }
+    }
+  }
+  DIV.col2 {
+    @include grid-col-basic;
+    font-size: 0.82em;
+    line-height: 2;
+  }
+  DIV.col3 {
+    @include grid-col-basic;
+    @include grid-col-last;
+    font-size: 0.7em;
+  }
 }//DIV.footer
