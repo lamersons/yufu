@@ -28,6 +28,8 @@ gem 'cancancan'
 
 # View handles
 gem 'slim-rails'
+gem 'html2slim'
+gem 'compass-rails'
 
 #ember js
 gem 'ember-rails'
@@ -59,6 +61,9 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+
+gem 'gon' # output params from rails -> js
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -89,7 +94,8 @@ group :development do
 end
 
 group :production do
-  gem 'unicorn'
+     nil?
+  gem 'unicorn', platform: :ruby
 end
 
 # Use ActiveModel has_secure_password
