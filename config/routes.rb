@@ -10,6 +10,7 @@ Yufu::Application.routes.draw do
   devise_for :admin
   devise_for :users
 
+  resource :user
 
   namespace :api do
     namespace :v1 do

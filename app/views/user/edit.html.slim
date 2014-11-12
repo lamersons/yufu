@@ -1,0 +1,7 @@
+h1 Редактирование пароля
+p Find me in app/views/users/edit.html.slim
+
+= form_for @user, url: url_for(controller: 'api/v1/users', action: 'update'), remote: true do |f|
+  = f.password_field :old_password
+  = f.password_field :password
+  = f.submit
