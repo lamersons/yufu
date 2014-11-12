@@ -35,6 +35,9 @@ gem 'ember-source'
 gem 'emblem-rails'
 gem 'momentjs-rails'
 
+# For edit translations
+gem 'mercury-rails', github: 'jejacks0n/mercury'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 

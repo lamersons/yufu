@@ -1,3 +1,5 @@
+h1
+  = ts :hello
 = form_for @user, url: url_for(controller: 'api/v1/users', action: 'create'), remote: true do |f|
   = label_tag I18n.t(:client)
   = radio_button_tag 'user[_type]', 'Profile::Client', true, class: 'client'

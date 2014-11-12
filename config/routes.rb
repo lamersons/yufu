@@ -1,5 +1,7 @@
 Yufu::Application.routes.draw do
 
+  put 'translations/update'
+  mount Mercury::Engine => '/'
   root to: 'main#index'
 
   mount RailsAdmin::Engine => '/administration', as: 'rails_admin'
