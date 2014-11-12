@@ -8,5 +8,7 @@ module Profile::Translator
     field :service_phone
 
     embeds_many :employees, class_name: 'Profile::Translator::Employee'
+
+    accepts_nested_attributes_for :employees
   end
 end

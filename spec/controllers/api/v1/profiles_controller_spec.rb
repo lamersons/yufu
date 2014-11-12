@@ -6,6 +6,7 @@ RSpec.describe Api::V1::ProfilesController, :type => :controller do
     @user = create :user
     @user.profiles << Profile::Client.new
     @user.save
+    request.accept = 'application/json'
   end
 
   describe '#show' do
@@ -31,15 +32,15 @@ RSpec.describe Api::V1::ProfilesController, :type => :controller do
 
     it 'should show list' do
       subject
-      expect(assigns(:profiles).count).to eq(3)
+      expect(assigns(:profiles).count).to eq(2)
     end
   end
 
   describe '#create' do
     before(:each){sign_in @user}
 
-    let(:valid_attr){{ profile: {type: 'Profile::Translator::Individual', sex: 'male', visa: '123'}}}
-    let(:invalid_attr){{ profile: {type: 'Profile::Client', sex: 'male', visa: '123'}}}
+    let(:valid_attr){{ user_id: @user.id, profile: {type: 'Profile::Translator::Individual', sex: 'male', visa: '123'}}}
+    let(:invalid_attr){{ user_id: @user.id, profile: {type: 'Profile::Client', sex: 'male', visa: '123'}}}
 
     describe 'correct data' do
       subject{post :create, valid_attr}
@@ -68,6 +69,21 @@ RSpec.describe Api::V1::ProfilesController, :type => :controller do
         expect(response.body).to eq({success: false}.to_json)
       end
     end
+
+
+    describe 'nested_attr' do
+      let(:valid_attr){{ user_id: @user.id,
+                         profile: {type: 'Profile::Translator::Company', employees_attributes: [{sex: 'male', age: 23},{sex: 'female', age: 123}]}}}
+      subject{post :create, valid_attr}
+
+      it 'should be correct data' do
+        subject
+        expect(assigns(:profile).employees.first.age).to eq(23)
+        expect(assigns(:profile).employees.last.age).to eq(123)
+        expect(assigns(:profile).employees.first.sex).to eq('male')
+        expect(assigns(:profile).employees.last.sex).to eq('female')
+      end
+    end
   end
 
   describe '#update' do
@@ -75,7 +91,7 @@ RSpec.describe Api::V1::ProfilesController, :type => :controller do
     before(:each){sign_in @user}
 
     describe 'valid data' do
-      subject{put :update, user_id: @user.id, id: @user.profiles.last.id, profile:{ company_uid: 'Nimfa'}}
+      subject{put :update, user_id: @user.id, id: @user.profiles.last.id, profile:{type: 'Profile::Client', company_uid: 'Nimfa'}}
       it 'should be success' do
         subject
         expect(response.body).to eq({success: true}.to_json)
@@ -88,10 +104,10 @@ RSpec.describe Api::V1::ProfilesController, :type => :controller do
     end
 
     describe 'invalid date' do
-      subject{put :update, user_id: @user.id, id: @user.profiles.last.id, profile:{company_name: 'Nimfa', feedback: 'does not give goods throw it to the swing'}}
+      subject{put :update, user_id: @user.id, id: @user.profiles.last.id, profile:{type: 'Profile::Client', company_name: 'Nimfa', feedback: 'does not give goods throw it to the swing'}}
       it 'should not be success' do
         subject
-        expect(response.body).to eq({success: false}.to_json)
+        expect(response.body).to eq({success: true}.to_json)
       end
     end
   end

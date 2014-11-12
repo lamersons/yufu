@@ -3,15 +3,16 @@ module Api
     class ProfilesController < ApplicationController
       respond_to :json
       before_action :authenticate_user!, only: [:create, :update]
+      before_action :set_user
 
       def show
-        user = User.find params[:user_id]
-        @profile = user.profiles.find params[:id]
+        @profile = @user.profiles.find params[:id]
+        respond_with @profile
       end
 
       def index
-        @profiles = []
-        User.all.each{|user| user.profiles.each{|profile| @profiles << profile}}
+        @profiles = @user.profiles
+        respond_with @profiles
       end
 
       def create
@@ -21,16 +22,15 @@ module Api
         if params[:profile][:type].in? profiles
           render json: {success: false}
         else
-          current_user.profiles << params[:profile][:type].constantize.new
-          if current_user.profiles.last.update_attributes profile_params
+          @profile = params[:profile][:type].constantize.new
+          current_user.profiles << @profile
+          if @profile.update_attributes profile_params
             current_user.save
             render json: {success: true}
           else
             render json: {success: false}
           end
         end
-      rescue => e
-        render json: {success: false}
       end
 
       def update
@@ -40,13 +40,29 @@ module Api
         else
           render json: {success: false}
         end
-      rescue => e
-        render json: {success: false}
       end
 
       private
       def profile_params
-        params.require(:profile).permit!.except(:type)
+        case params[:profile][:type]
+        when 'Profile::Client'
+          params.require(:profile).permit :company_name, :company_uid, :country
+        when 'Profile::Translator::Company'
+          params.require(:profile).permit :additional_email, :qq, :skype,  :name, :company_uid, :years_in_business,
+                                          :location, :service_phone, employees_attributes: [:sex, :age, :direction_id]
+        when 'Profile::Translator::Individual'
+          params.require(:profile).permit :additional_email, :qq, :skype, :additions, :sex, :visa,
+                                          :needs_job_resident_permit, :can_travel,
+                                          :has_driving_license, :has_car, :native_language_id, :nearby_city_ids,
+                                          :nearby_city_with_surcharge_ids, :directions_ids,
+                                          services_attributes: [:level, :has_hsk, :verbal_price, :written_price,
+                                                                :written_translate_type, :language_id]
+        end
+
+      end
+
+      def set_user
+        @user = User.find params[:user_id]
       end
     end
   end
