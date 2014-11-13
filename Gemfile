@@ -95,10 +95,10 @@ group :development do
   gem 'capistrano'
   gem 'rvm-capistrano'
   gem 'net-ssh', '~> 2.7.0'
+  gem 'capistrano-unicorn', :require => false
 end
 
 group :production do
-     nil?
   gem 'unicorn', platform: :ruby
 end
 
