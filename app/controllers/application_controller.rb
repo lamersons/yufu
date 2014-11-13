@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_and_authorize_i18n!
     authenticate_user!
-    authorize! :manage, :i18n
+    authorize! :manage, I18n
   end
 
   def set_locale
