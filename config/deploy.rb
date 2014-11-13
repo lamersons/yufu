@@ -14,7 +14,7 @@ set :domain, "#{user}@178.62.199.57"
 set :deploy_to, "/var/www/#{application}"
 set :use_sudo, false
 set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
-set :unicorn_pid, "#{deploy_to}/shared/pids/yufu.pid"
+set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 set :normalize_asset_timestamps, false
 set :keep_releases, 5
 
@@ -42,11 +42,13 @@ after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'   # app preloaded
 after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
 
+
 set :shared_assets, %w{uploads}
 
 # Далее идут правила для перезапуска unicorn. Их стоит просто принять на веру - они работают.
 # В случае с Rails 3 приложениями стоит заменять bundle exec unicorn_rails на bundle exec unicorn
 namespace :deploy do
+
   task :init_vhost do
     run "ln -s #{deploy_to}/current/config/#{application}.vhost /etc/nginx/sites-enabled/#{application}"
   end
