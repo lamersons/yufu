@@ -253,13 +253,13 @@
         | F.A.Q.
     .auth.clearfix
       span.icon
-      = link_to t('sign_out'),  destroy_user_session_path, method: :delete, data: {confirm: t('msg.sure_sign_out') }
+      = link_to t('sign_out'),  destroy_user_session_path, method: :delete
       span.slash.bold
         |  • 
       - if user_signed_in?
         |  <a href="
-        = '/user'
+        = '/user#'
         | " class="bold">
         = current_user.name
       - else
-        = link_to t('sign_in'), sign_in_path
+        = link_to t('sign_in'), new_user_session_path
