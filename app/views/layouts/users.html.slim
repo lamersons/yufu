@@ -1,0 +1,43 @@
+doctype html
+html
+  head
+    title Yufu
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = javascript_include_tag "ember/application"
+    = csrf_meta_tags
+  body.cabinet-body
+    script type='text/x-handlebars'
+      = render 'partials/navigation'
+
+      .header
+        div class="container"
+          a href="#" class="logo"
+          - if user_signed_in?
+            a href="#" class="avatar authorized"
+              = image_tag "avatar.png"
+              p Ваш баланс
+              p class="bold" 11 000 €
+            /div class="height-10"
+            /div class="list"
+            /  div class="wrapper"
+            /    a href="#" class="item" 11-09-2014 14:18 • Новый заказ (подробности заказа показываются здесь)
+            /    a href="#" class="item" 11-09-2014 15:08 • Новый заказ (подробности заказа тек же для разнообразия показываются здесь)
+            /    a href="#" class="item" 12-09-2014 14:18 • Заказ аннулирован (подробности заказа показываются здесь)
+            /    a href="#" class="item" 12-09-2014 14:18 • Изменнеия в заказе (подробности заказа показываются здесь)
+            /    a href="#" class="item" 12-09-2014 14:18 • Новый заказ (подробности заказа показываются здесь)
+            /    a href="#" class="item" 11-09-2014 14:18 • Новый заказ (подробности заказа показываются здесь)
+            /    a href="#" class="item" 11-09-2014 15:08 • Новый заказ (подробности заказа тек же для разнообразия показываются здесь)
+            /    a href="#" class="item" 12-09-2014 14:18 • Заказ аннулирован (подробности заказа показываются здесь)
+            /    a href="#" class="item" 12-09-2014 14:18 • Изменнеия в заказе (подробности заказа показываются здесь)
+            /    a href="#" class="item" 12-09-2014 14:18 • Новый заказ (подробности заказа показываются здесь)
+          - else
+            a href="#" class="avatar"
+              = image_tag "no-avatar.png"
+      .section-cabinet-common
+        .cabinet-top-menu
+          = render partial: 'layouts/header'
+
+      = yield
+      = render partial: 'layouts/footer'
+

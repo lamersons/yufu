@@ -1,0 +1,265 @@
+.nav-top
+  .container.clearfix
+    .select-lang.clearfix
+      span.caret
+      .col.clearfix
+        div
+          a[href="#"]
+            | азербайджанский
+        div
+          a[href="#"]
+            | вьетнамский
+        div
+          a[href="#"]
+            | албанский
+        div
+          a[href="#"]
+            | галийский
+        div
+          a[href="#"]
+            | английский
+        div
+          a[href="#"]
+            | греческий
+        div
+          a[href="#"]
+            | арабский
+        div
+          a[href="#"]
+            | грузинский
+        div
+          a[href="#"]
+            | армянский
+        div
+          a[href="#"]
+            | гуджарати
+        div
+          a[href="#"]
+            | африкаанс
+        div
+          a[href="#"]
+            | датский
+        div
+          a[href="#"]
+            | баскийский
+        div
+          a[href="#"]
+            | зулу
+        div
+          a[href="#"]
+            | белорусский
+        div
+          a[href="#"]
+            | иврит
+        div
+          a[href="#"]
+            | бенгальский
+        div
+          a[href="#"]
+            | игбо
+        div
+          a[href="#"]
+            | болгарский
+        div
+          a[href="#"]
+            | идиш
+        div
+          a[href="#"]
+            | боснийский
+        div
+          a[href="#"]
+            | индонезийский
+        div
+          a[href="#"]
+            | валлийский
+        div
+          a[href="#"]
+            | ирландский
+        div
+          a[href="#"]
+            | венгерский
+        div
+          a[href="#"]
+            | исландский
+      .col
+        div
+          a[href="#"]
+            | испанский
+        div
+          a[href="#"]
+            | македонский
+        div
+          a[href="#"]
+            | итальянский
+        div
+          a[href="#"]
+            | малайский
+        div
+          a[href="#"]
+            | йоруба
+        div
+          a[href="#"]
+            | мальтийский
+        div
+          a[href="#"]
+            | каннада
+        div
+          a[href="#"]
+            | маори
+        div
+          a[href="#"]
+            | каталанский
+        div
+          a[href="#"]
+            | маратхи
+        div
+          a[href="#"]
+            | китайский
+        div
+          a[href="#"]
+            | монгольский
+        div
+          a[href="#"]
+            | корейский
+        div
+          a[href="#"]
+            | немецкий
+        div
+          a[href="#"]
+            | креольский (Гаити)
+        div
+          a[href="#"]
+            | непальский
+        div
+          a[href="#"]
+            | кхмерский
+        div
+          a[href="#"]
+            | нидерландский
+        div
+          a[href="#"]
+            | лаосский
+        div
+          a[href="#"]
+            | норвежский
+        div
+          a[href="#"]
+            | латынь
+        div
+          a[href="#"]
+            | панджаби
+        div
+          a[href="#"]
+            | латышский
+        div
+          a[href="#"]
+            | персидский
+        div
+          a[href="#"]
+            | литовский
+        div
+          a[href="#"]
+            | польскийеппнп
+      .col.last
+        div
+          a[href="#"]
+            | португальский
+        div
+          a[href="#"]
+            | турецкий
+        div
+          a[href="#"]
+            | румынский
+        div
+          a[href="#"]
+            | украинский
+        div
+          a.active[href="#"]
+            | русский
+        div
+          a[href="#"]
+            | урду
+        div
+          a[href="#"]
+            | себуанский
+        div
+          a[href="#"]
+            | финский
+        div
+          a[href="#"]
+            | сербский
+        div
+          a[href="#"]
+            | французский
+        div
+          a[href="#"]
+            | словацкий
+        div
+          a[href="#"]
+            | хауса
+        div
+          a[href="#"]
+            | словенский
+        div
+          a[href="#"]
+            | хинди
+        div
+          a[href="#"]
+            | сомали
+        div
+          a[href="#"]
+            | хорватский
+        div
+          a[href="#"]
+            | суахили
+        div
+          a[href="#"]
+            | чешский
+        div
+          a[href="#"]
+            | тагальский
+        div
+          a[href="#"]
+            | шведский
+        div
+          a[href="#"]
+            | тайский
+        div
+          a[href="#"]
+            | эстонский
+        div
+          a[href="#"]
+            | тамильский
+        div
+          a[href="#"]
+            | яванский
+        div
+          a[href="#"]
+            | телугу
+        div
+          a[href="#"]
+            | японский
+    .lang
+      a.clearfix[href="#"]
+        span.icon
+        span.text
+          = t('languages.ru')
+    .nav
+      a[href="#"]
+        | About
+      a[href="#"]
+        | Contacts
+      a[href="#"]
+        | F.A.Q.
+    .auth.clearfix
+      span.icon
+      = link_to t('sign_out'),  destroy_user_session_path, method: :delete
+      span.slash.bold
+        |  • 
+      - if user_signed_in?
+        |  <a href="
+        = '/user#'
+        | " class="bold">
+        = current_user.name
+      - else
+        = link_to t('sign_in'), new_user_session_path
