@@ -7,5 +7,5 @@ class Profile::Translator::IndividualSerializer < Profile::Translator::BaseSeria
   has_many :directions
   has_many :nearby_city
   has_many :nearby_city_with_surcharge
-  belongs_to :native_language
+  has_one :native_language
 end
