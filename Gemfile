@@ -36,6 +36,7 @@ gem 'ember-rails'
 gem 'ember-source'
 gem 'emblem-rails'
 gem 'momentjs-rails'
+gem 'i18n-js'
 
 # For edit translations
 gem 'mercury-rails', github: 'jejacks0n/mercury'
