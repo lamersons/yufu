@@ -8,6 +8,9 @@ module Profile
       field :sex
       field :visa
       field :needs_job_resident_permit, type: Mongoid::Boolean
+      field :passport_number
+      field :birthday, type: DateTime
+
 
       field :can_travel,          type: Mongoid::Boolean
       field :has_driving_license, type: Mongoid::Boolean
