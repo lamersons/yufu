@@ -169,6 +169,8 @@ GEM
     ffi (1.9.6-x86-mingw32)
     font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
+    formtastic (3.0.0)
+      actionpack (>= 3.2.13)
     fssm (0.2.10)
     gherkin (2.12.2)
       multi_json (~> 1.3)
@@ -418,6 +420,7 @@ DEPENDENCIES
   ember-source
   emblem-rails
   factory_girl_rails
+  formtastic
   gon
   html2slim
   i18n_dashboard!

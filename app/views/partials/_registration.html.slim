@@ -1,0 +1,50 @@
+.block.second
+  .container.clearfix
+    p.h1
+      = t('main.earn_with_us')
+    .item.translator[data-target="translator"]
+      .wrap
+        span.arrow.icons-arrow-second-default.translator
+        span.icon
+        p.h2
+          = t('translator')
+    .item.supplier[data-target="supplier"]
+      .wrap
+        span.arrow.icons-arrow-second-default.supplier
+        span.icon
+        p.h2
+          = t('supplier')
+    .item.last.agent[data-target="agent"]
+      .wrap
+        span.arrow.icons-arrow-second-default.agent
+        span.icon
+        p.h2
+          = t('agent')
+    .clear
+    p.text-block.translator
+      = ts('main.about.translator')
+    p.text-block.supplier
+      = ts('main.about.supplier')
+    p.text-block.agent
+      = ts('main.about.agent')
+form#main_register_form.reg-form.clearfix
+  .container
+    .now
+      = t('main.register_now')
+    .email
+      |  <input type="email" class="email" name="email" id="main_register_email" placeholder="
+      = t('main.your_email')
+      | " readonly required /> 
+      input#main_register_type[type="hidden" name="type" value=""]
+      p.after-input-text
+        = t('main.before_registration')
+      .tooltip-wrap
+        .tooltip.clearfix
+          span
+          p
+            = t('main.choose_registration_type')
+    .check.clearfix
+      button#main_register_submit[type="submit" name="main_register_submit" disabled]
+        span.caret
+      p
+        = t('main.check_email')

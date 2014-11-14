@@ -13,5 +13,5 @@ end
 
 Then(/^I should be redirected to edit password page$/) do
   uri = URI.parse(current_url)
-  expect(uri.path).to eq('/users/password/edit')
+  expect(uri.path).to eq('/user/edit')
 end

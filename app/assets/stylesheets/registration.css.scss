@@ -23,3 +23,40 @@
     }
   }
 }
+
+#change-password-container {
+  width: 974px;
+  margin: 0 auto;
+}
+
+#change-password-container input{
+  display: block;
+  margin-bottom: 10px;
+  background-color: white;
+  @include border-radius(7px);
+  font-size: 1em;
+  padding: 8px 15px 8px 15px;
+  height: 32px;
+  box-sizing: border-box;
+  border: none;
+  &[readonly] {
+    background-image: image-url("inout-disabled-bg.png");
+  }
+  &[type='submit']{
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  outline: none;
+}
+
+#change-password-container h1{
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+#change-password-container .errors{
+  list-style: none;
+  margin: 10px 0;
+}
+
+

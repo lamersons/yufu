@@ -30,6 +30,7 @@ gem 'cancancan'
 gem 'slim-rails'
 gem 'html2slim'
 gem 'compass-rails'
+gem 'formtastic'
 
 #ember js
 gem 'ember-rails'
