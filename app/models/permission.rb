@@ -1,6 +1,8 @@
 class Permission
   include Mongoid::Document
 
+  AVAILABLE_ACTIONS = %w(read creat update destroy manage)
+
   field :name
   field :subject_class
   field :subject_id, type: Integer
@@ -9,5 +11,5 @@ class Permission
 
   embedded_in :user
 
-  validates_inclusion_of :action ,in: %w(read creat update destroy manage)
+  validates_inclusion_of :action ,in: AVAILABLE_ACTIONS
 end
