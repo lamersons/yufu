@@ -8,4 +8,9 @@ FactoryGirl.define do
     first_name 'name'
     last_name 'name 2'
   end
+
+  factory :profile_partner, class: Profile::Partner do
+    first_name 'name'
+    last_name 'name 2'
+  end
 end
