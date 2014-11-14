@@ -16,6 +16,5 @@ class Ability
       end
     end
 
-    can :manage, :all if user.is_a? Admin
   end
 end
