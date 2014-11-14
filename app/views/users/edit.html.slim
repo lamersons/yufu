@@ -1,7 +1,9 @@
-h1 Редактирование пароля
-p Find me in app/views/users/edit.html.slim
-
-= form_for @user, url: url_for(controller: 'api/v1/users', action: 'update'), remote: true do |f|
-  = f.password_field :old_password
-  = f.password_field :password
-  = f.submit
+#change-password-container
+  h1 Редактирование пароля
+  = semantic_form_for @user, url: url_for(controller: 'users', action: 'update') do |f|
+    = label_tag I18n.t(:new_password)
+    = f.password_field :password
+    = label_tag I18n.t(:new_password_confirmation)
+    = f.password_field :password_confirmation
+    = f.semantic_errors *f.object.errors.keys
+    = f.submit I18n.t(:change_password)

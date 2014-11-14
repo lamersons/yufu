@@ -4,18 +4,26 @@ class UsersController < ApplicationController
 
   end
 
-
   def edit
-    @user = User.find params[:id]
+    if current_user
+      @user = current_user
+    else
+      redirect_to new_user_session_path, notice: 'You are not logged in.'
+    end
   end
 
   def update
-    @user = User.find params[:id]
-    if @user.password == params[:old_password]
-      @user.update_attributes params[:password]
-      redirect_to :root
+    @user = current_user
+    if @user.update_attributes user_params
+      redirect_to user_path
     else
-      redirect_to :back
+      render 'users/edit'
     end
   end
+
+  protected
+  def user_params
+    params.require(:user).permit :password, :password_confirmation
+  end
+
 end

@@ -1,14 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <title>Yufu</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1100px">
+  <title><%= @page_title || t('page.title') %></title>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag @js_application || 'application' %>
   <%= csrf_meta_tags %>
+
+  <%= render 'partials/meta' %>
+
+  <!--[if lt ie 10]>
+      <%= stylesheet_link_tag    'ie9', media: 'all' %>
+      <%= javascript_include_tag 'ie9' %>
+	<![endif]-->
 </head>
 <body>
+  <%= render 'partials/navigation' %>
+  <%= render 'partials/header' %>
 
-<%= yield %>
+  <%= yield %>
 
+  <%= render 'partials/registration' %>
+  <%= render 'partials/about' %>
+  <%= render 'partials/footer' %>
 </body>
 </html>
