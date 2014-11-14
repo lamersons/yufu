@@ -16,3 +16,5 @@
 //= require i18n
 //= require i18n/translations
 //= require_tree ./lib
+//= require main
+//= require index

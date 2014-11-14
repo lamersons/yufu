@@ -32,9 +32,7 @@ form#main_register_form.reg-form.clearfix
     .now
       = t('main.register_now')
     .email
-      |  <input type="email" class="email" name="email" id="main_register_email" placeholder="
-      = t('main.your_email')
-      | " readonly required /> 
+      | <input readonly required type="email" class="email" name="email" id="main_register_email" placeholder="Your Email" />
       input#main_register_type[type="hidden" name="type" value=""]
       p.after-input-text
         = t('main.before_registration')

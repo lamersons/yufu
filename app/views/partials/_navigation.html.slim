@@ -257,9 +257,6 @@
       span.slash.bold
         |  • 
       - if user_signed_in?
-        |  <a href="
-        = '/user#'
-        | " class="bold">
-        = current_user.name
+        = link_to current_user.email, user_path, class: 'bold'
       - else
         = link_to t('sign_in'), new_user_session_path
