@@ -253,7 +253,8 @@
         | F.A.Q.
     .auth.clearfix
       span.icon
-      = link_to t('sign_out'),  destroy_user_session_path, method: :delete
+      - if user_signed_in?
+        = link_to t('sign_out'),  destroy_user_session_path, method: :delete
       span.slash.bold
         |  • 
       - if user_signed_in?
