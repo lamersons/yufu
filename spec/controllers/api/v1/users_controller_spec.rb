@@ -69,7 +69,7 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
     end
     it 'assigns all users as @users' do
       get :index
-      expect(assigns(:user)).to eq([user])
+      expect(assigns(:users)).to eq([user])
     end
   end
 
