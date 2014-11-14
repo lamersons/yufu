@@ -34,6 +34,20 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
       expect(assigns(:user).profiles.first.class).to eq(Profile::Translator::Base)
     end
 
+    describe 'invite vassal' do
+      let(:overlord) {create :user}
+      let(:attr) { {email: 'user@example.com', overlord_id: overlord.id, _type: 'Profile::Client'} }
+      subject{post :create, user: attr}
+      it 'creates user' do
+        expect{subject}.to change{User.count}.to(2)
+      end
+      specify 'new user is vassal of overlord' do
+        subject
+        expect(assigns(:user).overlord).to eq(overlord)
+      end
+      it {expect{subject}.to change{overlord.reload.vassals.count}.by(1)}
+    end
+
   end
 
   describe "GET show" do

@@ -34,6 +34,10 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  #agent's system
+  belongs_to :overlord, class_name: 'User'
+  has_many   :vassals,  class_name: 'User'
+
   embeds_many :permissions
   embeds_many :profiles, class_name: 'Profile::Base'
   accepts_nested_attributes_for :permissions, :profiles
