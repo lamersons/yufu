@@ -47,4 +47,12 @@ class User
   def translator?
     profiles.where(:_type.in => [Profile::Translator::Individual.to_s, Profile::Translator::Company.to_s]).count > 0
   end
+
+  def client?
+    profiles.where(_type: Profile::Client.to_s).count > 0
+  end
+
+  def partner?
+    profiles.where(_type: Profile::Partner.to_s).count > 0
+  end
 end

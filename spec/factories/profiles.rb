@@ -13,4 +13,9 @@ FactoryGirl.define do
     first_name 'name'
     last_name 'name 2'
   end
+
+  factory :profile_client, class: Profile::Client do
+    first_name 'name'
+    last_name 'name 2'
+  end
 end
