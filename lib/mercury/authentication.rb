@@ -1,8 +1,8 @@
 module Mercury
   module Authentication
     def can_edit?
-      authenticate_user!
-      can? :manage, :i18n
+      authenticate_user! unless admin_signed_in?
+      can? :manage, I18n
     end
   end
 end

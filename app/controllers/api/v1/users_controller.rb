@@ -39,7 +39,7 @@ module Api
 
       private
       def user_params
-        params.require(:user).permit :email
+        params.require(:user).permit :email, :overlord_id
       end
     end
 

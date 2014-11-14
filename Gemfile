@@ -37,6 +37,7 @@ gem 'ember-rails'
 gem 'ember-source'
 gem 'emblem-rails'
 gem 'momentjs-rails'
+gem 'i18n-js'
 
 # For edit translations
 gem 'mercury-rails', github: 'jejacks0n/mercury'
@@ -95,10 +96,10 @@ group :development do
   gem 'capistrano'
   gem 'rvm-capistrano'
   gem 'net-ssh', '~> 2.7.0'
+  gem 'capistrano-unicorn', :require => false
 end
 
 group :production do
-     nil?
   gem 'unicorn', platform: :ruby
 end
 

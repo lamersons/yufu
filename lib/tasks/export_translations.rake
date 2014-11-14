@@ -12,4 +12,9 @@ namespace :yufu do
       end
     end
   end
+
+  desc 'Clear redis TRANSLATION_STORE'
+  task clear_redis: :environment do
+    TRANSLATION_STORE.del TRANSLATION_STORE.keys
+  end
 end

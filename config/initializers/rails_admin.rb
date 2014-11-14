@@ -3,9 +3,9 @@ RailsAdmin.config do |config|
   ### Popular gems integration
 
   ## == Devise ==
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :user
-  # end
+  config.authenticate_with do
+    warden.authenticate! scope: :admin
+  end
   config.current_user_method(&:current_admin)
 
   ## == Cancan ==
@@ -35,4 +35,14 @@ RailsAdmin.config do |config|
   config.navigation_static_links = {
       'I18n Dashboard' => '/i18n_dashboard'
   }
+
+  config.model Permission do
+    field :name
+    field :action, :enum do
+      enum {Permission::AVAILABLE_ACTIONS}
+    end
+    field :subject_class, :enum do
+      enum { %w(I18n User City Direction Language) }
+    end
+  end
 end
