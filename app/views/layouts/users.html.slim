@@ -40,4 +40,6 @@ html
 
       = yield
       = render partial: 'layouts/footer'
+javascript:
+  window.myId = "#{current_user.id.to_s}";
 
