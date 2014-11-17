@@ -1,15 +1,12 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def show
-
   end
 
   def edit
-    if current_user
-      @user = current_user
-    else
-      redirect_to new_user_session_path, notice: 'You are not logged in.'
-    end
+    @user = current_user
+    render layout: 'application'
   end
 
   def update

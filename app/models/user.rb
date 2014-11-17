@@ -55,4 +55,8 @@ class User
   def partner?
     profiles.where(_type: Profile::Partner.to_s).count > 0
   end
+
+  def need_change_password?
+    !self.is_a?(Admin) && self.sign_in_count <= 1
+  end
 end

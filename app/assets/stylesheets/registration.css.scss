@@ -32,13 +32,11 @@
 #change-password-container input{
   display: block;
   margin-bottom: 10px;
-  background-color: white;
   @include border-radius(7px);
   font-size: 1em;
   padding: 8px 15px 8px 15px;
   height: 32px;
   box-sizing: border-box;
-  border: none;
   &[readonly] {
     background-image: image-url("inout-disabled-bg.png");
   }
