@@ -37,9 +37,9 @@ class User
   #agent's system
   belongs_to :overlord, class_name: 'User'
   has_many   :vassals,  class_name: 'User'
+  has_many   :profiles, class_name: 'Profile::Base'
 
   embeds_many :permissions
-  embeds_many :profiles, class_name: 'Profile::Base'
   accepts_nested_attributes_for :permissions, :profiles
 
   alias :name :email

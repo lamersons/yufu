@@ -4,8 +4,8 @@ module Order
     include Mongoid::Timestamps
 
     belongs_to :client_info, class_name: 'Order::ClientInfo'
-    belongs_to :owner,       class_name: 'User'
-    belongs_to :assignee,    class_name: 'User'
+    belongs_to :owner,       class_name: 'Profile::Base'
+    belongs_to :assignee,    class_name: 'Profile::Translator::Base'
 
     # Additional Options
     embeds_one :airport_pick_up, class_name: 'Order::AirportPickUp'
@@ -34,9 +34,9 @@ module Order
       end
     end
 
-    def assigned_to(user)
-      raise ArgumentError, 'user should be translator' unless user.translator?
-      self.assignee = user
+    def assigned_to(translator_profile)
+      raise ArgumentError, 'user should be translator' unless translator_profile.is_a? Profile::Translator::Base
+      self.assignee = translator_profile
       super
     end
   end

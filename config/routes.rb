@@ -1,5 +1,9 @@
 Yufu::Application.routes.draw do
 
+  get "order/create"
+  get "order/update"
+  get "order/index"
+  get "order/show"
   put 'translations/update'
   mount Mercury::Engine => '/'
   root to: 'main#index'

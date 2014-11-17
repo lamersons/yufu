@@ -8,6 +8,6 @@ module Profile
     field :additional_phone
     field :approved, type: Boolean, default: false
 
-    embedded_in :user
+    belongs_to :user
   end
 end
