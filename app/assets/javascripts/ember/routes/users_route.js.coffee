@@ -4,6 +4,6 @@ Yufu.UserAdapter = DS.RESTAdapter.extend({
 
 
 Yufu.UsersRoute = Ember.Route.extend({
-  model: (params)->
-    @store.find('user', params.id)
+  current_user: (params)->
+    @store.find('user', params.user_id)
 })
