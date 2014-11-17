@@ -31,7 +31,7 @@ module Profile
       has_mongoid_attached_file :avatar
       validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
 
-      validates_inclusion_of grade, in: GRADES
+      validates_inclusion_of :grade, in: GRADES
     end
   end
 end
