@@ -20,7 +20,7 @@ Yufu::Application.routes.draw do
       resources :users,      only: [:index, :show, :update, :create] do
         resources :profiles
       end
-
+      resources :orders
     end
   end
 
