@@ -6,10 +6,11 @@ Yufu.Router.map ()->
   @resource('bookings')
   @resource('something')
   @resource('orders')
-  @resource 'user', ->
+  @resource 'users', {path: 'users/:id'}, ->
+    @route 'show', {path: '/:id'}
     @resource 'profiles', ->
-      @route 'edit_one', {path: ':id/edit_one'}
-      @route 'edit_two', {path: ':id/edit_two'}
+      @route 'edit_one', {path: '/:id/edit_one'}
+      @route 'edit_two', {path: '/:id/edit_two'}
 
   @resource('balance')
 

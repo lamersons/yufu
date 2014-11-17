@@ -7,6 +7,8 @@ html
     = javascript_include_tag "ember/application"
     = csrf_meta_tags
   body.cabinet-body
+    javascript:
+      window.myId = "#{current_user.id.to_s}";
     script type='text/x-handlebars'
       = render 'partials/navigation'
 
@@ -40,6 +42,5 @@ html
 
       = yield
       = render partial: 'layouts/footer'
-javascript:
-  window.myId = "#{current_user.id.to_s}";
+
 
