@@ -6,10 +6,9 @@ module  Order
 
     field :status, default: 'secondary'
 
-    belongs_to :translator, class_name: 'User'
+    belongs_to :translator, class_name: 'Profile::Translator::Base'
     belongs_to :order,      class_name: 'Order::Base'
 
-    validates :translator, translator: true, presence: true
     validates_presence_of :order
     validates_inclusion_of :status, in: STATUSES
   end

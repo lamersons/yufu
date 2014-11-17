@@ -37,9 +37,9 @@ class User
   #agent's system
   belongs_to :overlord, class_name: 'User'
   has_many   :vassals,  class_name: 'User'
+  has_many   :profiles, class_name: 'Profile::Base', dependent: :destroy
 
   embeds_many :permissions
-  embeds_many :profiles, class_name: 'Profile::Base'
   accepts_nested_attributes_for :permissions, :profiles
 
   alias :name :email
@@ -54,5 +54,9 @@ class User
 
   def partner?
     profiles.where(_type: Profile::Partner.to_s).count > 0
+  end
+
+  def need_change_password?
+    !self.is_a?(Admin) && self.sign_in_count <= 1
   end
 end

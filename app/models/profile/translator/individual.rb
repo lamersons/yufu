@@ -3,6 +3,8 @@ module Profile
     class Individual < Base
       include Mongoid::Paperclip
 
+      GRADES = %w(standard senior)
+
       field :additions,  localize: true
 
       field :sex
@@ -10,6 +12,7 @@ module Profile
       field :needs_job_resident_permit, type: Mongoid::Boolean
       field :passport_number
       field :birthday, type: DateTime
+      field :grade, default: 'standard'
 
 
       field :can_travel,          type: Mongoid::Boolean
@@ -27,6 +30,8 @@ module Profile
 
       has_mongoid_attached_file :avatar
       validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
+
+      validates_inclusion_of :grade, in: GRADES
     end
   end
 end
