@@ -4,6 +4,8 @@ module Order
 
     field :level, type: Integer
     field :cost,  type: Float
+    belongs_to :language
+
     embedded_in :order_verbal
   end
 end
