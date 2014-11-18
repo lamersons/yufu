@@ -12,5 +12,8 @@ module Order
     embeds_many :reservation_dates,   class_name: 'Order::ReservationDate'
 
     has_and_belongs_to_many :directions
+
+
+
   end
 end

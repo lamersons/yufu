@@ -8,13 +8,21 @@ RSpec.describe Api::V1::OrdersController, :type => :controller do
     request.accept = 'application/json'
   end
 
-  describe "GET create" do
-    it "returns http success" do
-      get :create
-      expect(response).to be_success
+
+  describe 'POST create' do
+    let(:attributes) {{
+        _type: 'Order::Verbal',
+        airport_pick_up: {need_car: true, double_way: true, flight_number: '123', airport: 'airport'},
+        include_near_city: true
+    }}
+    subject{post :create, {order: attributes}}
+    it 'creates new verbal order' do
+      expect{subject}.to change{Order::Verbal.count}.by(1)
+    end
+    it 'permits attributes for verbsl order' do
+      expect{subject}.to change{assigns(:order).try :include_near_city}.to(true)
     end
   end
-
 
   describe "GET index" do
     context 'signed in as client' do
