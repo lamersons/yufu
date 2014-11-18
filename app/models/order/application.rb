@@ -11,5 +11,10 @@ module  Order
 
     validates_presence_of :order
     validates_inclusion_of :status, in: STATUSES
+    validates_inclusion_of :status, in: %w(secondary), on: :create, unless: :can_be_primary?
+
+    def can_be_primary?
+      order.can_send_primary_application?
+    end
   end
 end

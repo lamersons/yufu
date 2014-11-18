@@ -19,4 +19,16 @@ RSpec.describe Order::Base, :type => :model do
       it {expect{subject}.to raise_error(ArgumentError)}
     end
   end
+
+  describe '#can_send_primary_application?' do
+    it 'returns true if order has not primary application' do
+      order = create :order_verbal
+      expect(order.can_send_primary_application?).to be_truthy
+    end
+    it 'returns false if order has primary application' do
+      order = create :order_verbal
+      order.applications << (create :order_application, status: 'primary')
+      expect(order.can_send_primary_application?).to be_falsey
+    end
+  end
 end
