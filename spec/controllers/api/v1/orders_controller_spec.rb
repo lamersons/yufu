@@ -15,15 +15,8 @@ RSpec.describe Api::V1::OrdersController, :type => :controller do
     end
   end
 
-  describe "GET update" do
-    it "returns http success" do
-      get :update
-      expect(response).to be_success
-    end
-  end
 
   describe "GET index" do
-
     context 'signed in as client' do
       subject{get :index, profile_id: order.owner.to_param}
       before(:each) {sign_in order.owner.user}
@@ -44,13 +37,10 @@ RSpec.describe Api::V1::OrdersController, :type => :controller do
   end
 
   describe "GET show" do
-    it "returns http success" do
-      get :show, id: order.to_param
-      expect(response).to be_success
-    end
-    it 'sets order as @order' do
-      get :show, id: order.to_param
-      expect(assigns :order).to eq(order)
+    subject{get :show, id: order.to_param}
+    before(:each) {sign_in order.owner.user}
+    it 'assigns requested order as order' do
+      expect{subject}.to change{assigns :order}.to(order)
     end
   end
 

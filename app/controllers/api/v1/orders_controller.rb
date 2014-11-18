@@ -3,7 +3,7 @@ module Api
     class OrdersController < ApplicationController
 
       before_action :authenticate_user!, except: :create
-      before_action :set_profile,        except: :create
+      before_action :set_profile,        except: [:create, :show]
 
       respond_to :json
 
