@@ -7,7 +7,7 @@ FactoryGirl.define do
 
     include_near_city true
     translator_sex 'male'
-    association :owner,                      factory: :client
+    association :owner,                      factory: :profile_client
     association :location,                   factory: :city
     association :translator_native_language, factory: :language
     association :native_language,            factory: :language

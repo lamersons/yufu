@@ -1,9 +1,5 @@
 Yufu::Application.routes.draw do
 
-  get "order/create"
-  get "order/update"
-  get "order/index"
-  get "order/show"
   put 'translations/update'
   mount Mercury::Engine => '/'
   root to: 'main#index'
@@ -24,7 +20,7 @@ Yufu::Application.routes.draw do
       resources :users,      only: [:index, :show, :update, :create] do
         resources :profiles
       end
-
+      resources :orders
     end
   end
 
