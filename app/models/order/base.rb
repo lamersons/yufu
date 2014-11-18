@@ -39,5 +39,9 @@ module Order
       self.assignee = translator_profile
       super
     end
+
+    def can_send_primary_application?
+      applications.where(status: 'primary').empty?
+    end
   end
 end

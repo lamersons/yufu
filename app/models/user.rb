@@ -44,6 +44,8 @@ class User
 
   alias :name :email
 
+  scope :without_admins, -> {where _type: 'User'}
+
   def translator?
     profiles.where(:_type.in => [Profile::Translator::Individual.to_s, Profile::Translator::Company.to_s]).count > 0
   end

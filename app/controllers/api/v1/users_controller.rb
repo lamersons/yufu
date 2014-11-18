@@ -33,8 +33,8 @@ module Api
       end
 
       def index
-        @users = User.all
-        respond_with @users
+        @users = User.without_admins.search(params[:q]).result.paginate(per_page: 10, page: params[:page])
+        respond_with @users, serializer: PaginationSerializer
       end
 
       private
