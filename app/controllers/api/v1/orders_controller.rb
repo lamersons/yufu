@@ -20,8 +20,8 @@ module Api
       end
 
       def index
-        @orders = @profile.orders
-        respond_with @orders
+        @orders = @profile.orders.search(params[:q]).result.paginate(per_page: 10, page: params[:page])
+        respond_with @orders, serializer: PaginationSerializer
       end
 
       def show
