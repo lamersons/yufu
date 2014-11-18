@@ -8,3 +8,9 @@
 #= require_tree ./routes
 #= require ./router
 #= require_self
+
+
+$ ->
+  token = $('meta[name="csrf-token"]').attr('content')
+  $.ajaxPrefilter (options, originalOptions, xhr) ->
+    xhr.setRequestHeader('X-CSRF-Token', token)

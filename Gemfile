@@ -34,7 +34,7 @@ gem 'formtastic'
 
 #ember js
 gem 'ember-rails'
-gem 'ember-source', '1.9.0.beta.3'
+gem 'ember-source'
 gem 'emblem-rails'
 gem 'momentjs-rails'
 gem 'i18n-js'

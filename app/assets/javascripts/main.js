@@ -9,7 +9,7 @@ function scrollToDiv(element,navheight){
 }//scrollToDiv
 
 $(document).ready(function() {
-	
+
 	//Языковое меню
 	$("DIV.nav-top DIV.lang A").click(function(e) {
 		e.preventDefault();
@@ -20,7 +20,7 @@ $(document).ready(function() {
 			langMenu.show();
 		}
 	});//click
-	
+
 	//Подсказки
 	$(".js-tooltip").hover(function() {
 		var target = $(this).data("target");
@@ -29,7 +29,7 @@ $(document).ready(function() {
 		var target = $(this).data("target");
 		$(target).fadeOut();
 	});//hover
-	
+
 	//Выбор файла дропом
 	//Загрузка файла
 	$("INPUT.fileupload-with-dropzone").fileupload({
@@ -53,7 +53,7 @@ $(document).ready(function() {
 			alert("HTML ответ сервера: " + data.result);
 		}
 	});//fileupload
-	
+
 	//Кастомный скроллбар внутри модального окна. Его инициализация должна идти ДО инициализации
 	//модального окна, которое его содержит!
 	$("DIV.modal DIV.scroll").jScrollPane({
@@ -76,7 +76,7 @@ $(document).ready(function() {
 		$(this).parents("DIV.modal").fadeOut();
 		$("DIV.modal-bg").fadeOut();
 	});//click
-	
+
 	//Зарабатывайте с нами
 	//Первый ли раз отображаем содержимое
 	var secondBlockFirstTime = true;
@@ -131,7 +131,7 @@ $(document).ready(function() {
 			$(this).find("SPAN.arrow").removeClass("icons-arrow-second-h").addClass("icons-arrow-second-default");
 		}
 	});//hover
-	
+
 	//Подсказка показывается при наведении на кнопку и на поле ввода почты, если поле для почты заблокировано
 	$("FORM.reg-form INPUT[type=email], FORM.reg-form BUTTON[type=submit]").hover(function() {
 		//Если поле еще заблокировано, то покажем подскзку
@@ -141,6 +141,6 @@ $(document).ready(function() {
 	}, function() {
 		$("FORM.reg-form DIV.tooltip").fadeOut();
 	});//hover
-	
-	
+
+
 });//ready

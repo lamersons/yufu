@@ -17,9 +17,8 @@ Yufu::Application.routes.draw do
       resources :languages,  only: [:index, :show]
       resources :directions, only: [:index, :show]
       resources :cities,     only: [:index, :show]
-      resources :users,      only: [:index, :show, :update, :create] do
-        resources :profiles
-      end
+      resources :users,      only: [:index, :show, :update, :create]
+      resources :profiles
       resources :orders
     end
   end

@@ -13,6 +13,11 @@ module Profile
       field :passport_number
       field :birthday, type: DateTime
       field :grade, default: 'standard'
+      field :passport_num
+      field :passport_till
+      field :passport_country
+      field :years_in_china, type: Integer
+      belongs_to :city
 
 
       field :can_travel,          type: Mongoid::Boolean

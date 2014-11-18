@@ -11,20 +11,21 @@
     <!-- Колонка -->
     <div class="col-1">
         <p>Имя в паспорте <span class="required">*</span></p>
-        {{view Ember.TextField valueBinding='name' name='name' viewName='name'}}
+        {{view Ember.TextField valueBinding='first_name' name='first_name' viewName='first_name'}}
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1">
         <p>Фамилия в паспорте <span class="required">*</span></p>
-        <input type="text" ng-model="profile.family" required>
+        {{view Ember.TextField valueBinding='last_name' name='last_name' viewName='last_name'}}
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 clearfix last">
         <p>Дата рождения</p>
-
-        <select select-date yu-model="profile.birthDateOn"></select>
+        <div class="input_date">
+            {{view Ember.TextField valueBinding='birthday' name='birthday' viewName='birthday'}}
+        </div>
 
     </div>
     <!-- /Колонка -->
@@ -32,19 +33,19 @@
     <!-- Колонка -->
     <div class="col-1">
         <p>Номер паспорта <span class="required">*</span></p>
-        <input type="text" ng-model="profile.passportId" required>
+        {{view Ember.TextField valueBinding='passport_num' name='passport_num' viewName='passport_num'}}
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 clearfix">
         <p>Срок годности паспорта <span class="required">*</span></p>
-        <select select-date yu-model="profile.passportExpiresOn"></select>
+        {{view Ember.TextField valueBinding='passport_till' name='passport_till' viewName='passport_till'}}
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 last">
         <p>Государство выдачи <span class="required">*</span></p>
-        <input type="text" ng-model="profile.passportCountry" required>
+        {{view Ember.TextField valueBinding='passport_county' name='passport_county' viewName='passport_county'}}
     </div>
     <!-- /Колонка -->
     <div class="clear"></div>
@@ -56,16 +57,15 @@
     <div class="col-1">
         <p>Город проживания <span class="required">*</span></p>
         <div class="custom-select">
-            <select ng-model="profile.city" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'cities'}">
-                <option value="" ng-if="false"></option>
-            </select>
+            {{view Ember.Select valueBinding='cityId' content=cities prompt='-' optionLabelPath='content.name' optionValuePath='content.id'}}
         </div>
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1">
         <p>Сколько лет прожили в Китае <span class="required">*</span></p>
-        <input type="text" required style="width: 4em;" ng-model="profile.yearsInChina">
+        {{view Ember.TextField valueBinding='years_in_china' name='years_in_china' viewName='years_in_china' style="width: 4em;"}}
+
     </div>
     <!-- /Колонка -->
     <div class="clear"></div>
