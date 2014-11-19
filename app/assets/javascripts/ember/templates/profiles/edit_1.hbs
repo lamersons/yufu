@@ -1,0 +1,50 @@
+<form class="section-form section-cabinet-common section-reg-translator">
+    <!-- Верхнее меню -->
+
+    <!-- /Верхнее меню -->
+    <!-- Контейнер -->
+    <div class="container clearfix">
+        <h1 class="main">reg_as <span class="pink-bright">partner_translator</span></h1>
+        <p class="title">profile_data_options</p>
+        <div class="height-10"></div>
+        <!-- Колонка -->
+        <div class="col-1">
+            <label class="radio no-left clearfix">
+                <input type="radio" name="type" value="person" ng-model="profile.legalEntity">
+                <em></em>
+                <p><b>as_person</b></p>
+            </label>
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1">
+            <label class="radio clearfix">
+                <input type="radio" name="type" value="company" ng-model="profile.legalEntity">
+                <em></em>
+                <p><b>as_company</b></p>
+            </label>
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1 last">
+            <div class="custom-select" style="position: relative; top: -10px;">
+                <select>
+                    <option value="" disabled>profile_language</option>
+                </select>
+            </div>
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+        <div class="height-20"></div>
+        <div class="grey-line-thick"></div>
+        <div class="height-20"></div>
+        <p class="big-tooltip">
+            <span class="icon"></span>
+            | Step_one_hint
+        </p>
+        <div class="clear"></div>
+        <div class="height-20"></div>
+        <!-- Шаги -->
+    </div>
+    <!-- /Контейнер -->
+</form>

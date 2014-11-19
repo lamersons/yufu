@@ -35,11 +35,12 @@ html
           - else
             a href="#" class="avatar"
               = image_tag "no-avatar.png"
-      .section-cabinet-common
-        .cabinet-top-menu
-          = render partial: 'layouts/header'
-      .content
-        = yield
+
+      .section-cabinet-common.section-form
+        = render partial: 'layouts/header'
+        .container.clearfix
+          .section-cabinet
+            = yield
       = render partial: 'layouts/footer'
       javascript:
         window.myId = "#{current_user.id.to_s}";

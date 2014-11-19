@@ -1,0 +1,20 @@
+<div class="clear"></div>
+<div class="height-20"></div>
+<div class="steps clearfix">
+    <div class="col-1">
+        <button type="button" class="button-grey" ng-hide="isPersonPageSteps()">return</button>
+        <button type="button" class="button" ng-click="previousStep()" ng-show="isPersonPageSteps()">return</button>
+    </div>
+    <!-- Колонка -->
+    <div class="col-1 clearfix circles circles-3">
+        <span ng-class="getPersonPageClass(1)">1</span>
+        <span ng-class="getPersonPageClass(2)">2</span>
+        <span ng-class="getPersonPageClass(3)">3</span>
+    </div>
+    <!-- /Колонка -->
+    <div class="col-1 button last">
+        <button type="submit" ng-click="checkStep()" ng-show="isPersonPageSteps()">continue</button>
+        <button type="submit" ui-sref="index" ng-hide="isPersonPageSteps()">to_the_cabinet</button>
+    </div>
+</div>
+<div class="height-30"></div>
