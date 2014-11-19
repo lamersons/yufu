@@ -5,12 +5,14 @@
 
     h3
       | New Invite
-    form
+    form#new_user
+      .error style='display:none'
+        | error
       label
         | Email
       = view Ember.TextField valueBinding='email' name='email' viewName='email'
 
-      button{action 'create'}
+      button#submit{action 'create'}
         | Отправить Инвайт
 
 

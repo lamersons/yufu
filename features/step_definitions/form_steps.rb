@@ -8,7 +8,14 @@ And(/^I submit the form "(.*?)"$/) do |form|
   within "##{form}" do
     find("[type=submit]").click
   end
-  sleep(1)
+  sleep(2)
+end
+
+And(/^I click to submit button of the form "(.*?)"$/) do |form|
+  within "##{form}" do
+    find("button#submit").click
+  end
+  sleep(2)
 end
 
 Then(/^I should be redirected to edit password page$/) do

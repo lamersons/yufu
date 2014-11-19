@@ -4,7 +4,11 @@ Yufu.VassalsController = Ember.ArrayController.extend({
   actions: {
     create: ->
       vassal = @store.createRecord 'user', {email: @get('email'), overlord_id: window.myId}
-      vassal.save()
+      vassal.save().then (=>
+        @get('model').pushObject vassal
+      ), (=>
+        $('.error').show()
+      )
   }
 })
 
