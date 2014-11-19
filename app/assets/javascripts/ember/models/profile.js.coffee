@@ -29,4 +29,7 @@ Yufu.Profile = DS.Model.extend({
 
   # Relations
   city: DS.belongsTo 'city', async: true
+
+
+
 })
