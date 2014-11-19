@@ -8,11 +8,11 @@ module Api
       # Registration
       def create
         @user = User.new user_params
-        @user.profiles << params[:user][:_type].constantize.new
+        @user.profiles << params[:user][:_type].constantize.new if params[:user][:_type].present?
         @user.password = Devise.friendly_token.first(8)
         if @user.save
-          UsersMailer.create(@user).deliver
-          render json: {success: true}
+          # UsersMailer.create(@user).deliver
+          respond_with @user
         else
           @user.try :clean_up_passwords
           render json: {:success => false}

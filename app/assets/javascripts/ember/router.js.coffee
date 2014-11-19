@@ -11,5 +11,10 @@ Yufu.Router.map ()->
   @resource 'profiles', ->
     @route 'edit', {path: '/:id/edit'}
 
+  @route 'agent', ->
+    @resource 'vassals'
+
+
+
   @resource('balance')
 
