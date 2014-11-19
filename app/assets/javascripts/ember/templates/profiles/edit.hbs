@@ -10,7 +10,7 @@
 
     <!-- Колонка -->
     <div class="col-1">
-        <p>Имя в паспорте <span class="required">*</span></p>
+        <p>Имя в паспорте <span class="required">*</span>{{model.city.name}}</p>
         {{view Ember.TextField valueBinding='first_name' name='first_name' viewName='first_name'}}
     </div>
     <!-- /Колонка -->
@@ -57,7 +57,7 @@
     <div class="col-1">
         <p>Город проживания <span class="required">*</span></p>
         <div class="custom-select">
-            {{view Ember.Select valueBinding='cityId' content=cities prompt='-' optionLabelPath='content.name' optionValuePath='content.id'}}
+            {{view Ember.Select valueBinding='selectedCity' content=cities prompt='-' optionLabelPath='content.name' optionValuePath='content.id'}}
         </div>
     </div>
     <!-- /Колонка -->

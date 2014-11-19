@@ -1,7 +1,3 @@
-Yufu.ProfileAdapter = DS.RESTAdapter.extend({
-  namespace: 'api/v1'
-});
-
 Yufu.Profile = DS.Model.extend({
 
   _type: DS.attr 'string'
@@ -32,5 +28,5 @@ Yufu.Profile = DS.Model.extend({
   years_in_china: DS.attr 'number'
 
   # Relations
-  city: DS.belongsTo('city')
+  city: DS.belongsTo 'city', async: true
 })
