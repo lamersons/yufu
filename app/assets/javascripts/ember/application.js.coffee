@@ -9,6 +9,6 @@
 #= require datepicker/templates
 
 # for more details see: http://emberjs.com/guides/application/
-window.Yufu = Ember.Application.create()
+window.Yufu = Ember.Application.create({rootElement: '#yufu_app'})
 
 
