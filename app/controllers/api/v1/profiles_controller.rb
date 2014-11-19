@@ -3,15 +3,14 @@ module Api
     class ProfilesController < ApplicationController
       respond_to :json
       before_action :authenticate_user!, only: [:create, :update]
-      before_action :set_user
 
       def show
-        @profile = @user.profiles.find params[:id]
-        respond_with @profile
+        @profile = Profile::Base.find params[:id]
+        respond_with @profile, root: 'profile'
       end
 
       def index
-        @profiles = @user.profiles
+        @profiles = Profile::Base.all
         respond_with @profiles
       end
 
@@ -44,26 +43,24 @@ module Api
 
       private
       def profile_params
-        case params[:profile][:type]
+        case params[:profile][:_type]
         when 'Profile::Client'
           params.require(:profile).permit :company_name, :company_uid, :country
         when 'Profile::Translator::Company'
           params.require(:profile).permit :additional_email, :qq, :skype,  :name, :company_uid, :years_in_business,
                                           :location, :service_phone, employees_attributes: [:sex, :age, :direction_id]
         when 'Profile::Translator::Individual'
-          params.require(:profile).permit :additional_email, :qq, :skype, :additions, :sex, :visa,
+          params.require(:profile).permit :first_name, :last_name, :passport_till, :passport_num, :passport_country,
+                                          :additional_email, :qq, :skype, :additions, :sex, :visa,
                                           :needs_job_resident_permit, :can_travel,
                                           :has_driving_license, :has_car, :native_language_id, :nearby_city_ids,
-                                          :nearby_city_with_surcharge_ids, :directions_ids,
+                                          :nearby_city_with_surcharge_ids, :city,  :directions_ids,
                                           services_attributes: [:level, :has_hsk, :verbal_price, :written_price,
                                                                 :written_translate_type, :language_id]
         end
 
       end
 
-      def set_user
-        @user =  User.find params[:user_id]
-      end
     end
   end
 end
