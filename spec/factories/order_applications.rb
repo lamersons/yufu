@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :order_application, :class => 'Order::Application' do
-    association :order, factory: :order_base
-    association :translator
+    order {create :order_base, state: :wait_application}
+    association :translator, factory: :profile_translator_individual
   end
 end

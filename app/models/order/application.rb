@@ -13,8 +13,15 @@ module  Order
     validates_inclusion_of :status, in: STATUSES
     validates_inclusion_of :status, in: %w(secondary), on: :create, unless: :can_be_primary?
 
+    before_save :processed_order, if: -> {status_changed? && status == 'primary'}
+
     def can_be_primary?
       order.can_send_primary_application?
+    end
+
+    protected
+    def processed_order
+      order.assigned_to translator
     end
   end
 end
