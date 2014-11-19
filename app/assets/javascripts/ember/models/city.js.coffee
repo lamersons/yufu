@@ -4,5 +4,4 @@ Yufu.CityAdapter = DS.RESTAdapter.extend({
 
 Yufu.City = DS.Model.extend({
   name: DS.attr 'string'
-  profiles: DS.hasMany('profile')
 })

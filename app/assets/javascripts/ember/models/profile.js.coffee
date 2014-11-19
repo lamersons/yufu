@@ -3,7 +3,7 @@ Yufu.ProfileAdapter = DS.RESTAdapter.extend({
 });
 
 Yufu.Profile = DS.Model.extend({
-  city: DS.belongsTo('city')
+
   _type: DS.attr 'string'
   additional_phone: DS.attr 'string'
   additions: DS.attr 'string'
@@ -30,4 +30,7 @@ Yufu.Profile = DS.Model.extend({
   updated_at: DS.attr 'date'
   visa: DS.attr 'string'
   years_in_china: DS.attr 'number'
+
+  # Relations
+  city: DS.belongsTo('city')
 })

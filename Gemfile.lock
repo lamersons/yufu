@@ -154,7 +154,7 @@ GEM
       handlebars-source (> 1.0.0)
       jquery-rails (>= 1.0.17)
       railties (>= 3.1)
-    ember-source (1.8.1)
+    ember-source (1.7.0)
       handlebars-source (~> 1.0)
     emblem-rails (0.2.1)
       barber-emblem (~> 0.1.1)
@@ -422,7 +422,7 @@ DEPENDENCIES
   devise
   email_spec
   ember-rails
-  ember-source
+  ember-source (= 1.7.0)
   emblem-rails
   factory_girl_rails
   formtastic
