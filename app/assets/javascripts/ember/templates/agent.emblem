@@ -1,0 +1,4 @@
+= partial 'agent/menu'
+.section-form.section-cabinet-common
+  .container.clearfix
+    = outlet

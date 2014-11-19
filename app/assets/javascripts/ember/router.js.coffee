@@ -13,6 +13,8 @@ Yufu.Router.map ()->
 
   @route 'agent', ->
     @resource 'vassals'
+    @resource 'banners'
+    @resource 'link'
 
 
 

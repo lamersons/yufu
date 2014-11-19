@@ -1,28 +1,27 @@
-.section-form.section-cabinet-common
-  .container.clearfix
-    h2
-      | Invites
 
-    h3
-      | New Invite
-    form#new_user
-      .error style='display:none'
-        | error
-      label
+h2
+  | Invites
+
+h3
+  | New Invite
+form#new_user
+  .error style='display:none'
+    | error
+  label
+    | Email
+  = view Ember.TextField valueBinding='email' name='email' viewName='email'
+
+  button#submit{action 'create'}
+    | Отправить Инвайт
+
+
+table
+  thead
+    tr
+      th
         | Email
-      = view Ember.TextField valueBinding='email' name='email' viewName='email'
-
-      button#submit{action 'create'}
-        | Отправить Инвайт
-
-
-    table
-      thead
-        tr
-          th
-            | Email
-      tbody
-        = each
-          tr
-            td
-              = email
+  tbody
+    = each
+      tr
+        td
+          = email
