@@ -2,7 +2,7 @@ Feature: Profiles
 
 
   Scenario: Redirect to profile edit after changing password
-    Given a new translator with email: "translator@example.com", and password: "password"
+    Given a translator with email: "translator@example.com", and password: "password"
     When I go to "users/sign_in"
     When I go to "/users/sign_in"
      And I fill up input "email" as "translator@example.com" in the form "new_session"

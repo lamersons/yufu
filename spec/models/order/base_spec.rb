@@ -11,7 +11,7 @@ RSpec.describe Order::Base, :type => :model do
         expect{subject}.to change{order.reload.assignee}.to(user.profiles.first)
       end
       it 'sets state as :in_progress' do
-        expect{subject}.to change{order.in_progress?}.to(true)
+        expect{subject}.to change{order.reload.in_progress?}.to(true)
       end
     end
     context 'user is not translator' do
