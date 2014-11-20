@@ -57,7 +57,12 @@
     <div class="col-1">
         <p>Город проживания <span class="required">*</span></p>
         <div class="custom-select">
-            {{view Ember.Select valueBinding='cityId' content=cities prompt='-' optionLabelPath='content.name' optionValuePath='content.id'}}
+            {{view Ember.Select
+                selection=model.city.content
+                prompt='-'
+                content=cities
+                optionLabelPath='content.name'
+                optionValuePath='content.id'}}
         </div>
     </div>
     <!-- /Колонка -->
