@@ -12,11 +12,11 @@ class Profile::Translator::IndividualSerializer < Profile::Translator::BaseSeria
   has_one :native_language
 
   def city_id
-    object.city.id.to_s
+    object.city.try(:id).to_s
   end
 
   def native_language_id
-    object.native_language.id.to_s
+    object.native_language.try(:id).to_s
   end
 
 end
