@@ -1,9 +1,3 @@
-
-h2
-  | Invites
-
-h3
-  | New Invite
 form#new_user
   .error style='display:none'
     | error
@@ -11,17 +5,17 @@ form#new_user
     | Email
   = view Ember.TextField valueBinding='email' name='email' viewName='email'
 
-  button#submit{action 'create'}
+  button.pink#submit{action 'create'}
     | Отправить Инвайт
 
-
-table
-  thead
-    tr
-      th
-        | Email
-  tbody
-    = each
+.table-container
+  table
+    thead
       tr
-        td
-          = email
+        th
+          | Email
+    tbody
+      = each
+        tr
+          td
+            = email
