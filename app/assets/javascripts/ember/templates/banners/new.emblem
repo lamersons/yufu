@@ -1,0 +1,13 @@
+form#new_banner
+  label
+    = ts 'mongoid.attributes.banner.name'
+  = view Ember.TextField valueBinding='name' name='name' viewName='name'
+  label
+    = ts 'mongoid.attributes.banner.width'
+  = view Ember.TextField valueBinding='width' name='width' viewName='width'
+  label
+    = ts 'mongoid.attributes.banner.height'
+  = view Ember.TextField valueBinding='height' name='height' viewName='height'
+
+  button.pink#submit{action 'create'}
+    = ts 'create'
