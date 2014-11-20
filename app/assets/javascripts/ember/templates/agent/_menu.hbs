@@ -1,11 +1,11 @@
 <div class="container">
-    {{#linkTo "vassals" tagName="a" class="item" }}
-        <span {{bindAttr href="view.href"}}>Invites<span class="caret"></span></span>
-    {{/linkTo}}
-    {{#linkTo "link" tagName="a" class="item" }}
-      <span {{bindAttr href="view.href"}}>My Link<span class="caret"></span></span>
-    {{/linkTo}}
-    {{#linkTo "banners" tagName="a" class="item" }}
-      <span {{bindAttr href="view.href"}}>Banners<span class="caret"></span></span>
-    {{/linkTo}}
+    {{#link-to "vassals" tagName="a" class="item" }}
+        <span {{bindAttr href="view.href"}}>{{ts 'agent.invites'}}<span class="caret"></span></span>
+    {{/link-to}}
+    {{#link-to "link" tagName="a" class="item" }}
+      <span {{bindAttr href="view.href"}}>{{ts 'agent.my_link'}}<span class="caret"></span></span>
+    {{/link-to}}
+    {{#link-to "banners" tagName="a" class="item" }}
+      <span {{bindAttr href="view.href"}}>{{ts 'agent.banners'}}<span class="caret"></span></span>
+    {{/link-to}}
 </div>

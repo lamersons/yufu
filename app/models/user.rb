@@ -38,6 +38,7 @@ class User
   belongs_to :overlord, class_name: 'User'
   has_many   :vassals,  class_name: 'User'
   has_many   :profiles, class_name: 'Profile::Base', dependent: :destroy
+  has_many   :banners,  dependent: :destroy
 
   embeds_many :permissions
   accepts_nested_attributes_for :permissions, :profiles

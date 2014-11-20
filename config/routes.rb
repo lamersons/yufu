@@ -1,4 +1,5 @@
 Yufu::Application.routes.draw do
+  default_url_options host: Rails.application.config.host
 
   put 'translations/update'
   mount Mercury::Engine => '/'
@@ -11,6 +12,7 @@ Yufu::Application.routes.draw do
   devise_for :users
 
   resource :user
+  resources :banners, only: :show
 
   namespace :api do
     namespace :v1 do
@@ -18,6 +20,7 @@ Yufu::Application.routes.draw do
       resources :directions, only: [:index, :show]
       resources :cities,     only: [:index, :show]
       resources :users,      only: [:index, :show, :update, :create]
+      resources :banners,    only: [:index, :show, :update, :create]
       resources :profiles
       resources :orders
     end
