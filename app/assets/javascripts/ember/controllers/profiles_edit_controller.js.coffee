@@ -1,8 +1,24 @@
 Yufu.ProfilesEditController = Ember.Controller.extend({
-  queryParams: ['step']
+  queryParams: ['step', 'substep']
+  next_step: '1'
+  next_substep: '1'
+
   actions: {
-    update: (profile)->
+    update: (profile, step, substep)->
+      step = parseInt(step)
+      if step == 1
+        step += 1
+      if step == 2
+        substep = parseInt(substep)
+        if substep < 6
+          substep += 1
+        else
+          substep = 1
+          step+=1
+      @next_step = step
+      @next_substep = substep
+
       profile.save().then =>
-        @transitionTo('profiles.edit')
+        @transitionToRoute 'profiles.edit', queryParams: {step: step, substep: substep}
   }
 })

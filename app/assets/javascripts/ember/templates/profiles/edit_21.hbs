@@ -1,0 +1,22 @@
+<form class="section-form section-cabinet-common section-reg-translator" ng-init="profile.step=1">
+    <div ng-include="'cabinet/menu.html'"></div>
+
+    <div class="container clearfix">
+        <div ng-include="'cabinet/profiles/translators/person-title.html'"></div>
+        <div ng-include="'cabinet/profiles/translators/person-tabs.html'"></div>
+
+        <div class="col-1">
+            <p>native_language</p>
+            <div class="custom-select">
+                {{view Ember.Select
+                selection=model.native_language.content
+                prompt='-'
+                content=languages
+                optionLabelPath='content.name'
+                optionValuePath='content.id'}}
+            </div>
+        </div>
+
+        <div ng-include="'cabinet/profiles/translators/person-steps.html'"></div>
+    </div>
+</form>

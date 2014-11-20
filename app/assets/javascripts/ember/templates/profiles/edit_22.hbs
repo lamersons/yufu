@@ -1,0 +1,195 @@
+<form class="section-form section-cabinet-common section-reg-translator section-reg-translator-3" >
+
+    <!-- Бекграунд модального окна -->
+    <div ng-include="'cabinet/menu.html'"></div>
+
+    <!-- Контейнер -->
+    <div class="container clearfix">
+        <div ng-include="'cabinet/profiles/translators/person-title.html'"></div>
+        <div ng-include="'cabinet/profiles/translators/person-tabs.html'"></div>
+
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Имя в паспорте <span class="required">*</span></p>
+            {{view Ember.TextField valueBinding='model.first_name' name='first_name' viewName='first_name'}}
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Фамилия в паспорте <span class="required">*</span></p>
+            {{view Ember.TextField valueBinding='model.last_name' name='last_name' viewName='last_name'}}
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1 clearfix last">
+            <p>Дата рождения</p>
+            <div class="input_date">
+                {{view Ember.TextField valueBinding='model.birthday' name='birthday' viewName='birthday'}}
+            </div>
+
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Номер паспорта <span class="required">*</span></p>
+            {{view Ember.TextField valueBinding='model.passport_num' name='passport_num' viewName='passport_num'}}
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1 clearfix">
+            <p>Срок годности паспорта <span class="required">*</span></p>
+            {{view Ember.TextField valueBinding='model.passport_till' name='passport_till' viewName='passport_till'}}
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1 last">
+            <p>Государство выдачи <span class="required">*</span></p>
+            {{view Ember.TextField valueBinding='model.passport_county' name='passport_county' viewName='passport_county'}}
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+        <div class="height-20"></div>
+
+        <div class="grey-line"></div>
+        <div class="height-20"></div>
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Город проживания <span class="required">*</span></p>
+            <div class="custom-select">
+                {{view Ember.Select
+                selection=model.city.content
+                prompt='-'
+                content=cities
+                optionLabelPath='content.name'
+                optionValuePath='content.id'}}
+            </div>
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Сколько лет прожили в Китае <span class="required">*</span></p>
+            {{view Ember.TextField valueBinding='model.years_in_china' name='years_in_china' viewName='years_in_china' style="width: 4em;"}}
+
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+
+        <div class="position-relative">
+            <label class="checkbox no-left clearfix">
+                <input type="checkbox" value="1" ng-model="profile.canCitiesNocost">
+                <em></em>
+                <p>Возможность работы в соседних городах без увеличения стоимости
+                    <span class="tooltip-icon-small js-tooltip rel-js-tooltip-cities-no-cost" data-target=".js-tooltip-cities-no-cost"></span>
+                </p>
+            </label>
+            <div class="hover-tooltip js-tooltip-cities-no-cost" style="left: 400px; width: 300px;"  show-tooltip yu-parent="rel-js-tooltip-cities-no-cost">
+                <span class="icon"></span>
+                <p>Будет повышать вашу конкурентную востребовательность</p>
+            </div>
+        </div>
+        <div class="add">
+            <a href="" class="trigger modal-trigger" ng-click="modalOpen('modal-cities-no-cost')"><b>+</b> Добавить города</a>
+            <div class="textarea">
+                <textarea rows="3" readonly></textarea>
+            </div>
+        </div>
+
+        <div class="position-relative">
+            <label class="checkbox no-left clearfix">
+                <input type="checkbox" ng-model="profile.canCitiesCost">
+                <em></em>
+                <p>Возможность работы в соседних городах с дополнительной оплатой 50$ в сутки (на проезд и хостел)
+                    <span class="tooltip-icon-small js-tooltip rel-js-tooltip-cities-cost" data-target=".js-tooltip-cities-cost"></span></p>
+            </label>
+            <div class="hover-tooltip js-tooltip-cities-cost" style="right:0; width: 300px;" show-tooltip yu-parent="rel-js-tooltip-cities-cost">
+                <span class="icon"></span>
+                <p>Будет повышать вашу стоимость в этих городах и понижать конкурентную востребовательность</p>
+            </div>
+        </div>
+        <div class="add">
+            <a href="" class="trigger modal-trigger" ng-click="modalOpen('modal-cities-cost')"><b>+</b> Добавить города</a>
+            <div class="textarea">
+                <textarea rows="3" readonly></textarea>
+            </div>
+        </div>
+
+        <div class="height-20"></div>
+        <div class="grey-line"></div>
+        <div class="height-20"></div>
+
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Вид визы <span class="required">*</span></p>
+            <div class="custom-select">
+                <select ng-model="profile.visaTypeId" ng-options="dict as dict.name|translate for dict in dictionaries|filter:{category: 'visa_types'}">
+                    <option value="" ng-if="false"></option>
+                </select>
+            </div>
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1 clearfix">
+            <p>Срок годности визы <span class="required">*</span></p>
+            <select select-date yu-model="profile.visaExpiresOn"></select>
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+        <div>
+            <label class="checkbox no-left clearfix">
+                <input type="checkbox" value="1" ng-model="profile.workPermit">
+                <em></em>
+                <p>Необходим job resident permit</p>
+            </label>
+        </div>
+        <div class="height-20"></div>
+        <div class="grey-line"></div>
+        <div class="height-20"></div>
+
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Пол</p>
+            <div class="custom-select">
+                <select ng-model="profile.sex" ng-options="dict as dict.name|translate for dict in dictionaries|filter:{category: 'sex'}">
+                    <option value="" ng-if="false"></option>
+                </select>
+            </div>
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-2 last photo position-relative clearfix">
+            <div class="dropzone dropzone-photo" nv-file-drop uploader="fileUploader">Или перетащите мышкой сюда</div>
+            <p>Загрузить фото</p>
+            <label class="file">
+                <input type="file" class="fileupload-with-dropzone" nv-file-select uploader="fileUploader">
+                <em>Выбрать...</em>
+                <span class="tooltip-icon-small js-tooltip rel-js-tooltip-photo" data-target=".js-tooltip-photo"></span>
+            </label>
+            <div class="height-5"></div>
+            <div class="hover-tooltip js-tooltip-photo" show-tooltip yu-parent="rel-js-tooltip-photo">
+                <span class="icon"></span>
+                <p>Будет посылаться клиенту, чтобы он вас мог узнать. Поэтому просим фото в фас и крупным планом.</p>
+            </div>
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+        <!-- Колонка -->
+        <div class="col-2 position-relative">
+            <p>Дополнительная информация <span class="tooltip-icon-small js-tooltip rel-js-tooltip-dop" data-target=".js-tooltip-dop"></span></p>
+            <div class="hover-tooltip js-tooltip-dop" show-tooltip yu-parent="rel-js-tooltip-dop">
+                <span class="icon"></span>
+                <p>Коротко, но содержательно. Какой Вы человек, Ваши сильные стороны, образование и предыдущий опыт работы, языки.
+                    Данная информация является крайне важной для наилучшего поиска вас в поисковых системах Интернета. Доступна
+                    клиенту. Для успешного поиска в Интернете она должна быть написана как на Вашем родном языке так и на других
+                    языках, которыми Вы владеете. По возможности чаще повторите следующие слова – name of your present city, другие
+                    города, в которых Вы можете оказывать услуги, китайский-Ваш язык; Ваш язык-китайский; интерпретатор, переводчик,
+                    интерпретация, перевод и т.д.</p>
+            </div>
+            {{view Ember.TextArea valueBinding='model.additions' name='additions' viewName='additions' style="width: 4em;"}}
+        </div>
+        <!-- /Колонка -->
+        <div ng-include="'cabinet/profiles/translators/person-steps.html'"></div>
+    </div>
+    <!-- /Контейнер -->
+    </button>
+</form>

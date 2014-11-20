@@ -7,6 +7,12 @@ module Profile
 
       field :additions,  localize: true
 
+
+      field :email
+      field :skype
+      field :additional_email
+      field :qq
+      field :wechat
       field :sex
       field :visa
       field :needs_job_resident_permit, type: Mongoid::Boolean

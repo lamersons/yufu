@@ -1,0 +1,53 @@
+<form class="section-form section-cabinet-common section-reg-translator">
+    <!-- Контейнер -->
+    <div class="container clearfix">
+        <div ng-include="'cabinet/profiles/translators/person-title.html'"></div>
+        <div ng-include="'cabinet/profiles/translators/person-tabs.html'"></div>
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Основной email</p>
+            {{view Ember.TextField valueBinding='model.email' name='email' viewName='email' style="width: 4em;"}}
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Дополнительный e-mail адрес</p>
+            {{view Ember.TextField valueBinding='model.additional_email' name='additional_email' viewName='additional_email' style="width: 4em;"}}
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Номер QQ <span class="required">*</span><span class="help-text">(для онлайн интервью)</span></p>
+            {{view Ember.TextField valueBinding='model.qq' name='additional_email' viewName='qq' style="width: 4em;"}}
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>We-chat <span class="required">*</span></p>
+            {{view Ember.TextField valueBinding='model.wechat' name='wechat' viewName='wechat' style="width: 4em;"}}
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1 last">
+            <p>Skype <span class="required">*</span><span class="help-text">(для онлайн интервью)</span></p>
+            {{view Ember.TextField valueBinding='model.skype' name='skype' viewName='skype' style="width: 4em;"}}
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Телефонный номер <span class="required">*</span><span class="help-text">(для онлайн интервью)</span></p>
+            {{view Ember.TextField valueBinding='model.phone' name='phone' viewName='phone' style="width: 4em;"}}
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Дополнительный Телефонный номер</p>
+            {{view Ember.TextField valueBinding='model.additionsl_phone' name='additionsl_phone' viewName='additionsl_phone' style="width: 4em;"}}
+        </div>
+        <!-- /Колонка -->
+        <div ng-include="'cabinet/profiles/translators/person-steps.html'"></div>
+    </div>
+    <!-- /Контейнер -->
+</form>

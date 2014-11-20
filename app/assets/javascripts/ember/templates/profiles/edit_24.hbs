@@ -1,0 +1,351 @@
+<form class="section-form section-cabinet-common section-reg-translator" ng-init="profile.step=4" novalidate>
+
+<!--<div class="modal-bg" ng-hide="hideModals"></div>-->
+
+<!--<div class="modal modal-uslugi clearfix" ng-hide="hideModals">-->
+    <!--<button type="button" class="close" ng-click="modalClose('modal-uslugi')">Готово</button>-->
+    <!--<p class="title">Доступные категории услуг</p>-->
+    <!--<div class="clearfix"></div>-->
+    <!--<div class="line"></div>-->
+    <!--&lt;!&ndash; Обертка для скролбара &ndash;&gt;-->
+    <!--<div class="scroll">-->
+        <!--&lt;!&ndash; Колонка &ndash;&gt;-->
+        <!--<div class="col-1">-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox">-->
+                <!--<em></em>-->
+                <!--<p>Книги</p>-->
+            <!--</label>-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox">-->
+                <!--<em></em>-->
+                <!--<p>Публикации</p>-->
+            <!--</label>-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox">-->
+                <!--<em></em>-->
+                <!--<p>Документы</p>-->
+            <!--</label>-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox" checked>-->
+                <!--<em></em>-->
+                <!--<p>Заводы</p>-->
+            <!--</label>-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox">-->
+                <!--<em></em>-->
+                <!--<p>Поставщик деталей</p>-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /Колонка &ndash;&gt;-->
+        <!--&lt;!&ndash; Колонка &ndash;&gt;-->
+        <!--<div class="col-1">-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox">-->
+                <!--<em></em>-->
+                <!--<p>Секретарь</p>-->
+            <!--</label>-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox" checked>-->
+                <!--<em></em>-->
+                <!--<p>Выставки</p>-->
+            <!--</label>-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox">-->
+                <!--<em></em>-->
+                <!--<p>Торговые мероприятия</p>-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /Колонка &ndash;&gt;-->
+        <!--&lt;!&ndash; Колонка &ndash;&gt;-->
+        <!--<div class="col-1 last">-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox">-->
+                <!--<em></em>-->
+                <!--<p>Развлечения</p>-->
+            <!--</label>-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox" checked>-->
+                <!--<em></em>-->
+                <!--<p>Ночная жизнь</p>-->
+            <!--</label>-->
+            <!--<label class="checkbox clearfix">-->
+                <!--<input type="checkbox">-->
+                <!--<em></em>-->
+                <!--<p>Местная еда</p>-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /Колонка &ndash;&gt;-->
+        <!--<div class="clear"></div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /Обретка для скроллбара &ndash;&gt;-->
+<!--</div>-->
+
+<div ng-include="'cabinet/menu.html'"></div>
+
+<!-- Контейнер -->
+<div class="container clearfix">
+<div ng-include="'cabinet/profiles/translators/person-title.html'"></div>
+<div ng-include="'cabinet/profiles/translators/person-tabs.html'"></div>
+<!-- Колонка -->
+<div class="col-1">
+    <p>Язык перевода</p>
+    <div class="custom-select disabled">
+        {{view Ember.Select
+        selection=model.services_attributes
+        prompt='-'
+        content=languages
+        optionLabelPath='content.name'
+        optionValuePath='content.id'}}
+    </div>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1"></div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1 last position-relative">
+    <p>Имеете ли вы уровень HSK</p>
+    <div class="custom-select">
+        <select ng-model="profile.hskConfirmed" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'yes_no'}">
+            <option value="" ng-if="false"></option>
+        </select>
+    </div>
+</div>
+<!-- /Колонка -->
+<div class="clear"></div>
+<!-- Колонка -->
+<div class="col-1">
+    <p>Уровень владения</p>
+    <div class="custom-select">
+        <select ng-model="profile.chineseLanguageLevel" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'language_levels'}">
+            <option value="" ng-if="false"></option>
+        </select>
+    </div>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1 position-relative">
+    <p>Расчетная ставка <span class="help-text">(в день)</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-1-1" data-target=".js-tooltip-stavka-ras-1-1"></span></p>
+    <div class="hover-tooltip js-tooltip-stavka-ras-1-1" show-tooltip yu-parent="rel-js-tooltip-stavka-ras-1-1">
+        <span class="icon"></span>
+        <p>Цены основаны на анализе рынка устных переводов с/на различные языки в Китае. Цена составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Даже если клиенту требуется перевод на 2 часа, он оплачивает 1 день или 8 часов. При бронировании заказчик указывает необходимость работы 10,12,14 или 16 часов в день, в этом случае за каждый час сверхурочной работы идет 1.5 часовой ставки т.е - оплата за 1 день/8 часов * 1.5. В связи с конъюнктурой рынка, Вашего и мнения других переводчиков цены могут изменяться на ежемесячной основе.</p>
+    </div>
+    <div class="bordered-block thin">
+        <div class="height-2"></div>
+        <p class="bold pink-bright">285 Eur</p>
+    </div>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1 last position-relative">
+    <p>Желаемая вами ставка <span class="help-text">(EUR в день)</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-1-1" data-target=".js-tooltip-stavka-des-1-1"></span></p>
+    <div class="hover-tooltip js-tooltip-stavka-des-1-1" show-tooltip yu-parent="rel-js-tooltip-stavka-des-1-1">
+        <span class="icon"></span>
+        <p>Ваше мнение важно для нас, так оно совместно с мнением др. Переводчиков будет формировать цену продажи. Цена перевода составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Просим, иметь в виду, что цена должна быть разумной, учитывать конъюнктуру рынка и количество переводчиков конкретного языка на рынке вкл местных переводчиков. Если цена будет слишком высока вы будете менее востребованными на рынке труда.</p>
+    </div>
+    <input type="text" ng-model="profile.chineseLanguagePrice">
+</div>
+<!-- /Колонка -->
+<div class="clear"></div>
+<!-- Колонка -->
+<div class="col-1 position-relative">
+    <p>Письменные переводы <span class="tooltip-icon-small js-tooltip rel-js-tooltip-w-1" data-target=".js-tooltip-w-1"></span></p>
+    <div class="hover-tooltip js-tooltip-w-1" show-tooltip yu-parent="rel-js-tooltip-w-1">
+        <span class="icon"></span>
+        <p>Только для владеющих свободным и продвинутым уровнями Китайского</p>
+    </div>
+    <div class="custom-select">
+        <select>
+            <option>Переводы с китайского</option>
+        </select>
+    </div>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1 position-relative">
+    <p>Расчетная ставка <span class="help-text">(в день)</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-1-2" data-target=".js-tooltip-stavka-ras-1-2"></span></p>
+    <div class="hover-tooltip js-tooltip-stavka-ras-1-2" show-tooltip yu-parent="rel-js-tooltip-stavka-ras-1-2">
+        <span class="icon"></span>
+        <p>Цены основаны на анализе рынка устных переводов с/на различные языки в Китае. Цена составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Даже если клиенту требуется перевод на 2 часа, он оплачивает 1 день или 8 часов. При бронировании заказчик указывает необходимость работы 10,12,14 или 16 часов в день, в этом случае за каждый час сверхурочной работы идет 1.5 часовой ставки т.е - оплата за 1 день/8 часов * 1.5. В связи с конъюнктурой рынка, Вашего и мнения других переводчиков цены могут изменяться на ежемесячной основе.</p>
+    </div>
+    <div class="bordered-block thin">
+        <div class="height-2"></div>
+        <p class="bold pink-bright">285 Eur</p>
+    </div>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1 last position-relative">
+    <p>Желаемая вами ставка <span class="help-text">(EUR в день)</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-1-2" data-target=".js-tooltip-stavka-des-1-2"></span></p>
+    <div class="hover-tooltip js-tooltip-stavka-des-1-2" show-tooltip yu-parent="rel-js-tooltip-stavka-des-1-2">
+        <span class="icon"></span>
+        <p>Ваше мнение важно для нас, так оно совместно с мнением др. Переводчиков будет формировать цену продажи. Цена перевода составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Просим, иметь в виду, что цена должна быть разумной, учитывать конъюнктуру рынка и количество переводчиков конкретного языка на рынке вкл местных переводчиков. Если цена будет слишком высока вы будете менее востребованными на рынке труда.</p>
+    </div>
+    <input type="text">
+</div>
+<!-- /Колонка -->
+<div class="clear"></div>
+<div class="height-20"></div>
+<div class="grey-line"></div>
+<div class="height-20"></div>
+
+<div ng-repeat="lang in profile.addonLanguages">
+    <!-- Колонка -->
+    <div class="col-1">
+        <p>Язык перевода</p>
+        <div class="custom-select">
+            <select>
+                <option>Русский</option>
+            </select>
+        </div>
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1"></div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1 last position-relative">
+        <p>Сертификат на знание языка</p>
+        <input type="text">
+    </div>
+    <!-- /Колонка -->
+    <div class="clear"></div>
+    <!-- Колонка -->
+    <div class="col-1">
+        <p>Уровень владения</p>
+        <div class="custom-select">
+            <select>
+                <option></option>
+            </select>
+        </div>
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1 position-relative">
+        <p>Расчетная ставка <span class="help-text">(в день)</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-ras-2-1"></span></p>
+        <div class="hover-tooltip js-tooltip-stavka-ras-2-1">
+            <span class="icon"></span>
+            <p>Цены основаны на анализе рынка устных переводов с/на различные языки в Китае. Цена составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Даже если клиенту требуется перевод на 2 часа, он оплачивает 1 день или 8 часов. При бронировании заказчик указывает необходимость работы 10,12,14 или 16 часов в день, в этом случае за каждый час сверхурочной работы идет 1.5 часовой ставки т.е - оплата за 1 день/8 часов * 1.5. В связи с конъюнктурой рынка, Вашего и мнения других переводчиков цены могут изменяться на ежемесячной основе.</p>
+        </div>
+        <div class="bordered-block thin">
+            <div class="height-2"></div>
+            <p class="bold pink-bright">285 Eur</p>
+        </div>
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1 last position-relative">
+        <p>Желаемая вами ставка <span class="help-text">(EUR в день)</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-des-2-1"></span></p>
+        <div class="hover-tooltip js-tooltip-stavka-des-2-1">
+            <span class="icon"></span>
+            <p>Ваше мнение важно для нас, так оно совместно с мнением др. Переводчиков будет формировать цену продажи. Цена перевода составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Просим, иметь в виду, что цена должна быть разумной, учитывать конъюнктуру рынка и количество переводчиков конкретного языка на рынке вкл местных переводчиков. Если цена будет слишком высока вы будете менее востребованными на рынке труда.</p>
+        </div>
+        <input type="text">
+    </div>
+    <!-- /Колонка -->
+    <div class="clear"></div>
+    <!-- Колонка -->
+    <div class="col-1 position-relative">
+        <p>Письменные переводы <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-w-2"></span></p>
+        <div class="hover-tooltip js-tooltip-w-2">
+            <span class="icon"></span>
+            <p>Только для владеющих свободным и продвинутым уровнями Китайского</p>
+        </div>
+        <div class="custom-select">
+            <select>
+                <option>Переводы с китайского</option>
+            </select>
+        </div>
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1 position-relative">
+        <p>Расчетная ставка <span class="help-text">(в день)</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-ras-2-2"></span></p>
+        <div class="hover-tooltip js-tooltip-stavka-ras-2-2">
+            <span class="icon"></span>
+            <p>Цены основаны на анализе рынка устных переводов с/на различные языки в Китае. Цена составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Даже если клиенту требуется перевод на 2 часа, он оплачивает 1 день или 8 часов. При бронировании заказчик указывает необходимость работы 10,12,14 или 16 часов в день, в этом случае за каждый час сверхурочной работы идет 1.5 часовой ставки т.е - оплата за 1 день/8 часов * 1.5. В связи с конъюнктурой рынка, Вашего и мнения других переводчиков цены могут изменяться на ежемесячной основе.</p>
+        </div>
+        <div class="bordered-block thin">
+            <div class="height-2"></div>
+            <p class="bold pink-bright">285 Eur</p>
+        </div>
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1 last position-relative">
+        <p>Желаемая вами ставка <span class="help-text">(EUR в день)</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-des-2-2"></span></p>
+        <div class="hover-tooltip js-tooltip-stavka-des-2-2">
+            <span class="icon"></span>
+            <p>Ваше мнение важно для нас, так оно совместно с мнением др. Переводчиков будет формировать цену продажи. Цена перевода составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Просим, иметь в виду, что цена должна быть разумной, учитывать конъюнктуру рынка и количество переводчиков конкретного языка на рынке вкл местных переводчиков. Если цена будет слишком высока вы будете менее востребованными на рынке труда.</p>
+        </div>
+        <input type="text">
+    </div>
+    <!-- /Колонка -->
+    <div class="clear"></div>
+</div>
+
+<div class="height-20"></div>
+<div class="grey-line"></div>
+<div class="height-20"></div>
+
+<a href="" class="pink-bright" ng-click="profile.addonLanguages.push({})"><b class="bold">+</b> Добавить язык</a>
+
+<div class="height-20"></div>
+<div class="position-relative">
+    <label class="checkbox no-left clearfix">
+        <input type="checkbox" checked>
+        <em></em>
+        <p>Доступные категории услуг</p>
+    </label>
+</div>
+<div class="add short">
+    <a href="" class="trigger modal-trigger" ng-click="modalOpen('modal-uslugi')"><b>+</b> Добавить</a>
+    <div class="textarea">
+        <textarea rows="3" readonly></textarea>
+    </div>
+</div>
+<!-- Колонка -->
+<div class="col-1">
+    <label class="checkbox clearfix">
+        <input type="checkbox" ng-model="profile.canTravel" value="1">
+        <em></em>
+        <p>Возможность путешествовать в другие города за счет клиента</p>
+    </label>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1 position-relative">
+    <label class="checkbox clearfix">
+        <input type="checkbox" value="1" ng-model="profile.drivingLicense">
+        <em></em>
+        <p>Наличие китайских прав и возможности управлять транспортным средством</p>
+    </label>
+    <div class="height-5"></div>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1 last position-relative">
+    <label class="checkbox clearfix">
+        <input type="checkbox" value="1" ng-model="profile.haveACar">
+        <em></em>
+        <p>Наличие и возможность использовать машины</p>
+    </label>
+    <div class="height-5"></div>
+</div>
+<!-- /Колонка -->
+<div class="clear"></div>
+<div class="height-20"></div>
+<!-- Колонка -->
+<div class="col-1">
+    <p>Нынешний статус</p>
+    <div class="custom-select">
+        <select ng-model="profile.occupation" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'occupations'}">
+        </select>
+    </div>
+</div>
+<!-- /Колонка -->
+<div ng-include="'cabinet/profiles/translators/person-steps.html'"></div>
+</div>
+<!-- /Контейнер -->
+</form>

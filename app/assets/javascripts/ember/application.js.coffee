@@ -11,4 +11,15 @@
 # for more details see: http://emberjs.com/guides/application/
 window.Yufu = Ember.Application.create({rootElement: '#yufu_app'})
 
+Ember.RadioButton = Ember.View.extend({
+    tagName : "input",
+    type : "radio",
+    attributeBindings : [ "name", "type", "value", "checked:checked:" ],
+    click : ->
+      this.set("selection", this.$().val())
+  checked: (->
+    return this.get("value") == this.get("selection")
+  ).property()
+  })
+
 

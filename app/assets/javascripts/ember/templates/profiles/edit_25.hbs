@@ -1,0 +1,139 @@
+<form class="section-form section-cabinet-common section-reg-translator section-reg-translator-6" ng-init="profile.step=5" novalidate>
+
+    <div ng-include="'cabinet/menu.html'"></div>
+
+    <!-- Контейнер -->
+    <div class="container clearfix">
+        <div ng-include="'cabinet/profiles/translators/person-title.html'"></div>
+        <div ng-include="'cabinet/profiles/translators/person-tabs.html'"></div>
+
+        <div ng-repeat="edu in profile.educations">
+            <!-- Колонка -->
+            <div class="col-1">
+                <p>Образование</p>
+                <div class="custom-select">
+                    <select ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'edu_levels'}">
+                        <option value="" ng-if="false">Другое</option>
+                    </select>
+                </div>
+            </div>
+            <!-- /Колонка -->
+            <!-- Колонка -->
+            <div class="col-1">
+                <p>Другое</p>
+                <input type="text" disabled>
+            </div>
+            <!-- /Колонка -->
+            <!-- Колонка -->
+            <div class="col-1 last position-relative">
+                <p>Сфера <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-sfera"></span></p>
+                <div class="hover-tooltip js-tooltip-sfera">
+                    <span class="icon"></span>
+                    <p>Отрасли, которые как-то относятся к вашему направлению , учитывая прошлый рабочий опыт.</p>
+                </div>
+                <div class="custom-select">
+                    <select ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'edu_directions'}">
+                        <option value="" ng-if="false">Другое</option>
+                    </select>
+                </div>
+            </div>
+            <!-- /Колонка -->
+            <div class="clear"></div>
+            <!-- Колонка -->
+            <div class="col-2">
+                <p>Учебное заведение</p>
+                <input type="text">
+            </div>
+            <!-- /Колонка -->
+            <!-- Колонка -->
+            <div class="col-1 last">
+                <p>Место нахождения</p>
+                <input type="text">
+            </div>
+            <!-- /Колонка -->
+            <div class="clear"></div>
+            <div class="position-relative">
+                <p>Присоединить копию теста на языковую пригодность / Университетский сертификат с лингвистического факультета или любого факультета не на родном языке; Другие документы подтверждающие вашу информацию <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-parag"></span></p>
+                <div class="hover-tooltip js-tooltip-parag" style="left: 500px; width: 300px;">
+                    <span class="icon"></span>
+                    <p>Необязательно, но желательно для Вас, с целью подтверждения указанных Вами данных.</p>
+                </div>
+            </div>
+            <!-- Колонка -->
+            <div class="col-2 lang-test clearfix position-relative">
+                <div class="dropzone dropzone-lang-test">Или перетащите мышкой сюда</div>
+                <label class="file">
+                    <input type="file" class="fileupload-with-dropzone" data-dropzone=".dropzone-lang-test" data-url="/test.html">
+                    <em>Выбрать...</em>
+                    <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-test-file"></span>
+                </label>
+                <div class="height-5"></div>
+                <div class="hover-tooltip js-tooltip-test-file" style="width: 300px;">
+                    <span class="icon"></span>
+                    <p>Внимание! Передача файла может занять до нескольких минут.</p>
+                </div>
+            </div>
+            <!-- /Колонка -->
+            <div class="clear"></div>
+        </div>
+
+        <div class="height-30"></div>
+        <div class="grey-line"></div>
+        <div class="height-20"></div>
+        <a href="" class="pink-bright" ng-click="profile.educations.push({})"><b class="bold">+</b> Добавить образование</a>
+        <div class="height-10"></div>
+        <div ng-include="'cabinet/profiles/translators/person-steps.html'"></div>
+    </div>
+    <!-- /Контейнер -->
+</form>
+
+<!--
+<form class="section-form step-1">
+  <div class="container clearfix">
+    <h1 class="main">Заполнение анкеты</h1>
+
+    <div class="col-1">
+      <div>Образование</div>
+      <select ng-model="profile.edu_level" ng-options="edu.value as edu.name for edu in edu_levels"></select>
+      <div>
+        другое укажите:
+        <input type="text" ng-model="profile.edu_other" />
+      </div>
+    </div>
+    <div class="col-1">
+      <div>Учебное заведение</div>
+      <div>Наименование</div>
+      <input type="text" ng-model="profile.edu_name" />
+      <div>Место нахождения</div>
+      <input type="text" ng-model="profile.edu_location" />
+    </div>
+    <div class="col-1 last clearfix">
+      <div>Направление</div>
+      <select ng-model="profile.edu_direction" ng-options="edu.value as edu.name for edu in edu_directions"></select>
+    </div>
+    <div class="clear"></div>
+
+    <div class="col-2">
+      Присоединить копию теста на языковую пригодность / Университетский сертификат с лингвистического факультета или любого факультета не на родном языке; Другие документы подтверждающие вашу информацию
+      <input type="file" />
+    </div>
+    <div class="clear"></div>
+
+    <div class="steps clearfix">
+      <div class="col-1"></div>
+      <div class="col-1 clearfix circles">
+        <span ui-sref="index">1</span>
+        <span ui-sref="person-1">2</span>
+        <span ui-sref="person-2">3</span>
+        <span ui-sref="person-3">4</span>
+        <span ui-sref="person-4">5</span>
+        <span class="active">6</span>
+        <span>7</span>
+      </div>
+      <div class="col-1 button last">
+        <button type="submit" ng-click="checkStep(5)">Продолжить</button>
+      </div>
+    </div>
+
+  </div>
+</form>-->

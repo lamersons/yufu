@@ -1,6 +1,13 @@
 Yufu.Profile = DS.Model.extend({
 
   _type: DS.attr 'string'
+  email: DS.attr 'string'
+  additional_email: DS.attr 'string'
+  skype: DS.attr 'string'
+  qq: DS.attr 'string'
+  wechat: DS.attr 'string'
+  next_step: DS.attr 'number'
+  next_substep: DS.attr 'number'
   additional_phone: DS.attr 'string'
   additions: DS.attr 'string'
   birthday: DS.attr 'date'
@@ -29,6 +36,8 @@ Yufu.Profile = DS.Model.extend({
 
   # Relations
   city: DS.belongsTo 'city', async: true
+  native_language: DS.belongsTo 'language', async: true
+  services: DS.hasMany 'service', {embedded: 'always'}
 
 
 
