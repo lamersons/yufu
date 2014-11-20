@@ -27,5 +27,6 @@ Yufu::Application.configure do
   locale = :en
   config.i18n.default_locale = locale
   config.i18n.locale = locale
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.host = 'localhost:3000'
+  config.action_mailer.default_url_options = { host: config.host }
 end

@@ -11,7 +11,7 @@ class Banner
   has_mongoid_attached_file :image
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  def html
-    #"<iframe width=#{width} height=#{height} src='#{banner_url(self)}'></iframe"
+  def src
+    "<iframe width=#{width} height=#{height} src='#{Rails.application.routes.url_helpers.banner_url(self)}'></iframe"
   end
 end
