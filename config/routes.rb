@@ -18,6 +18,7 @@ Yufu::Application.routes.draw do
       resources :directions, only: [:index, :show]
       resources :cities,     only: [:index, :show]
       resources :users,      only: [:index, :show, :update, :create]
+      resources :banners,    only: [:index, :show, :update, :create]
       resources :profiles
       resources :orders
     end
