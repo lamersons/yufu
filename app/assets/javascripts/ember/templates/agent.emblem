@@ -1,4 +1,5 @@
 = partial 'agent/menu'
+= ts 'hello'
 .section-form.section-cabinet-common
   .container.clearfix
     = outlet
