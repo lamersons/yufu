@@ -1,0 +1,18 @@
+ru:
+  mongoid:
+    models:
+      banner:
+      one:   Банер
+      few:   Банера
+      many:  Банеров
+      other: Банеры
+
+    attributes:
+      created_at: Создан
+      updated_at: Обнавлен
+      banner:
+        width: Ширина
+        height: Высота
+        src: Код для вставки
+        name: Имя
+

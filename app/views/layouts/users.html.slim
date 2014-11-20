@@ -45,4 +45,7 @@ html
       javascript:
         window.myId = "#{current_user.id.to_s}";
 
-
+= javascript_include_tag '/javascripts/translations.js'
+javascript:
+  //Set js locale
+  I18n.locale = "#{I18n.locale}";

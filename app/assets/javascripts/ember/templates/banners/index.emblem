@@ -1,0 +1,33 @@
+.table-container
+  table
+    thead
+      tr
+        th
+          = ts 'mongoid.attributes.banner.name'
+        th
+          = ts 'mongoid.attributes.banner.width'
+        th
+          = ts 'mongoid.attributes.banner.height'
+        th
+          = ts 'mongoid.attributes.banner.src'
+        th
+          = ts 'mongoid.attributes.created_at'
+        th
+          = ts 'mongoid.attributes.updated_at'
+    tbody
+      = each
+        tr
+          td
+            = name
+          td
+            = width
+          td
+            = height
+          td
+            = src
+          td
+            = created_at
+          td
+            = updated_at
+= link-to 'banners.new'
+  = ts 'create'
