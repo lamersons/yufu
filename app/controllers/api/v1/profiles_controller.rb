@@ -3,6 +3,7 @@ module Api
     class ProfilesController < ApplicationController
       respond_to :json
       before_action :authenticate_user!, only: [:create, :update]
+      before_action :change_type, only: [:update]
 
       def show
         @profile = Profile::Base.find params[:id]
@@ -33,7 +34,6 @@ module Api
       end
 
       def update
-        @profile = current_user.profiles.find(params[:id])
         if @profile.update_attributes(profile_params)
           render json: {success: true}
         else
@@ -51,7 +51,7 @@ module Api
                                           :location, :service_phone, employees_attributes: [:sex, :age, :direction_id]
         when 'Profile::Translator::Individual'
           params.require(:profile).permit :first_name, :last_name, :passport_till, :passport_num, :passport_country,
-                                          :additional_email, :qq, :skype, :additions, :sex, :visa,
+                                          :additional_email, :qq, :skype, :wechat, :email, :additions, :sex, :visa,
                                           :needs_job_resident_permit, :can_travel,
                                           :has_driving_license, :has_car, :native_language_id, :nearby_city_ids,
                                           :nearby_city_with_surcharge_ids, :city_id,  :directions_ids,
@@ -60,7 +60,13 @@ module Api
         end
 
       end
-
+      private
+      def change_type
+        @profile = current_user.profiles.find(params[:id])
+        unless params[:profile][:_type] == @profile._type || @profile._type != 'Profile::Translator::Base'
+          @profile.update_attribute :_type, params[:profile][:_type]
+        end
+      end
     end
   end
 end

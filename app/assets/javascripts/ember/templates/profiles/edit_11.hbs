@@ -8,9 +8,10 @@
         <p class="title">profile_data_options</p>
         <div class="height-10"></div>
         <!-- Колонка -->
+
         <div class="col-1">
             <label class="radio no-left clearfix">
-                <input type="radio" name="type" value="person" ng-model="profile.legalEntity">
+                {{view Ember.RadioButton name="type" selectionBinding="model._type" value="Profile::Translator::Individual"}}
                 <em></em>
                 <p><b>as_person</b></p>
             </label>
@@ -19,7 +20,7 @@
         <!-- Колонка -->
         <div class="col-1">
             <label class="radio clearfix">
-                <input type="radio" name="type" value="company" ng-model="profile.legalEntity">
+                {{view Ember.RadioButton name="type" selectionBinding="model._type" value="Profile::Translator::Company"}}
                 <em></em>
                 <p><b>as_company</b></p>
             </label>

@@ -1,0 +1,31 @@
+<form class="section-form section-cabinet-common section-reg-translator" ng-init="profile.step=6" novalidate>
+
+    <div ng-include="'cabinet/menu.html'"></div>
+
+    <!-- Контейнер -->
+    <div class="container clearfix">
+        <div ng-include="'cabinet/profiles/translators/person-title.html'"></div>
+        <div ng-include="'cabinet/profiles/translators/person-tabs.html'"></div>
+
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Способ оплаты</p>
+            <div class="custom-select">
+                <select ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'payments'}">
+                    <option value="" ng-if="false">Другое</option>
+                </select>
+            </div>
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+        <div class="height-20"></div>
+        <div class="grey-line-thick"></div>
+        <div class="height-20"></div>
+        <p class="big-tooltip">
+            <span class="icon"></span>
+            Для предотвращения ошибок в перечислении оплаты на Ваш счет, мы рекомендуем Вам перевести на счет нашей компании 1 RMB. Сумма будет возвращена Вам при первой оплате.
+        </p>
+        <div ng-include="'cabinet/profiles/translators/person-steps.html'"></div>
+    </div>
+    <!-- /Контейнер -->
+</form>

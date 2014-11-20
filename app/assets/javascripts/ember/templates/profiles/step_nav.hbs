@@ -13,8 +13,7 @@
     </div>
     <!-- /Колонка -->
     <div class="col-1 button last">
-        <button type="submit" ng-click="checkStep()" ng-show="isPersonPageSteps()">continue</button>
-        <button type="submit" ui-sref="index" ng-hide="isPersonPageSteps()">to_the_cabinet</button>
+        <button {{action 'update' this next_step next_substep}}>continue</button>
     </div>
 </div>
 <div class="height-30"></div>
