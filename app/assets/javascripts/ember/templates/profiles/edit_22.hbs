@@ -1,6 +1,33 @@
 <form class="section-form section-cabinet-common section-reg-translator section-reg-translator-3" >
 
-    {{outlet 'modal'}}
+<div class="modal-bg" ng-hide="hideModals"></div>
+<!-- /Бекграунд модального окна -->
+
+<!-- Модальное окно - языки без увеличения стоимости -->
+<div class="modal modal-cities-no-cost clearfix" >
+    <button type="button" class="close" >Готово</button>
+    <p class="title">Возможность работы в соседних городах без увеличения стоимости</p>
+
+    <div class="clearfix"></div>
+    <div class="line"></div>
+    <!-- Обертка для скролбара -->
+    <div class="scroll">
+        <!-- Колонка -->
+        <div class="col-1">
+            {{#each city in cities}}
+                <label class="checkbox clearfix">
+                    {{view.nearbyCheckbox cityBinding="city" profileBinding="current_profile"}}
+                    <em></em>
+                    <p>{{city.name}}</p>
+                </label>
+            {{/each}}
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+    </div>
+    <!-- /Обретка для скроллбара -->
+</div>
+<!-- /Модальное окно - языки без увеличения стоимости -->
 
     <!-- Контейнер -->
     <div class="container clearfix">

@@ -30,5 +30,6 @@ ifStepHelper = (key, v2, options)->
     return options.fn(this)
   return options.inverse(this)
 
+
 Handlebars.registerHelper('ifStep', ifStepHelper)
 

@@ -6,8 +6,6 @@ module Profile
       GRADES = %w(standard senior)
 
       field :additions,  localize: true
-
-
       field :email
       field :skype
       field :additional_phone
