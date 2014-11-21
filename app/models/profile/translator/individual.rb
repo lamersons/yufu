@@ -10,7 +10,9 @@ module Profile
 
       field :email
       field :skype
+      field :additional_phone
       field :additional_email
+      field :phone
       field :qq
       field :wechat
       field :sex
