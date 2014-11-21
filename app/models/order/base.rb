@@ -32,6 +32,16 @@ module Order
       event :assigned_to do
         transition wait_application: :in_progress
       end
+
+      event :reject do
+        transition in_progress: :wait_application
+      end
+
+      # It should be after, but it doesn't work with MongoId https://github.com/spree/spree/issues/2004
+      before_transition on: :reject do |order|
+        order.assignee = nil
+      end
+
     end
 
     def assigned_to(translator_profile)
@@ -44,4 +54,5 @@ module Order
       applications.where(status: 'primary').empty?
     end
   end
+
 end

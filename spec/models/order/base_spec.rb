@@ -31,4 +31,15 @@ RSpec.describe Order::Base, :type => :model do
       expect(order.can_send_primary_application?).to be_falsey
     end
   end
+
+  describe '#reject' do
+    let(:order) {create :order_base, assignee: (create :profile_translator_individual), state: :in_progress}
+    subject{order.reject}
+    it 'sets state as wait_application' do
+      expect{subject}.to change{order.reload.wait_application?}.to(true)
+    end
+    it 'sets assignee as nil' do
+      expect{subject}.to change{order.reload.assignee}.to(nil)
+    end
+  end
 end
