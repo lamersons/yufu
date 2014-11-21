@@ -1,4 +1,6 @@
 #= require jquery
+#= require moment
+#= require moment/ru.js
 #= require handlebars
 #= require ember
 #= require ember-data
@@ -22,4 +24,11 @@ Ember.RadioButton = Ember.View.extend({
   ).property()
   })
 
+ifStepHelper = (key, v2, options)->
+  v1 = @get(key)
+  if(v1 == v2)
+    return options.fn(this)
+  return options.inverse(this)
+
+Handlebars.registerHelper('ifStep', ifStepHelper)
 

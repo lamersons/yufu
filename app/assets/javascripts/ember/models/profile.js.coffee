@@ -1,5 +1,4 @@
-Yufu.Profile = DS.Model.extend({
-
+Yufu.Profile = DS.Model.extend Yufu.FormattedTimestampMixin,
   _type: DS.attr 'string'
   email: DS.attr 'string'
   additional_email: DS.attr 'string'
@@ -17,6 +16,7 @@ Yufu.Profile = DS.Model.extend({
   passport_num: DS.attr 'string'
   passport_till: DS.attr 'date'
   passport_country: DS.attr 'string'
+  needs_job_resident_permit: DS.attr 'boolean'
 #  directions: has many
 #  educations: has many
   first_name: DS.attr 'string'
@@ -37,8 +37,5 @@ Yufu.Profile = DS.Model.extend({
   # Relations
   city: DS.belongsTo 'city', async: true
   native_language: DS.belongsTo 'language', async: true
+  profile_language: DS.belongsTo 'language', async: true
   services: DS.hasMany 'service', {embedded: 'always'}
-
-
-
-})

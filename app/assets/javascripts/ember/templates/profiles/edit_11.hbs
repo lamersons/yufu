@@ -29,9 +29,12 @@
         <!-- Колонка -->
         <div class="col-1 last">
             <div class="custom-select" style="position: relative; top: -10px;">
-                <select>
-                    <option value="" disabled>profile_language</option>
-                </select>
+                {{view Ember.Select
+                selection=model.profile_language.content
+                prompt='profile language'
+                content=languages
+                optionLabelPath='content.name'
+                optionValuePath='content.id'}}
             </div>
         </div>
         <!-- /Колонка -->

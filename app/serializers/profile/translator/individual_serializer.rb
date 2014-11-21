@@ -1,9 +1,11 @@
 class Profile::Translator::IndividualSerializer < Profile::Translator::BaseSerializer
   attributes :_type, :sex, :additions, :birthday, :visa, :needs_job_resident_permit, :can_travel, :has_driving_license, :has_car,
-             :passport_num, :passport_till, :passport_country, :years_in_china, :city_id, :native_language_id, :email, :additional_email,
-             :phone, :additional_phone, :qq, :wechat, :skype
+             :passport_num, :passport_till, :passport_country, :years_in_china, :city_id, :native_language_id,
+             :profile_language_id, :email, :additional_email,
+             :phone, :additional_phone, :qq, :wechat, :skype, :needs_job_resident_permit
 
-  has_many :services
+  #TODO: get it back!!!
+  # has_many :services
   has_many :educations
   has_many :nearby_city
   has_many :directions
@@ -13,6 +15,10 @@ class Profile::Translator::IndividualSerializer < Profile::Translator::BaseSeria
 
   def city_id
     object.city.try(:id).to_s
+  end
+
+  def profile_language_id
+    object.profile_language.try(:id).to_s
   end
 
   def native_language_id

@@ -1,7 +1,6 @@
 <form class="section-form section-cabinet-common section-reg-translator section-reg-translator-3" >
 
-    <!-- Бекграунд модального окна -->
-    <div ng-include="'cabinet/menu.html'"></div>
+    {{outlet 'modal'}}
 
     <!-- Контейнер -->
     <div class="container clearfix">
@@ -24,7 +23,8 @@
         <div class="col-1 clearfix last">
             <p>Дата рождения</p>
             <div class="input_date">
-                {{view Ember.TextField valueBinding='model.birthday' name='birthday' viewName='birthday'}}
+                {{date-picker-input controls="birthday" valueBinding='model.formattedBirthday'}}
+                {{date-picker-controls id="birthday"}}
             </div>
 
         </div>
@@ -45,7 +45,7 @@
         <!-- Колонка -->
         <div class="col-1 last">
             <p>Государство выдачи <span class="required">*</span></p>
-            {{view Ember.TextField valueBinding='model.passport_county' name='passport_county' viewName='passport_county'}}
+            {{view Ember.TextField valueBinding='model.passport_country' name='passport_country' viewName='passport_country'}}
         </div>
         <!-- /Колонка -->
         <div class="clear"></div>
@@ -122,22 +122,24 @@
         <div class="col-1">
             <p>Вид визы <span class="required">*</span></p>
             <div class="custom-select">
-                <select ng-model="profile.visaTypeId" ng-options="dict as dict.name|translate for dict in dictionaries|filter:{category: 'visa_types'}">
-                    <option value="" ng-if="false"></option>
-                </select>
+                {{view Ember.Select
+                selection=model.visa
+                prompt='-'
+                content=visa_kind}}
             </div>
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1 clearfix">
             <p>Срок годности визы <span class="required">*</span></p>
-            <select select-date yu-model="profile.visaExpiresOn"></select>
+            {{date-picker-input controls="visa_till" valueBinding='model.birthday'}}
+            {{date-picker-controls id="visa_till"}}
         </div>
         <!-- /Колонка -->
         <div class="clear"></div>
         <div>
             <label class="checkbox no-left clearfix">
-                <input type="checkbox" value="1" ng-model="profile.workPermit">
+                {{view Ember.Checkbox checkedBinding="model.needs_job_resident_permit"}}
                 <em></em>
                 <p>Необходим job resident permit</p>
             </label>
@@ -150,9 +152,10 @@
         <div class="col-1">
             <p>Пол</p>
             <div class="custom-select">
-                <select ng-model="profile.sex" ng-options="dict as dict.name|translate for dict in dictionaries|filter:{category: 'sex'}">
-                    <option value="" ng-if="false"></option>
-                </select>
+                {{view Ember.Select
+                selection=model.sex
+                prompt='-'
+                content=genders}}
             </div>
         </div>
         <!-- /Колонка -->

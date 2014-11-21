@@ -20,7 +20,7 @@ module Profile
       field :birthday, type: DateTime
       field :grade, default: 'standard'
       field :passport_num
-      field :passport_till
+      field :passport_till, type: DateTime
       field :passport_country
       field :years_in_china, type: Integer
       belongs_to :city

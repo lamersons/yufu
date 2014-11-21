@@ -19,7 +19,7 @@
         _defaults: {
             minYear: false,
             maxYear: false,
-            dateFormat: null,
+            dateFormat: 'DD/M/YYYY',
             i18n: {
                 done: "Done",
                 clear: "Clear",
