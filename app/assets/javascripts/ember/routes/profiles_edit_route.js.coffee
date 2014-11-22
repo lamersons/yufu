@@ -26,6 +26,8 @@ Yufu.ProfilesEditRoute = Ember.Route.extend({
     controller.set 'languages', @store.find('language')
     controller.set 'next_step', '1'
     controller.set 'next_substep', '0'
+    controller.set 'genders', ['male', 'female']
+    controller.set 'visa_kind', ['visa1', 'visa2']
 
   renderTemplate: (model, controller)->
     step = model.step || '1'
@@ -34,7 +36,7 @@ Yufu.ProfilesEditRoute = Ember.Route.extend({
 
   render_template: (step, substep)->
     @render "profiles/edit_#{step}#{substep}"
-    @render 'partials/registration',{outlet: 'navigation'}
+    @render 'partials/_navigation',{outlet: 'navigation'}
     @render 'profiles/step_nav',{outlet: 'step_nav'}
 
 })

@@ -2,7 +2,6 @@ module Profile
   module Translator
     class Base < Profile::Base
       # contacts info
-      field :additional_email
       field :qq
       field :skype
 

@@ -6,11 +6,11 @@ module Profile
       GRADES = %w(standard senior)
 
       field :additions,  localize: true
-
-
       field :email
       field :skype
+      field :additional_phone
       field :additional_email
+      field :phone
       field :qq
       field :wechat
       field :sex
@@ -20,7 +20,7 @@ module Profile
       field :birthday, type: DateTime
       field :grade, default: 'standard'
       field :passport_num
-      field :passport_till
+      field :passport_till, type: DateTime
       field :passport_country
       field :years_in_china, type: Integer
       belongs_to :city

@@ -51,10 +51,11 @@ module Api
                                           :location, :service_phone, employees_attributes: [:sex, :age, :direction_id]
         when 'Profile::Translator::Individual'
           params.require(:profile).permit :first_name, :last_name, :passport_till, :passport_num, :passport_country,
-                                          :additional_email, :qq, :skype, :wechat, :email, :additions, :sex, :visa,
+                                          :additional_email, :additional_phone, :phone, :qq, :skype, :wechat, :email, :additions, :sex, :visa,
                                           :needs_job_resident_permit, :can_travel,
                                           :has_driving_license, :has_car, :native_language_id, :nearby_city_ids,
                                           :nearby_city_with_surcharge_ids, :city_id,  :directions_ids,
+                                          :years_in_china,
                                           services_attributes: [:level, :has_hsk, :verbal_price, :written_price,
                                                                 :written_translate_type, :language_id]
         end

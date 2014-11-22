@@ -2,11 +2,14 @@ Yufu.ProfilesEditController = Ember.Controller.extend({
   queryParams: ['step', 'substep']
   next_step: '1'
   next_substep: '1'
+  step_class: (step)->
+    if step == @next_step
+      return 'active'
 
   actions: {
     update: (profile, step, substep)->
       step = parseInt(step)
-      if step == 1
+      if step <= 1
         step += 1
       if step == 2
         substep = parseInt(substep)
