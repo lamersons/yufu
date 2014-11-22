@@ -7,6 +7,19 @@ Yufu.ProfilesEditController = Ember.Controller.extend({
       return 'active'
 
   actions: {
+
+    show_nearby_with_surcharge: ->
+      @transitionToRoute 'profiles.edit', queryParams: {show_nearby_with_surcharge: true}
+
+    hide_nearby_surcharge: ->
+      @transitionToRoute 'profiles.edit', queryParams: {show_nearby_with_surcharge: false}
+
+    show_nearby: ->
+      @transitionToRoute 'profiles.edit', queryParams: {show_nearby: true}
+
+    hide_nearby: ->
+      @transitionToRoute 'profiles.edit', queryParams: {show_nearby: false}
+
     update: (profile, step, substep)->
       step = parseInt(step)
       if step <= 1

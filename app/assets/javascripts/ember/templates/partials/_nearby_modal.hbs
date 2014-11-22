@@ -1,0 +1,27 @@
+<div class="modal-bg" ng-hide="hideModals"></div>
+<!-- /Бекграунд модального окна -->
+<!-- Модальное окно - языки без увеличения стоимости -->
+<div class="modal modal-cities-no-cost clearfix" >
+    <button {{action 'hide_nearby'}} type="button" class="close" >Ready</button>
+    <p class="title">nearby cities list</p>
+
+    <div class="clearfix"></div>
+    <div class="line"></div>
+    <!-- Обертка для скролбара -->
+    <div class="scroll">
+        <!-- Колонка -->
+        <div class="col-1">
+            {{#each city in cities}}
+                <label class="checkbox clearfix">
+                    {{view Yufu.nearbyCheckbox cityBinding="city" profileBinding=this}}
+                    <em></em>
+                    <p>{{city.name}}</p>
+                </label>
+            {{/each}}
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+    </div>
+    <!-- /Обретка для скроллбара -->
+</div>
+<!-- /Модальное окно - языки без увеличения стоимости -->

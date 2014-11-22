@@ -39,4 +39,5 @@ Yufu.Profile = DS.Model.extend Yufu.FormattedTimestampMixin,
   native_language: DS.belongsTo 'language', async: true
   profile_language: DS.belongsTo 'language', async: true
   services: DS.hasMany 'service', {embedded: 'always'}
-  nearby_city: DS.hasMany 'city'
+  nearby_cities: DS.hasMany 'city', {async: true}
+  nearby_cities_with_surcharge: DS.hasMany 'city', {async: true}
