@@ -36,7 +36,6 @@ Yufu.ProfilesEditRoute = Ember.Route.extend({
 
   render_template: (step, substep)->
     @render "profiles/edit_#{step}#{substep}"
-    @render 'partials/_navigation',{outlet: 'navigation'}
     @render 'profiles/step_nav',{outlet: 'step_nav'}
 
 })
