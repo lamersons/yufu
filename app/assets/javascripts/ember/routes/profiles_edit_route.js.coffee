@@ -42,7 +42,6 @@ Yufu.ProfilesEditRoute = Ember.Route.extend({
 
   render_template: (step, substep, show_nearby, show_nearby_surcharge)->
     @render "profiles/edit_#{step}#{substep}"
-    @render 'partials/_navigation',{outlet: 'navigation'}
     @render 'profiles/step_nav',{outlet: 'step_nav'}
     if show_nearby
       @render 'partials/_nearby_modal', {outlet: 'nearby_modal'}
