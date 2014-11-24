@@ -6,7 +6,7 @@ server {
     listen 80;
 
     client_max_body_size 1G;
-    server_name yufu.kerweb.ru www.yufu.kerweb.ru;
+    server_name dev.yufu.net www.dev.yufu.net yufu.kerweb.ru www.yufu.kerweb.ru;
     keepalive_timeout 5;
     root /var/www/yufu/current/public;
         try_files $uri/index.html $uri.html $uri @myapp;
