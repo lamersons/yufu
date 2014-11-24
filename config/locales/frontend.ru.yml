@@ -1,5 +1,18 @@
 ru:
-  agents_system:
-    invites: Инвайты
-    my_link: Моя ссылка
-    banners: Банеры
+  frontend:
+    agents_system:
+      invites: Инвайты
+      my_link: Моя ссылка
+      your_link: Ваша ссылка
+      banners: Банеры
+
+    main_menu:
+      news: Новости
+      messages: Сообщения
+      bookings: Бронирования
+      agent: Заработай
+      orders: Заказы
+      profile: Профиль
+      balance: Баланс
+
+
