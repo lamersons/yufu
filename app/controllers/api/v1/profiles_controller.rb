@@ -2,7 +2,7 @@ module Api
   module V1
     class ProfilesController < ApplicationController
       respond_to :json
-      before_action :authenticate_user!, only: [:create, :update]
+      before_action :authenticate_user!, only: [:create, :update, :create]
       before_action :change_type, only: [:update]
 
       def show
@@ -11,7 +11,7 @@ module Api
       end
 
       def index
-        @profiles = Profile::Base.all
+        @profiles = current_user.profiles
         respond_with @profiles
       end
 
