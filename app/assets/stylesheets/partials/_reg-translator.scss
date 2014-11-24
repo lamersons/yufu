@@ -18,7 +18,7 @@
 				color: $font-pink-color;
 				color: transparentize($font-pink-color, 0.6);
 			}//SPAN
-			&.active SPAN {
+			A.active SPAN {
 				color: white;
 				background: $font-pink-bright-color;
 				border-radius: 8px;
