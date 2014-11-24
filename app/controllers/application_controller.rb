@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    current_admin || super
+    super || current_admin
   end
 end
