@@ -5,7 +5,9 @@ Yufu.Router.map ()->
   @resource('messages')
   @resource('bookings')
   @resource('something')
-  @resource('orders')
+  @resource 'orders', ->
+    @resource 'verbal', ->
+      @route 'show', {path: '/:id'}
   @resource 'users', ->
     @route 'show', {path: '/:id'}
   @resource 'profiles', ->
