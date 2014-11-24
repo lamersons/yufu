@@ -1,5 +1,10 @@
 module Order
   class Verbal < Base
+
+    GENDERS = ['male', 'female']
+    GOALS = ['drink beer', 'drink vodka']
+
+    field :translation_level
     field :include_near_city, type: Mongoid::Boolean, default: false
     field :goal
     field :translator_sex
@@ -13,7 +18,7 @@ module Order
 
     has_and_belongs_to_many :directions
 
-
+    validates :goals, inclusion: GOALS
 
   end
 end

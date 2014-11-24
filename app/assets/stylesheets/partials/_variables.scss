@@ -13,6 +13,7 @@ $bg-pink-bright: #b8218d;
 $grid-container-width: 974px;
 //Ширина одной колонки
 $grid-col-width: 294px;
+$grid-col-half-width: 124px;
 //Двойной интервал
 $grid-double-int: 46px;
 //Одиночный интервал
@@ -24,6 +25,13 @@ $grid-single-int: $grid-double-int / 2;
 	box-sizing: border-box;
 	width: $grid-col-width;
 	margin-right: $grid-double-int;
+}
+
+@mixin grid-col-half {
+  float: left;
+  box-sizing: border-box;
+  width: $grid-col-half-width;
+  margin-right: $grid-double-int;
 }
 //Колонка шириной больше базовой на одиночный интервал
 @mixin grid-col-single-int {

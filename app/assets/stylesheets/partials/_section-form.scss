@@ -9,6 +9,15 @@
 			@include grid-col-last;
 		}
 	}//DIV.col-1
+
+    DIV.col-05 {
+      @include grid-col-half;
+      min-height: 2px;
+      //Последний блок
+      &.last {
+        @include grid-col-last;
+      }
+    }//DIV.col-1
 	//Блок шириной в 2 колонки
 	DIV.col-2 {
 		float: left;

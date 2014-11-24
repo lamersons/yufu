@@ -1,6 +1,7 @@
 module Order
   class LanguageCriterion
     include Mongoid::Document
+    LEVELS = [1, 2, 3]
 
     field :level, type: Integer
     field :cost,  type: Float
