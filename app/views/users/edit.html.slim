@@ -1,6 +1,6 @@
 #change-password-container
   h1 Редактирование пароля
-  = semantic_form_for @user, url: url_for(controller: 'users', action: 'update') do |f|
+  = semantic_form_for @user, url: url_for(controller: 'users', action: 'update'), html: {id: 'edit_password'} do |f|
     = label_tag I18n.t(:new_password)
     = f.password_field :password
     = label_tag I18n.t(:new_password_confirmation)
