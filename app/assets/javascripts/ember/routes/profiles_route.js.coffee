@@ -4,7 +4,7 @@ Yufu.ProfilesIndexRoute = Ember.Route.extend({
   model: ->
     @store.find('profile')
 
-  afterModel: (profiles, transition)->
-    @transitionTo('profiles.edit', profiles.get('firstObject'))
+#  afterModel: (profiles, transition)->
+#    @transitionTo('profiles.edit', profiles.get('firstObject'))
 
 })

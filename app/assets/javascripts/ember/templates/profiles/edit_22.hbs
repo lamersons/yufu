@@ -1,34 +1,4 @@
 <form class="section-form section-cabinet-common section-reg-translator section-reg-translator-3" >
-
-<div class="modal-bg" ng-hide="hideModals"></div>
-<!-- /Бекграунд модального окна -->
-
-<!-- Модальное окно - языки без увеличения стоимости -->
-<div class="modal modal-cities-no-cost clearfix" >
-    <button type="button" class="close" >Готово</button>
-    <p class="title">Возможность работы в соседних городах без увеличения стоимости</p>
-
-    <div class="clearfix"></div>
-    <div class="line"></div>
-    <!-- Обертка для скролбара -->
-    <div class="scroll">
-        <!-- Колонка -->
-        <div class="col-1">
-            {{#each city in cities}}
-                <label class="checkbox clearfix">
-                    {{view.nearbyCheckbox cityBinding="city" profileBinding="current_profile"}}
-                    <em></em>
-                    <p>{{city.name}}</p>
-                </label>
-            {{/each}}
-        </div>
-        <!-- /Колонка -->
-        <div class="clear"></div>
-    </div>
-    <!-- /Обретка для скроллбара -->
-</div>
-<!-- /Модальное окно - языки без увеличения стоимости -->
-
     <!-- Контейнер -->
     <div class="container clearfix">
         <div ng-include="'cabinet/profiles/translators/person-title.html'"></div>
@@ -107,7 +77,8 @@
                 <input type="checkbox" value="1" ng-model="profile.canCitiesNocost">
                 <em></em>
                 <p>Возможность работы в соседних городах без увеличения стоимости
-                    <span class="tooltip-icon-small js-tooltip rel-js-tooltip-cities-no-cost" data-target=".js-tooltip-cities-no-cost"></span>
+                    <span class="tooltip-icon-small js-tooltip rel-js-tooltip-cities-no-cost" data-target=".js-tooltip-cities-no-cost">
+                    </span>
                 </p>
             </label>
             <div class="hover-tooltip js-tooltip-cities-no-cost" style="left: 400px; width: 300px;"  show-tooltip yu-parent="rel-js-tooltip-cities-no-cost">
@@ -116,9 +87,13 @@
             </div>
         </div>
         <div class="add">
-            <a href="" class="trigger modal-trigger" ng-click="modalOpen('modal-cities-no-cost')"><b>+</b> Добавить города</a>
+            <a {{action 'show_nearby'}}><b>+</b> Добавить города</a>
             <div class="textarea">
-                <textarea rows="3" readonly></textarea>
+                <div class="pseudo_textarea" style="min-height: 70px">
+                    {{#each city in nearby_cities}}
+                        <span>{{city.name}}</span>
+                    {{/each}}
+                </div>
             </div>
         </div>
 
@@ -135,9 +110,13 @@
             </div>
         </div>
         <div class="add">
-            <a href="" class="trigger modal-trigger" ng-click="modalOpen('modal-cities-cost')"><b>+</b> Добавить города</a>
+            <a {{action 'show_nearby_with_surcharge'}}><b>+</b> Добавить города</a>
             <div class="textarea">
-                <textarea rows="3" readonly></textarea>
+                <div class="pseudo_textarea" style="min-height: 70px">
+                    {{#each city in nearby_cities_with_surcharge}}
+                        <span>{{city.name}}</span>
+                    {{/each}}
+                </div>
             </div>
         </div>
 

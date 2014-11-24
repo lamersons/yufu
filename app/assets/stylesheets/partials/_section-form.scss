@@ -117,7 +117,7 @@
 		border-top: 1px solid #ededed;
 	}
 	//Текстовое поле, Текстовая область
-	INPUT[type=text], INPUT[type=email], TEXTAREA {
+	INPUT[type=text], INPUT[type=email], TEXTAREA, .pseudo_textarea {
 		display: block;
 		box-shadow: none;
 		outline: none;

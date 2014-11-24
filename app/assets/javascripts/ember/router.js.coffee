@@ -8,7 +8,7 @@ Yufu.Router.map ()->
   @resource('orders')
   @resource 'users', ->
     @route 'show', {path: '/:id'}
-  @resource 'profiles', ->
+  @resource 'profiles', {path: '/'},  ->
     @route 'edit', {path: '/:id/edit'}
 
   @route 'agent', ->
