@@ -1,4 +1,4 @@
 span
-  = ts 'frontend.agent_system.your_link'
+  = ts 'frontend.agents_system.your_link'
 p
   = link
