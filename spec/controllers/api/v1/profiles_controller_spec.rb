@@ -24,16 +24,18 @@ RSpec.describe Api::V1::ProfilesController, :type => :controller do
     before(:each) do
       @user.profiles << Profile::Translator::Base.new
       @user.save
+      sign_in @user
       user_two = create :user
       user_two.profiles << Profile::Client.new
       user_two.save
     end
-    subject{get :index, {user_id: @user.id}}
+    subject{get :index}
 
     it 'should show list' do
       subject
       expect(assigns(:profiles).count).to eq(2)
     end
+
   end
 
   describe '#create' do

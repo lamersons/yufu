@@ -1,3 +1,4 @@
-span You Link:
+span
+  = ts 'frontend.agents_system.your_link'
 p
-  = id
+  = link

@@ -1,4 +1,4 @@
 {{#each}}
-    <span>{{_type}}</span><a {{action 'edit' this}}>edit profile</a>
+    <span>{{_type}} </span>{{#link-to 'profiles.edit' this}}Edit{{/link-to}}
     <br>
 {{/each}}

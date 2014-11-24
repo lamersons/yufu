@@ -1,5 +1,8 @@
 Yufu.ProfilesEditRoute = Ember.Route.extend({
 
+  lock: true
+  steps: ['select_type', 'language', 'personal', 'contacts', 'services', 'education', 'payments']
+
   queryParams: {
     step: {
       refreshModel: true
@@ -17,7 +20,7 @@ Yufu.ProfilesEditRoute = Ember.Route.extend({
 
   actions: {
     queryParamsDidChange: (paramsChanged, params)->
-      @render_template(params.step || 1, params.substep || 1, params.show_nearby, params.show_nearby_with_surcharge)
+      @render_template(params.step || @steps, params.show_nearby, params.show_nearby_with_surcharge) unless @lock
   }
 
 
@@ -25,31 +28,35 @@ Yufu.ProfilesEditRoute = Ember.Route.extend({
     @store.find('profile', params.id)
 
   setupController: (controller, model) ->
-    controller.set 'cities', @store.find('city')
     controller.set 'model', model
+    controller.set 'cities', @store.find('city')
     controller.set 'languages', @store.find('language')
-    controller.set 'next_step', '1'
-    controller.set 'next_substep', '0'
+    controller.set 'next_step', @steps[1]
+    controller.set 'steps', @steps
     controller.set 'genders', ['male', 'female']
     controller.set 'visa_kind', ['visa1', 'visa2']
     controller.set 'nearby_cities', model.get('nearby_cities').content
     controller.set 'nearby_cities_with_surcharge', model.get('nearby_cities_with_surcharge').content
 
-  renderTemplate: (model, controller)->
-    step = model.step || '1'
-    @render_template(step, model.substep || '1', null, null)
+  renderTemplate: (controller, model)->
+    @lock = false
+    if model.get('_type') == 'Profile::Translator::Base'
+      step = @steps[0]
+    else
+      step = controller.step || @steps[1]
+    @render_template(step, null, null)
 
 
-  render_template: (step, substep, show_nearby, show_nearby_surcharge)->
-    @render "profiles/edit_#{step}#{substep}"
-    @render 'profiles/step_nav',{outlet: 'step_nav'}
+  render_template: (step, show_nearby, show_nearby_surcharge)->
+    @render()
+    @render "profiles/edit_#{step}", {into: 'profiles/edit'}
     if show_nearby
-      @render 'partials/_nearby_modal', {outlet: 'nearby_modal'}
+      @render 'partials/_nearby_modal', {outlet: 'modal'}
     else
-      @disconnectOutlet {outlet: 'nearby_modal'}
+      @disconnectOutlet {outlet: 'modal'}
     if show_nearby_surcharge
-      @render 'partials/_nearby_surcharge_modal', {outlet: 'nearby_modal_with_surcharge'}
+      @render 'partials/_nearby_surcharge_modal', {outlet: 'modal'}
     else
-      @disconnectOutlet {outlet: 'nearby_modal_with_surcharge'}
+      @disconnectOutlet {outlet: 'modal'}
 
 })
