@@ -1,5 +1,6 @@
 Yufu.ProfilesEditRoute = Ember.Route.extend({
 
+  lock: true
   steps: ['select_type', 'language', 'personal', 'contacts', 'services', 'education', 'payments']
 
   queryParams: {
@@ -19,7 +20,7 @@ Yufu.ProfilesEditRoute = Ember.Route.extend({
 
   actions: {
     queryParamsDidChange: (paramsChanged, params)->
-      @render_template(params.step || @steps, params.show_nearby, params.show_nearby_with_surcharge)
+      @render_template(params.step || @steps, params.show_nearby, params.show_nearby_with_surcharge) unless @lock
   }
 
 
@@ -38,6 +39,7 @@ Yufu.ProfilesEditRoute = Ember.Route.extend({
     controller.set 'nearby_cities_with_surcharge', model.get('nearby_cities_with_surcharge').content
 
   renderTemplate: (controller, model)->
+    @lock = false
     if model.get('_type') == 'Profile::Translator::Base'
       step = @steps[0]
     else
@@ -46,15 +48,15 @@ Yufu.ProfilesEditRoute = Ember.Route.extend({
 
 
   render_template: (step, show_nearby, show_nearby_surcharge)->
-    @render "profiles/edit_#{step}"
-    @render 'profiles/step_nav',{outlet: 'step_nav'}
+    @render()
+    @render "profiles/edit_#{step}", {into: 'profiles/edit'}
     if show_nearby
-      @render 'partials/_nearby_modal', {outlet: 'nearby_modal'}
+      @render 'partials/_nearby_modal', {outlet: 'modal'}
     else
-      @disconnectOutlet {outlet: 'nearby_modal'}
+      @disconnectOutlet {outlet: 'modal'}
     if show_nearby_surcharge
-      @render 'partials/_nearby_surcharge_modal', {outlet: 'nearby_modal_with_surcharge'}
+      @render 'partials/_nearby_surcharge_modal', {outlet: 'modal'}
     else
-      @disconnectOutlet {outlet: 'nearby_modal_with_surcharge'}
+      @disconnectOutlet {outlet: 'modal'}
 
 })
