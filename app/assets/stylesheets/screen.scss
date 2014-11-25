@@ -448,7 +448,7 @@ DIV.block.second {
       left: ($grid-col-width + $grid-single-int * 2) / 2 - 35px;
     }
     &.supplier {
-      left: ($grid-container-width + $grid-single-int * 2) / 2 - 35px;
+      left: 135px;
     }
     &.agent {
       right: ($grid-col-width + $grid-single-int * 2) / 2 - 35px;
@@ -663,7 +663,7 @@ FORM.reg-form {
       width: 150px;
       line-height: 1.35;
     }
-    BUTTON[type=submit] {
+    INPUT[type=submit] {
       display: inline-block;
       float: left;
       height: 32px;
