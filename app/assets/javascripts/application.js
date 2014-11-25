@@ -15,5 +15,4 @@
 //= require turbolinks
 //= require i18n
 //= require_tree ./lib
-//= require main
-//= require index
+//= require new_index

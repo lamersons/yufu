@@ -15,7 +15,7 @@ module Api
           respond_with @user
         else
           @user.try :clean_up_passwords
-          respond_with @user.errors, status: :unprocessable_entity
+          respond_with @user, status: :unprocessable_entity
         end
       end
 
