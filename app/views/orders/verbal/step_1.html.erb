@@ -1,0 +1,202 @@
+<!-- Раздел с формой -->
+<%= form_for @order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-1"} do |f| %>
+<!-- Контейнер -->
+<div class="container clearfix">
+<h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:interpretation)%></span></h1>
+<!-- Колонка -->
+<div class="col-1 line-grey-right">
+  <div class="line"></div>
+  <p class="title"><%=ts(:place)%></p>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-2 last">
+  <p class="title"><%=ts(:translation_languages)%> <span class="light"><%=ts(:from_to_chineeze)%></span></p>
+</div>
+<!-- /Колонка -->
+<div class="clear"></div>
+<!-- Колонка -->
+<div class="col-1 position-relative">
+  <p><%=ts(:translation_place)%></p>
+
+  <div class="custom-select ">
+    <%=f.select :location, City.all.collect {|c| [c.name, c.id]}%>
+  </div>
+  <label class="checkbox clearfix long">
+    <%=f.check_box :include_near_city %>
+    <em></em>
+
+    <p><%=ts(:include_near_city)%>
+      <span class="tooltip-icon-small js-tooltip rel-js-tooltip-block-city" data-target=".js-tooltip-block-city"></span>
+    </p>
+  </label>
+
+  <div class="js-tooltip-block-city" show-tooltip yu-parent="rel-js-tooltip-block-city">
+    <span class="icon"></span>
+    <%=ts(:include_near_city_hint)%>
+  </div>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<%=fields_for :language_criterions do |c|%>
+<div class="col-1">
+  <p><%=ts(:translation_language)%></p>
+  <div class="custom-select">
+    <%=c.select :language, Language.all.collect {|c| [c.name, c.id]}%>
+  </div>
+  <div class="height-30"></div>
+  <div class="custom-select">
+  </div>
+</div>
+
+<div class="col-05">
+  <p><%=ts(:translation_level)%></p>
+
+  <div class="custom-select bordered">
+    <%=c.select :level, Order::LanguageCriterion::LEVELS%>
+  </div>
+  <div class="height-30"></div>
+  <div class="custom-select disabled">
+  </div>
+</div>
+<div class="col-05 last">
+<p><%=ts(:price)%></p>
+
+<%=c.text_field :price%>
+</div>
+<!-- /Колонка -->
+<div class="clear"></div>
+<div class="col-1"></div>
+<div class="col-2 last">
+  <a href="" ng-click="addLanguage()" class="pink-bright"><span class="bold">+</span> Добавить еще один дополнительный язык
+    <span class="tooltip-icon-small"></span></a>
+</div>
+<div class="clear"></div>
+<%end%>
+
+<p class="title">Даты резервации</p>
+<div ng-include="'orders/interpretations/calendar.html'"></div>
+
+<p class="title additional-trigger" ng-click="toggleFlag('showAddon')">
+  <%=ts(:additional)%>
+  <span class="caret icons-caret-pink-right"></span>
+</p>
+<!-- Дополнительные требования -->
+<div class="additional" ng-show="showAddon">
+  <!-- Колонка -->
+  <div class="col-1">
+    <p>Пол переводчика</p>
+
+      <!--<select ng-model="order.sexTranslator" ng-options="sex_translator.value as sex_translator.name for sex_translator in sexes"></select>-->
+      <div class="custom-select">
+        <%=f.select :translator_sex, Order::Verbal::GENDERS.select{|c| [I18n.t(c), c]}%>
+      </div>
+
+  </div>
+  <div class="col-1">
+    <p>Родной язык переводчика</p>
+    <div class="custom-select">
+      <%=f.select :translator_native_language, Language.all.collect {|c| [c.name, c.id]}%>
+    </div>
+  </div>
+  <div class="col-1 last">
+    <p>Ваш родной язык</p>
+    <div class="custom-select">
+      <%=f.select :native_language, Language.all.collect {|c| [c.name, c.id]}%>
+    </div>
+  </div>
+  <div class="clear"></div>
+
+  <p>Сфера в которой требуется перевод</p>
+  <!-- Колонка -->
+  <div class="col-1">
+    <label class="checkbox clearfix">
+      <input type="checkbox">
+      <em></em>
+
+      <p>Реклама / Маркетинг</p>
+    </label>
+    <label class="checkbox clearfix">
+      <input type="checkbox">
+      <em></em>
+
+      <p>Сельское хозяйство</p>
+    </label>
+    <label class="checkbox clearfix">
+      <input type="checkbox">
+      <em></em>
+
+      <p>Одежда / Мода</p>
+    </label>
+    <label class="checkbox long clearfix">
+      <input type="checkbox" checked>
+      <em></em>
+
+      <p>Строительство<br> и Недвижимость</p>
+    </label>
+  </div>
+  <div class="col-1">
+    <label class="checkbox long clearfix">
+      <input type="checkbox">
+      <em></em>
+
+      <p>Электронные компоненты<br> и материалы</p>
+    </label>
+    <label class="checkbox clearfix">
+      <input type="checkbox" checked>
+      <em></em>
+
+      <p>Энергетика</p>
+    </label>
+    <label class="checkbox clearfix">
+      <input type="checkbox">
+      <em></em>
+
+      <p>Безопасность и Защита</p>
+    </label>
+  </div>
+  <!-- /Колонка -->
+  <!-- Колонка -->
+  <div class="col-1 last">
+    <label class="checkbox clearfix">
+      <input type="checkbox">
+      <em></em>
+
+      <p>Транспорт</p>
+    </label>
+    <label class="checkbox clearfix">
+      <input type="checkbox">
+      <em></em>
+
+      <p>Химия</p>
+    </label>
+    <label class="checkbox clearfix">
+      <input type="checkbox">
+      <em></em>
+
+      <p>Путешествия и Досуг</p>
+    </label>
+  </div>
+  <!-- /Колонка -->
+  <div class="clear"></div>
+  <!-- Колонка -->
+  <div class="col-1">
+    <div class="height-10"></div>
+    <p>Цель вашего визита</p>
+
+      <div class="custom-select">
+        <%=f.select :goal, Order::Verbal::GOALS.select{|c| [I18n.t(c), c]}%>
+      </div>
+  </div>
+  <!-- /Колонка -->
+</div>
+<!-- /Дополнительные требования -->
+<div class="clear"></div>
+<p class="text-small pink-bright pull-right">Пожалуйста заполните отмеченные поля!</p>
+<div class="clear"></div>
+
+<div ng-include="'orders/interpretations/steps.html'"></div>
+</div>
+<!-- /Контейнер -->
+<%end%>
+<!-- /Раздел с формой -->

@@ -16,7 +16,19 @@ module Api
         end
       end
 
+      def edit
+        @order = Order::Base.find params[:id]
+        type = /::\S*/.match(@order._type).to_s.underscore
+        step = @order.step
+        render "/orders#{type}/step_#{step}"
+      end
+
       def update
+        @order = Order::Base.find params[:id]
+        if @order.update_attributes order_params
+          @order.update_attribute :step, @order.step+1
+        end
+        redirect_to edit_api_v1_order_path(@order)
       end
 
       def index
