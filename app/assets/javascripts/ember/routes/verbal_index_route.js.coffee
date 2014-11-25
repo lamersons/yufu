@@ -2,5 +2,6 @@
 
 Yufu.VerbalIndexRoute = Ember.Route.extend({
   model: ->
-    @store.find 'order', {_type: 'Order::Verbal'}
+    profile = @modelFor 'profile'
+    @store.find 'order', {_type: 'Order::Verbal', profile_id: profile.id}
 })

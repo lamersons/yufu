@@ -10,9 +10,5 @@ module Profile
     belongs_to :profile_language, class_name: 'Language'
 
     belongs_to :user
-
-    def orders
-      raise NotImplementedError.new('You must implement orders.')
-    end
   end
 end

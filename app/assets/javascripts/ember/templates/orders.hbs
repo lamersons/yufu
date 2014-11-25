@@ -1,0 +1,30 @@
+<div class="container clearfix">
+    {{partial 'orders/status_menu'}}
+    <h1 class="main">Мои заказы</h1>
+    <!-- Типы переводов -->
+    {{partial 'orders/type_menu'}}
+    <!-- /Типы переводов -->
+    <p class="title">Устный перевод</p>
+    <!-- Колонка -->
+    <div class="col-1">
+        <div class="custom-select">
+            <select>
+                <option>Все мои города</option>
+                <option>Следующий пункт меню</option>
+            </select>
+        </div>
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1">
+        <div class="custom-select">
+            <select>
+                <option>Все мои языки</option>
+                <option>Следующий пункт меню</option>
+            </select>
+        </div>
+    </div>
+    <!-- /Колонка -->
+    <div class="clear"></div>
+    {{outlet}}
+</div>

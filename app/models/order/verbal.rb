@@ -13,7 +13,6 @@ module Order
 
     has_and_belongs_to_many :directions
 
-
-
+    delegate :name, to: :location, prefix: true, allow_nil: true
   end
 end

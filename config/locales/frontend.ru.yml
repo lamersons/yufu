@@ -1,5 +1,7 @@
 ru:
   frontend:
+    orders:
+      available_as: Доступен как
     agents_system:
       invites: Инвайты
       my_link: Моя ссылка
