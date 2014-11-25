@@ -1,6 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Order::Base, :type => :model do
+  describe '#application_status_for' do
+    let(:application) {create :order_application}
+    let(:order) {application.order}
+
+    it 'returns status of application for prifile' do
+      expect(order.application_status_for application.translator).to eq(application.status)
+    end
+
+    it 'returns nil if application is not exist' do
+      expect(order.application_status_for create(:profile_translator_individual)).to eq(nil)
+    end
+  end
+
   describe '#assined_to' do
     let(:order) {create :order_base, state: :wait_application}
     subject{order.assigned_to user.profiles.first}

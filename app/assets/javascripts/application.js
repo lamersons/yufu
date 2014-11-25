@@ -16,5 +16,4 @@
 //= require i18n
 //= require moment
 //= require_tree ./lib
-//= require main
-//= require index
+//= require new_index

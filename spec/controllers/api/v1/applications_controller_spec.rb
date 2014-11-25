@@ -53,7 +53,7 @@ RSpec.describe Api::V1::ApplicationsController, :type => :controller do
   end
 
   describe 'POST create' do
-    subject{post :create, application: attributes, profile_id: profile.to_param}
+    subject{post :create, order_application: attributes, profile_id: profile.to_param}
     let(:order){create :order_base, state: :wait_application}
 
     RSpec.shared_examples 'creates application' do
@@ -83,10 +83,10 @@ RSpec.describe Api::V1::ApplicationsController, :type => :controller do
   describe 'PUT update' do
     it 'updates only status' do
       expect{
-        put :update, id: application.to_param, application: {order_id: (create(:order_base).id)}, profile_id: profile.to_param
+        put :update, id: application.to_param, order_application: {order_id: (create(:order_base).id)}, profile_id: profile.to_param
       }.not_to change{application.reload.order}
     end
-    subject{put :update, id: application.to_param, application: attributes, profile_id: profile.to_param}
+    subject{put :update, id: application.to_param, order_application: attributes, profile_id: profile.to_param}
     let(:order)  { application.order }
     context 'status is primary' do
       let(:attributes) {{status: 'primary'}}

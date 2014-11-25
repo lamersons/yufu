@@ -4,6 +4,7 @@ module Api
 
       before_action :authenticate_user!, except: :create
       before_action :set_profile,        except: [:create, :show]
+      serialization_scope :current_profile
 
       respond_to :json
 
@@ -32,13 +33,17 @@ module Api
       end
 
       def index
-        @orders = @profile.orders.search(params[:q]).result.paginate(per_page: 10, page: params[:page])
+        @orders = Order::Base.search(params[:q]).result.paginate(per_page: 10, page: params[:page])
         respond_with @orders, serializer: PaginationSerializer
       end
 
       def show
         @order = Order::Base.find params[:id]
-        respond_with @order
+        respond_with @order, root: 'order'
+      end
+
+      def current_profile
+        @profile
       end
 
       private

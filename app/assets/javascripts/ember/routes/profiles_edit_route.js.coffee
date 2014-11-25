@@ -7,9 +7,6 @@ Yufu.ProfilesEditRoute = Ember.Route.extend({
     step: {
       refreshModel: true
     }
-    substep: {
-      refreshModel: true
-    }
     show_nearby_with_surcharge: {
       refreshModel: true
     }

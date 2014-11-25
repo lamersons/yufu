@@ -46,6 +46,10 @@ module Order
 
     end
 
+    def application_status_for(profile)
+      applications.where(translator: profile).first.try(:status)
+    end
+
     def assigned_to(translator_profile)
       raise ArgumentError, 'user should be translator' unless translator_profile.is_a? Profile::Translator::Base
       self.assignee = translator_profile
@@ -56,5 +60,4 @@ module Order
       applications.where(status: 'primary').empty?
     end
   end
-
 end

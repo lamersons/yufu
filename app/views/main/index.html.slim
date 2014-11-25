@@ -1,12 +1,4 @@
-h1
-  = ts :hello
-= form_for @user, url: url_for(controller: 'api/v1/users', action: 'create'), remote: true do |f|
-  = label_tag I18n.t(:client)
-  = radio_button_tag 'user[_type]', 'Profile::Client', true, class: 'client'
-  = label_tag I18n.t(:translator)
-  = radio_button_tag 'user[_type]', 'Profile::Translator::Base', false, class: 'translator'
-  = f.email_field :email
-  = f.submit
+
 .message.success На Ваш email отправлено письмо с данными для входа на сайт
 .message.error Пользователь с таким email уже зарегистрирован в системе
 
@@ -14,38 +6,32 @@ h1
   .container.clearfix
     p.h1
       = ts('main.we_offer')
-    .item.verbal[data-target="verbal"]
+    .item.inactive-item.verbal[data-target="verbal"]
       a[href="#"]
         span.icon
       p.h2
         = ts('main.spoken_translates')
       .over
         span
-        p
-          = ts('main.spoken_translate.description')
-    .item.writing[data-target="writing"]
+    .item.inactive-item.writing[data-target="writing"]
       a[href="#"]
         span.icon
       p.h2
         = ts('main.written_translates')
       .over
         span
-        p
-          = ts('main.written_translate.description')
-    .item.last.local[data-target="local"]
+    .item.inactive-item.last.local[data-target="local"]
       a[href="#"]
         span.icon
       p.h2
         = ts('main.local_experts')
       .over
         span
-        p
-          = ts('main.local_expert.description')
 .first-points-scroll-to
 .first-points
   .container.verbal.clearfix
     p
-      = ts('main.spoken_translate.info').html_safe
+      = ts('main.spoken_translate.info')
     .clear.height-30
     .item.first
       .icon
@@ -184,3 +170,4 @@ h1
 coffee:
   console.log I18n.t 'hello'
   new RegForm
+  new Accordion

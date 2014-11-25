@@ -27,13 +27,19 @@
       = ts('main.about.supplier')
     p.text-block.agent
       = ts('main.about.agent')
-form#main_register_form.reg-form.clearfix
+= form_for @user, url: url_for(controller: 'api/v1/users', action: 'create'), html: {class: 'reg-form clearfix'}, remote: true do |f|
   .container
     .now
       = t('main.register_now')
+    .form-radios
+      = label_tag I18n.t(:translator)
+      = radio_button_tag 'user[_type]', 'Profile::Translator::Base', false, class: 'translator', class: 'translator-radio'
+      = label_tag I18n.t(:supplier)
+      = radio_button_tag 'user[_type]', 'Profile::Client', false, class: 'client', class: 'supplier-radio'
+      = label_tag I18n.t(:agent)
+      = radio_button_tag 'user[_type]', 'Profile::Partner', false, class: 'partner', class: 'agent-radio'
     .email
-      | <input readonly required type="email" class="email" name="email" id="main_register_email" placeholder="Your Email" />
-      input#main_register_type[type="hidden" name="type" value=""]
+      = f.email_field :email, class: 'email', :readonly => true
       p.after-input-text
         = t('main.before_registration')
       .tooltip-wrap
@@ -42,7 +48,11 @@ form#main_register_form.reg-form.clearfix
           p
             = t('main.choose_registration_type')
     .check.clearfix
-      button#main_register_submit[type="submit" name="main_register_submit" disabled]
-        span.caret
+      = f.submit '', id: 'main_register_submit', disabled: true
       p
         = t('main.check_email')
+        .message.success На Ваш email отправлено письмо с данными для входа на сайт
+        .message.error Пользователь с таким email уже зарегистрирован в системе
+
+coffee:
+  new RegForm()

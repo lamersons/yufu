@@ -1,0 +1,69 @@
+<p class="title">{{ts 'mongoid.models.order/verbal.one'}}</p>
+<!-- Колонка -->
+<div class="col-1">
+    <div class="custom-select">
+        <select>
+            <option>Все мои города</option>
+            <option>Следующий пункт меню</option>
+        </select>
+    </div>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1">
+    <div class="custom-select">
+        <select>
+            <option>Все мои языки</option>
+            <option>Следующий пункт меню</option>
+        </select>
+    </div>
+</div>
+<!-- /Колонка -->
+<div class="clear"></div>
+<!-- Таблица -->
+<div class="table-container">
+  <table cellpadding="0" cellspacing="0" border="0">
+    <thead>
+    <tr>
+      <td class="number">{{ts 'mongoid.attributes.order/base.id'}}<span class="icon"></span></td>
+      <td>{{ts 'mongoid.attributes.order/verbal.location'}}</td>
+      <td>{{ts 'mongoid.attributes.order/verbal.language_criterions'}}</td>
+      <td>{{ts 'mongoid.attributes.order/verbal.reservation_dates'}}</td>
+      <td class="center">{{ts 'mongoid.attributes.order/verbal.days'}}</td>
+      <td>{{ts 'mongoid.attributes.order/base.cost'}}</td>
+      <td class="center">{{ts 'mongoid.attributes.order/base.state'}}</td>
+      <td colspan="2" class="access">{{ts 'frontend.orders.available_as'}}</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      {{#each}}
+        <td>{{id}}</td>
+        <td>{{location_name}}</td>
+        <td>EN <sup>RU LV</sup></td>
+        <td>01-09-2014</td>
+        <td class="center">{{reservation_dates_count}}</td>
+        <td>200 €</td>
+        <td class="center">{{state}}</td>
+        <td class="access">
+          {{#if hasPrimaryApplication}}
+            <b>Основной</b>
+          {{else}}
+            <a {{action 'assign_as' this 'primary'}}>Основной</a>
+          {{/if}}
+        </td>
+        <td class="access">
+          {{#if hasSecondaryApplication}}
+              <b>Резервный</b>
+          {{else}}
+            {{#if canCreateSecondaryApp}}
+                <a {{action 'assign_as' this 'secondary'}}>Резервный</a>
+            {{/if}}
+          {{/if}}
+        </td>
+      {{/each}}
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!-- /Таблица -->

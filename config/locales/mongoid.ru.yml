@@ -2,14 +2,39 @@ ru:
   mongoid:
     models:
       banner:
-      one:   Банер
-      few:   Банера
-      many:  Банеров
-      other: Банеры
+        one:   Банер
+        few:   Банера
+        many:  Банеров
+        other: Банеры
+      order/verbal:
+        one:   Устный Перевод
+        few:   Устных Перевода
+        many:  Устных Переводов
+        other: Устные Переводы
+      order/written:
+        one:   Письменный Перевод
+        few:   Письменных Перевода
+        many:  Письменных Переводов
+        other: Письменные Переводы
+      order/expert:
+        one:   Локальный Эксперт
+        few:   Локальных Эксперта
+        many:  Локальных Экспертов
+        other: Локальные Эксперты
 
     attributes:
       created_at: Создан
       updated_at: Обнавлен
+      order/base:
+        id: № Заказа
+        cost: Стоимость
+        state: Статус
+      order/verbal:
+        location: Город
+        language_criterions: Языки
+        reservation_dates: Даты
+        days: Дней
+
       banner:
         width: Ширина
         height: Высота
