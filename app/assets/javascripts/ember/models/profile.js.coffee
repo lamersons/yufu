@@ -42,3 +42,5 @@ Yufu.Profile = DS.Model.extend Yufu.FormattedTimestampMixin,
   nearby_cities: DS.hasMany 'city', {async: true}
   nearby_cities_with_surcharge: DS.hasMany 'city', {async: true}
   orders: DS.hasMany('order', {async: true, polymorphic: true})
+
+  applications: DS.hasMany 'order_application', async: true

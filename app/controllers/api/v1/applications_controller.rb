@@ -8,7 +8,7 @@ class Api::V1::ApplicationsController < ApplicationController
   def create
     @application = @profile.applications.new application_params
     if @application.save
-      respond_with @application, statue: :created, location: api_v1_profile_application_url(@profile, @application)
+      respond_with @application, statue: :created, location: api_v1_application_url(@application)
     else
       respond_with @application.errors, status: :unprocessable_entity
     end
@@ -16,8 +16,8 @@ class Api::V1::ApplicationsController < ApplicationController
 
   # Can update only status
   def update
-    if @application.update status: params[:application][:status]
-      respond_with @application, statue: :updated, location: api_v1_profile_application_url(@profile, @application)
+    if @application.update status: params[:order_application][:status]
+      respond_with @application, statue: :updated, location: api_v1_application_url(@application)
     else
       respond_with @application.errors, status: :unprocessable_entity
     end
@@ -29,12 +29,16 @@ class Api::V1::ApplicationsController < ApplicationController
 
   def index
     @applications = @profile.applications
-    respond_with @applications
+    respond_with @applications, root: 'order_applications'
+  end
+
+  def default_serializer_options
+    {root: 'order_application'}
   end
 
   protected
   def application_params
-    params.require(:application).permit :order_id, :status
+    params.require(:order_application).permit :order_id, :status
   end
   def set_application
     @application = @profile.applications.find params[:id]
