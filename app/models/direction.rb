@@ -5,5 +5,4 @@ class Direction
   field :level
 
   validates :name, uniqueness: true, presence: true
-  validates :level, inclusion: LEVELS
 end
