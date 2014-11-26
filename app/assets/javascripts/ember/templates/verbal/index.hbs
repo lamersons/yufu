@@ -42,33 +42,34 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
+
       {{#each}}
-        <td>{{id}}</td>
-        <td>{{location_name}}</td>
-        <td>EN <sup>RU LV</sup></td>
-        <td>01-09-2014</td>
-        <td class="center">{{reservation_dates_count}}</td>
-        <td>200 €</td>
-        <td class="center">{{state}}</td>
-        <td class="access">
-          {{#if hasPrimaryApplication}}
-            <b>{{ts 'frontend.order_application.statuses.primary'}}</b>
-          {{else}}
-            <a {{action 'assign_as' this 'primary'}}>{{ts 'frontend.order_application.statuses.primary'}}</a>
-          {{/if}}
-        </td>
-        <td class="access">
-          {{#if hasSecondaryApplication}}
-              <b>{{ts 'frontend.order_application.statuses.secondary'}}</b>
-          {{else}}
-            {{#if canCreateSecondaryApp}}
-                <a {{action 'assign_as' this 'secondary'}}>{{ts 'frontend.order_application.statuses.secondary'}}</a>
+        <tr>
+          <td>{{id}}</td>
+          <td>{{location_name}}</td>
+          <td>EN <sup>RU LV</sup></td>
+          <td>01-09-2014</td>
+          <td class="center">{{reservation_dates_count}}</td>
+          <td>200 €</td>
+          <td class="center">{{state}}</td>
+          <td class="access">
+            {{#if hasPrimaryApplication}}
+              <b>{{ts 'frontend.order_application.statuses.primary'}}</b>
+            {{else}}
+              <a {{action 'assign_as' this 'primary'}}>{{ts 'frontend.order_application.statuses.primary'}}</a>
             {{/if}}
-          {{/if}}
-        </td>
+          </td>
+          <td class="access">
+            {{#if hasSecondaryApplication}}
+                <b>{{ts 'frontend.order_application.statuses.secondary'}}</b>
+            {{else}}
+              {{#if canCreateSecondaryApp}}
+                  <a {{action 'assign_as' this 'secondary'}}>{{ts 'frontend.order_application.statuses.secondary'}}</a>
+              {{/if}}
+            {{/if}}
+          </td>
+        </tr>
       {{/each}}
-    </tr>
     </tbody>
   </table>
 </div>
