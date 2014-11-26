@@ -3,6 +3,8 @@ module Order
 
     GENDERS = ['male', 'female']
     GOALS = ['drink beer', 'drink vodka']
+    DEFAULTCOST = 115.0
+
 
     field :translation_level
     field :include_near_city, type: Mongoid::Boolean, default: false
@@ -16,8 +18,8 @@ module Order
     embeds_many :language_criterions, class_name: 'Order::LanguageCriterion'
     embeds_many :reservation_dates,   class_name: 'Order::ReservationDate'
 
-    accepts_nested_attributes_for :language_criterions
-    accepts_nested_attributes_for :reservation_dates
+    accepts_nested_attributes_for :language_criterions, allow_destroy: true
+    accepts_nested_attributes_for :reservation_dates, allow_destroy: true
 
     has_and_belongs_to_many :directions
 

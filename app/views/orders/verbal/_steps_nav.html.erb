@@ -3,9 +3,9 @@
       <div class="col-1">
       </div>
       <div class="col-1 clearfix circles">
-        <span ng-class="checkStep(1)">1</span>
-        <span ng-class="checkStep(2)">2</span>
-        <span ng-class="checkStep(3)">3</span>
+        <span class=<%='active' if @order.step == 1%>>1</span>
+        <span class=<%='active' if @order.step == 2%>>2</span>
+        <span class=<%='active' if @order.step == 3%>>3</span>
       </div>
       <div class="col-1 button last">
         <button type="submit" >Продолжить</button>

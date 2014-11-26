@@ -1,4 +1,9 @@
 ru:
+  date: #Throws an exception otherwise.
+    order:
+      - "year"
+      - "month"
+      - "day"
   create: Создать
   page:
     title: YuFu - С нами в Китае легко! Мы думаем на вашем языке

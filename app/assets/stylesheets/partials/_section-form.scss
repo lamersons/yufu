@@ -460,7 +460,15 @@
 	
 }
 
+
+.custom-select.three-in-one {
+  select {
+    width: 70px;
+    display: inline-block;
+  }
+}
 .custom-select SELECT {
+
 	background-color: transparent;
 	border: 0 none;
 	@include border-radius(8px);
