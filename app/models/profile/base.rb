@@ -10,5 +10,6 @@ module Profile
     belongs_to :profile_language, class_name: 'Language'
 
     belongs_to :user
+
   end
 end

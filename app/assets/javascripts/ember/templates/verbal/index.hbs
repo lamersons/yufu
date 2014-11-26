@@ -1,22 +1,28 @@
 <p class="title">{{ts 'mongoid.models.order/verbal.one'}}</p>
 <!-- Колонка -->
 <div class="col-1">
-    <div class="custom-select">
-        <select>
-            <option>Все мои города</option>
-            <option>Следующий пункт меню</option>
-        </select>
-    </div>
+  <div class="custom-select">
+    {{view Ember.Select
+      valueBinding='location'
+      content=cities
+      optionLabelPath='content.name'
+      optionValuePath='content.id'
+      prompt='Все города'
+    }}
+  </div>
 </div>
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1">
-    <div class="custom-select">
-        <select>
-            <option>Все мои языки</option>
-            <option>Следующий пункт меню</option>
-        </select>
-    </div>
+  <div class="custom-select">
+    {{view Ember.Select
+    valueBinding='language'
+    content=languages
+    optionLabelPath='content.name'
+    optionValuePath='content.id'
+    prompt='Все языки'
+    }}
+  </div>
 </div>
 <!-- /Колонка -->
 <div class="clear"></div>

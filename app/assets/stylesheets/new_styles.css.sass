@@ -1,12 +1,20 @@
 .block.first
   .item
+    a
+      cursor: pointer
     p.h2
       text-align: center
       color: #ec008c
       font-weight: 600
+      cursor: pointer
+    .over
+      cursor: pointer
+      opacity: 1
 
 .first-points
   display: none
+  .item
+    text-align: justify
   .over
     display: none
 
@@ -17,13 +25,15 @@
       display: none
 
 .reg-form
+  height: 55px
   .form-radios
     display: none
   .email
     input
       outline: none
   .check
-    p
-      .message
-        font-size: 12px
-        margin-left: 50px
+    .message
+      font-size: 12px
+      margin-left: 50px
+  #main_register_submit
+    outline: none

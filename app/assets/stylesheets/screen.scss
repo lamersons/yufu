@@ -663,7 +663,7 @@ FORM.reg-form {
       width: 150px;
       line-height: 1.35;
     }
-    INPUT[type=submit] {
+    BUTTON[type=submit] {
       display: inline-block;
       float: left;
       height: 32px;
@@ -685,6 +685,11 @@ FORM.reg-form {
         top: 11px;
       }
     }//BUTTON
+    BUTTON[type=submit]:disabled{
+      SPAN.caret{
+        border-left-color: #aaaaaa
+      }
+    }
   }//DIV.check
 }//FORM.reg-form
 
