@@ -7,26 +7,32 @@
     p.h1
       = ts('main.we_offer')
     .item.inactive-item.verbal[data-target="verbal"]
-      a[href="#"]
+      a
         span.icon
       p.h2
         = ts('main.spoken_translates')
       .over
         span
+        p
+          = t('main.spoken_translate.description').html_safe
     .item.inactive-item.writing[data-target="writing"]
-      a[href="#"]
+      a
         span.icon
       p.h2
         = ts('main.written_translates')
       .over
         span
+        p
+          = t('main.written_translate.description').html_safe
     .item.inactive-item.last.local[data-target="local"]
-      a[href="#"]
+      a
         span.icon
       p.h2
         = ts('main.local_experts')
       .over
         span
+        p
+          = t('main.local_expert.description').html_safe
 .first-points-scroll-to
 .first-points
   .container.verbal.clearfix
@@ -64,110 +70,179 @@
           p.zakaz
             = ts('make_order')
   .container.writing.clearfix
-    .item
+    .item.first
       .icon
         span.writing.ur
       p
         = ts('main.written_translate.block1')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .item
       .icon
         span.writing.tech
       p
         = ts('main.written_translate.block2')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .item.third
       .icon
         span.writing.st
       p
         = ts('main.written_translate.block3')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .clear
-    .item
+    .item.first
       .icon
         span.writing.hud
       p
         = ts('main.written_translate.block4')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .item
       .icon
         span.writing.loc
       p
         = ts('main.written_translate.block5')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .item.third
       .icon
         span.writing.lang
       p
         = ts('main.written_translate.block6')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .clear.height-10
     p
       = ts('main.written_translate.info')
   .container.local.clearfix
-    .item
+    .item.first
       .icon
         span.local.ur
       p
         = ts('main.local_expert.block1')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .item
       .icon
         span.local.reg
       p
         = ts('main.local_expert.block2')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .item.third
       .icon
         span.local.business
       p
         = ts('main.local_expert.block3')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .clear
-    .item
+    .item.first
       .icon
         span.local.arenda
       p
         = ts('main.local_expert.block4')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .item
       .icon
         span.local.fabrika
       p
         = ts('main.local_expert.block5')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
     .item.third
       .icon
         span.local.other
       p
         = ts('main.local_expert.block6')
       .over
-        p.zakaz
-          = ts('make_order')
+        = link_to '#' do
+          p.zakaz
+            = ts('make_order')
+
+.block.second
+  .container.clearfix
+    p.h1
+      = t('main.earn_with_us')
+    .item.translator[data-target="translator"]
+      .wrap
+        span.arrow.icons-arrow-second-default.translator
+        span.icon
+        p.h2
+          = t('translator')
+    .item.supplier[data-target="supplier"]
+      .wrap
+        span.arrow.icons-arrow-second-default.supplier
+        span.icon
+        p.h2
+          = t('supplier')
+    .item.last.agent[data-target="agent"]
+      .wrap
+        span.arrow.icons-arrow-second-default.agent
+        span.icon
+        p.h2
+          = t('agent')
+    .clear
+    p.text-block.translator
+      = ts('main.about.translator')
+    p.text-block.supplier
+      = ts('main.about.supplier')
+    p.text-block.agent
+      = ts('main.about.agent')
+= form_for @user, url: url_for(controller: 'api/v1/users', action: 'create'), html: {class: 'reg-form clearfix'}, remote: true do |f|
+  .container
+    .now
+      = t('main.register_now')
+    .form-radios
+      = label_tag I18n.t(:translator)
+      = radio_button_tag 'user[_type]', 'Profile::Translator::Base', false, class: 'translator', class: 'translator-radio'
+      = label_tag I18n.t(:supplier)
+      = radio_button_tag 'user[_type]', 'Profile::Client', false, class: 'client', class: 'supplier-radio'
+      = label_tag I18n.t(:agent)
+      = radio_button_tag 'user[_type]', 'Profile::Partner', false, class: 'partner', class: 'agent-radio'
+    .email
+      = f.email_field :email, class: 'email', :readonly => true, placeholder: I18n.t('main.your_email')
+      p.after-input-text
+        = t('main.before_registration')
+      .tooltip-wrap
+        .tooltip.clearfix
+          span
+          p
+            = t('main.choose_registration_type')
+    .check.clearfix
+      = button_tag '', type: 'submit', id: 'main_register_submit', disabled: true
+        span.caret
+      p
+        .message.success
+          = t('main.check_email').html_safe
+        .message.error
 
 coffee:
   console.log I18n.t 'hello'
-  new RegForm
-  new Accordion
+  new RegForm()
+  new Accordion()
