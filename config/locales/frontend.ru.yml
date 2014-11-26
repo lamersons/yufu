@@ -2,6 +2,10 @@ ru:
   frontend:
     orders:
       available_as: Доступен как
+    order_application:
+      statuses:
+        primary: Основной
+        secondary: Резервный
     agents_system:
       invites: Инвайты
       my_link: Моя ссылка

@@ -53,17 +53,17 @@
         <td class="center">{{state}}</td>
         <td class="access">
           {{#if hasPrimaryApplication}}
-            <b>Основной</b>
+            <b>{{ts 'frontend.order_application.statuses.primary'}}</b>
           {{else}}
-            <a {{action 'assign_as' this 'primary'}}>Основной</a>
+            <a {{action 'assign_as' this 'primary'}}>{{ts 'frontend.order_application.statuses.primary'}}</a>
           {{/if}}
         </td>
         <td class="access">
           {{#if hasSecondaryApplication}}
-              <b>Резервный</b>
+              <b>{{ts 'frontend.order_application.statuses.secondary'}}</b>
           {{else}}
             {{#if canCreateSecondaryApp}}
-                <a {{action 'assign_as' this 'secondary'}}>Резервный</a>
+                <a {{action 'assign_as' this 'secondary'}}>{{ts 'frontend.order_application.statuses.secondary'}}</a>
             {{/if}}
           {{/if}}
         </td>
