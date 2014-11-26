@@ -4,8 +4,10 @@ end
 
 Given(/^I signed in as user with email "(.*?)"$/) do |email|
   visit '/users/sign_in'
-  fill_in "user_email", :with => email
-  fill_in "user_password", :with => 'password'
+  within '#new_user' do
+    fill_in "user_email", :with => email
+    fill_in "user_password", :with => 'password'
+  end
   click_button "Log in"
 end
 
