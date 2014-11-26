@@ -1,0 +1,14 @@
+<div class="orders clearfix">
+  {{#link-to this.currentRoute (query-params scope='close')}}
+      Завершенные
+  {{/link-to}}
+  {{#link-to this.currentRoute (query-params scope='reject')}}
+      Отклоненные
+  {{/link-to}}
+  {{#link-to this.currentRoute (query-params scope='in_progress')}}
+      Текущие
+  {{/link-to}}
+  {{#link-to this.currentRoute (query-params scope='open')}}
+      Новые
+  {{/link-to}}
+</div>

@@ -25,9 +25,56 @@ RSpec.describe Api::V1::OrdersController, :type => :controller do
   end
 
   describe "GET index" do
+    subject{get :index, profile_id: profile.to_param}
+
+    RSpec.shared_examples 'scoped collection' do
+      let(:other_order) {create :order_verbal, state: :new}
+      before(:each) {other_order}
+      subject{get :index, profile_id: profile.to_param, scope: scope}
+
+      RSpec.shared_examples 'check orders inclusion' do
+        it 'includes right orders' do
+          subject
+          expect(assigns :orders).to include(order)
+        end
+        it 'does not include other order' do
+          subject
+          expect(assigns :orders).not_to include(other_order)
+        end
+      end
+      describe 'open scope' do
+        let(:order) {create :order_verbal, state: :wait_application}
+        let(:scope) {:open}
+        include_examples 'check orders inclusion'
+      end
+
+      describe 'in_progress scope' do
+        let(:scope) {:in_progress}
+        let(:order) {create :order_verbal, state: :in_progress}
+        include_examples 'check orders inclusion'
+      end
+
+      describe 'close scope' do
+        let(:scope) {:close}
+        let(:order) {create :order_verbal, state: :close}
+        include_examples 'check orders inclusion'
+      end
+
+      describe 'incorrect scope' do
+        let(:scope) {:fake}
+        it 'includes all' do
+          subject
+          expect(assigns :orders).to include(order)
+        end
+      end
+    end
+
     context 'signed in as client' do
-      subject{get :index, profile_id: order.owner.to_param}
+      let(:profile) {order.owner}
       before(:each) {sign_in order.owner.user}
+
+      it_behaves_like 'scoped collection'
+
       it 'assigns my order as @order' do
         expect{subject}.to change{assigns :orders}.to([order])
       end
@@ -35,9 +82,16 @@ RSpec.describe Api::V1::OrdersController, :type => :controller do
 
     context 'sign in as translator' do
       let(:translator) {create :translator}
+      let(:profile) {translator.profiles.first}
       let(:order) {create :order_verbal, assignee: translator.profiles.first}
-      subject{get :index, profile_id: translator.profiles.first}
-      before(:each) {sign_in translator}
+      before(:each) do
+        order.assignee = profile
+        order.save
+        sign_in translator
+      end
+
+      it_behaves_like 'scoped collection'
+
       it 'assigns assigned to me order as @order' do
         expect{subject}.to change{assigns :orders}.to([order])
       end

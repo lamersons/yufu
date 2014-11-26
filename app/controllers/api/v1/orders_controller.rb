@@ -4,6 +4,7 @@ module Api
 
       before_action :authenticate_user!, except: :create
       before_action :set_profile,        except: [:create, :show]
+      serialization_scope :current_profile
 
       respond_to :json
 
@@ -28,11 +29,12 @@ module Api
         if @order.update_attributes order_params
           @order.update_attribute :step, @order.step+1
         end
-        redirect_to edit_api_v1_order_path(@order)
+        redirect_to "#{edit_api_v1_order_path(@order)}&profile_id=#{params[:profile_id]}"
       end
 
       def index
-        @orders = @profile.orders.search(params[:q]).result.paginate(per_page: 10, page: params[:page])
+        @orders = scoped_collection.merge(get_class.search(params[:q]).result)
+                      .paginate(per_page: 10, page: params[:page])
         respond_with @orders, serializer: PaginationSerializer
       end
 
@@ -41,7 +43,24 @@ module Api
         respond_with @order
       end
 
+      def current_profile
+        @profile
+      end
+
       private
+        def scoped_collection
+          if params[:scope].present? && Order::Base::SCOPES.include?(params[:scope])
+            get_class.send params[:scope], @profile
+          else
+            get_class.all
+          end
+        end
+
+        def get_class
+          return Order::Base if params[:_type].blank?
+          params[:_type].constantize
+        end
+
         def set_profile
           @profile = current_user.profiles.find params[:profile_id]
         end
@@ -61,7 +80,7 @@ module Api
                           when 'Order::Verbal'
                             [:include_near_city, :goal, :translator_sex, :location_id, :translator_native_language_id,
                              :native_language_id, :directions_ids, {language_criterions: [:level, :cost, :language_id]},
-                            {reservation_dates: [:date, :hours]}]
+                            {reservation_dates_attributes: [:date, :hours]}]
                           else
                             []
                     end

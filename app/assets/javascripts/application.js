@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require i18n
+//= require moment
 //= require_tree ./lib
 //= require new_index

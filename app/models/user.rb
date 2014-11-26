@@ -62,4 +62,8 @@ class User
   def need_change_password?
     !self.is_a?(Admin) && self.sign_in_count <= 1
   end
+
+  def translator_profile
+    profiles.where(:_type.in => [Profile::Translator::Individual.to_s, Profile::Translator::Company.to_s]).first
+  end
 end

@@ -11,6 +11,10 @@
 //Переменные проекта
 @import "partials/variables";
 
+A {
+  cursor: pointer;
+}
+
 //Глобальный стиль для розовых кнопок
 BUTTON.pink {
   font-weight: 300;
