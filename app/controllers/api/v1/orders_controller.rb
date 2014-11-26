@@ -1,6 +1,7 @@
 module Api
   module V1
     class OrdersController < ApplicationController
+      include ActionController::Serialization
 
       before_action :authenticate_user!, except: :create
       before_action :set_profile,        except: [:create, :show]
