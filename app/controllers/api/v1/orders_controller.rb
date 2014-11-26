@@ -33,7 +33,7 @@ module Api
       end
 
       def index
-        @orders = Order::Base.search(params[:q]).result.paginate(per_page: 10, page: params[:page])
+        @orders = scoped_collection.search(params[:q]).result.paginate(per_page: 10, page: params[:page])
         respond_with @orders, serializer: PaginationSerializer
       end
 
@@ -47,6 +47,14 @@ module Api
       end
 
       private
+        def scoped_collection
+          if params[:scope].present? && Order::Base::SCOPES.include?(params[:scope])
+            Order::Base.send params[:scope], @profile
+          else
+            Order::Base.all
+          end
+        end
+
         def set_profile
           @profile = current_user.profiles.find params[:profile_id]
         end

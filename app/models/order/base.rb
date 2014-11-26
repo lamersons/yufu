@@ -3,6 +3,8 @@ module Order
     include Mongoid::Document
     include Mongoid::Timestamps
 
+    SCOPES = %w(open in_progress close)
+
     field :step, type: Integer, default: 1
 
     belongs_to :client_info, class_name: 'Order::ClientInfo'
@@ -17,6 +19,14 @@ module Order
     has_many :applications, class_name: 'Order::Application', dependent: :destroy
 
     accepts_nested_attributes_for :airport_pick_up, :car_rent, :hotel
+
+    scope :open,        -> (profile = nil) { where state: :wait_application }
+    scope :in_progress, -> (profile) do
+      where :state.in => [:in_progress, :additional_paying], connected_method_for(profile) => profile
+    end
+    scope :close,       -> (profile) do
+      where :state.in => [:close, :rated], connected_method_for(profile) => profile
+    end
 
     # Order's workflow
     state_machine initial: :new do
@@ -59,5 +69,14 @@ module Order
     def can_send_primary_application?
       applications.where(status: 'primary').empty?
     end
+
+    def self.connected_method_for(profile)
+      if profile.is_a? Profile::Translator::Base
+        :assignee
+      else
+        :owner
+      end
+    end
+
   end
 end
