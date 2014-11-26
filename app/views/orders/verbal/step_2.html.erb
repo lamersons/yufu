@@ -1,0 +1,100 @@
+<!-- Раздел с формой -->
+<%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-2"} do |f| %>
+<%= f.hidden_field :_type%>
+<!-- Контейнер -->
+<div class="container clearfix">
+<h1 class="main">Разместить заказ на <span class="pink-bright">Устный перевод</span></h1>
+
+<p class="title">Выбор стоимости</p>
+
+<p>Подтвердите резервацию отметив подходящие вам цены (Цена за сумму часов)</p>
+<!-- Календарь -->
+<div class="calendar">
+<span class="arrow left"></span>
+<span class="arrow right"></span>
+<!-- Интервал -->
+<div class="interval active">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+  <td></td>
+  <td>
+    <em>1</em>
+    <span>Пн</span>
+  </td>
+  <td>
+    <em>2</em>
+    <span>Вт</span>
+  </td>
+  <td>
+    <em>3</em>
+    <span>Ср</span>
+  </td>
+  <td>
+    <em>4</em>
+    <span>Чт</span>
+  </td>
+  <td>
+    <em>5</em>
+    <span>Пт</span>
+  </td>
+  <td class="weekend">
+    <em>6</em>
+    <span>Сб</span>
+  </td>
+  <td class="weekend">
+    <em>7</em>
+    <span>Вс</span>
+  </td>
+  <td></td>
+</tr>
+<%@order.language_criterions.each do |lc| %>
+<tr>
+  <td><%=lc.language.name%> <sup>Разговорный</sup></td>
+  <%@order.reservation_dates.each do |date|%>
+      <td class="active" data-cost="<%=Order::Verbal::DEFAULTCOST%>">
+        <em class="cost"><%=Order::Verbal::DEFAULTCOST*(1+(date.hours-8)*1.5/8)%> Eur</em>
+        <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
+
+        <div class="dropdown">
+          <b class="icon"></b>
+          <em>8</em>
+          <em>10</em>
+          <em>12</em>
+          <em>14</em>
+          <em>16</em>
+          <input type="hidden" name="order[reservation_dates_attributes][][_id]" value="<%=date.id%>">
+          <input type="hidden" class="hours" name="order[reservation_dates_attributes][][hours]" value="<%=date.hours%>">
+          <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]" value="1">
+        </div>
+      </td>
+  <%end%>
+
+  <td></td>
+</tr>
+<%end%>
+</table>
+<!-- /Интервал -->
+<!-- Интервал -->
+<!-- /Интервал -->
+</div>
+</div>
+<!-- /Календарь -->
+<p class="description">Рабочий день переводчика - 8 часов. Цена за каждый сверхурочный час работы переводчика
+  высчитывается по формуле:<br> цена за 1 рабочий день / 8 часов * 1.5 </p>
+
+<p class="sum">Cуммарная стоимость выбранных услуг</p>
+
+<div class="bordered-block">
+  <p>115 Eur + 170 Eur = <span class="bold pink-bright">285 Eur</span></p>
+</div>
+<div class="height-30"></div>
+<div ng-include="'orders/interpretations/steps.html'"></div>
+
+</div>
+<!-- /Контейнер -->
+<%=render partial: 'orders/verbal/steps_nav', locals: {f: f}%>
+<%end%>
+<script>
+  new ConfirmCalendar
+</script>
+<!-- /Раздел с формой -->

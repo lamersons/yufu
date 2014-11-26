@@ -137,6 +137,12 @@
 					}
 					SPAN {
 						display: block;
+                      &#h{
+                        display: inline;
+                        span{
+                        display: inline;
+                        }
+                      }
 					}
 					//Крестик
 					I.cross {

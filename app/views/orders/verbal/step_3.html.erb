@@ -1,0 +1,233 @@
+<!-- Раздел с формой -->
+<form class="section-form payment step-3" ng-init="init(3)" novalidate>
+<!-- Контейнер -->
+<div class="container clearfix">
+<h1 class="main">Разместить заказ на <span class="pink-bright">Устный перевод</span></h1>
+<p class="title">Информация о клиенте</p>
+<!-- Колонка -->
+<div class="col-1">
+  <p>Имя</p>
+  <input type="text" name="order.clientName" ng-model="order.clientName" required>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1">
+  <p>Фамилия</p>
+  <input type="text" name="order.clientSurname" ng-model="order.clientSurname" required>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1 last clearfix birth">
+  <p>Дата рождения</p>
+  <select select-date yu-model="order.clientBirthdateOn"></select>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1">
+  <p>Компания</p>
+  <input type="text">
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1">
+  <p>Страна</p>
+  <div class="custom-select">
+    <select ng-model="order.clientCountry" ng-options="dict as dict.name|translate for dict in dictionaries|filter:{category: 'countries'}">
+    </select>
+  </div>
+</div>
+<!-- /Колонка -->
+<div class="clear"></div>
+<p class="title">Дополнительные услуги</p>
+<div class="height-10"></div>
+<!-- Аккордион -->
+<div class="accordion">
+  <!-- Тригер -->
+  <p class="trigger">
+    <span class="icon"></span>
+    Airport Pick Up
+  </p>
+  <!-- /Тригер -->
+  <!-- Вкладка -->
+  <div class="tab">
+    <label class="radio no-left clearfix">
+      <input type="radio" name="pickup" value="1" ng-model="order.needACar" checked>
+      <em></em>
+      <p>Need a Car( with Chauffeur) + to pick me up (164 US$ ) for inner city</p>
+    </label>
+    <label class="radio no-left clearfix">
+      <input type="radio" name="pickup" value="0" ng-model="order.needACar">
+      <em></em>
+      <p>ONLY need (without car) to pick me up at the airport ( 70.88 US$ )</p>
+    </label>
+    <label class="checkbox no-left clearfix">
+      <input type="checkbox" ng-model="order.needDoubleWay">
+      <em></em>
+      <p>Double way (airport pick up and drop off, Price x 2)</p>
+    </label>
+    <div class="height-10"></div>
+    <!-- Колонка -->
+    <div class="col-1">
+      <p>Flight Number</p>
+      <input ng-model="order.flightNumber" type="text">
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1">
+      <p>Airport Name</p>
+      <input ng-model="order.airportName" type="text">
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1 arr-date-time last clearfix">
+      <p>Arriving Date / Time</p>
+      <input type="text" class="date" ng-model="order.arrivingDate">
+      <input type="text" class="time" ng-model="order.arrivingTime">
+    </div>
+    <!-- /Колонка -->
+    <div class="clear"></div>
+    <label class="checkbox no-left clearfix">
+      <input type="checkbox" value="0" ng-model="order.haveAAirport">
+      <em></em>
+      <p>I have not yet booked!</p>
+    </label>
+    <div class="height-10"></div>
+  </div>
+  <!-- /Вкладка -->
+  <!-- Тригер -->
+  <p class="trigger">
+    <span class="icon"></span>
+    Car rent
+  </p>
+  <!-- /Тригер -->
+  <!-- Вкладка -->
+  <div class="tab position-relative">
+    <div class="custom-select car">
+      <select>
+        <option>Passat</option>
+        <option>Camry</option>
+      </select>
+    </div>
+    <label class="radio no-left clearfix">
+      <input type="radio" name="car-rent" checked>
+      <em></em>
+      <p>Economy сlass сar with chauffeur – 129.59 US$ per day (Hyundai-Elantra)</p>
+    </label>
+    <label class="radio no-left clearfix">
+      <input type="radio" name="car-rent">
+      <em></em>
+      <p>Standard сlass сar with chauffeur <span class="pink-bright bold">Most Popular!</span> – 179.59 US$ per day</p>
+    </label>
+    <label class="radio no-left clearfix">
+      <input type="radio" name="car-rent">
+      <em></em>
+      <p>Standard сlass сar with chauffeur <span class="pink-bright bold">Most Popular!</span> – 269.59 US$ per day ( Audi A6 )</p>
+    </label>
+    <!-- Колонка -->
+    <div class="col-1">
+      <p>Duration</p>
+      <div class="custom-select">
+        <select>
+          <option>Пункт 1</option>
+          <option>Пункт 2</option>
+        </select>
+      </div>
+    </div>
+    <!-- /Колонка -->
+    <div class="clear"></div>
+    <p class="big-tooltip">
+      <span class="icon"></span>
+      1. Price Includes the gas oil fee(up to 100 KM/day), and the insurance fee,the tax.<br>
+      2. Price Excludes the toll fee,the parking fee,over kilometer fee and overtime fee.<br>
+      3. For extra hours: Economy - $6/hour, Standard - $8/h, Deluxe - $16/h<br>
+      4. For extra kilometer: Economy - $0.85/hour, Standard - $1/KM, Deluxe - $1.7/KM
+    </p>
+    <div class="height-10"></div>
+  </div>
+  <!-- /Вкладка -->
+  <!-- Тригер -->
+  <p class="trigger">
+    <span class="icon"></span>
+    Hotel greeting
+  </p>
+  <!-- /Тригер -->
+  <!-- Вкладка -->
+  <div class="tab position-relative">
+    <div class="custom-select greeting">
+      <select>
+        <option>пункт 1</option>
+        <option>пункт 2</option>
+      </select>
+    </div>
+    <div class="height-10"></div>
+    <p>I hope to be greeted at my hotel lobby at <span class="greeting-interval"></span> on 2015-07-28 [ China Time ]</p>
+    <label class="checkbox no-left clearfix">
+      <input type="checkbox" value="0" ng-model="order.haveAHotel">
+      <em></em>
+      <p>I have not yet booked a Hotel!</p>
+    </label>
+  </div>
+  <!-- /Вкладка -->
+</div>
+<!-- /Аккордион -->
+<div class="height-10"></div>
+<p class="title">Способ оплаты</p>
+<!-- Колонка -->
+<div class="col-1 payment-method plastic-card">
+  <div class="line"></div>
+  <span class="icon"></span>
+  <div class="height-5"></div>
+  <label class="checkbox clearfix">
+    <input type="checkbox" value="paymentcard" ng-model="order.paymentMethod">
+    <em></em>
+    <p>Платежная карта</p>
+  </label>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1 payment-method bank-transfer">
+  <div class="line"></div>
+  <span class="icon"></span>
+  <div class="height-5"></div>
+  <label class="checkbox clearfix">
+    <input type="checkbox" value="banktransfer" ng-model="order.paymentMethod">
+    <em></em>
+    <p>Банковский перевод</p>
+  </label>
+</div>
+<!-- /Колонка -->
+<!-- Колонка -->
+<div class="col-1 last payment-method alipay">
+  <span class="icon"></span>
+  <div class="height-5"></div>
+  <label class="checkbox clearfix">
+    <input type="checkbox" value="alipay" ng-model="order.paymentMethod">
+    <em></em>
+    <p>alipay.com <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-al"></span></p>
+  </label>
+  <div class="hover-tooltip js-tooltip-al" style="text-align: left;">
+    <span class="icon"></span>
+    <p>Текст всплывающей подсказки</p>
+  </div>
+</div>
+<!-- /Колонка -->
+<div class="clear height-20"></div>
+<p class="title">Подробности заказа – № 23s548</p>
+<div class="bordered-block points">
+  <p class="point"><span class="bold number">1.</span> Ср. 3 сент. 2014 г., г. Шанхай, устный перевод, английский, уровень - Разговорный (Гид), 8 часов = <span class="semi-bold">115 Eur</span></p>
+  <p class="point"><span class="bold number">2.</span> Чт. 4 сент. 2014 г., г. Шанхай, устный перевод, французский, уровень - Разговорный (Гид), 8 часов = <span class="semi-bold">150 Eur</span></p>
+  <div class="line"></div>
+  <p class="pink-bright bold">Сумма к оплате: 285 Eur</p>
+</div>
+<div class="height-10"></div>
+<label class="checkbox clearfix">
+  <input type="checkbox">
+  <em></em>
+  <p>Бронируя этот заказ, вы соглашаетесь оплачивать полную указанную сумму, которая включает все сервисные сборы, вы вниматально ознакомились и полностью согласны с <a href="#">Условими предоставления услуг</a>, <a href="#">Правилами отмены бронирования</a> и <a href="#">Правилами компенсации</a> заказчику услуг.</p>
+</label>
+<div class="height-20"></div>
+<div ng-include="'orders/interpretations/steps.html'"></div>
+</div>
+<!-- /Контейнер -->
+</form>
+<!-- /Раздел с формой -->

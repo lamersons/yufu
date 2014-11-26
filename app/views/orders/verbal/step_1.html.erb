@@ -76,6 +76,8 @@
 <div class="clear"></div>
 <%end%>
 
+
+
 <p class="title">Даты резервации</p>
 <%= render partial: 'orders/verbal/calendar'%>
 
@@ -109,75 +111,22 @@
   </div>
   <div class="clear"></div>
 
-  <p>Сфера в которой требуется перевод</p>
+  <p><%= ts(:directions)%></p>
   <!-- Колонка -->
   <div class="col-1">
+
+    <%= collection_check_boxes(:order, :direction_ids, Direction.all, :id, :name) do |b|%>
+        <%=b.label class: "checkbox clearfix" do%>
+        <%end%>
+    <%end%>
+    <% @directions.each do |d|%>
     <label class="checkbox clearfix">
-      <input type="checkbox">
+      <input type="checkbox" name="order[direction_ids][]" value="<%=d.id%>" checked="<%'checked' if @order.direction_ids.include? d.id%>" >
       <em></em>
 
-      <p>Реклама / Маркетинг</p>
+      <p><%=d.name%></p>
     </label>
-    <label class="checkbox clearfix">
-      <input type="checkbox">
-      <em></em>
-
-      <p>Сельское хозяйство</p>
-    </label>
-    <label class="checkbox clearfix">
-      <input type="checkbox">
-      <em></em>
-
-      <p>Одежда / Мода</p>
-    </label>
-    <label class="checkbox long clearfix">
-      <input type="checkbox" checked>
-      <em></em>
-
-      <p>Строительство<br> и Недвижимость</p>
-    </label>
-  </div>
-  <div class="col-1">
-    <label class="checkbox long clearfix">
-      <input type="checkbox">
-      <em></em>
-
-      <p>Электронные компоненты<br> и материалы</p>
-    </label>
-    <label class="checkbox clearfix">
-      <input type="checkbox" checked>
-      <em></em>
-
-      <p>Энергетика</p>
-    </label>
-    <label class="checkbox clearfix">
-      <input type="checkbox">
-      <em></em>
-
-      <p>Безопасность и Защита</p>
-    </label>
-  </div>
-  <!-- /Колонка -->
-  <!-- Колонка -->
-  <div class="col-1 last">
-    <label class="checkbox clearfix">
-      <input type="checkbox">
-      <em></em>
-
-      <p>Транспорт</p>
-    </label>
-    <label class="checkbox clearfix">
-      <input type="checkbox">
-      <em></em>
-
-      <p>Химия</p>
-    </label>
-    <label class="checkbox clearfix">
-      <input type="checkbox">
-      <em></em>
-
-      <p>Путешествия и Досуг</p>
-    </label>
+    <%end%>
   </div>
   <!-- /Колонка -->
   <div class="clear"></div>
