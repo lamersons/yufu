@@ -1,41 +1,46 @@
 <!-- Раздел с формой -->
-<form class="section-form payment step-3" ng-init="init(3)" novalidate>
+<%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-3"} do |f| %>
+    <%= f.hidden_field :_type%>
 <!-- Контейнер -->
 <div class="container clearfix">
 <h1 class="main">Разместить заказ на <span class="pink-bright">Устный перевод</span></h1>
-<p class="title">Информация о клиенте</p>
+<p class="title"><%=ts(:client_info)%></p>
+
+<%=f.fields_for :client_info_attributes do |ci|%>
 <!-- Колонка -->
 <div class="col-1">
-  <p>Имя</p>
-  <input type="text" name="order.clientName" ng-model="order.clientName" required>
+  <p><%=ts(:fist_name)%></p>
+  <%=ci.text_field :first_name%>
 </div>
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1">
-  <p>Фамилия</p>
-  <input type="text" name="order.clientSurname" ng-model="order.clientSurname" required>
+  <p><%=ts(:last_name)%></p>
+  <%=ci.text_field :last_name%>
 </div>
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1 last clearfix birth">
-  <p>Дата рождения</p>
-  <select select-date yu-model="order.clientBirthdateOn"></select>
+  <p><%=ts(:birthday)%></p>
+  <div class="custom-select three-in-one">
+  <%=ci.date_select :birthday, :start_year => 1940, use_month_numbers: true%>
+    </div>
 </div>
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1">
-  <p>Компания</p>
-  <input type="text">
+  <p><%=ts(:company)%></p>
+  <%=ci.text_field :company%>
 </div>
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1">
-  <p>Страна</p>
+  <p><%=ts(:country)%></p>
   <div class="custom-select">
-    <select ng-model="order.clientCountry" ng-options="dict as dict.name|translate for dict in dictionaries|filter:{category: 'countries'}">
-    </select>
+    <%=ci.select :country, Order::ClientInfo::CONTRIES%>
   </div>
 </div>
+    <%end%>
 <!-- /Колонка -->
 <div class="clear"></div>
 <p class="title">Дополнительные услуги</p>
@@ -49,27 +54,29 @@
   </p>
   <!-- /Тригер -->
   <!-- Вкладка -->
+  <%=f.fields_for :airport_pick_up_attributes do |air|%>
   <div class="tab">
     <label class="radio no-left clearfix">
-      <input type="radio" name="pickup" value="1" ng-model="order.needACar" checked>
+      <%=air.radio_button :need_a_car, '1', checked: @order.airport_pick_up.try(:need_a_car)%>
+
       <em></em>
-      <p>Need a Car( with Chauffeur) + to pick me up (164 US$ ) for inner city</p>
+      <p><%=ts(:need_a_car)%></p>
     </label>
     <label class="radio no-left clearfix">
-      <input type="radio" name="pickup" value="0" ng-model="order.needACar">
+      <%=air.radio_button :need_a_car, '0', checked: @order.airport_pick_up.try(:need_a_car)%>
       <em></em>
-      <p>ONLY need (without car) to pick me up at the airport ( 70.88 US$ )</p>
+      <p><%=ts(:do_not_need_a_car)%></p>
     </label>
     <label class="checkbox no-left clearfix">
-      <input type="checkbox" ng-model="order.needDoubleWay">
+      <%=air.check_box :double_way, checked: @order.airport_pick_up.try(:double_way)%>
       <em></em>
-      <p>Double way (airport pick up and drop off, Price x 2)</p>
+      <p><%=ts(:double_way)%></p>
     </label>
     <div class="height-10"></div>
     <!-- Колонка -->
     <div class="col-1">
       <p>Flight Number</p>
-      <input ng-model="order.flightNumber" type="text">
+      <%=air.text_field :flight_number%>
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
@@ -81,56 +88,46 @@
     <!-- Колонка -->
     <div class="col-1 arr-date-time last clearfix">
       <p>Arriving Date / Time</p>
-      <input type="text" class="date" ng-model="order.arrivingDate">
-      <input type="text" class="time" ng-model="order.arrivingTime">
+      <div class="custom-select three-in-one">
+      <%=air.date_select :arriving_date, :start_year => 1940, use_month_numbers: true%>
+        </div>
+      <div class="custom-select three-in-one">
+      <%=air.time_select :arriving_date%>
+        </div>
     </div>
     <!-- /Колонка -->
     <div class="clear"></div>
     <label class="checkbox no-left clearfix">
-      <input type="checkbox" value="0" ng-model="order.haveAAirport">
+      <%=air.check_box :have_not_booked_yet, checked: @order.airport_pick_up.try(:have_not_booked_yet)%>
       <em></em>
-      <p>I have not yet booked!</p>
+      <p><%=ts(:have_not_booked_yet)%></p>
     </label>
     <div class="height-10"></div>
   </div>
   <!-- /Вкладка -->
   <!-- Тригер -->
+
+   <%end%>
   <p class="trigger">
     <span class="icon"></span>
     Car rent
   </p>
+  <%=f.fields_for :car_rent_attributes do |c|%>
   <!-- /Тригер -->
   <!-- Вкладка -->
   <div class="tab position-relative">
-    <div class="custom-select car">
-      <select>
-        <option>Passat</option>
-        <option>Camry</option>
-      </select>
-    </div>
+    <% Order::Car.each do |car|%>
     <label class="radio no-left clearfix">
-      <input type="radio" name="car-rent" checked>
+      <%=c.radio_button :car_id, car.id%>
       <em></em>
-      <p>Economy сlass сar with chauffeur – 129.59 US$ per day (Hyundai-Elantra)</p>
+      <p><%=car.name%></p>
     </label>
-    <label class="radio no-left clearfix">
-      <input type="radio" name="car-rent">
-      <em></em>
-      <p>Standard сlass сar with chauffeur <span class="pink-bright bold">Most Popular!</span> – 179.59 US$ per day</p>
-    </label>
-    <label class="radio no-left clearfix">
-      <input type="radio" name="car-rent">
-      <em></em>
-      <p>Standard сlass сar with chauffeur <span class="pink-bright bold">Most Popular!</span> – 269.59 US$ per day ( Audi A6 )</p>
-    </label>
+     <%end%>
     <!-- Колонка -->
     <div class="col-1">
       <p>Duration</p>
       <div class="custom-select">
-        <select>
-          <option>Пункт 1</option>
-          <option>Пункт 2</option>
-        </select>
+        <%=c.select :duration, [1,2,3,4,5,6,7,8,910]%>
       </div>
     </div>
     <!-- /Колонка -->
@@ -144,6 +141,7 @@
     </p>
     <div class="height-10"></div>
   </div>
+  <%end%>
   <!-- /Вкладка -->
   <!-- Тригер -->
   <p class="trigger">
@@ -228,6 +226,8 @@
 <div class="height-20"></div>
 <div ng-include="'orders/interpretations/steps.html'"></div>
 </div>
+
+<%=render partial: 'orders/verbal/steps_nav', locals: {f: f}%>
 <!-- /Контейнер -->
-</form>
+<%end%>
 <!-- /Раздел с формой -->

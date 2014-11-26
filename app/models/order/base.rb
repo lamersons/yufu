@@ -7,7 +7,7 @@ module Order
 
     field :step, type: Integer, default: 1
 
-    belongs_to :client_info, class_name: 'Order::ClientInfo'
+    embeds_one :client_info, class_name: 'Order::ClientInfo'
     belongs_to :owner,       class_name: 'Profile::Base'
     belongs_to :assignee,    class_name: 'Profile::Translator::Base'
 
@@ -19,6 +19,7 @@ module Order
     has_many :applications, class_name: 'Order::Application', dependent: :destroy
 
     accepts_nested_attributes_for :airport_pick_up, :car_rent, :hotel
+    accepts_nested_attributes_for :client_info
 
     scope :open,        -> (profile = nil) { where state: :wait_application }
     scope :in_progress, -> (profile) do

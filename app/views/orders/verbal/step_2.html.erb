@@ -15,42 +15,22 @@
 <!-- Интервал -->
 <div class="interval active">
 <table cellpadding="0" cellspacing="0" border="0">
-<tr>
-  <td></td>
-  <td>
-    <em>1</em>
-    <span>Пн</span>
-  </td>
-  <td>
-    <em>2</em>
-    <span>Вт</span>
-  </td>
-  <td>
-    <em>3</em>
-    <span>Ср</span>
-  </td>
-  <td>
-    <em>4</em>
-    <span>Чт</span>
-  </td>
-  <td>
-    <em>5</em>
-    <span>Пт</span>
-  </td>
-  <td class="weekend">
-    <em>6</em>
-    <span>Сб</span>
-  </td>
-  <td class="weekend">
-    <em>7</em>
-    <span>Вс</span>
-  </td>
-  <td></td>
-</tr>
+
 <%@order.language_criterions.each do |lc| %>
+
+      <tr>
+        <td></td>
+        <%@order.reservation_dates.each do |date|%>
+        <td>
+          <em><%=date.date.strftime '%d-%B-%Y'%></em>
+        </td>
+        <%end%>
+      </tr>
+      <tr>
 <tr>
   <td><%=lc.language.name%> <sup>Разговорный</sup></td>
   <%@order.reservation_dates.each do |date|%>
+
       <td class="active" data-cost="<%=Order::Verbal::DEFAULTCOST%>">
         <em class="cost"><%=Order::Verbal::DEFAULTCOST*(1+(date.hours-8)*1.5/8)%> Eur</em>
         <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
@@ -68,9 +48,9 @@
         </div>
       </td>
   <%end%>
-
   <td></td>
 </tr>
+
 <%end%>
 </table>
 <!-- /Интервал -->
@@ -85,7 +65,7 @@
 <p class="sum">Cуммарная стоимость выбранных услуг</p>
 
 <div class="bordered-block">
-  <p>115 Eur + 170 Eur = <span class="bold pink-bright">285 Eur</span></p>
+  <p> <%=ts(:price_here)%></p>
 </div>
 <div class="height-30"></div>
 <div ng-include="'orders/interpretations/steps.html'"></div>

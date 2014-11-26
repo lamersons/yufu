@@ -3,6 +3,11 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :create
   before_action :set_profile
 
+  def create
+    @order = order_params[:_type].constantize.create
+    redirect_to edit_order_path(@order)
+  end
+
   def edit
     @user = current_user
     @directions = Direction.all
@@ -21,17 +26,20 @@ class OrdersController < ApplicationController
   end
 
   def set_profile
-    @profile = current_user.profiles.where(_type: 'Profile::Client').first
+    if user_signed_in?
+      @profile = current_user.profiles.where(_type: 'Profile::Client').first
+    end
   end
 
   private
 
   def order_params
     order_params = [
-        {client_info: [:first_name, :last_name, :middle_name]},
-        {airport_pick_up: [:need_car, :double_way, :flight_number, :airport, :arriving_date]},
-        {car_rent: [:duration, {car: [:name, :cost]}]},
-        {hotel: [:greeted_at, :info, :additional_info]},
+        {client_info_attributes: [:first_name, :last_name, :birthday, :company, :country]},
+        {airport_pick_up_attributes: [:need_car, :double_way, :flight_number, :airport, :arriving_date]},
+        {car_rent_attributes: [:duration, {car: [:name, :cost]}]},
+        {hotel_attributes: [:greeted_at, :info, :additional_info]},
+        :_type
     ]
     order_params += case params[:order][:_type]
                       when 'Order::Verbal'
