@@ -8,6 +8,7 @@
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+
   <%= csrf_meta_tags %>
 
   <%= render 'partials/meta' %>
@@ -18,13 +19,18 @@
 	<![endif]-->
 </head>
 <body>
+
   <%= render 'partials/navigation' %>
   <%= render 'partials/header' %>
 
   <%= yield %>
 
-  <%= render 'partials/registration' %>
   <%= render 'partials/about' %>
   <%= render 'partials/footer' %>
 </body>
+<%= javascript_include_tag '/javascripts/translations.js' %>
+<%= javascript_tag do %>
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+<% end %>
 </html>

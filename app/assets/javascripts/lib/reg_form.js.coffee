@@ -5,14 +5,22 @@ class @RegForm
     $('.block.second .item').click @set_user_type
 
   form_success: (data1, data2)->
-    $('.check p').fadeOut()
-    $('.check .message').fadeOut()
+    $('.check .message').fadeOut('fast')
     $('.success.message').fadeIn(500)
+    $('.reg-form input#user_email').attr('readonly', true)
+    $('#main_register_submit').attr('disabled', true)
     return false
 
   form_error: (data1, data2)->
-    $('.check p').fadeOut()
-    $('.check .message').fadeOut()
+    $('.check .message').fadeOut('fast')
+    error = data2.responseJSON.errors.email[0]
+    $('.error.message').html('')
+    if (error.indexOf('taken') > -1)
+      $('.error.message').append(I18n.t('main.email_already_registered'))
+    if (error.indexOf('blank') > -1)
+      $('.error.message').append(I18n.t('main.email_should_not_be_blank'))
+    if (error.indexOf('invalid') > -1)
+      $('.error.message').append(I18n.t('main.wrong_format_of_email'))
     $('.error.message').fadeIn(500)
     return false
 
@@ -31,6 +39,7 @@ class @RegForm
         $('.block.second .text-block').hide()
         $('.block.second .text-block.' + target).show()
       $('.reg-form .' + target + '-radio').prop('checked', true)
+      $('.after-input-text').hide()
       $('.reg-form input#user_email').attr('readonly', false)
       $('#main_register_submit').removeAttr('disabled')
 
