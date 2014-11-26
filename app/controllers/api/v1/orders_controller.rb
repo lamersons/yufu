@@ -33,7 +33,8 @@ module Api
       end
 
       def index
-        @orders = scoped_collection.search(params[:q]).result.paginate(per_page: 10, page: params[:page])
+        @orders = scoped_collection.merge(get_class.search(params[:q]).result)
+                      .paginate(per_page: 10, page: params[:page])
         respond_with @orders, serializer: PaginationSerializer
       end
 
@@ -49,10 +50,15 @@ module Api
       private
         def scoped_collection
           if params[:scope].present? && Order::Base::SCOPES.include?(params[:scope])
-            Order::Base.send params[:scope], @profile
+            get_class.send params[:scope], @profile
           else
-            Order::Base.all
+            get_class.all
           end
+        end
+
+        def get_class
+          return Order::Base if params[:_type].blank?
+          params[:_type].constantize
         end
 
         def set_profile
