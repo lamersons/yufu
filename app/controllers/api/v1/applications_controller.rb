@@ -28,7 +28,7 @@ class Api::V1::ApplicationsController < ApplicationController
   end
 
   def index
-    @applications = @profile.applications
+    @applications = @profile.applications.search(params[:q]).result
     respond_with @applications, root: 'order_applications'
   end
 
