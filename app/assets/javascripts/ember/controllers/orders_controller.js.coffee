@@ -1,8 +1,14 @@
 # for more details see: http://emberjs.com/guides/controllers/
 
 Yufu.OrdersController = Ember.ArrayController.extend({
+  needs: ['application']
 
+  queryParams: ['scope']
+  scope: 'open'
 
+  currentRoute: (->
+    this.get('controllers.application.currentRouteName');
+  ).property()
 
   actions: {
     assign_as: (order, status) ->

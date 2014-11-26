@@ -1,6 +1,14 @@
 <div class="orders clearfix">
-    <a href="#">Отклоненные</a>
-    <a href="#">Завершенные</a>
-    <a href="#">Текущие</a>
-    <a href="#" class="active">Новые</a>
+  {{#link-to this.currentRoute (query-params scope='close')}}
+      Завершенные
+  {{/link-to}}
+  {{#link-to this.currentRoute (query-params scope='reject')}}
+      Отклоненные
+  {{/link-to}}
+  {{#link-to this.currentRoute (query-params scope='in_progress')}}
+      Текущие
+  {{/link-to}}
+  {{#link-to this.currentRoute (query-params scope='open')}}
+      Новые
+  {{/link-to}}
 </div>
