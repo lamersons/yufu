@@ -16,6 +16,9 @@ module Order
     embeds_many :language_criterions, class_name: 'Order::LanguageCriterion'
     embeds_many :reservation_dates,   class_name: 'Order::ReservationDate'
 
+    accepts_nested_attributes_for :language_criterions
+    accepts_nested_attributes_for :reservation_dates
+
     has_and_belongs_to_many :directions
 
     delegate :name, to: :location, prefix: true, allow_nil: true

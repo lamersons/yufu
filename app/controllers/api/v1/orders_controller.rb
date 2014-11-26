@@ -29,7 +29,7 @@ module Api
         if @order.update_attributes order_params
           @order.update_attribute :step, @order.step+1
         end
-        redirect_to edit_api_v1_order_path(@order)
+        redirect_to "#{edit_api_v1_order_path(@order)}&profile_id=#{params[:profile_id]}"
       end
 
       def index
@@ -66,7 +66,7 @@ module Api
                           when 'Order::Verbal'
                             [:include_near_city, :goal, :translator_sex, :location_id, :translator_native_language_id,
                              :native_language_id, :directions_ids, {language_criterions: [:level, :cost, :language_id]},
-                            {reservation_dates: [:date, :hours]}]
+                            {reservation_dates_attributes: [:date, :hours]}]
                           else
                             []
                     end
