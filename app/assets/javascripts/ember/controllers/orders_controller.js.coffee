@@ -19,7 +19,7 @@ Yufu.OrdersController = Ember.ArrayController.extend({
 
 
   currentRoute: (->
-    this.get('controllers.application.currentRouteName');
+    @get('controllers.application.currentRouteName');
   ).property()
 
   actions: {
@@ -27,7 +27,7 @@ Yufu.OrdersController = Ember.ArrayController.extend({
       record = @store.createRecord 'order_application', {
         order: order
         status: status
-        profile_id: this.currentUser.get('translator_profile_id')
+        profile_id: @get('controllers.application.currentUser')
       }
       record.save().then ->
         order.reload()
