@@ -7,7 +7,7 @@ class Order::BaseSerializer < ActiveModel::Serializer
   has_one :hotel
 
   def type
-    object._type.gsub '::', ''
+    object.class.name.demodulize
   end
 
   def application_status

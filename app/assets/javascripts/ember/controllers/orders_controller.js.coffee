@@ -11,8 +11,9 @@ Yufu.OrdersController = Ember.ArrayController.extend({
         status: status
         profile_id: this.currentUser.get('translator_profile_id')
       }
-      record.save().then =>
+      record.save().then ->
         order.reload()
+        order.set 'application_status', status
   }
 })
 
