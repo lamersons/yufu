@@ -26,7 +26,7 @@ module Api
 
       def show
         @order = Order::Base.find params[:id]
-        respond_with @order, root: 'order'
+        respond_with @order
       end
 
       def current_profile
