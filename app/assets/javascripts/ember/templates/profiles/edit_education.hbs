@@ -11,30 +11,30 @@
         <div ng-repeat="edu in profile.educations">
             <!-- Колонка -->
             <div class="col-1">
-                <p>Образование</p>
+                <p>{{ts 'frontend.profile.education'}}</p>
                 <div class="custom-select">
                     <select ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'edu_levels'}">
-                        <option value="" ng-if="false">Другое</option>
+                        <option value="" ng-if="false">{{ts 'frontend.profile.other'}}</option>
                     </select>
                 </div>
             </div>
             <!-- /Колонка -->
             <!-- Колонка -->
             <div class="col-1">
-                <p>Другое</p>
+                <p>{{ts 'frontend.profile.other'}}</p>
                 <input type="text" disabled>
             </div>
             <!-- /Колонка -->
             <!-- Колонка -->
             <div class="col-1 last position-relative">
-                <p>Сфера <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-sfera"></span></p>
+                <p>{{ts 'frontend.profile.area'}} <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-sfera"></span></p>
                 <div class="hover-tooltip js-tooltip-sfera">
                     <span class="icon"></span>
-                    <p>Отрасли, которые как-то относятся к вашему направлению , учитывая прошлый рабочий опыт.</p>
+                    <p>{{ts 'frontend.profile.previous_industries'}}</p>
                 </div>
                 <div class="custom-select">
                     <select ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'edu_directions'}">
-                        <option value="" ng-if="false">Другое</option>
+                        <option value="" ng-if="false">{{ts 'frontend.profile.other'}}</option>
                     </select>
                 </div>
             </div>
@@ -42,36 +42,36 @@
             <div class="clear"></div>
             <!-- Колонка -->
             <div class="col-2">
-                <p>Учебное заведение</p>
+                <p>{{ts 'frontend.profile.institution'}}</p>
                 <input type="text">
             </div>
             <!-- /Колонка -->
             <!-- Колонка -->
             <div class="col-1 last">
-                <p>Место нахождения</p>
+                <p>{{ts 'frontend.profile.location'}}</p>
                 <input type="text">
             </div>
             <!-- /Колонка -->
             <div class="clear"></div>
             <div class="position-relative">
-                <p>Присоединить копию теста на языковую пригодность / Университетский сертификат с лингвистического факультета или любого факультета не на родном языке; Другие документы подтверждающие вашу информацию <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-parag"></span></p>
+                <p>{{ts 'frontend.profile.attach_proofs'}} <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-parag"></span></p>
                 <div class="hover-tooltip js-tooltip-parag" style="left: 500px; width: 300px;">
                     <span class="icon"></span>
-                    <p>Необязательно, но желательно для Вас, с целью подтверждения указанных Вами данных.</p>
+                    <p>{{ts 'frontend.profile.not_necessarily'}}</p>
                 </div>
             </div>
             <!-- Колонка -->
             <div class="col-2 lang-test clearfix position-relative">
-                <div class="dropzone dropzone-lang-test">Или перетащите мышкой сюда</div>
+                <div class="dropzone dropzone-lang-test">{{ts 'frontend.profile.or_drag_here'}}</div>
                 <label class="file">
                     <input type="file" class="fileupload-with-dropzone" data-dropzone=".dropzone-lang-test" data-url="/test.html">
-                    <em>Выбрать...</em>
+                    <em>{{ts 'frontend.profile.choose'}}...</em>
                     <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-test-file"></span>
                 </label>
                 <div class="height-5"></div>
                 <div class="hover-tooltip js-tooltip-test-file" style="width: 300px;">
                     <span class="icon"></span>
-                    <p>Внимание! Передача файла может занять до нескольких минут.</p>
+                    <p>{{ts 'frontend.profile.upload_warning'}}</p>
                 </div>
             </div>
             <!-- /Колонка -->
@@ -81,7 +81,7 @@
         <div class="height-30"></div>
         <div class="grey-line"></div>
         <div class="height-20"></div>
-        <a href="" class="pink-bright" ng-click="profile.educations.push({})"><b class="bold">+</b> Добавить образование</a>
+        <a href="" class="pink-bright" ng-click="profile.educations.push({})"><b class="bold">+</b> {{ts 'frontend.profile.add_education'}}</a>
         <div class="height-10"></div>
         <div ng-include="'cabinet/profiles/translators/person-steps.html'"></div>
     </div>

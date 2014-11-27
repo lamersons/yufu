@@ -89,7 +89,7 @@
 <div ng-include="'cabinet/profiles/translators/person-tabs.html'"></div>
 <!-- Колонка -->
 <div class="col-1">
-    <p>Язык перевода</p>
+    <p>{{ts 'frontend.profile.translation_language'}}</p>
     <div class="custom-select disabled">
         {{view Ember.Select
         selection=model.services_attributes
@@ -105,7 +105,7 @@
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1 last position-relative">
-    <p>Имеете ли вы уровень HSK</p>
+    <p>{{ts 'frontend.profile.has_hsk'}}</p>
     <div class="custom-select">
         <select ng-model="profile.hskConfirmed" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'yes_no'}">
             <option value="" ng-if="false"></option>
@@ -116,7 +116,7 @@
 <div class="clear"></div>
 <!-- Колонка -->
 <div class="col-1">
-    <p>Уровень владения</p>
+    <p>{{ts 'frontend.profile.language_level'}}</p>
     <div class="custom-select">
         <select ng-model="profile.chineseLanguageLevel" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'language_levels'}">
             <option value="" ng-if="false"></option>
@@ -126,10 +126,10 @@
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1 position-relative">
-    <p>Расчетная ставка <span class="help-text">(в день)</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-1-1" data-target=".js-tooltip-stavka-ras-1-1"></span></p>
+    <p>{{ts 'frontend.profile.estimated_pay'}} <span class="help-text">({{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-1-1" data-target=".js-tooltip-stavka-ras-1-1"></span></p>
     <div class="hover-tooltip js-tooltip-stavka-ras-1-1" show-tooltip yu-parent="rel-js-tooltip-stavka-ras-1-1">
         <span class="icon"></span>
-        <p>Цены основаны на анализе рынка устных переводов с/на различные языки в Китае. Цена составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Даже если клиенту требуется перевод на 2 часа, он оплачивает 1 день или 8 часов. При бронировании заказчик указывает необходимость работы 10,12,14 или 16 часов в день, в этом случае за каждый час сверхурочной работы идет 1.5 часовой ставки т.е - оплата за 1 день/8 часов * 1.5. В связи с конъюнктурой рынка, Вашего и мнения других переводчиков цены могут изменяться на ежемесячной основе.</p>
+        <p>{{ts 'frontend.profile.pay_reasoning'}}</p>
     </div>
     <div class="bordered-block thin">
         <div class="height-2"></div>
@@ -139,10 +139,10 @@
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1 last position-relative">
-    <p>Желаемая вами ставка <span class="help-text">(EUR в день)</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-1-1" data-target=".js-tooltip-stavka-des-1-1"></span></p>
+    <p>{{ts 'frontend.profile.desired_pay'}} <span class="help-text">(EUR {{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-1-1" data-target=".js-tooltip-stavka-des-1-1"></span></p>
     <div class="hover-tooltip js-tooltip-stavka-des-1-1" show-tooltip yu-parent="rel-js-tooltip-stavka-des-1-1">
         <span class="icon"></span>
-        <p>Ваше мнение важно для нас, так оно совместно с мнением др. Переводчиков будет формировать цену продажи. Цена перевода составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Просим, иметь в виду, что цена должна быть разумной, учитывать конъюнктуру рынка и количество переводчиков конкретного языка на рынке вкл местных переводчиков. Если цена будет слишком высока вы будете менее востребованными на рынке труда.</p>
+        <p>{{ts 'frontend.profile.desired_pay_reasoning'}}</p>
     </div>
     <input type="text" ng-model="profile.chineseLanguagePrice">
 </div>
@@ -150,24 +150,24 @@
 <div class="clear"></div>
 <!-- Колонка -->
 <div class="col-1 position-relative">
-    <p>Письменные переводы <span class="tooltip-icon-small js-tooltip rel-js-tooltip-w-1" data-target=".js-tooltip-w-1"></span></p>
+    <p>{{ts 'frontend.profile.written_translations'}} <span class="tooltip-icon-small js-tooltip rel-js-tooltip-w-1" data-target=".js-tooltip-w-1"></span></p>
     <div class="hover-tooltip js-tooltip-w-1" show-tooltip yu-parent="rel-js-tooltip-w-1">
         <span class="icon"></span>
-        <p>Только для владеющих свободным и продвинутым уровнями Китайского</p>
+        <p>{{ts 'frontend.profile.only_for_high_skilled'}}</p>
     </div>
     <div class="custom-select">
         <select>
-            <option>Переводы с китайского</option>
+            <option>{{ts 'frontend.profile.translations_from_chinese'}}</option>
         </select>
     </div>
 </div>
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1 position-relative">
-    <p>Расчетная ставка <span class="help-text">(в день)</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-1-2" data-target=".js-tooltip-stavka-ras-1-2"></span></p>
+    <p>{{ts 'frontend.profile.estimated_pay'}} <span class="help-text">({{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-1-2" data-target=".js-tooltip-stavka-ras-1-2"></span></p>
     <div class="hover-tooltip js-tooltip-stavka-ras-1-2" show-tooltip yu-parent="rel-js-tooltip-stavka-ras-1-2">
         <span class="icon"></span>
-        <p>Цены основаны на анализе рынка устных переводов с/на различные языки в Китае. Цена составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Даже если клиенту требуется перевод на 2 часа, он оплачивает 1 день или 8 часов. При бронировании заказчик указывает необходимость работы 10,12,14 или 16 часов в день, в этом случае за каждый час сверхурочной работы идет 1.5 часовой ставки т.е - оплата за 1 день/8 часов * 1.5. В связи с конъюнктурой рынка, Вашего и мнения других переводчиков цены могут изменяться на ежемесячной основе.</p>
+        <p>{{ts 'frontend.profile.pay_reasoning'}}</p>
     </div>
     <div class="bordered-block thin">
         <div class="height-2"></div>
@@ -177,10 +177,10 @@
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1 last position-relative">
-    <p>Желаемая вами ставка <span class="help-text">(EUR в день)</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-1-2" data-target=".js-tooltip-stavka-des-1-2"></span></p>
+    <p>{{ts 'frontend.profile.desired_pay'}} <span class="help-text">(EUR {{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-1-2" data-target=".js-tooltip-stavka-des-1-2"></span></p>
     <div class="hover-tooltip js-tooltip-stavka-des-1-2" show-tooltip yu-parent="rel-js-tooltip-stavka-des-1-2">
         <span class="icon"></span>
-        <p>Ваше мнение важно для нас, так оно совместно с мнением др. Переводчиков будет формировать цену продажи. Цена перевода составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Просим, иметь в виду, что цена должна быть разумной, учитывать конъюнктуру рынка и количество переводчиков конкретного языка на рынке вкл местных переводчиков. Если цена будет слишком высока вы будете менее востребованными на рынке труда.</p>
+        <p>{{ts 'frontend.profile.desired_pay_reasoning'}}</p>
     </div>
     <input type="text">
 </div>
@@ -193,10 +193,10 @@
 <div ng-repeat="lang in profile.addonLanguages">
     <!-- Колонка -->
     <div class="col-1">
-        <p>Язык перевода</p>
+        <p>{{ts 'frontend.profile.translation_language'}}</p>
         <div class="custom-select">
             <select>
-                <option>Русский</option>
+                <option>{{ts 'frontend.profile.russian'}}</option>
             </select>
         </div>
     </div>
@@ -206,14 +206,14 @@
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 last position-relative">
-        <p>Сертификат на знание языка</p>
+        <p>{{ts 'frontend.profile.certificate'}}</p>
         <input type="text">
     </div>
     <!-- /Колонка -->
     <div class="clear"></div>
     <!-- Колонка -->
     <div class="col-1">
-        <p>Уровень владения</p>
+        <p>{{ts 'frontend.profile.language_level'}}</p>
         <div class="custom-select">
             <select>
                 <option></option>
@@ -223,10 +223,10 @@
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 position-relative">
-        <p>Расчетная ставка <span class="help-text">(в день)</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-ras-2-1"></span></p>
+        <p>{{ts 'frontend.profile.estimated_pay'}} <span class="help-text">({{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-ras-2-1"></span></p>
         <div class="hover-tooltip js-tooltip-stavka-ras-2-1">
             <span class="icon"></span>
-            <p>Цены основаны на анализе рынка устных переводов с/на различные языки в Китае. Цена составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Даже если клиенту требуется перевод на 2 часа, он оплачивает 1 день или 8 часов. При бронировании заказчик указывает необходимость работы 10,12,14 или 16 часов в день, в этом случае за каждый час сверхурочной работы идет 1.5 часовой ставки т.е - оплата за 1 день/8 часов * 1.5. В связи с конъюнктурой рынка, Вашего и мнения других переводчиков цены могут изменяться на ежемесячной основе.</p>
+            <p>{{ts 'frontend.profile.pay_reasoning'}}</p>
         </div>
         <div class="bordered-block thin">
             <div class="height-2"></div>
@@ -236,10 +236,10 @@
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 last position-relative">
-        <p>Желаемая вами ставка <span class="help-text">(EUR в день)</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-des-2-1"></span></p>
+        <p>{{ts 'frontend.profile.desired_pay'}} <span class="help-text">(EUR {{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-des-2-1"></span></p>
         <div class="hover-tooltip js-tooltip-stavka-des-2-1">
             <span class="icon"></span>
-            <p>Ваше мнение важно для нас, так оно совместно с мнением др. Переводчиков будет формировать цену продажи. Цена перевода составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Просим, иметь в виду, что цена должна быть разумной, учитывать конъюнктуру рынка и количество переводчиков конкретного языка на рынке вкл местных переводчиков. Если цена будет слишком высока вы будете менее востребованными на рынке труда.</p>
+            <p>{{ts 'frontend.profile.estimated_pay_reasoning'}}</p>
         </div>
         <input type="text">
     </div>
@@ -247,24 +247,24 @@
     <div class="clear"></div>
     <!-- Колонка -->
     <div class="col-1 position-relative">
-        <p>Письменные переводы <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-w-2"></span></p>
+        <p>{{ts 'frontend.profile.written_translations'}} <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-w-2"></span></p>
         <div class="hover-tooltip js-tooltip-w-2">
             <span class="icon"></span>
-            <p>Только для владеющих свободным и продвинутым уровнями Китайского</p>
+            <p>{{ts 'frontend.profile.only_for_high_skilled'}}</p>
         </div>
         <div class="custom-select">
             <select>
-                <option>Переводы с китайского</option>
+                <option>{{ts 'frontend.profile.translations_from_chinese'}}</option>
             </select>
         </div>
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 position-relative">
-        <p>Расчетная ставка <span class="help-text">(в день)</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-ras-2-2"></span></p>
+        <p>{{ts 'frontend.profile.estimated_pay'}} <span class="help-text">({{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-ras-2-2"></span></p>
         <div class="hover-tooltip js-tooltip-stavka-ras-2-2">
             <span class="icon"></span>
-            <p>Цены основаны на анализе рынка устных переводов с/на различные языки в Китае. Цена составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Даже если клиенту требуется перевод на 2 часа, он оплачивает 1 день или 8 часов. При бронировании заказчик указывает необходимость работы 10,12,14 или 16 часов в день, в этом случае за каждый час сверхурочной работы идет 1.5 часовой ставки т.е - оплата за 1 день/8 часов * 1.5. В связи с конъюнктурой рынка, Вашего и мнения других переводчиков цены могут изменяться на ежемесячной основе.</p>
+            <p>{{ts 'frontend.profile.pay_reasoning'}}</p>
         </div>
         <div class="bordered-block thin">
             <div class="height-2"></div>
@@ -274,10 +274,10 @@
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 last position-relative">
-        <p>Желаемая вами ставка <span class="help-text">(EUR в день)</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-des-2-2"></span></p>
+        <p>{{ts 'frontend.profile.desired_pay'}} <span class="help-text">(EUR {{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-des-2-2"></span></p>
         <div class="hover-tooltip js-tooltip-stavka-des-2-2">
             <span class="icon"></span>
-            <p>Ваше мнение важно для нас, так оно совместно с мнением др. Переводчиков будет формировать цену продажи. Цена перевода составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Просим, иметь в виду, что цена должна быть разумной, учитывать конъюнктуру рынка и количество переводчиков конкретного языка на рынке вкл местных переводчиков. Если цена будет слишком высока вы будете менее востребованными на рынке труда.</p>
+            <p>{{ts 'frontend.profile.desired_pay_reasoning'}}</p>
         </div>
         <input type="text">
     </div>
@@ -289,18 +289,18 @@
 <div class="grey-line"></div>
 <div class="height-20"></div>
 
-<a href="" class="pink-bright" ng-click="profile.addonLanguages.push({})"><b class="bold">+</b> Добавить язык</a>
+<a href="" class="pink-bright" ng-click="profile.addonLanguages.push({})"><b class="bold">+</b> {{ts 'frontend.profile.add_language'}}</a>
 
 <div class="height-20"></div>
 <div class="position-relative">
     <label class="checkbox no-left clearfix">
         <input type="checkbox" checked>
         <em></em>
-        <p>Доступные категории услуг</p>
+        <p>{{ts 'frontend.profile.available_services'}}</p>
     </label>
 </div>
 <div class="add short">
-    <a href="" class="trigger modal-trigger" ng-click="modalOpen('modal-uslugi')"><b>+</b> Добавить</a>
+    <a href="" class="trigger modal-trigger" ng-click="modalOpen('modal-uslugi')"><b>+</b> {{ts 'frontend.profile.add'}}</a>
     <div class="textarea">
         <textarea rows="3" readonly></textarea>
     </div>
@@ -310,7 +310,7 @@
     <label class="checkbox clearfix">
         <input type="checkbox" ng-model="profile.canTravel" value="1">
         <em></em>
-        <p>Возможность путешествовать в другие города за счет клиента</p>
+        <p>{{ts 'frontend.profile.free_travel'}}</p>
     </label>
 </div>
 <!-- /Колонка -->
@@ -319,7 +319,7 @@
     <label class="checkbox clearfix">
         <input type="checkbox" value="1" ng-model="profile.drivingLicense">
         <em></em>
-        <p>Наличие китайских прав и возможности управлять транспортным средством</p>
+        <p>{{ts 'frontend.profile.has_driver_id'}}</p>
     </label>
     <div class="height-5"></div>
 </div>
@@ -329,7 +329,7 @@
     <label class="checkbox clearfix">
         <input type="checkbox" value="1" ng-model="profile.haveACar">
         <em></em>
-        <p>Наличие и возможность использовать машины</p>
+        <p>{{ts 'frontend.profile.has_car'}}</p>
     </label>
     <div class="height-5"></div>
 </div>
@@ -338,9 +338,9 @@
 <div class="height-20"></div>
 <!-- Колонка -->
 <div class="col-1">
-    <p>Нынешний статус</p>
+    <p>{{ts 'frontend.profile.status_now'}}</p>
     <div class="custom-select">
-        <select ng-model="profile.occupation" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'occupations'}">
+        <select ng-model="profile.ocсcupation" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'occupations'}">
         </select>
     </div>
 </div>

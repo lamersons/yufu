@@ -6,7 +6,7 @@
         <div ng-include="'cabinet/profiles/translators/person-tabs.html'"></div>
 
         <div class="col-1">
-            <p>native_language</p>
+            <p>{{ts 'frontend.profile.native_language'}}</p>
             <div class="custom-select">
                 {{view Ember.Select
                 selection=model.native_language.content
