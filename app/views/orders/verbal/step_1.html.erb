@@ -22,7 +22,7 @@
   <p><%=ts(:translation_place)%></p>
 
   <div class="custom-select ">
-    <%=f.select :location, City.all.collect {|c| [c.name, c.id]}%>
+    <%=f.select :location_id, City.all.collect {|c| [c.name, c.id]}%>
   </div>
   <label class="checkbox clearfix long">
     <%=f.check_box :include_near_city %>
@@ -40,31 +40,72 @@
 </div>
 <!-- /Колонка -->
 <!-- Колонка -->
-<%=f.fields_for :language_criterions_attributes do |c|%>
-<div class="col-1">
-  <p><%=ts(:translation_language)%></p>
-  <div class="custom-select">
-    <%=c.select :language, Language.all.collect {|c| [c.name, c.id]}%>
-  </div>
-  <div class="height-30"></div>
-  <div class="custom-select">
-  </div>
-</div>
+<% @order.language_criterions.each do |cr|%>
+    <div class="container clearfix right-cont">
 
-<div class="col-05">
-  <p><%=ts(:translation_level)%></p>
+      <input type="hidden" name="order[language_criterions_attributes][][id]" value="<%cr.id%>">
+      <div class="col-1">
+        <p><%=ts(:translation_language)%></p>
+        <div class="custom-select">
+          <select name="order[language_criterions_attributes][][language_id]" >
+            <option></option>
+            <%Language.all.each do |l|%>
+                <option value="<%=l.id%>" selected="<%='selected' if cr.language_id = l.id%>"><%=l.name%></option>
+            <%end%>
+          </select>
+        </div>
+        </div>
 
-  <div class="custom-select bordered">
-    <%=c.select :level, Order::LanguageCriterion::LEVELS%>
-  </div>
-  <div class="height-30"></div>
-  <div class="custom-select disabled">
-  </div>
-</div>
-<div class="col-05 last">
-<p><%=ts(:price)%></p>
 
-<%=c.text_field :price%>
+      <div class="col-05">
+        <p><%=ts(:translation_level)%></p>
+
+        <div class="custom-select bordered">
+          <select name="order[language_criterions_attributes][][level]">
+            <option></option>
+            <option value=1 selected="<%='selected' if cr.level = 1%>">1</option>
+            <option value=2 selected="<%='selected' if cr.level = 2%>">2</option>
+            <option value=3 selected="<%='selected' if cr.level = 3%>">3</option>
+          </select>
+        </div>
+        </div>
+      <div class="col-05 last">
+        <p><%=ts(:price)%></p>
+
+        <input name="order[language_criterions_attributes][][cost]" type="text" value="<%=cr.cost%>">
+      </div>
+    </div>
+<%end%>
+  <div class="container clearfix right-cont">
+    <div class="col-1">
+      <p><%=ts(:translation_language)%></p>
+      <div class="custom-select">
+        <select name="order[language_criterions_attributes][][language_id]" >
+          <option></option>
+          <%Language.all.each do |l|%>
+            <option value="<%=l.id%>"><%=l.name%></option>
+          <%end%>
+        </select>
+      </div>
+      </div>
+
+    <div class="col-05">
+      <p><%=ts(:translation_level)%></p>
+
+      <div class="custom-select bordered">
+        <select name="order[language_criterions_attributes][][level]" >
+          <option></option>
+          <option value=1>1</option>
+          <option value=2>2</option>
+          <option value=3>3</option>
+        </select>
+      </div>
+      </div>
+    <div class="col-05 last">
+        <p><%=ts(:price)%></p>
+
+      <input name="order[language_criterions_attributes][][cost]" type="text" >
+    </div>
 </div>
 <!-- /Колонка -->
 <div class="clear"></div>
@@ -74,7 +115,6 @@
     <span class="tooltip-icon-small"></span></a>
 </div>
 <div class="clear"></div>
-<%end%>
 
 
 

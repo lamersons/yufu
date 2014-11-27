@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
 
-  before_action :authenticate_user!, except: :create
   before_action :set_profile
 
   def create
@@ -37,14 +36,14 @@ class OrdersController < ApplicationController
     order_params = [
         {client_info_attributes: [:first_name, :last_name, :birthday, :company, :country]},
         {airport_pick_up_attributes: [:need_car, :double_way, :flight_number, :airport, :arriving_date]},
-        {car_rent_attributes: [:duration, {car: [:name, :cost]}]},
+        {car_rent_attributes: [:duration, :car_id]},
         {hotel_attributes: [:greeted_at, :info, :additional_info]},
         :_type
     ]
     order_params += case params[:order][:_type]
                       when 'Order::Verbal'
                         [:include_near_city, :goal, :translator_sex, :location_id, :translator_native_language_id,
-                         :native_language_id, {direction_ids: []}, {language_criterions: [:level, :cost, :language_id]},
+                         :native_language_id, {direction_ids: []}, {language_criterions_attributes: [:level, :cost, :language_id]},
                          {reservation_dates_attributes: [:_id, :date, :hours, :_destroy]}]
                       else
                         []
