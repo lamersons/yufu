@@ -55,7 +55,7 @@
   <!-- /Тригер -->
   <!-- Вкладка -->
   <%=f.fields_for :airport_pick_up_attributes do |air|%>
-  <div class="tab">
+  <div class="tab" style="display: none">
     <label class="radio no-left clearfix">
       <%=air.radio_button :need_a_car, '1', checked: @order.airport_pick_up.try(:need_a_car)%>
 
@@ -115,7 +115,7 @@
   <%=f.fields_for :car_rent_attributes do |c|%>
   <!-- /Тригер -->
   <!-- Вкладка -->
-  <div class="tab position-relative">
+  <div class="tab position-relative" style="display: none">
     <% Order::Car.each do |car|%>
     <label class="radio no-left clearfix">
       <%=c.radio_button :car_id, car.id%>
@@ -150,7 +150,7 @@
   </p>
   <!-- /Тригер -->
   <!-- Вкладка -->
-  <div class="tab position-relative">
+  <div style="display: none" class="tab position-relative">
     <div class="custom-select greeting">
       <select>
         <option>пункт 1</option>
@@ -234,4 +234,8 @@
 <%=render partial: 'orders/verbal/steps_nav', locals: {f: f}%>
 <!-- /Контейнер -->
 <%end%>
+
+<script>
+  new StepThreeAccordion()
+</script>
 <!-- /Раздел с формой -->
