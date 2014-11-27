@@ -6,19 +6,19 @@
 
         <!-- Колонка -->
         <div class="col-1">
-            <p>Имя в паспорте <span class="required">*</span></p>
+            <p>{{ts 'frontend.profile.id_name'}} <span class="required">*</span></p>
             {{view Ember.TextField valueBinding='model.first_name' name='first_name' viewName='first_name'}}
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1">
-            <p>Фамилия в паспорте <span class="required">*</span></p>
+            <p>{{ts 'frontend.profile.id_surname'}} <span class="required">*</span></p>
             {{view Ember.TextField valueBinding='model.last_name' name='last_name' viewName='last_name'}}
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1 clearfix last">
-            <p>Дата рождения</p>
+            <p>{{ts 'frontend.profile.birthday'}}</p>
             <div class="input_date">
                 {{date-picker-input controls="birthday" valueBinding='model.formattedBirthday'}}
                 {{date-picker-controls id="birthday"}}
@@ -29,19 +29,19 @@
         <div class="clear"></div>
         <!-- Колонка -->
         <div class="col-1">
-            <p>Номер паспорта <span class="required">*</span></p>
+            <p>{{ts 'frontend.profile.id_number'}} <span class="required">*</span></p>
             {{view Ember.TextField valueBinding='model.passport_num' name='passport_num' viewName='passport_num'}}
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1 clearfix">
-            <p>Срок годности паспорта <span class="required">*</span></p>
+            <p>{{ts 'frontend.profile.id_expiration_date'}} <span class="required">*</span></p>
             {{view Ember.TextField valueBinding='model.passport_till' name='passport_till' viewName='passport_till'}}
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1 last">
-            <p>Государство выдачи <span class="required">*</span></p>
+            <p>{{ts 'frontend.profile.id_country'}} <span class="required">*</span></p>
             {{view Ember.TextField valueBinding='model.passport_country' name='passport_country' viewName='passport_country'}}
         </div>
         <!-- /Колонка -->
@@ -52,7 +52,7 @@
         <div class="height-20"></div>
         <!-- Колонка -->
         <div class="col-1">
-            <p>Город проживания <span class="required">*</span></p>
+            <p>{{ts 'frontend.profile.city'}} <span class="required">*</span></p>
             <div class="custom-select">
                 {{view Ember.Select
                 selection=model.city.content
@@ -65,7 +65,7 @@
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1">
-            <p>Сколько лет прожили в Китае <span class="required">*</span></p>
+            <p>{{ts 'frontend.profile.years_in_china'}} <span class="required">*</span></p>
             {{view Ember.TextField valueBinding='model.years_in_china' name='years_in_china' viewName='years_in_china' style="width: 4em;"}}
 
         </div>
@@ -76,18 +76,18 @@
             <label class="checkbox no-left clearfix">
                 <input type="checkbox" value="1" ng-model="profile.canCitiesNocost">
                 <em></em>
-                <p>Возможность работы в соседних городах без увеличения стоимости
+                <p>{{ts 'frontend.profile.work_in_other_cities'}}
                     <span class="tooltip-icon-small js-tooltip rel-js-tooltip-cities-no-cost" data-target=".js-tooltip-cities-no-cost">
                     </span>
                 </p>
             </label>
             <div class="hover-tooltip js-tooltip-cities-no-cost" style="left: 400px; width: 300px;"  show-tooltip yu-parent="rel-js-tooltip-cities-no-cost">
                 <span class="icon"></span>
-                <p>Будет повышать вашу конкурентную востребовательность</p>
+                <p>{{ts 'frontend.profile.raise_competitive_ability'}}</p>
             </div>
         </div>
         <div class="add">
-            <a {{action 'show_nearby'}}><b>+</b> Добавить города</a>
+            <a {{action 'show_nearby'}}><b>+</b>{{ts 'frontend.profile.add_cities'}}</a>
             <div class="textarea">
                 <div class="pseudo_textarea" style="min-height: 70px">
                     {{#each city in nearby_cities}}
@@ -101,16 +101,16 @@
             <label class="checkbox no-left clearfix">
                 <input type="checkbox" ng-model="profile.canCitiesCost">
                 <em></em>
-                <p>Возможность работы в соседних городах с дополнительной оплатой 50$ в сутки (на проезд и хостел)
+                <p>{{ts 'frontend.profile.work_in_other_cities_50'}}
                     <span class="tooltip-icon-small js-tooltip rel-js-tooltip-cities-cost" data-target=".js-tooltip-cities-cost"></span></p>
             </label>
             <div class="hover-tooltip js-tooltip-cities-cost" style="right:0; width: 300px;" show-tooltip yu-parent="rel-js-tooltip-cities-cost">
                 <span class="icon"></span>
-                <p>Будет повышать вашу стоимость в этих городах и понижать конкурентную востребовательность</p>
+                <p>{{ts 'frontend.profile.decrease_competitive_ability'}}</p>
             </div>
         </div>
         <div class="add">
-            <a {{action 'show_nearby_with_surcharge'}}><b>+</b> Добавить города</a>
+            <a {{action 'show_nearby_with_surcharge'}}><b>+</b> {{ts 'frontend.profile.add_cities'}}</a>
             <div class="textarea">
                 <div class="pseudo_textarea" style="min-height: 70px">
                     {{#each city in nearby_cities_with_surcharge}}
@@ -126,7 +126,7 @@
 
         <!-- Колонка -->
         <div class="col-1">
-            <p>Вид визы <span class="required">*</span></p>
+            <p>{{ts 'frontend.profile.visa_type'}} <span class="required">*</span></p>
             <div class="custom-select">
                 {{view Ember.Select
                 selection=model.visa
@@ -137,7 +137,7 @@
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1 clearfix">
-            <p>Срок годности визы <span class="required">*</span></p>
+            <p>{{ts 'frontend.profile.visa_expiration_date'}} <span class="required">*</span></p>
             {{date-picker-input controls="visa_till" valueBinding='model.birthday'}}
             {{date-picker-controls id="visa_till"}}
         </div>
@@ -147,7 +147,7 @@
             <label class="checkbox no-left clearfix">
                 {{view Ember.Checkbox checkedBinding="model.needs_job_resident_permit"}}
                 <em></em>
-                <p>Необходим job resident permit</p>
+                <p>{{ts 'frontend.profile.job_resident_permit'}}</p>
             </label>
         </div>
         <div class="height-20"></div>
@@ -156,7 +156,7 @@
 
         <!-- Колонка -->
         <div class="col-1">
-            <p>Пол</p>
+            <p>{{ts 'frontend.profile.gender'}}</p>
             <div class="custom-select">
                 {{view Ember.Select
                 selection=model.sex
@@ -167,32 +167,27 @@
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-2 last photo position-relative clearfix">
-            <div class="dropzone dropzone-photo" nv-file-drop uploader="fileUploader">Или перетащите мышкой сюда</div>
-            <p>Загрузить фото</p>
+            <div class="dropzone dropzone-photo" nv-file-drop uploader="fileUploader">{{ts 'frontend.profile.or_drag_here'}}</div>
+            <p>{{ts 'frontend.profile.upload_photo'}}</p>
             <label class="file">
                 <input type="file" class="fileupload-with-dropzone" nv-file-select uploader="fileUploader">
-                <em>Выбрать...</em>
+                <em>{{ts 'frontend.profile.choose'}}...</em>
                 <span class="tooltip-icon-small js-tooltip rel-js-tooltip-photo" data-target=".js-tooltip-photo"></span>
             </label>
             <div class="height-5"></div>
             <div class="hover-tooltip js-tooltip-photo" show-tooltip yu-parent="rel-js-tooltip-photo">
                 <span class="icon"></span>
-                <p>Будет посылаться клиенту, чтобы он вас мог узнать. Поэтому просим фото в фас и крупным планом.</p>
+                <p>{{ts 'frontend.profile.will_be_sent_to_client'}}</p>
             </div>
         </div>
         <!-- /Колонка -->
         <div class="clear"></div>
         <!-- Колонка -->
         <div class="col-2 position-relative">
-            <p>Дополнительная информация <span class="tooltip-icon-small js-tooltip rel-js-tooltip-dop" data-target=".js-tooltip-dop"></span></p>
+            <p>{{ts 'frontend.profile.additional_info'}} <span class="tooltip-icon-small js-tooltip rel-js-tooltip-dop" data-target=".js-tooltip-dop"></span></p>
             <div class="hover-tooltip js-tooltip-dop" show-tooltip yu-parent="rel-js-tooltip-dop">
                 <span class="icon"></span>
-                <p>Коротко, но содержательно. Какой Вы человек, Ваши сильные стороны, образование и предыдущий опыт работы, языки.
-                    Данная информация является крайне важной для наилучшего поиска вас в поисковых системах Интернета. Доступна
-                    клиенту. Для успешного поиска в Интернете она должна быть написана как на Вашем родном языке так и на других
-                    языках, которыми Вы владеете. По возможности чаще повторите следующие слова – name of your present city, другие
-                    города, в которых Вы можете оказывать услуги, китайский-Ваш язык; Ваш язык-китайский; интерпретатор, переводчик,
-                    интерпретация, перевод и т.д.</p>
+                <p>{{ts 'frontend.profile.additional_info_description'}}</p>
             </div>
             {{view Ember.TextArea valueBinding='model.additions' name='additions' viewName='additions' style="width: 4em;"}}
         </div>

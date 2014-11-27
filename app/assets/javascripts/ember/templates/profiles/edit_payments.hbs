@@ -9,10 +9,10 @@
 
         <!-- Колонка -->
         <div class="col-1">
-            <p>Способ оплаты</p>
+            <p>{{ts 'frontend.profile.payment_method'}}</p>
             <div class="custom-select">
                 <select ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'payments'}">
-                    <option value="" ng-if="false">Другое</option>
+                    <option value="" ng-if="false">{{ts 'frontend.profile.other'}}</option>
                 </select>
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="height-20"></div>
         <p class="big-tooltip">
             <span class="icon"></span>
-            Для предотвращения ошибок в перечислении оплаты на Ваш счет, мы рекомендуем Вам перевести на счет нашей компании 1 RMB. Сумма будет возвращена Вам при первой оплате.
+            {{ts 'frontend.profile.to_prevent_mistakes'}}
         </p>
         <div ng-include="'cabinet/profiles/translators/person-steps.html'"></div>
     </div>
