@@ -16,22 +16,23 @@
 <div class="interval active">
 <table cellpadding="0" cellspacing="0" border="0">
 
+
+<tr>
+<td></td>
+<%@order.reservation_dates.each_with_index do |date, i|%>
+    <td style="<%='display: none' if i>7 %>" >
+      <em><%=date.date.strftime '%d-%B-%Y'%></em>
+    </td>
+<%end%>
+</tr>
+<tr>
 <%@order.language_criterions.each do |lc| %>
 
-      <tr>
-        <td></td>
-        <%@order.reservation_dates.each do |date|%>
-        <td>
-          <em><%=date.date.strftime '%d-%B-%Y'%></em>
-        </td>
-        <%end%>
-      </tr>
-      <tr>
 <tr>
   <td><%=lc.language.name%> <sup>Разговорный</sup></td>
-  <%@order.reservation_dates.each do |date|%>
+  <%@order.reservation_dates.each_with_index do |date,  i|%>
 
-      <td class="active" data-cost="<%=Order::Verbal::DEFAULTCOST%>">
+      <td class="active" style="<%='display: none' if i>7 %>"  data-cost="<%=Order::Verbal::DEFAULTCOST%>">
         <em class="cost"><%=Order::Verbal::DEFAULTCOST*(1+(date.hours-8)*1.5/8)%> Eur</em>
         <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
 

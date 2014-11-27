@@ -71,7 +71,7 @@ class @Calendar
   choose_date: (date, hours)->
     @days_num += 1
     @choosen.push {date: date, hours: hours}
-    $('#real_date_inputs').append("<input name='order[reservation_dates_attributes][#{@days_num}][date]' value='#{date}'>")
+    $('#real_date_inputs').append("<input name='order[reservation_dates_attributes][#{@days_num}][date]' value='#{moment(date).format('D.M.YYYY')}'>")
     $('#real_date_inputs').append("<input name='order[reservation_dates_attributes][#{@days_num}][hours]' value='#{hours}'>")
 
   unchoose_date: (date)->

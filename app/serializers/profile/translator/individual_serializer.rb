@@ -4,14 +4,13 @@ class Profile::Translator::IndividualSerializer < Profile::Translator::BaseSeria
              :profile_language_id, :email, :additional_email,
              :phone, :additional_phone, :qq, :wechat, :skype, :needs_job_resident_permit
 
-  #TODO: get it back!!!
-  # has_many :services
+  has_many :services
   has_many :educations
+
   has_many :nearby_city
   has_many :directions
   has_many :nearby_city
   has_many :nearby_city_with_surcharge
-  has_one :native_language
 
   def city_id
     object.city.try(:id).to_s
