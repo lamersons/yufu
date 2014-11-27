@@ -1,8 +1,12 @@
 class @RegForm
   constructor: ->
+    $('#new_user').bind 'ajax:beforeSend', @disable_submit_btn
     $('#new_user').bind 'ajax:success', @form_success
     $('#new_user').bind 'ajax:error', @form_error
     $('.block.second .item').click @set_user_type
+
+  disable_submit_btn: ->
+    $('#main_register_submit').prop 'disabled', true
 
   form_success: (data1, data2)->
     $('.check .message').fadeOut('fast')
@@ -21,7 +25,8 @@ class @RegForm
       $('.error.message').append(I18n.t('main.email_should_not_be_blank'))
     if (error.indexOf('invalid') > -1)
       $('.error.message').append(I18n.t('main.wrong_format_of_email'))
-    $('.error.message').fadeIn(500)
+    $('.error.message').fadeIn('fast')
+    $('#main_register_submit').attr('disabled', false)
     return false
 
   first_show = true
@@ -42,5 +47,3 @@ class @RegForm
       $('.after-input-text').hide()
       $('.reg-form input#user_email').attr('readonly', false)
       $('#main_register_submit').removeAttr('disabled')
-
-
