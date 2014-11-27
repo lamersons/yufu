@@ -35,12 +35,11 @@ Yufu.Profile = DS.Model.extend Yufu.FormattedTimestampMixin,
   years_in_china: DS.attr 'number'
 
   # Relations
-  city: DS.belongsTo 'city', async: true
-  native_language: DS.belongsTo 'language', async: true
+  city:             DS.belongsTo 'city', async: true
+  native_language:  DS.belongsTo 'language', async: true
   profile_language: DS.belongsTo 'language', async: true
-  services: DS.hasMany 'service', {embedded: 'always'}
-  nearby_cities: DS.hasMany 'city', {async: true}
+  services:         DS.hasMany 'service', embedded: 'always'
+  nearby_cities:    DS.hasMany 'city', {async: true}
+  orders:           DS.hasMany 'order', {async: true, polymorphic: true}
+  applications:     DS.hasMany 'order_application', async: true
   nearby_cities_with_surcharge: DS.hasMany 'city', {async: true}
-  orders: DS.hasMany('order', {async: true, polymorphic: true})
-
-  applications: DS.hasMany 'order_application', async: true
