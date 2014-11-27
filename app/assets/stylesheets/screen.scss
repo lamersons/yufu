@@ -87,6 +87,9 @@ DIV.container {
   width: $grid-container-width;
   margin-left: auto;
   margin-right: auto;
+  &.right-cont{
+    padding-left: 340px;
+  }
 }
 
 //Верхняя навигация

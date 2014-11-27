@@ -3,7 +3,7 @@ module Order
     include Mongoid::Document
     LEVELS = [1, 2, 3]
 
-    field :level, type: Integer
+    field :level
     field :cost,  type: Float
     belongs_to :language
 

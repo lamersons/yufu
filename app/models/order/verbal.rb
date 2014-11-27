@@ -26,5 +26,11 @@ module Order
     delegate :name, to: :location, prefix: true, allow_nil: true
     #validates :goals, inclusion: GOALS
 
+    def sum
+      reservation_dates.inject(0.0) do |sum, elem|
+        sum += Order::Verbal::DEFAULTCOST*(1+(elem.hours-8)*1.5/8)
+      end
+    end
+
   end
 end

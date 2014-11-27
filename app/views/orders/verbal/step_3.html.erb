@@ -212,10 +212,14 @@
 <div class="clear height-20"></div>
 <p class="title">Подробности заказа – № 23s548</p>
 <div class="bordered-block points">
-  <p class="point"><span class="bold number">1.</span> Ср. 3 сент. 2014 г., г. Шанхай, устный перевод, английский, уровень - Разговорный (Гид), 8 часов = <span class="semi-bold">115 Eur</span></p>
-  <p class="point"><span class="bold number">2.</span> Чт. 4 сент. 2014 г., г. Шанхай, устный перевод, французский, уровень - Разговорный (Гид), 8 часов = <span class="semi-bold">150 Eur</span></p>
+
+  <% @order.reservation_dates.each_with_index do |date, i|%>
+      <p class="point"><span class="bold number"><%=i%>.</span> <%=date.date.strftime '%a'%>. <%=date.date.mday%>
+        <%date.date.strftime '%m'%> <%=date.date.year%> <%=ts(:y)%>., <%=ts(:in)%>. <%=@order.location.name%>, <%=ts(:interpretation)%>,
+        <%=@order.language_criterions.last.language.name%>, <%=ts(:level)%> - <%=ts("level_#{@order.language_criterions.last.level}")%>, <%=date.hours%> <%=ts(:hours)%> = <span class="semi-bold"><%=Order::Verbal::DEFAULTCOST*(1+(date.hours-8)*1.5/8)%> Eur</span></p>
+  <%end%>
   <div class="line"></div>
-  <p class="pink-bright bold">Сумма к оплате: 285 Eur</p>
+  <p class="pink-bright bold"><%=ts(:total)%>: <%=@order.sum%> Eur</p>
 </div>
 <div class="height-10"></div>
 <label class="checkbox clearfix">
