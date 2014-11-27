@@ -210,7 +210,7 @@
 </div>
 <!-- /Колонка -->
 <div class="clear height-20"></div>
-<p class="title">Подробности заказа – № 23s548</p>
+<p class="title"><%=ts(:order_details)%> – № <%=@order.id%></p>
 <div class="bordered-block points">
 
   <% @order.reservation_dates.each_with_index do |date, i|%>

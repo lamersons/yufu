@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     order_params = [
         {client_info_attributes: [:first_name, :last_name, :birthday, :company, :country]},
         {airport_pick_up_attributes: [:need_car, :double_way, :flight_number, :airport, :arriving_date]},
-        {car_rent_attributes: [:duration, {car: [:name, :cost]}]},
+        {car_rent_attributes: [:duration, :car_id]},
         {hotel_attributes: [:greeted_at, :info, :additional_info]},
         :_type
     ]
