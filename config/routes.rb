@@ -31,4 +31,6 @@ Yufu::Application.routes.draw do
     end
   end
 
+  resources :orders, only: [:new, :create, :edit, :update]
+
 end

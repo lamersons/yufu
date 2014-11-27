@@ -4,7 +4,6 @@ class Direction
   LEVELS = %w(norm nenorm)
 
   field :name, localize: true
-  field :level
 
   validates :name, uniqueness: true, presence: true
 end

@@ -19,19 +19,26 @@ Yufu.OrdersController = Ember.ArrayController.extend({
 
 
   currentRoute: (->
-    this.get('controllers.application.currentRouteName');
+    @get('controllers.application.currentRouteName')
   ).property()
 
   actions: {
     assign_as: (order, status) ->
-      record = @store.createRecord 'order_application', {
-        order: order
-        status: status
-        profile_id: this.currentUser.get('translator_profile_id')
-      }
-      record.save().then ->
-        order.reload()
-        order.set 'application_status', status
+      profile_id = @get('controllers.application.currentUser').get('translator_profile_id')
+      record = @store.find('order_application', {profile_id: profile_id, order_id_eq: order.id}).then (items) ->
+        record = items.get('firstObject')
+        if record == null
+          record = @store.createRecord 'order_application', {
+            order: order
+            status: status
+            profile_id: profile_id
+          }
+        else
+          record.set 'status', status
+          record.set 'profile_id', profile_id
+        record.save().then ->
+          order.reload()
+          order.set 'application_status', status
   }
 })
 
