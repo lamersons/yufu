@@ -1,6 +1,12 @@
 class @ConfirmCalendar
+
+  first_date: null
+
   constructor: ->
     $('body').click @show_hide_dropdown
+    @first_date = $('td.date-cont').first()
+    $('.arrow.right').click @next_week
+    $('.arrow.left').click @prev_week
     return
   show_hide_dropdown: (object)=>
     if $(object.target).is('.dropdown-icon')
@@ -44,6 +50,43 @@ class @ConfirmCalendar
     $('.bordered-block p').html cost_str
     return
 
-
+  next_week: =>
+    if @first_date.next().is('.date-cont')
+      $('td.date-cont').fadeOut(500)
+      $('td.active').fadeOut(500)
+      date = @first_date
+      for i in [1..7]
+        date = $(date).next()
+      @first_date = date
+      @rerender()
     return
+
+  prev_week: =>
+    if @first_date.prev().is('.date-cont')
+      $('td.date-cont').fadeOut(500)
+      $('td.active').fadeOut(500)
+      date = @first_date
+      for i in [1..7]
+        date = $(date).prev()
+      if date.length > 0
+        @first_date = date
+        @rerender()
+      return
+
+  rerender: ->
+    date = @first_date
+    for i in [1..7]
+      if date.length > 0
+        $(date).fadeIn(500)
+        klass = ".date_#{$(date).data('num')}"
+        $(klass).fadeIn(500)
+        if $(klass).length == 0
+          $('.empty').fadeIn(500)
+        date = $(date).next()
+      else
+        $('tr').append('<td class="active empty"></td>')
+
+
+
+
 
