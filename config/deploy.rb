@@ -48,7 +48,7 @@ set :shared_assets, %w{uploads}
 
 namespace :i18n do
   task :export2js do
-    rake 'i18n:js:export'
+    run("cd #{deploy_to}/current && bundle exec rake i18n:js:export RAILS_ENV=production")
   end
 end
 
