@@ -66,8 +66,10 @@ module Api
         @profile = current_user.profiles.find(params[:id])
         unless params[:profile][:_type] == @profile._type || @profile._type != 'Profile::Translator::Base'
           @profile.update_attribute :_type, params[:profile][:_type]
+          @profile = Profile::Base.find @profile.id
         end
       end
+
     end
   end
 end

@@ -41,12 +41,18 @@ after 'deploy:update', 'deploy:cleanup'
 after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'   # app preloaded
 after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
+after 'deploy', 'i18n:export2js'
 
 
 set :shared_assets, %w{uploads}
 
-# Далее идут правила для перезапуска unicorn. Их стоит просто принять на веру - они работают.
-# В случае с Rails 3 приложениями стоит заменять bundle exec unicorn_rails на bundle exec unicorn
+namespace :i18n do
+  task :export2js do
+    run("cd #{deploy_to}/current && bundle exec rake i18n:js:export RAILS_ENV=production")
+  end
+end
+
+
 namespace :deploy do
 
   task :init_vhost do
