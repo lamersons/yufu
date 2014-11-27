@@ -6,20 +6,20 @@
         <div ng-include="'cabinet/profiles/translators/person-tabs.html'"></div>
         <!-- Колонка -->
         <div class="col-1">
-            <p>Основной email</p>
+            <p>{{ts 'frontend.profile.main_email'}}</p>
             {{view Ember.TextField valueBinding='model.email' name='email' viewName='email' style="width: 4em;"}}
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1">
-            <p>Дополнительный e-mail адрес</p>
+            <p>{{ts 'frontend.profile.second_email'}}</p>
             {{view Ember.TextField valueBinding='model.additional_email' name='additional_email' viewName='additional_email' style="width: 4em;"}}
         </div>
         <!-- /Колонка -->
         <div class="clear"></div>
         <!-- Колонка -->
         <div class="col-1">
-            <p>Номер QQ <span class="required">*</span><span class="help-text">(для онлайн интервью)</span></p>
+            <p>{{ts 'frontend.profile.qq_number'}}<span class="required">*</span><span class="help-text">({{ts 'frontend.profile.for_online_interview'}})</span></p>
             {{view Ember.TextField valueBinding='model.qq' name='additional_email' viewName='qq' style="width: 4em;"}}
         </div>
         <!-- /Колонка -->
@@ -31,20 +31,20 @@
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1 last">
-            <p>Skype <span class="required">*</span><span class="help-text">(для онлайн интервью)</span></p>
+            <p>Skype <span class="required">*</span><span class="help-text">({{ts 'frontend.profile.for_online_interview'}})</span></p>
             {{view Ember.TextField valueBinding='model.skype' name='skype' viewName='skype' style="width: 4em;"}}
         </div>
         <!-- /Колонка -->
         <div class="clear"></div>
         <!-- Колонка -->
         <div class="col-1">
-            <p>Телефонный номер <span class="required">*</span><span class="help-text">(для онлайн интервью)</span></p>
+            <p>{{ts 'frontend.profile.phone_number'}} <span class="required">*</span><span class="help-text">({{ts 'frontend.profile.for_online_interview'}})</span></p>
             {{view Ember.TextField valueBinding='model.phone' name='phone' viewName='phone' style="width: 4em;"}}
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1">
-            <p>Дополнительный Телефонный номер</p>
+            <p>{{ts 'frontend.profile.second_phone_number'}}</p>
             {{view Ember.TextField valueBinding='model.additional_phone' name='additional_phone' viewName='additional_phone' style="width: 4em;"}}
         </div>
         <!-- /Колонка -->

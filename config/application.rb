@@ -32,7 +32,7 @@ module Yufu
     config.i18n.locale = locale
 
 
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths +=  Dir["#{config.root}/lib/**/"]
 
     ActionMailer::Base.default from: 'Yufu <noreply.yufu@gmail.com>'
 
