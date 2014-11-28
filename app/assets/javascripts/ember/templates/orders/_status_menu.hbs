@@ -1,14 +1,14 @@
 <div class="orders clearfix">
   {{#link-to this.currentRoute (query-params scope='close')}}
-      Завершенные
+    {{ts 'frontend.orders.scopes.closed'}}
   {{/link-to}}
   {{#link-to this.currentRoute (query-params scope='reject')}}
-      Отклоненные
+    {{ts 'frontend.orders.scopes.rejected'}}
   {{/link-to}}
   {{#link-to this.currentRoute (query-params scope='in_progress')}}
-      Текущие
+    {{ts 'frontend.orders.scopes.in_progress'}}
   {{/link-to}}
   {{#link-to this.currentRoute (query-params scope='open')}}
-      Новые
+    {{ts 'frontend.orders.scopes.new'}}
   {{/link-to}}
 </div>

@@ -222,7 +222,7 @@
       = f.email_field :email, class: 'email', :readonly => true, placeholder: I18n.t('main.your_email')
       p.after-input-text
         = t('main.before_registration')
-      .tooltip-wrap
+      .tooltip-wrap(.*?)
         .tooltip.clearfix
           span
           p
@@ -236,6 +236,5 @@
         .message.error
 
 coffee:
-  console.log I18n.t 'hello'
   new RegForm()
   new Accordion()
