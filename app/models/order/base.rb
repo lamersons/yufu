@@ -4,8 +4,12 @@ module Order
     include Mongoid::Timestamps
 
     SCOPES = %w(open in_progress close)
+    PAY_WAYS = %w(card bank alipay)
 
     field :step, type: Integer, default: 1
+    field :pay_way
+
+    validates :pay_way, inclusion: PAY_WAYS
 
     belongs_to :client_info, class_name: 'Order::ClientInfo'
     belongs_to :owner,       class_name: 'Profile::Base'

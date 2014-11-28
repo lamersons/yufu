@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = order_params[:_type].constantize.create
-    redirect_to edit_order_path(@order)
+    redirect_to edit_order_path(@order.id)
   end
 
   def edit

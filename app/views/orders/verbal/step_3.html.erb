@@ -1,5 +1,5 @@
 <!-- Раздел с формой -->
-<%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-3"} do |f| %>
+<%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form payment step-3"} do |f| %>
     <%= f.hidden_field :_type%>
 <!-- Контейнер -->
 <div class="container clearfix">
@@ -187,7 +187,7 @@
   <span class="icon"></span>
   <div class="height-5"></div>
   <label class="checkbox clearfix">
-    <input type="checkbox" value="paymentcard" ng-model="order.paymentMethod">
+    <%=f.radio_button :pay_way, Order::Base::PAY_WAYS[0]%>
     <em></em>
     <p>Платежная карта</p>
   </label>
@@ -199,7 +199,7 @@
   <span class="icon"></span>
   <div class="height-5"></div>
   <label class="checkbox clearfix">
-    <input type="checkbox" value="banktransfer" ng-model="order.paymentMethod">
+    <%=f.radio_button :pay_way, Order::Base::PAY_WAYS[1]%>
     <em></em>
     <p>Банковский перевод</p>
   </label>
@@ -210,7 +210,7 @@
   <span class="icon"></span>
   <div class="height-5"></div>
   <label class="checkbox clearfix">
-    <input type="checkbox" value="alipay" ng-model="order.paymentMethod">
+    <%=f.radio_button :pay_way, Order::Base::PAY_WAYS[2]%>
     <em></em>
     <p>alipay.com <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-al"></span></p>
   </label>
