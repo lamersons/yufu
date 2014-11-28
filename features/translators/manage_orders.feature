@@ -1,7 +1,7 @@
 Feature: Manage orders
 
   Background:
-    Given a translator with email: "translator@example.com", and password: "password"
+    Given an individual translator with email: "translator@example.com", and password: "password"
       And a client with email: "client@example.com", and password: "password"
       And I signed in as user with email "translator@example.com"
 
@@ -14,13 +14,14 @@ Feature: Manage orders
     Then An application for order from client "client@example.com" assigned to "translator@example.com" should be created
     And The order from client "client@example.com" should have state "in_progress"
 
+  @javascript
   Scenario: Assign as secondary
-    Given a new verbal order from client "client@example.com" with status: "paid"
+    Given a new verbal order from client "client@example.com" with state: "wait_application"
     When I go to "/user"
-    And I click to "my_orders"
-    And I click to "create_secondary_application"
+    And I select orders
+    And I set order as secondary
     Then An application for order from client "client@example.com" assigned to "translator@example.com" should be created
-    But The order from client "client@example.com" should not have status "in_progress"
+    And The order from client "client@example.com" should have state "wait_application"
 
 
 
