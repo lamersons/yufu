@@ -16,6 +16,9 @@ Yufu.Router.map ()->
         @route 'show', {path: '/:id'}
       @resource 'written'
       @resource 'expert'
+
+    @resource 'partners_clients'
+
   @route 'agent', ->
     @resource 'vassals'
     @resource 'banners', ->

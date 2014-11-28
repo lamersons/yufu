@@ -25,6 +25,10 @@ ru:
     attributes:
       created_at: Создан
       updated_at: Обнавлен
+      first_name: Имя
+      last_name: Фамилия
+      middle_name: Отчество
+
       order/base:
         id: № Заказа
         cost: Стоимость
@@ -41,3 +45,5 @@ ru:
         src: Код для вставки
         name: Имя
 
+      partners_client:
+        orders_count: Кол-во заказов

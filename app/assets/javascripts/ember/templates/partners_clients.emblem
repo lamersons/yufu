@@ -1,0 +1,25 @@
+= partial 'partners_clients/form'
+
+.table-container
+  table
+    thead
+      tr
+        th
+          = ts 'mongoid.attributes.first_name'
+        th
+          = ts 'mongoid.attributes.last_name'
+        th
+          = ts 'mongoid.attributes.middle_name'
+        th
+          = ts 'mongoid.attributes.partners_client.orders_count'
+    tbody
+      = each
+        tr
+          td
+            = first_name
+          td
+            = last_name
+          td
+            = middle_name
+          td
+            = orders_count
