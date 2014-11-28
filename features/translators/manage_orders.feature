@@ -23,29 +23,21 @@ Feature: Manage orders
     Then An application for order from client "client@example.com" assigned to "translator@example.com" should be created
     And The order from client "client@example.com" should have state "wait_application"
 
-
-
-  Scenario: Show new orders
-    Given a new verbal order from client "client@example.com" with status: "paid"
-    When I go to "/user"
-    And I click to "my_orders"
-    Then I should see "1" order
-
-
+  @javascript
   Scenario: Show in_progress orders
-    Given a new verbal order from client "client@example.com" with status: "paid"
-      And a new verbal order from client "client@example.com" with status: "in_progrss", assignee_to "translator@example.com"
+    Given a new verbal order from client "client@example.com" with state: "wait_application"
+      And a new assigned verbal order from client "client@example.com" with state: "in_progress", assignee_to "translator@example.com"
     When I go to "/user"
-     And I click to "my_orders"
-     And I click to "in_progress_orders"
+     And I select orders
+     And I select "in_progress" scope
     Then I should see "1" order
 
-  Scenario: Show closed orders
-    Given a new verbal order from client "client@example.com" with status: "paid"
-    And a new verbal order from client "client@example.com" with status: "closed", assignee_to "translator@example.com"
+  @javascript
+  Scenario: Show in_progress orders
+    Given a new verbal order from client "client@example.com" with state: "wait_application"
+    And a new assigned verbal order from client "client@example.com" with state: "close", assignee_to "translator@example.com"
     When I go to "/user"
-    And I click to "my_orders"
-    And I click to "closed_orders"
+    And I select orders
+    And I select "closed" scope
     Then I should see "1" order
-
 

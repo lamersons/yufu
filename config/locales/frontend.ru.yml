@@ -2,6 +2,11 @@ ru:
   frontend:
     orders:
       available_as: Доступен как
+      scopes:
+        new: Новые
+        in_progress: Текущие
+        rejected: Откланенные
+        closed: Завершенные
     order_application:
       statuses:
         primary: Основной
