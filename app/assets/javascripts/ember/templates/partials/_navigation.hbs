@@ -13,8 +13,8 @@
       <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.agent'}}<span class="caret"></span></span>
     {{/link-to}}
     {{#if currentUser.is_partner}}
-      {{#link-to "client_infos.index" this.currentUser.partner_profile_id tagName="a" class="item" }}
-        <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.client_infos'}}<span class="caret"></span></span>
+      {{#link-to "partners_clients" this.currentUser.partner_profile_id tagName="a" class="item" }}
+        <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.partners_clients'}}<span class="caret"></span></span>
       {{/link-to}}
     {{/if}}
     {{#if currentUser.is_translator}}

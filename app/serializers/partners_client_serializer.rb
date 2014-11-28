@@ -5,4 +5,5 @@ class PartnersClientSerializer < ActiveModel::Serializer
   def orders_count
     object.orders.count
   end
+
 end

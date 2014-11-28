@@ -1,0 +1,15 @@
+form#new_partners_client
+  .error style='display:none'
+    | error
+  label
+    = ts 'mongoid.attributes.first_name'
+  = view Ember.TextField valueBinding='first_name' name='first_name' viewName='first_name'
+  label
+    = ts 'mongoid.attributes.last_name'
+  = view Ember.TextField valueBinding='last_name' name='last_name' viewName='last_name'
+  label
+    = ts 'mongoid.attributes.middle_name'
+  = view Ember.TextField valueBinding='middle_name' name='middle_name' viewName='middle_name'
+
+  button.pink#submit{action 'create'}
+    = ts 'create'
