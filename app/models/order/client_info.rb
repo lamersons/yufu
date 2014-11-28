@@ -9,6 +9,6 @@ module Order
     field :country
 
     belongs_to :profile_partner, class_name: 'Profile::Partner', inverse_of: 'clients'
-    belongs_to :order, class_name: 'Order::Base'
+    has_many :order, class_name: 'Order::Base'
   end
 end
