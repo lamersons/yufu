@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def after_sign_in_path_for(resource)
-    resource.need_change_password? ? edit_user_path : super
+    unless session[:back_to_order].nil?
+      session[:back_to_order]
+    else
+      resource.need_change_password? ? edit_user_path : super
+    end
   end
 
   def authenticate_and_authorize_i18n!

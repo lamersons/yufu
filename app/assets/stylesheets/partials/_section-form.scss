@@ -10,6 +10,12 @@
 		}
 	}//DIV.col-1
 
+  DIV.col-3 {
+    display: block;
+    float: none;
+    clear: both;
+  }
+
     DIV.col-05 {
       @include grid-col-half;
       min-height: 2px;
@@ -428,6 +434,9 @@
 
 //Кастомный селект. Не хочет работать, если его засовывать по-человечески в иерархию. Пришлось выдернуть
 .custom-select {
+    &.inline{
+      display: inline-block;
+    }
 	position: relative;
 	z-index: 1;
 	background-color: #ededed;

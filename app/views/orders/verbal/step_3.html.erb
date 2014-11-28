@@ -151,19 +151,30 @@
   <!-- /Тригер -->
   <!-- Вкладка -->
   <div style="display: none" class="tab position-relative">
-    <div class="custom-select greeting">
-      <select>
-        <option>пункт 1</option>
-        <option>пункт 2</option>
-      </select>
+    <%=f.fields_for :hotel_attributes do |hg|%>
+    <div class="col-3">
+        <div class="height-10"></div>
+        <span><%=ts(:hope_to_be_greeted)%></span>
+        <div class="custom-select three-in-one inline">
+          <%=hg.time_select :greeted_at%>
+        </div>
+        <span><span class="greeting-interval"></span> on 2015-07-28 [ China Time ]</span>
     </div>
-    <div class="height-10"></div>
-    <p>I hope to be greeted at my hotel lobby at <span class="greeting-interval"></span> on 2015-07-28 [ China Time ]</p>
-    <label class="checkbox no-left clearfix">
-      <input type="checkbox" value="0" ng-model="order.haveAHotel">
-      <em></em>
-      <p>I have not yet booked a Hotel!</p>
-    </label>
+    <div class="col-1">
+      <span><%=ts(:info)%></span>
+      <%=hg.text_field :info%>
+    </div>
+    <div class="col-2 last">
+      <span><%=ts(:additional_info)%></span>
+      <%=hg.text_field :additional_info%></div>
+    <div class="col-3">
+        <label class="checkbox no-left clearfix">
+          <%=hg.check_box :have_not_booked_yet%>
+          <em></em>
+          <p>I have not yet booked a Hotel!</p>
+        </label>
+    </div>
+    <%end%>
   </div>
   <!-- /Вкладка -->
 </div>
