@@ -9,8 +9,6 @@ module Order
     field :step, type: Integer, default: 1
     field :pay_way
 
-    validates :pay_way, inclusion: PAY_WAYS
-
     embeds_one :client_info,     class_name: 'Order::ClientInfo'
     belongs_to :owner,           class_name: 'Profile::Base'
     belongs_to :assignee,        class_name: 'Profile::Translator::Base'

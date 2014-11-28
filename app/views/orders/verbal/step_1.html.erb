@@ -161,7 +161,7 @@
     <%end%>
     <% @directions.each do |d|%>
     <label class="checkbox clearfix">
-      <input type="checkbox" name="order[direction_ids][]" value="<%=d.id%>" checked="<%'checked' if @order.direction_ids.include? d.id%>" >
+      <input type="checkbox" name="order[direction_ids][]" value="<%=d.id%>" <%'checked' if @order.direction_ids.include? d.id%> >
       <em></em>
 
       <p><%=d.name%></p>

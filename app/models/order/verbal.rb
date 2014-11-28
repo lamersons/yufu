@@ -24,7 +24,6 @@ module Order
     has_and_belongs_to_many :directions
 
     delegate :name, to: :location, prefix: true, allow_nil: true
-    #validates :goals, inclusion: GOALS
 
     def sum
       reservation_dates.inject(0.0) do |sum, elem|
