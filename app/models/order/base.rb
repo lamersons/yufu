@@ -7,7 +7,7 @@ module Order
 
     field :step, type: Integer, default: 1
 
-    belongs_to :client_info, class_name: 'Order::ClientInfo'
+    embeds_one :client_info, class_name: 'Order::ClientInfo'
     belongs_to :owner,       class_name: 'Profile::Base'
     belongs_to :assignee,    class_name: 'Profile::Translator::Base'
 
