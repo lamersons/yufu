@@ -92,7 +92,7 @@
     <p>{{ts 'frontend.profile.translation_language'}}</p>
     <div class="custom-select disabled">
         {{view Ember.Select
-        selection=model.services_attributes
+        selection=new_service.language
         prompt='-'
         content=languages
         optionLabelPath='content.name'
@@ -107,9 +107,12 @@
 <div class="col-1 last position-relative">
     <p>{{ts 'frontend.profile.has_hsk'}}</p>
     <div class="custom-select">
-        <select ng-model="profile.hskConfirmed" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'yes_no'}">
-            <option value="" ng-if="false"></option>
-        </select>
+        {{view Ember.Select
+        selection=new_service.has_hsk
+        prompt='-'
+        content=yesno
+        optionLabelPath='content'
+        optionValuePath=truefalse}}
     </div>
 </div>
 <!-- /Колонка -->
@@ -118,9 +121,10 @@
 <div class="col-1">
     <p>{{ts 'frontend.profile.language_level'}}</p>
     <div class="custom-select">
-        <select ng-model="profile.chineseLanguageLevel" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'language_levels'}">
-            <option value="" ng-if="false"></option>
-        </select>
+    {{view Ember.Select
+    selection=new_service.level
+    prompt='-'
+    content=lang_levels}}
     </div>
 </div>
 <!-- /Колонка -->
@@ -144,7 +148,7 @@
         <span class="icon"></span>
         <p>{{ts 'frontend.profile.desired_pay_reasoning'}}</p>
     </div>
-    <input type="text" ng-model="profile.chineseLanguagePrice">
+    {{view Ember.TextField valueBinding='new_service.verbal_price' name='verbal_price' viewName='verbal_price' style="width: 4em;"}}
 </div>
 <!-- /Колонка -->
 <div class="clear"></div>
@@ -182,7 +186,7 @@
         <span class="icon"></span>
         <p>{{ts 'frontend.profile.desired_pay_reasoning'}}</p>
     </div>
-    <input type="text">
+    {{view Ember.TextField valueBinding='new_service.written_price' name='written_price' viewName='written_price' style="width: 4em;"}}
 </div>
 <!-- /Колонка -->
 <div class="clear"></div>

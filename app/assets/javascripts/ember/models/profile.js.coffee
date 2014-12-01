@@ -32,14 +32,15 @@ Yufu.Profile = DS.Model.extend Yufu.FormattedTimestampMixin,
 #  services: has many
   updated_at: DS.attr 'date'
   visa: DS.attr 'string'
+  visa_till: DS.attr 'date'
   years_in_china: DS.attr 'number'
 
   # Relations
   city:             DS.belongsTo 'city', async: true
   native_language:  DS.belongsTo 'language', async: true
   profile_language: DS.belongsTo 'language', async: true
-  services:         DS.hasMany 'service', embedded: 'always'
+  services_attributes:         DS.hasMany 'service', embedded: 'always'
   nearby_cities:    DS.hasMany 'city', {async: true}
   orders:           DS.hasMany 'order', {async: true, polymorphic: true}
   applications:     DS.hasMany 'order_application', async: true
-  nearby_cities_with_surcharge: DS.hasMany 'city', {async: true}
+  nearby_city_with_surcharge: DS.hasMany 'city', {async: true}
