@@ -47,8 +47,9 @@ module Api
         when 'Profile::Client'
           params.require(:profile).permit :company_name, :company_uid, :country
         when 'Profile::Translator::Company'
-          params.require(:profile).permit :additional_email, :qq, :skype,  :name, :company_uid, :years_in_business,
-                                          :location, :service_phone, employees_attributes: [:sex, :age, :direction_id]
+          params.require(:profile).permit :email, :additional_email, :qq, :skype,  :name, :company_uid, :years_in_business,
+                                          :location, :service_phone, :phone, :contacts_person, :address,
+                                          employees_attributes: [:sex, :age, :direction_id]
         when 'Profile::Translator::Individual'
           params.require(:profile).permit :first_name, :last_name, :passport_till, :passport_num, :passport_country,
                                           :additional_email, :additional_phone, :phone, :qq, :skype, :wechat, :email, :additions, :sex, :visa,

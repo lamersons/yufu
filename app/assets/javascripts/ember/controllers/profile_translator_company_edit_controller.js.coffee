@@ -19,7 +19,7 @@ Yufu.ProfileTranslatorCompanyEditController = Ember.Controller.extend({
   ).property('step')
 
   isBackEnable: (->
-    @get('step') > 1
+    @get('step') > 0
   ).property('step')
 
   actions: {

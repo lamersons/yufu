@@ -2,7 +2,6 @@ Yufu.ProfileAdapter = Yufu.ApplicationAdapter.extend
   pathForType: (type) ->
     'profiles'
 
-
 Yufu.Profile = DS.Model.extend Yufu.FormattedTimestampMixin,
   _type:            DS.attr 'string'
   type:             DS.attr 'string'

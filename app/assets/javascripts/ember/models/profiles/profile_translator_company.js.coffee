@@ -9,5 +9,6 @@ Yufu.ProfileTranslatorCompany = Yufu.Profile.extend
   years_in_business: DS.attr 'number'
   service_phone:     DS.attr 'string'
   contacts_person:   DS.attr 'string'
+  additional_email:  DS.attr 'string'
   skype:             DS.attr 'string'
   qq:                DS.attr 'string'

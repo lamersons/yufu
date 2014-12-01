@@ -8,9 +8,15 @@
   </div>
 
   <div class="col-1 clearfix circles">
-    <span>1</span>
-    <span>2</span>
-    <span>3</span>
+    {{#link-to 'profile_translator_company.edit' this (query-params step=0)}}
+      <span>1</span>
+    {{/link-to}}
+    {{#link-to 'profile_translator_company.edit' this (query-params step=1)}}
+      <span>2</span>
+    {{/link-to}}
+    {{#link-to 'profile_translator_company.edit' this (query-params step=2)}}
+      <span>3</span>
+    {{/link-to}}
   </div>
   <div class="col-1 button last">
     {{#if isNextEnable}}
