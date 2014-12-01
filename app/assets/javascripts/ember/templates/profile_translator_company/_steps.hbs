@@ -1,0 +1,23 @@
+<div class="clear"></div>
+<div class="height-20"></div>
+<div class="steps clearfix">
+  <div class="col-1">
+    {{#if isBackEnable}}
+      <button type="button" class="button" {{action 'update' this back_step}}>Назад</button>
+    {{/if}}
+  </div>
+
+  <div class="col-1 clearfix circles">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+  </div>
+  <div class="col-1 button last">
+    {{#if isNextEnable}}
+      <button type="submit" {{action 'update' this next_step}}>Продолжить</button>
+    {{/if}}
+  </div>
+
+
+</div>
+<div class="height-30"></div>

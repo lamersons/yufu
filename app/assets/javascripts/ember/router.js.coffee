@@ -10,6 +10,8 @@ Yufu.Router.map ()->
     @route 'show', {path: '/:id'}
   @resource 'profiles', ->
     @route 'edit', {path: '/:id/edit'}
+  @resource 'profile_translator_company', ->
+    @route 'edit', {path: '/:id/edit'}
   @resource 'profile', {path: '/profile/:id'}, ->
     @resource 'orders', ->
       @resource 'verbal', ->

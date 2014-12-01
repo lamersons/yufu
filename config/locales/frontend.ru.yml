@@ -28,6 +28,9 @@ ru:
       partners_clients: Мои клиенты
 
     profile:
+      translator_company:
+        title: Анкета профиля компании
+      online_checking: online checking
       continue: Продолжить
       language: Язык
       personal_data: Личные данные

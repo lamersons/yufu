@@ -21,6 +21,22 @@ ru:
         few:   Локальных Эксперта
         many:  Локальных Экспертов
         other: Локальные Эксперты
+      profile/base:
+        one: Профиль
+        few: Профиля
+        many: Профилей
+        other: Профили
+      profile/translator/base:
+        one: Переводчик
+        few: Переводчика
+        many: Переводчиков
+        other: Переводчики
+      profile/translator/company:
+        one: Компания-переводчик
+        few: Компании-переводчика
+        many: Компаний-переводчиков
+        other: Компании-переводчики
+
 
     attributes:
       created_at: Создан
@@ -28,6 +44,12 @@ ru:
       first_name: Имя
       last_name: Фамилия
       middle_name: Отчество
+
+      banner:
+        width: Ширина
+        height: Высота
+        src: Код для вставки
+        name: Имя
 
       order/base:
         id: № Заказа
@@ -38,12 +60,20 @@ ru:
         language_criterions: Языки
         reservation_dates: Даты
         days: Дней
-
-      banner:
-        width: Ширина
-        height: Высота
-        src: Код для вставки
-        name: Имя
-
       partners_client:
         orders_count: Кол-во заказов
+      profile/translator/base:
+        phone: Телефон
+        skype: Skype
+        qq: номер QQ
+      profile/translator/company:
+        contacts_person: Имя Фамилия (контактное лицо)
+        company_uid: Регистрационный номер
+        name: Название компании
+        email: Email
+        additional_email: Дополнительный e-mail адрес
+        location: Город
+        address: Адрес
+        years_in_business: Сколько лет в бизнесе
+        service_phone: Сервисный мобильный телефонный номер
+
