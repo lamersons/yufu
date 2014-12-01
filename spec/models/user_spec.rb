@@ -8,7 +8,7 @@ RSpec.describe User, :type => :model do
       it {should be_truthy}
     end
     context 'user has profile translator company' do
-      let(:user) {create :user, profiles: [build(:profile_translator_company)]}
+      let(:user) {create :user, profiles: [build(:translator_company)]}
       it {should be_truthy}
     end
     context 'user has not profile translator' do

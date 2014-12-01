@@ -1,6 +1,6 @@
 # For more information see: http://emberjs.com/guides/routing/
 
-Yufu.ProfileTranslatorCompanyEditRoute = Ember.Route.extend({
+Yufu.TranslatorCompanyEditRoute = Ember.Route.extend({
 
   lock: true
   steps: ['0', '1', '2']
@@ -27,7 +27,7 @@ Yufu.ProfileTranslatorCompanyEditRoute = Ember.Route.extend({
 
   render_template: (step)->
     @render()
-    @render "profile_translator_company/edit_#{step}", {into: 'profile_translator_company/edit'}
+    @render "translator_company/edit_#{step}", {into: 'translator_company/edit'}
 
   setupController: (controller, model) ->
     controller.set 'model', model

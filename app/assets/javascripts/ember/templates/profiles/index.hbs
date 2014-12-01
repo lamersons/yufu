@@ -6,12 +6,12 @@
 
 {{#if translatorCompany}}
     <span>{{translatorCompany._type}} </span>
-    {{#link-to 'profile_translator_company.edit' translatorCompany}}{{ts 'frontend.profile.edit'}}{{/link-to}}
+    {{#link-to 'translator_company.edit' translatorCompany}}{{ts 'frontend.profile.edit'}}{{/link-to}}
     <br>
 {{/if}}
 
 {{translatorBase}}
 {{#if translatorBase}}
-    <span>{{translatorBase._type}} </span>{{#link-to 'profiles.edit' translatorIndividual}}{{ts 'frontend.profile.edit'}}{{/link-to}}
+    <span>{{translatorBase._type}} </span>{{#link-to 'profiles.translator_new'}}{{ts 'frontend.profile.edit'}}{{/link-to}}
     <br>
 {{/if}}

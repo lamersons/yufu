@@ -1,4 +1,4 @@
-Yufu.ProfileTranslatorCompanyEditController = Ember.Controller.extend({
+Yufu.TranslatorCompanyEditController = Ember.Controller.extend({
   queryParams: ['step']
   step: 0
 
@@ -25,6 +25,6 @@ Yufu.ProfileTranslatorCompanyEditController = Ember.Controller.extend({
   actions: {
     update: (profile, step)->
       profile.save().then =>
-        @transitionToRoute 'profile_translator_company.edit', queryParams: {step: step}
+        @transitionToRoute 'translator_company.edit', queryParams: {step: step}
   }
 })

@@ -11,3 +11,5 @@ Yufu.ProfilesIndexRoute = Ember.Route.extend({
     controller.set 'translatorCompany',    @store.all('profile_translator_company').get('firstObject')
 
 })
+
+
