@@ -1,4 +1,11 @@
-{{#each}}
-    <span>{{_type}} </span>{{#link-to 'profiles.edit' this}}{{ts 'frontend.profile.edit'}}{{/link-to}}
+
+{{#if translatorIndividual}}
+  <span>{{translatorIndividual._type}} </span>{{#link-to 'profiles.edit' translatorIndividual}}{{ts 'frontend.profile.edit'}}{{/link-to}}
+  <br>
+{{/if}}
+
+{{translatorBase}}
+{{#if translatorBase}}
+    <span>{{translatorBase._type}} </span>{{#link-to 'profiles.edit' translatorIndividual}}{{ts 'frontend.profile.edit'}}{{/link-to}}
     <br>
-{{/each}}
+{{/if}}
