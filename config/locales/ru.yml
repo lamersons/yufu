@@ -1,4 +1,6 @@
 ru:
+  modules:
+    virtual: Управление почтой
   date: #Throws an exception otherwise.
     order:
       - "year"

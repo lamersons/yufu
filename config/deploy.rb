@@ -34,9 +34,6 @@ role :db,  domain, :primary => true
 before 'deploy:setup', 'rvm:install_rvm'
 before 'deploy:setup', 'rvm:install_ruby'
 
-
-
-after 'deploy', 'deploy:migrate'
 after 'deploy:update', 'deploy:cleanup'
 after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'   # app preloaded
