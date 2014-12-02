@@ -1,7 +1,7 @@
 Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
 
   lock: true
-  steps: ['select_type', 'language', 'personal', 'contacts', 'services', 'education', 'payments']
+  steps: ['language', 'personal', 'contacts', 'services', 'education', 'payments']
 
   queryParams: {
     step: {
@@ -17,7 +17,7 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
 
   actions: {
     queryParamsDidChange: (paramsChanged, params)->
-      @render_template(params.step || @steps, params.show_nearby, params.show_nearby_with_surcharge) unless @lock
+      @render_template(params.step || @steps[0], params.show_nearby, params.show_nearby_with_surcharge) unless @lock
   }
 
 
@@ -28,7 +28,6 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
     controller.set 'model', model
     controller.set 'cities', @store.find('city')
     controller.set 'languages', @store.find('language')
-    controller.set 'next_step', @steps[1]
     controller.set 'steps', @steps
     controller.set 'genders', ['male', 'female']
     controller.set 'visa_kind', ['visa1', 'visa2']

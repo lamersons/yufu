@@ -1,16 +1,24 @@
 <div class="clear"></div>
 <div class="height-20"></div>
 <div class="steps clearfix">
-    <!--<div class="col-1">-->
-        <!--<button type="button" class="button-grey" ng-hide="isPersonPageSteps()">return</button>-->
-        <!--<button type="button" class="button" ng-click="previousStep()" ng-show="isPersonPageSteps()">return</button>-->
-    <!--</div>-->
-    <!-- Колонка -->
+    <div class="col-1">
+      {{#if isBackEnable}}
+          <button type="button" class="button" {{action 'update' this back_step}}>Назад</button>
+      {{else}}
+          <button type="button" class="button">
+            {{#link-to 'profiles.translator_new'}}
+                Назад
+            {{/link-to}}
+          </button>
+      {{/if}}
+    </div>
     <div class="col-1 clearfix circles circles-3">
     </div>
     <!-- /Колонка -->
     <div class="col-1 button last">
-        <button {{action 'update' this next_step}}>{{ts 'frontend.profile.continue'}}</button>
+      {{#if isNextEnable}}
+          <button type="submit" {{action 'update' this next_step}}>Продолжить</button>
+      {{/if}}
     </div>
 </div>
 <div class="height-30"></div>
