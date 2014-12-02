@@ -3,8 +3,12 @@ class OrdersController < ApplicationController
   before_action :set_profile
 
   def create
-    @order = order_params[:_type].constantize.create
-    redirect_to edit_order_path(@order)
+    @order = order_params[:_type].constantize.new
+    if @order.save!
+      redirect_to edit_order_path(@order.id)
+    else
+      redirect_to :back
+    end
   end
 
   def edit
@@ -20,10 +24,11 @@ class OrdersController < ApplicationController
     @order = Order::Base.find params[:id]
     if @order.update_attributes order_params
       @order.update_attribute :step, @order.step+1
+      session[:back_to_order] = edit_order_path(@order)
+      authenticate_user! if @order.step == 3
     end
     redirect_to edit_order_path(@order)
   end
-
   def set_profile
     if user_signed_in?
       @profile = current_user.profiles.where(_type: 'Profile::Client').first

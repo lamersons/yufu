@@ -4,12 +4,15 @@ module Order
     include Mongoid::Timestamps
 
     SCOPES = %w(open in_progress close)
+    PAY_WAYS = %w(card bank alipay)
 
     field :step, type: Integer, default: 1
+    field :pay_way
 
-    embeds_one :client_info, class_name: 'Order::ClientInfo'
-    belongs_to :owner,       class_name: 'Profile::Base'
-    belongs_to :assignee,    class_name: 'Profile::Translator::Base'
+    embeds_one :client_info,     class_name: 'Order::ClientInfo'
+    belongs_to :owner,           class_name: 'Profile::Base'
+    belongs_to :assignee,        class_name: 'Profile::Translator::Base'
+    belongs_to :profile_partner, class_name: 'Profile::Partner'
 
     # Additional Options
     embeds_one :airport_pick_up, class_name: 'Order::AirportPickUp'

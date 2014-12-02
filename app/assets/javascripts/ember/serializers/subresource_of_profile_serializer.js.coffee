@@ -6,3 +6,4 @@ Yufu.SubresourceOfProfileSerializer = DS.ActiveModelSerializer.extend
     }
 # Define serializers for all models needs profile_id to save
 Yufu.OrderApplicationSerializer = Yufu.SubresourceOfProfileSerializer.extend()
+Yufu.PartnersClientSerializer   = Yufu.SubresourceOfProfileSerializer.extend()

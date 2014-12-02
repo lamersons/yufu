@@ -15,6 +15,18 @@ A {
   cursor: pointer;
 }
 
+//Кнопки-ссылки
+BUTTON {
+  > A {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    &:hover{
+      color: white;
+    }
+  }
+}
+
 //Глобальный стиль для розовых кнопок
 BUTTON.pink {
   font-weight: 300;

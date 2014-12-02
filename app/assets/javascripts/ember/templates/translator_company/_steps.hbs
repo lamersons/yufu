@@ -1,0 +1,35 @@
+<div class="clear"></div>
+<div class="height-20"></div>
+<div class="steps clearfix">
+  <div class="col-1">
+    {{#if isBackEnable}}
+      <button type="button" class="button" {{action 'update' this back_step}}>Назад</button>
+    {{else}}
+      <button type="button" class="button">
+        {{#link-to 'profiles.translator_new'}}
+          Назад
+        {{/link-to}}
+      </button>
+    {{/if}}
+  </div>
+
+  <div class="col-1 clearfix circles">
+    {{#link-to 'translator_company.edit' this (query-params step=0)}}
+      <span>1</span>
+    {{/link-to}}
+    {{#link-to 'translator_company.edit' this (query-params step=1)}}
+      <span>2</span>
+    {{/link-to}}
+    {{#link-to 'translator_company.edit' this (query-params step=2)}}
+      <span>3</span>
+    {{/link-to}}
+  </div>
+  <div class="col-1 button last">
+    {{#if isNextEnable}}
+      <button type="submit" {{action 'update' this next_step}}>Продолжить</button>
+    {{/if}}
+  </div>
+
+
+</div>
+<div class="height-30"></div>

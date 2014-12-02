@@ -5,6 +5,6 @@ Yufu.OrderApplication = DS.Model.extend {
   profile_id: DS.attr 'string', {serialize: false}
 
   order:    DS.belongsTo 'order', async: true
-  assignee: DS.belongsTo 'profile', async: true
+  assignee: DS.belongsTo 'profile_translator_individual', async: true
 
 }

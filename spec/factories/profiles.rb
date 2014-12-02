@@ -5,7 +5,7 @@ FactoryGirl.define do
     last_name 'name 2'
   end
 
-  factory :profile_translator_company, class: Profile::Translator::Company do
+  factory :translator_company, class: Profile::Translator::Company do
     association :user
     first_name 'name'
     last_name 'name 2'

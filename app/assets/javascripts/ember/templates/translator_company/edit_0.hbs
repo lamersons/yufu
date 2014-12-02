@@ -1,0 +1,46 @@
+<div class="col-1">
+  <div>{{ts 'mongoid.attributes.profile/translator/company.name'}}</div>
+  {{view Ember.TextField valueBinding='model.name' name='name' viewName='name'}}
+
+  <div>{{ts 'mongoid.attributes.profile/translator/company.company_uid'}}</div>
+  {{view Ember.TextField valueBinding='model.company_uid' name='company_uid' viewName='company_uid'}}
+
+  <div>{{ts 'mongoid.attributes.profile/translator/company.location'}}</div>
+  {{view Ember.TextField valueBinding='model.location' name='location' viewName='location'}}
+
+  <div>{{ts 'mongoid.attributes.profile/translator/company.address'}}</div>
+  {{view Ember.TextField valueBinding='model.address' name='address' viewName='address'}}
+
+
+  <div>{{ts 'mongoid.attributes.profile/translator/company.years_in_business'}}</div>
+  {{view Ember.TextField valueBinding='model.years_in_business' name='years_in_business' viewName='years_in_business'}}
+</div>
+
+<div class="col-1">
+  <div>{{ts 'mongoid.attributes.profile/translator/company.contacts_person'}}</div>
+  {{view Ember.TextField valueBinding='model.contacts_person  ' name='contacts_person' viewName='contacts_person'}}
+
+  <div>{{ts 'mongoid.attributes.profile/translator/company.email'}}</div>
+  {{view Ember.TextField valueBinding='model.email' name='email' viewName='email'}}
+
+  <div>{{ts 'mongoid.attributes.profile/translator/company.additional_email'}}</div>
+  {{view Ember.TextField valueBinding='model.additional_email' name='additional_email' viewName='additional_email'}}
+
+</div>
+<div class="col-1 last">
+  <div>{{ts 'mongoid.attributes.profile/translator/base.qq'}} ({{ts 'frontend.profile.online_checking'}})</div>
+  {{view Ember.TextField valueBinding='model.qq' name='qq' viewName='qq'}}
+
+  <div>{{ts 'mongoid.attributes.profile/translator/base.skype'}} ({{ts 'frontend.profile.online_checking'}})</div>
+  {{view Ember.TextField valueBinding='model.skype' name='skype' viewName='skype'}}
+
+  <div>{{ts 'mongoid.attributes.profile/translator/base.phone'}} ({{ts 'frontend.profile.online_checking'}})</div>
+  {{view Ember.TextField valueBinding='model.phone' name='phone' viewName='phone'}}
+
+  <div>{{ts 'mongoid.attributes.profile/translator/company.service_phone'}}</div>
+  {{view Ember.TextField valueBinding='model.service_phone' name='service_phone' viewName='service_phone'}}
+
+</div>
+<div class="col-1 last clearfix birth">
+</div>
+<div class="clear"></div>

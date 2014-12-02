@@ -1,4 +1,17 @@
-{{#each}}
-    <span>{{_type}} </span>{{#link-to 'profiles.edit' this}}{{ts 'frontend.profile.edit'}}{{/link-to}}
+
+{{#if translatorIndividual}}
+  <span>{{translatorIndividual._type}} </span>{{#link-to 'translator_individual.edit' translatorIndividual}}{{ts 'frontend.profile.edit'}}{{/link-to}}
+  <br>
+{{/if}}
+
+{{#if translatorCompany}}
+    <span>{{translatorCompany._type}} </span>
+    {{#link-to 'translator_company.edit' translatorCompany}}{{ts 'frontend.profile.edit'}}{{/link-to}}
     <br>
-{{/each}}
+{{/if}}
+
+{{translatorBase}}
+{{#if translatorBase}}
+    <span>{{translatorBase._type}} </span>{{#link-to 'profiles.translator_new'}}{{ts 'frontend.profile.edit'}}{{/link-to}}
+    <br>
+{{/if}}

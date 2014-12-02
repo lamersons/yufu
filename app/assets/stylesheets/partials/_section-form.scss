@@ -10,6 +10,12 @@
 		}
 	}//DIV.col-1
 
+  DIV.col-3 {
+    display: block;
+    float: none;
+    clear: both;
+  }
+
     DIV.col-05 {
       @include grid-col-half;
       min-height: 2px;
@@ -351,6 +357,12 @@
 			&.circles-3 {
 				padding-left: ($grid-col-width - 10 * 13px) / 5 + 13px * 2;
 			}
+            A.active {
+              > SPAN {
+                background: $font-pink-bright-color;
+              }
+            }
+
 			SPAN {
 				display: block;
 				float: left;
@@ -428,6 +440,9 @@
 
 //Кастомный селект. Не хочет работать, если его засовывать по-человечески в иерархию. Пришлось выдернуть
 .custom-select {
+    &.inline{
+      display: inline-block;
+    }
 	position: relative;
 	z-index: 1;
 	background-color: #ededed;

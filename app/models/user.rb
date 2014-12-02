@@ -50,14 +50,17 @@ class User
   def translator?
     profiles.where(:_type.in => [Profile::Translator::Individual.to_s, Profile::Translator::Company.to_s]).count > 0
   end
+  alias :is_translator :translator?
 
   def client?
     profiles.where(_type: Profile::Client.to_s).count > 0
   end
+  alias :is_client :client?
 
   def partner?
     profiles.where(_type: Profile::Partner.to_s).count > 0
   end
+  alias :is_partner :partner?
 
   def need_change_password?
     !self.is_a?(Admin) && self.sign_in_count <= 1
@@ -65,5 +68,9 @@ class User
 
   def translator_profile
     profiles.where(:_type.in => [Profile::Translator::Individual.to_s, Profile::Translator::Company.to_s]).first
+  end
+
+  def partner_profile
+    profiles.where(:_type.in => [Profile::Partner.to_s]).first
   end
 end

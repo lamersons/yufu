@@ -15,6 +15,7 @@ module Profile
       field :wechat
       field :sex
       field :visa
+      field :visa_till, type: DateTime
       field :needs_job_resident_permit, type: Mongoid::Boolean
       field :passport_number
       field :birthday, type: DateTime
@@ -35,10 +36,12 @@ module Profile
       embeds_many :services,   class_name: 'Profile::Translator::Service'
       embeds_many :educations, class_name: 'Profile::Education'
 
-      has_and_belongs_to_many :nearby_city,                  class_name: 'City'
-      has_and_belongs_to_many :nearby_city_with_surcharge,   class_name: 'City'
+      has_and_belongs_to_many :nearby_cities,                  class_name: 'City'
+      has_and_belongs_to_many :nearby_cities_with_surcharge,   class_name: 'City'
       has_and_belongs_to_many :directions
 
+
+      accepts_nested_attributes_for :services
       has_mongoid_attached_file :avatar
       validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
 

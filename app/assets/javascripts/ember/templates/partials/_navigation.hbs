@@ -1,25 +1,33 @@
 <div class="cabinet-top-menu">
   <div class="container">
     {{#link-to "news" tagName="a" class="item" }}
-        <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.news'}}<span class="caret"></span></span>
+      <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.news'}}<span class="caret"></span></span>
     {{/link-to}}
     {{#link-to "messages" tagName="a" class="item" }}
-        <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.messages'}}<span class="caret"></span></span>
+      <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.messages'}}<span class="caret"></span></span>
     {{/link-to}}
     {{#link-to "bookings" tagName="a" class="item" }}
-        <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.bookings'}}<span class="caret"></span></span>
+      <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.bookings'}}<span class="caret"></span></span>
     {{/link-to}}
     {{#link-to "vassals" tagName="a" class="item" }}
-        <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.agent'}}<span class="caret"></span></span>
+      <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.agent'}}<span class="caret"></span></span>
     {{/link-to}}
-    {{#link-to "verbal" this.currentUser.translator_profile_id tagName="a" class="item" }}
+    {{#if currentUser.is_partner}}
+      {{#link-to "partners_clients" this.currentUser.partner_profile_id tagName="a" class="item" }}
+        <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.partners_clients'}}<span class="caret"></span></span>
+      {{/link-to}}
+    {{/if}}
+    {{#if currentUser.is_translator}}
+      {{#link-to "verbal" this.currentUser.translator_profile_id tagName="a" class="item" }}
         <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.orders'}}<span class="caret"></span></span>
-    {{/link-to}}
-    {{#link-to "profiles" tagName="a" class="item" }}
-        <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.profile'}}<span class="caret"></span></span>
-    {{/link-to}}
-    {{#link-to "balance" tagName="a" class="item" }}
+      {{/link-to}}
+      {{#link-to "balance" tagName="a" class="item" }}
         <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.balance'}}<span class="caret"></span></span>
+      {{/link-to}}
+    {{/if}}
+    {{#link-to "profiles" tagName="a" class="item" }}
+      <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.profile'}}<span class="caret"></span></span>
     {{/link-to}}
+
   </div>
 </div>

@@ -1,5 +1,5 @@
 <!-- Раздел с формой -->
-<%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-3"} do |f| %>
+<%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form payment step-3"} do |f| %>
     <%= f.hidden_field :_type%>
 <!-- Контейнер -->
 <div class="container clearfix">
@@ -55,7 +55,7 @@
   <!-- /Тригер -->
   <!-- Вкладка -->
   <%=f.fields_for :airport_pick_up_attributes do |air|%>
-  <div class="tab">
+  <div class="tab" style="display: none">
     <label class="radio no-left clearfix">
       <%=air.radio_button :need_a_car, '1', checked: @order.airport_pick_up.try(:need_a_car)%>
 
@@ -115,7 +115,7 @@
   <%=f.fields_for :car_rent_attributes do |c|%>
   <!-- /Тригер -->
   <!-- Вкладка -->
-  <div class="tab position-relative">
+  <div class="tab position-relative" style="display: none">
     <% Order::Car.each do |car|%>
     <label class="radio no-left clearfix">
       <%=c.radio_button :car_id, car.id%>
@@ -150,20 +150,31 @@
   </p>
   <!-- /Тригер -->
   <!-- Вкладка -->
-  <div class="tab position-relative">
-    <div class="custom-select greeting">
-      <select>
-        <option>пункт 1</option>
-        <option>пункт 2</option>
-      </select>
+  <div style="display: none" class="tab position-relative">
+    <%=f.fields_for :hotel_attributes do |hg|%>
+    <div class="col-3">
+        <div class="height-10"></div>
+        <span><%=ts(:hope_to_be_greeted)%></span>
+        <div class="custom-select three-in-one inline">
+          <%=hg.time_select :greeted_at%>
+        </div>
+        <span><span class="greeting-interval"></span> on 2015-07-28 [ China Time ]</span>
     </div>
-    <div class="height-10"></div>
-    <p>I hope to be greeted at my hotel lobby at <span class="greeting-interval"></span> on 2015-07-28 [ China Time ]</p>
-    <label class="checkbox no-left clearfix">
-      <input type="checkbox" value="0" ng-model="order.haveAHotel">
-      <em></em>
-      <p>I have not yet booked a Hotel!</p>
-    </label>
+    <div class="col-1">
+      <span><%=ts(:info)%></span>
+      <%=hg.text_field :info%>
+    </div>
+    <div class="col-2 last">
+      <span><%=ts(:additional_info)%></span>
+      <%=hg.text_field :additional_info%></div>
+    <div class="col-3">
+        <label class="checkbox no-left clearfix">
+          <%=hg.check_box :have_not_booked_yet%>
+          <em></em>
+          <p>I have not yet booked a Hotel!</p>
+        </label>
+    </div>
+    <%end%>
   </div>
   <!-- /Вкладка -->
 </div>
@@ -176,7 +187,7 @@
   <span class="icon"></span>
   <div class="height-5"></div>
   <label class="checkbox clearfix">
-    <input type="checkbox" value="paymentcard" ng-model="order.paymentMethod">
+    <%=f.radio_button :pay_way, Order::Base::PAY_WAYS[0]%>
     <em></em>
     <p>Платежная карта</p>
   </label>
@@ -188,7 +199,7 @@
   <span class="icon"></span>
   <div class="height-5"></div>
   <label class="checkbox clearfix">
-    <input type="checkbox" value="banktransfer" ng-model="order.paymentMethod">
+    <%=f.radio_button :pay_way, Order::Base::PAY_WAYS[1]%>
     <em></em>
     <p>Банковский перевод</p>
   </label>
@@ -199,7 +210,7 @@
   <span class="icon"></span>
   <div class="height-5"></div>
   <label class="checkbox clearfix">
-    <input type="checkbox" value="alipay" ng-model="order.paymentMethod">
+    <%=f.radio_button :pay_way, Order::Base::PAY_WAYS[2]%>
     <em></em>
     <p>alipay.com <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-al"></span></p>
   </label>
@@ -234,4 +245,8 @@
 <%=render partial: 'orders/verbal/steps_nav', locals: {f: f}%>
 <!-- /Контейнер -->
 <%end%>
+
+<script>
+  new StepThreeAccordion()
+</script>
 <!-- /Раздел с формой -->

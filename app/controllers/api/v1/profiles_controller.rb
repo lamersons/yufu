@@ -26,7 +26,7 @@ module Api
           current_user.profiles << @profile
           if @profile.update_attributes profile_params
             current_user.save
-            render json: {success: true}
+            respond_with @profile, statue: :created, location: false
           else
             render json: {success: false}
           end
@@ -35,7 +35,7 @@ module Api
 
       def update
         if @profile.update_attributes(profile_params)
-          render json: {success: true}
+          respond_with @profile, statue: :created, location: false
         else
           render json: {success: false}
         end
@@ -47,14 +47,15 @@ module Api
         when 'Profile::Client'
           params.require(:profile).permit :company_name, :company_uid, :country
         when 'Profile::Translator::Company'
-          params.require(:profile).permit :additional_email, :qq, :skype,  :name, :company_uid, :years_in_business,
-                                          :location, :service_phone, employees_attributes: [:sex, :age, :direction_id]
+          params.require(:profile).permit :email, :additional_email, :qq, :skype,  :name, :company_uid, :years_in_business,
+                                          :location, :service_phone, :phone, :contacts_person, :address,
+                                          employees_attributes: [:sex, :age, :direction_id]
         when 'Profile::Translator::Individual'
           params.require(:profile).permit :first_name, :last_name, :passport_till, :passport_num, :passport_country,
                                           :additional_email, :additional_phone, :phone, :qq, :skype, :wechat, :email, :additions, :sex, :visa,
-                                          :needs_job_resident_permit, :can_travel,
-                                          :has_driving_license, :has_car, :native_language_id, :nearby_city_ids,
-                                          :nearby_city_with_surcharge_ids, :city_id,  :directions_ids,
+                                          :vise_till, :needs_job_resident_permit, :can_travel,
+                                          :has_driving_license, :has_car, :native_language_id, {nearby_cities_ids:[]},
+                                          {nearby_cities_with_surcharge_ids: []}, :city_id,  {directions_ids: []},
                                           :years_in_china,
                                           services_attributes: [:level, :has_hsk, :verbal_price, :written_price,
                                                                 :written_translate_type, :language_id]
