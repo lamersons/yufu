@@ -26,12 +26,17 @@ Feature: create verbal order
     And  I select in box "order_translator_sex" as "male"
     And  I select in box "order_translator_native_language" as "Russian"
     And  I select in box "order_native_language" as "Mumbu-umbu"
-    And  I check box with text: "Got by taxo"
+    And  I check box with text: "Go by taxo"
     And  I select in box "order_goal" as "business"
-    Then order should have filed "location" as "NewVasjuki"
-     And order should have field "include_near_city" as "true"
-     And order should have relation "language_criterion" with relation "language" with field "name" as "Mumbu-umbu"
-     And order should have relation "language_criterion" with field "level"
+    And  I submit the form "edit_order"
+    Then order should have fields "location, include_near_city" as "NewVasjuki, true"
+     And order should have relation "language_criterions" with relation "language" with field "name" as "Mumbu-umbu"
+     And order should have relation "language_criterions" with fields "level, cost" as "2, 100500"
+     And order should have relation "reservation_dates" with fields "date, hours as "5.10.2014, 8"
+     And order should have relation "reservation_dates" with fields "date, hours" as "6.10.2014, 8"
+     And order should have fields "translator_sex, translator_native_language, native_language, goal", as "male, Russian, Mumbu-umbu, business"
+     And order should have relation "directions" with fields "name", as "Go by taxo"
+
 
 
 

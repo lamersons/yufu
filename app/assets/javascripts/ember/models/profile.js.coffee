@@ -14,6 +14,9 @@ Yufu.Profile = DS.Model.extend Yufu.FormattedTimestampMixin,
 
   created_at: DS.attr 'date'
   updated_at: DS.attr 'date'
+  visa: DS.attr 'string'
+  visa_till: DS.attr 'date'
+  years_in_china: DS.attr 'number'
 
   orders:   DS.hasMany 'order',   async: true
   # Embedded relations don't work with STI correct

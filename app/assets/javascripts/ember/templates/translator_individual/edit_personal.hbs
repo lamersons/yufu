@@ -36,7 +36,8 @@
         <!-- Колонка -->
         <div class="col-1 clearfix">
             <p>{{ts 'frontend.profile.id_expiration_date'}} <span class="required">*</span></p>
-            {{view Ember.TextField valueBinding='model.passport_till' name='passport_till' viewName='passport_till'}}
+            {{date-picker-input controls="passport_till" valueBinding='model.formattedPassportTill'}}
+            {{date-picker-controls id="passport_till"}}
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
@@ -138,7 +139,7 @@
         <!-- Колонка -->
         <div class="col-1 clearfix">
             <p>{{ts 'frontend.profile.visa_expiration_date'}} <span class="required">*</span></p>
-            {{date-picker-input controls="visa_till" valueBinding='model.birthday'}}
+            {{date-picker-input controls="visa_till" valueBinding='model.formattedVisaTill'}}
             {{date-picker-controls id="visa_till"}}
         </div>
         <!-- /Колонка -->
