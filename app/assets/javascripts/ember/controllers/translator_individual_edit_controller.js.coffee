@@ -1,10 +1,27 @@
 Yufu.TranslatorIndividualEditController = Ember.Controller.extend({
   queryParams: ['step']
-  next_step: ->
-    @steps[1]
-  step_class: (step)->
-    if step == @next_step
-      return 'active'
+  step: 'language'
+
+  stepIndex:( ->
+    parseInt @steps.indexOf(@get('step'))
+  )
+
+  next_step: (->
+    @steps[(@stepIndex() || 0) + 1]
+  ).property('step')
+
+  back_step: (->
+    @steps[@stepIndex() - 1]
+  ).property('step')
+
+
+  isNextEnable: (->
+    (@stepIndex() || 0) < @steps.length
+  ).property('step')
+
+  isBackEnable: (->
+    @stepIndex() > 0
+  ).property('step')
 
   actions: {
 
@@ -21,10 +38,6 @@ Yufu.TranslatorIndividualEditController = Ember.Controller.extend({
       @transitionToRoute 'translator_individual.edit', queryParams: {show_nearby: false}
 
     update: (profile, step)->
-      step_index = parseInt(@steps.indexOf(step)) + 1
-      step = @steps[step_index]
-      @next_step = step
-
       profile.save().then =>
         @transitionToRoute 'translator_individual.edit', queryParams: {step: step}
   }
