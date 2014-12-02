@@ -20,15 +20,15 @@ Yufu.ProfileTranslatorIndividual = Yufu.Profile.extend
   has_car:                   DS.attr 'boolean'
   has_driving_license:       DS.attr 'boolean'
 
-  native_language:           DS.attr 'string'
   needs_job_resident_permit: DS.attr 'boolean'
   visa:                      DS.attr 'string'
+  visa_till:                 DS.attr 'date'
   years_in_china:            DS.attr 'number'
 
 # Relations
   city:             DS.belongsTo 'city',              async: true
   native_language:  DS.belongsTo 'language',          async: true
   profile_language: DS.belongsTo 'language',          async: true
-  nearby_cities:    DS.hasMany   'city',              async: true
   applications:     DS.hasMany   'order_application', async: true
+  nearby_cities:    DS.hasMany   'city',              async: true
   nearby_cities_with_surcharge: DS.hasMany 'city',    async: true

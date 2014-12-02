@@ -1,4 +1,4 @@
-Yufu.ProfilesEditController = Ember.Controller.extend({
+Yufu.TranslatorIndividualEditController = Ember.Controller.extend({
   queryParams: ['step']
   next_step: ->
     @steps[1]
@@ -9,16 +9,16 @@ Yufu.ProfilesEditController = Ember.Controller.extend({
   actions: {
 
     show_nearby_with_surcharge: ->
-      @transitionToRoute 'profiles.edit', queryParams: {show_nearby_with_surcharge: true}
+      @transitionToRoute 'translator_individual.edit', queryParams: {show_nearby_with_surcharge: true}
 
     hide_nearby_surcharge: ->
-      @transitionToRoute 'profiles.edit', queryParams: {show_nearby_with_surcharge: false}
+      @transitionToRoute 'translator_individual.edit', queryParams: {show_nearby_with_surcharge: false}
 
     show_nearby: ->
-      @transitionToRoute 'profiles.edit', queryParams: {show_nearby: true}
+      @transitionToRoute 'translator_individual.edit', queryParams: {show_nearby: true}
 
     hide_nearby: ->
-      @transitionToRoute 'profiles.edit', queryParams: {show_nearby: false}
+      @transitionToRoute 'translator_individual.edit', queryParams: {show_nearby: false}
 
     update: (profile, step)->
       step_index = parseInt(@steps.indexOf(step)) + 1
@@ -26,6 +26,6 @@ Yufu.ProfilesEditController = Ember.Controller.extend({
       @next_step = step
 
       profile.save().then =>
-        @transitionToRoute 'profiles.edit', queryParams: {step: step}
+        @transitionToRoute 'translator_individual.edit', queryParams: {step: step}
   }
 })

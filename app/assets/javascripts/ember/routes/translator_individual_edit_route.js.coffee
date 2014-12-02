@@ -32,8 +32,6 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
     controller.set 'steps', @steps
     controller.set 'genders', ['male', 'female']
     controller.set 'visa_kind', ['visa1', 'visa2']
-    controller.set 'nearby_cities', model.get('nearby_cities').content
-    controller.set 'nearby_cities_with_surcharge', model.get('nearby_city_with_surcharge').content
     controller.set 'yesno', ['yes', 'no']
     controller.set 'truefalse', [true, false]
     controller.set 'lang_levels', ['level_1', 'level_2']
@@ -52,7 +50,7 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
 
   render_template: (step, show_nearby, show_nearby_surcharge)->
     @render()
-    @render "profiles/edit_#{step}", {into: 'profiles/edit'}
+    @render "translator_individual/edit_#{step}", {into: 'translator_individual/edit'}
     if show_nearby
       @render 'partials/_nearby_modal', {outlet: 'modal'}
       return
