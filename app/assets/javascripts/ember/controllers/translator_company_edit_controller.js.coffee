@@ -1,30 +1,12 @@
-Yufu.TranslatorCompanyEditController = Ember.Controller.extend({
-  queryParams: ['step']
+Yufu.TranslatorCompanyEditController = Yufu.StepByStepEditController.extend
   step: 0
 
-  next_step: (->
-    (@get('step') || 0) + 1
-  ).property('step')
-
-  back_step: (->
-    @get('step') - 1
-  ).property('step')
-
-  step_class: (step)->
-    if step == @next_step
-      return 'active'
-
-  isNextEnable: (->
-    (@get('step') || 0) < @steps.length
-  ).property('step')
-
-  isBackEnable: (->
-    @get('step') > 0
-  ).property('step')
+  stepIndex:( ->
+    @get('step')
+  )
 
   actions: {
     update: (profile, step)->
       profile.save().then =>
         @transitionToRoute 'translator_company.edit', queryParams: {step: step}
   }
-})
