@@ -41,7 +41,7 @@ class @RegForm
       $('.block.second .item').removeClass('active')
       $(this).addClass('active')
       if (first_show)
-        $('.block.second .text-block.' + target).show('slow')
+        $('.block.second .text-block.' + target).show()
         first_show = false
       else
         $('.block.second .text-block').hide()
@@ -50,14 +50,14 @@ class @RegForm
       $('.after-input-text').hide()
       $('.reg-form input#user_email').attr('readonly', false)
       $('#main_register_submit').removeAttr('disabled')
-      $('.block.second .arrow').show()
-      $('.block.second .active .arrow').hide()
-      $('.reg-form .now span').html('как ' + I18n.t(target))
+      $('.block.second .arrow').hide()
+      $('.block.second .active .arrow').show().removeClass("icons-arrow-second-default").addClass("icons-arrow-second-h")
+      $('.reg-form .now span').html(I18n.t('main.as_' + target))
 
   active_arrow: ->
-    $(this).find("SPAN.arrow").removeClass("icons-arrow-second-default").addClass "icons-arrow-second-h"
+    $(this).find("SPAN.arrow").removeClass("icons-arrow-second-default").addClass "icons-arrow-second-h" if (first_show)
     return
 
   default_arrow: ->
-    $(this).find("SPAN.arrow").removeClass("icons-arrow-second-h").addClass "icons-arrow-second-default"
+    $(this).find("SPAN.arrow").removeClass("icons-arrow-second-h").addClass "icons-arrow-second-default" if (first_show)
     return
