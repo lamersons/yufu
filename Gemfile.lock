@@ -237,6 +237,7 @@ GEM
       optionable (~> 0.2.0)
     multi_json (1.10.1)
     multi_test (0.1.1)
+    mysql2 (0.3.16)
     nested_form (0.3.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -438,6 +439,7 @@ DEPENDENCIES
   momentjs-rails
   mongoid (~> 4.0.0)
   mongoid-paperclip
+  mysql2
   net-ssh (~> 2.7.0)
   nginx-config
   quiet_assets

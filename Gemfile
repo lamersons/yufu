@@ -8,6 +8,9 @@ gem 'mongoid', '~>4.0.0'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'will_paginate_mongoid'
 
+# MySql for support manage emails
+gem 'mysql2'
+
 # I18n backend
 gem 'redis'
 gem 'i18n_dashboard', github: 'fourmach/i18n_dashboard'
