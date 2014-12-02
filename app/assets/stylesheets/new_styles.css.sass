@@ -10,6 +10,11 @@
     .over
       cursor: pointer
       opacity: 1
+    &.active-item
+      a
+        cursor: default
+      p
+        cursor: text
 
 .first-points
   display: none
@@ -17,15 +22,21 @@
     text-align: justify
   .over
     display: none
+    a
+      width: 120px
+      height: 120px
+      border-radius: 50%
+      cursor: pointer
 
 .block.second
   .item
     position: relative
-    .arrow
-      display: none
 
 .reg-form
   height: 55px
+  .now
+    span
+      text-transform: lowercase
   .form-radios
     display: none
   .email
@@ -37,3 +48,8 @@
       margin-left: 50px
   #main_register_submit
     outline: none
+  .load-icon
+    display: none
+    img
+      height: 35px
+      width: 35px
