@@ -572,12 +572,11 @@ DIV.first-points {
       @include icons-sprite(first-place-order-bg);
       color: white;
       text-align: center;
-      cursor: pointer;
       P.zakaz {
         font-size: 0.9em;
         font-weight: 700;
         line-height: 1;
-        margin-top: 45px;
+        padding-top: 45px;
       }
     }
   }//DIV.item
@@ -594,8 +593,8 @@ FORM.reg-form {
     text-align: right;
     font-weight: 600;
     font-size: 1.23em;
-    padding-top: 5px;
-    line-height: 1.1;
+    padding-top: 2px;
+    line-height: 1.3;
   }//DIV.now
   //Вторая колонка
   DIV.email {

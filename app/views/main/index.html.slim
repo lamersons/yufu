@@ -211,6 +211,8 @@
   .container
     .now
       = t('main.register_now')
+      br
+      span
     .form-radios
       = label_tag I18n.t(:translator)
       = radio_button_tag 'user[_type]', 'Profile::Translator::Base', false, class: 'translator', class: 'translator-radio'
@@ -234,6 +236,8 @@
         .message.success
           = t('main.check_email').html_safe
         .message.error
+        .message.load-icon
+          = image_tag 'icons/load_img.gif'
 
 coffee:
   console.log I18n.t 'hello'
