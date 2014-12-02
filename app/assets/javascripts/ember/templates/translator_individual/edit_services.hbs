@@ -4,120 +4,20 @@
 <!-- Контейнер -->
 <div class="container clearfix">
 <!-- Колонка -->
-<div class="col-1">
-    <p>{{ts 'frontend.profile.translation_language'}}</p>
-    <div class="custom-select disabled">
-        {{view Ember.Select
-        selection=new_service.language
-        prompt='-'
-        content=languages
-        optionLabelPath='content.name'
-        optionValuePath='content.id'}}
-    </div>
-</div>
-<!-- /Колонка -->
-<!-- Колонка -->
-<div class="col-1"></div>
-<!-- /Колонка -->
-<!-- Колонка -->
-<div class="col-1 last position-relative">
-    <p>{{ts 'frontend.profile.has_hsk'}}</p>
-    <div class="custom-select">
-        {{view Ember.Select
-        selection=new_service.has_hsk
-        prompt='-'
-        content=yesno
-        optionLabelPath='content'
-        optionValuePath=truefalse}}
-    </div>
-</div>
-<!-- /Колонка -->
-<div class="clear"></div>
-<!-- Колонка -->
-<div class="col-1">
-    <p>{{ts 'frontend.profile.language_level'}}</p>
-    <div class="custom-select">
-    {{view Ember.Select
-    selection=new_service.level
-    prompt='-'
-    content=lang_levels}}
-    </div>
-</div>
-<!-- /Колонка -->
-<!-- Колонка -->
-<div class="col-1 position-relative">
-    <p>{{ts 'frontend.profile.estimated_pay'}} <span class="help-text">({{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-1-1" data-target=".js-tooltip-stavka-ras-1-1"></span></p>
-    <div class="hover-tooltip js-tooltip-stavka-ras-1-1" show-tooltip yu-parent="rel-js-tooltip-stavka-ras-1-1">
-        <span class="icon"></span>
-        <p>{{ts 'frontend.profile.pay_reasoning'}}</p>
-    </div>
-    <div class="bordered-block thin">
-        <div class="height-2"></div>
-        <p class="bold pink-bright">285 Eur</p>
-    </div>
-</div>
-<!-- /Колонка -->
-<!-- Колонка -->
-<div class="col-1 last position-relative">
-    <p>{{ts 'frontend.profile.desired_pay'}} <span class="help-text">(EUR {{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-1-1" data-target=".js-tooltip-stavka-des-1-1"></span></p>
-    <div class="hover-tooltip js-tooltip-stavka-des-1-1" show-tooltip yu-parent="rel-js-tooltip-stavka-des-1-1">
-        <span class="icon"></span>
-        <p>{{ts 'frontend.profile.desired_pay_reasoning'}}</p>
-    </div>
-    {{view Ember.TextField valueBinding='new_service.verbal_price' name='verbal_price' viewName='verbal_price' style="width: 4em;"}}
-</div>
-<!-- /Колонка -->
-<div class="clear"></div>
-<!-- Колонка -->
-<div class="col-1 position-relative">
-    <p>{{ts 'frontend.profile.written_translations'}} <span class="tooltip-icon-small js-tooltip rel-js-tooltip-w-1" data-target=".js-tooltip-w-1"></span></p>
-    <div class="hover-tooltip js-tooltip-w-1" show-tooltip yu-parent="rel-js-tooltip-w-1">
-        <span class="icon"></span>
-        <p>{{ts 'frontend.profile.only_for_high_skilled'}}</p>
-    </div>
-    <div class="custom-select">
-        <select>
-            <option>{{ts 'frontend.profile.translations_from_chinese'}}</option>
-        </select>
-    </div>
-</div>
-<!-- /Колонка -->
-<!-- Колонка -->
-<div class="col-1 position-relative">
-    <p>{{ts 'frontend.profile.estimated_pay'}} <span class="help-text">({{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-1-2" data-target=".js-tooltip-stavka-ras-1-2"></span></p>
-    <div class="hover-tooltip js-tooltip-stavka-ras-1-2" show-tooltip yu-parent="rel-js-tooltip-stavka-ras-1-2">
-        <span class="icon"></span>
-        <p>{{ts 'frontend.profile.pay_reasoning'}}</p>
-    </div>
-    <div class="bordered-block thin">
-        <div class="height-2"></div>
-        <p class="bold pink-bright">285 Eur</p>
-    </div>
-</div>
-<!-- /Колонка -->
-<!-- Колонка -->
-<div class="col-1 last position-relative">
-    <p>{{ts 'frontend.profile.desired_pay'}} <span class="help-text">(EUR {{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-1-2" data-target=".js-tooltip-stavka-des-1-2"></span></p>
-    <div class="hover-tooltip js-tooltip-stavka-des-1-2" show-tooltip yu-parent="rel-js-tooltip-stavka-des-1-2">
-        <span class="icon"></span>
-        <p>{{ts 'frontend.profile.desired_pay_reasoning'}}</p>
-    </div>
-    {{view Ember.TextField valueBinding='new_service.written_price' name='written_price' viewName='written_price' style="width: 4em;"}}
-</div>
-<!-- /Колонка -->
-<div class="clear"></div>
-<div class="height-20"></div>
-<div class="grey-line"></div>
-<div class="height-20"></div>
 
-<div ng-repeat="lang in profile.addonLanguages">
-    <!-- Колонка -->
+{{#each service in model.services}}
+
+    {{input type="hidden" valueBinding="service.id"}}
+
     <div class="col-1">
         <p>{{ts 'frontend.profile.translation_language'}}</p>
-        <div class="custom-select">
-            <select>
-                <option>{{ts 'frontend.profile.russian'}}</option>
-            </select>
+        <div class="custom-select disabled">
+            {{view Ember.Select
+            selection=service.language.content
+            prompt='-'
+            content=languages
+            optionLabelPath='content.name'
+            optionValuePath='content.id'}}
         </div>
     </div>
     <!-- /Колонка -->
@@ -126,8 +26,15 @@
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 last position-relative">
-        <p>{{ts 'frontend.profile.certificate'}}</p>
-        <input type="text">
+        <p>{{ts 'frontend.profile.has_hsk'}}</p>
+        <div class="custom-select">
+            {{view Ember.Select
+            selection=service.has_hsk
+            prompt='-'
+            content=truefalse
+            optionLabelPath='content'
+            optionValuePath=truefalse}}
+        </div>
     </div>
     <!-- /Колонка -->
     <div class="clear"></div>
@@ -135,16 +42,17 @@
     <div class="col-1">
         <p>{{ts 'frontend.profile.language_level'}}</p>
         <div class="custom-select">
-            <select>
-                <option></option>
-            </select>
+            {{view Ember.Select
+            selection=service.level
+            prompt='-'
+            content=lang_levels}}
         </div>
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 position-relative">
-        <p>{{ts 'frontend.profile.estimated_pay'}} <span class="help-text">({{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-ras-2-1"></span></p>
-        <div class="hover-tooltip js-tooltip-stavka-ras-2-1">
+        <p>{{ts 'frontend.profile.estimated_pay'}} <span class="help-text">({{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-1-1" data-target=".js-tooltip-stavka-ras-1-1"></span></p>
+        <div class="hover-tooltip js-tooltip-stavka-ras-1-1" show-tooltip yu-parent="rel-js-tooltip-stavka-ras-1-1">
             <span class="icon"></span>
             <p>{{ts 'frontend.profile.pay_reasoning'}}</p>
         </div>
@@ -156,33 +64,34 @@
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 last position-relative">
-        <p>{{ts 'frontend.profile.desired_pay'}} <span class="help-text">(EUR {{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-des-2-1"></span></p>
-        <div class="hover-tooltip js-tooltip-stavka-des-2-1">
+        <p>{{ts 'frontend.profile.desired_pay'}} <span class="help-text">(EUR {{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-1-1" data-target=".js-tooltip-stavka-des-1-1"></span></p>
+        <div class="hover-tooltip js-tooltip-stavka-des-1-1" show-tooltip yu-parent="rel-js-tooltip-stavka-des-1-1">
             <span class="icon"></span>
-            <p>{{ts 'frontend.profile.estimated_pay_reasoning'}}</p>
+            <p>{{ts 'frontend.profile.desired_pay_reasoning'}}</p>
         </div>
-        <input type="text">
+        {{view Ember.TextField valueBinding='service.verbal_price' name='verbal_price' viewName='verbal_price' style="width: 4em;"}}
     </div>
     <!-- /Колонка -->
     <div class="clear"></div>
     <!-- Колонка -->
     <div class="col-1 position-relative">
-        <p>{{ts 'frontend.profile.written_translations'}} <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-w-2"></span></p>
-        <div class="hover-tooltip js-tooltip-w-2">
+        <p>{{ts 'frontend.profile.written_translations'}} <span class="tooltip-icon-small js-tooltip rel-js-tooltip-w-1" data-target=".js-tooltip-w-1"></span></p>
+        <div class="hover-tooltip js-tooltip-w-1" show-tooltip yu-parent="rel-js-tooltip-w-1">
             <span class="icon"></span>
             <p>{{ts 'frontend.profile.only_for_high_skilled'}}</p>
         </div>
         <div class="custom-select">
-            <select>
-                <option>{{ts 'frontend.profile.translations_from_chinese'}}</option>
-            </select>
+            {{view Ember.Select
+            selection=service.written_translate_type
+            prompt='-'
+            content=sense_of_translation}}
         </div>
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 position-relative">
-        <p>{{ts 'frontend.profile.estimated_pay'}} <span class="help-text">({{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-ras-2-2"></span></p>
-        <div class="hover-tooltip js-tooltip-stavka-ras-2-2">
+        <p>{{ts 'frontend.profile.estimated_pay'}} <span class="help-text">({{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-1-2" data-target=".js-tooltip-stavka-ras-1-2"></span></p>
+        <div class="hover-tooltip js-tooltip-stavka-ras-1-2" show-tooltip yu-parent="rel-js-tooltip-stavka-ras-1-2">
             <span class="icon"></span>
             <p>{{ts 'frontend.profile.pay_reasoning'}}</p>
         </div>
@@ -194,22 +103,26 @@
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 last position-relative">
-        <p>{{ts 'frontend.profile.desired_pay'}} <span class="help-text">(EUR {{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-stavka-des-2-2"></span></p>
-        <div class="hover-tooltip js-tooltip-stavka-des-2-2">
+        <p>{{ts 'frontend.profile.desired_pay'}} <span class="help-text">(EUR {{ts 'frontend.profile.per_day'}})</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-1-2" data-target=".js-tooltip-stavka-des-1-2"></span></p>
+        <div class="hover-tooltip js-tooltip-stavka-des-1-2" show-tooltip yu-parent="rel-js-tooltip-stavka-des-1-2">
             <span class="icon"></span>
             <p>{{ts 'frontend.profile.desired_pay_reasoning'}}</p>
         </div>
-        <input type="text">
+        {{view Ember.TextField valueBinding='service.written_price' name='written_price' viewName='written_price' style="width: 4em;"}}
     </div>
     <!-- /Колонка -->
     <div class="clear"></div>
-</div>
+    <div class="height-20"></div>
 
+{{/each}}
+{{outlet 'new_service'}}
+<!-- /Колонка -->
+<div class="clear"></div>
 <div class="height-20"></div>
 <div class="grey-line"></div>
 <div class="height-20"></div>
 
-<a href="" class="pink-bright" ng-click="profile.addonLanguages.push({})"><b class="bold">+</b> {{ts 'frontend.profile.add_language'}}</a>
+<a {{action 'add_language' model}} class="pink-bright"><b class="bold">+</b> {{ts 'frontend.profile.add_language'}}</a>
 
 <div class="height-20"></div>
 <div class="position-relative">
@@ -219,16 +132,21 @@
         <p>{{ts 'frontend.profile.available_services'}}</p>
     </label>
 </div>
+
 <div class="add short">
-    <a href="" class="trigger modal-trigger" ng-click="modalOpen('modal-uslugi')"><b>+</b> {{ts 'frontend.profile.add'}}</a>
+    <a href="" {{action 'show_directions'}}><b>+</b> {{ts 'frontend.profile.add'}}</a>
     <div class="textarea">
-        <textarea rows="3" readonly></textarea>
+        <div class="pseudo_textarea" style="min-height: 70px">
+            {{#each direction in model.directions.content}}
+                <span>{{direction.name}}</span>
+            {{/each}}
+        </div>
     </div>
 </div>
 <!-- Колонка -->
 <div class="col-1">
     <label class="checkbox clearfix">
-        <input type="checkbox" ng-model="profile.canTravel" value="1">
+        {{view Ember.Checkbox checkedBinding="model.can_travel"}}
         <em></em>
         <p>{{ts 'frontend.profile.free_travel'}}</p>
     </label>
@@ -237,7 +155,7 @@
 <!-- Колонка -->
 <div class="col-1 position-relative">
     <label class="checkbox clearfix">
-        <input type="checkbox" value="1" ng-model="profile.drivingLicense">
+        {{view Ember.Checkbox checkedBinding="model.has_driving_licence"}}
         <em></em>
         <p>{{ts 'frontend.profile.has_driver_id'}}</p>
     </label>
@@ -247,7 +165,7 @@
 <!-- Колонка -->
 <div class="col-1 last position-relative">
     <label class="checkbox clearfix">
-        <input type="checkbox" value="1" ng-model="profile.haveACar">
+        {{view Ember.Checkbox checkedBinding="model.has_car"}}
         <em></em>
         <p>{{ts 'frontend.profile.has_car'}}</p>
     </label>
@@ -260,8 +178,10 @@
 <div class="col-1">
     <p>{{ts 'frontend.profile.status_now'}}</p>
     <div class="custom-select">
-        <select ng-model="profile.ocсcupation" ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'occupations'}">
-        </select>
+        {{view Ember.Select
+        selection=model.status
+        prompt='-'
+        content=statuses}}
     </div>
 </div>
 <!-- /Колонка -->

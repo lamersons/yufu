@@ -24,6 +24,8 @@ module Profile
       field :passport_till, type: DateTime
       field :passport_country
       field :years_in_china, type: Integer
+      field :status
+      field :pay_way
       belongs_to :city
 
 

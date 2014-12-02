@@ -13,11 +13,14 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
     show_nearby: {
       refreshModel: true
     }
+    show_directions: {
+      refreshModel: true
+    }
   }
 
   actions: {
     queryParamsDidChange: (paramsChanged, params)->
-      @render_template(params.step || @steps, params.show_nearby, params.show_nearby_with_surcharge) unless @lock
+      @render_template(params.step || @steps, params.show_nearby, params.show_nearby_with_surcharge, params.show_directions) unless @lock
   }
 
 
@@ -27,17 +30,21 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
   setupController: (controller, model) ->
     controller.set 'model', model
     controller.set 'cities', @store.find('city')
+    controller.set 'directions', @store.find('direction')
     controller.set 'languages', @store.find('language')
     controller.set 'next_step', @steps[1]
     controller.set 'steps', @steps
     controller.set 'genders', ['male', 'female']
     controller.set 'visa_kind', ['visa1', 'visa2']
-    controller.set 'yesno', ['yes', 'no']
     controller.set 'truefalse', [true, false]
+    controller.set 'sense_of_translation', ['from chinese', 'to chinese']
+    controller.set 'truefalse', [true, false]
+    controller.set 'statuses', ['status_1', 'status_2']
     controller.set 'lang_levels', ['level_1', 'level_2']
-    new_service = @store.createRecord('service', {profile: model} )
-    model.get('services_attributes').content.push new_service
-    controller.set 'new_service', new_service
+    controller.set 'pay_ways', ['bank', 'visa', 'alipay']
+    if model.get('services').content.length == 0
+      new_service = @store.createRecord('service', {profile: model} )
+      model.get('services').content.push new_service
 
   renderTemplate: (controller, model)->
     @lock = false
@@ -48,7 +55,7 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
     @render_template(step, null, null)
 
 
-  render_template: (step, show_nearby, show_nearby_surcharge)->
+  render_template: (step, show_nearby, show_nearby_surcharge, show_directions)->
     @render()
     @render "translator_individual/edit_#{step}", {into: 'translator_individual/edit'}
     if show_nearby
@@ -61,5 +68,11 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
       return
     else
       @disconnectOutlet {outlet: 'modal'}
+
+    if show_directions
+      @render 'partials/_directions', {outlet: 'modal'}
+      return
+    else
+    @disconnectOutlet {outlet: 'modal'}
 
 })
