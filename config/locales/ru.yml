@@ -43,6 +43,9 @@ ru:
     dec: Декабрь
 
   main:
+    as_translator: как Переводчик
+    as_supplier: как Поставщик услуг
+    as_agent: как Агент
     we_offer: Мы предлагаем
     spoken_translates: Устный перевод
     spoken_translate:

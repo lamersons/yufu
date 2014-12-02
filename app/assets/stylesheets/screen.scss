@@ -437,7 +437,7 @@ DIV.block.second {
     padding-left: $grid-single-int;
     padding-right: $grid-single-int;
     padding-top: 25px;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
     background: rgba(255, 255, 255, 0.5);
     display: none;
     &.translator {
@@ -452,6 +452,7 @@ DIV.block.second {
   }//P.text-blocks
 
   //Стрелки
+  //Стрелки
   SPAN.arrow {
     position: absolute;
     bottom: -20px;
@@ -463,7 +464,7 @@ DIV.block.second {
       left: ($grid-col-width + $grid-single-int * 2) / 2 - 35px;
     }
     &.supplier {
-      left: 135px;
+      left: ($grid-container-width + $grid-single-int * 2) / 2 - 35px;
     }
     &.agent {
       right: ($grid-col-width + $grid-single-int * 2) / 2 - 35px;
