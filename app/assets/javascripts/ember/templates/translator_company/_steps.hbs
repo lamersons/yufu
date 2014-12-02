@@ -4,6 +4,12 @@
   <div class="col-1">
     {{#if isBackEnable}}
       <button type="button" class="button" {{action 'update' this back_step}}>Назад</button>
+    {{else}}
+      <button type="button" class="button">
+        {{#link-to 'profiles.translator_new'}}
+          Назад
+        {{/link-to}}
+      </button>
     {{/if}}
   </div>
 
