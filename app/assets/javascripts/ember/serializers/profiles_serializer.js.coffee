@@ -7,7 +7,8 @@ Yufu.ProfileSerializer = DS.ActiveModelSerializer.extend DS.EmbeddedRecordsMixin
     nearby_cities: {serialize: 'ids'}
     nearby_cities_with_surcharge: {serialize: 'ids'}
 
-Yufu.ProfileTranslatorIndividualSerializer = Yufu.ProfileSerializer.extend()
+Yufu.ProfileTranslatorBaseSerializer = Yufu.ProfileSerializer.extend()
 
+Yufu.ProfileTranslatorIndividualSerializer = Yufu.ProfileSerializer.extend()
 
 Yufu.ProfileTranslatorCompanySerializer = Yufu.ProfileSerializer.extend()

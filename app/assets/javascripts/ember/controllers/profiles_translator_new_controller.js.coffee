@@ -1,0 +1,29 @@
+# for more details see: http://emberjs.com/guides/controllers/
+
+Yufu.ProfilesTranslatorNewController = Ember.Controller.extend
+  actions: {
+    create: ->
+      type = @get('_type')
+      if type == 'Profile::Translator::Individual'
+        @redirectOrCreat(type, @translatorIndividual, 'translator_individual.edit')
+      else if type == 'Profile::Translator::Company'
+        @redirectOrCreat(type, @translatorCompany, 'translator_company.edit')
+
+
+  }
+
+  redirectOrCreat: (type, profile, route) ->
+    if profile
+      @transitionToRoute route, profile
+    else
+      @updateOrCreate(type, @translatorBase, route)
+
+  updateOrCreate: (type, profile, route) ->
+    if profile
+      profile.set '_type', type
+    else
+      profile = @store.createRecord 'profile', {_type: type}
+    profile.save().then =>
+      profile.unloadRecord()
+      @transitionToRoute route, profile.id
+

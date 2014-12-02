@@ -26,7 +26,7 @@ module Api
           current_user.profiles << @profile
           if @profile.update_attributes profile_params
             current_user.save
-            render json: {success: true}
+            respond_with @profile, statue: :created, location: false
           else
             render json: {success: false}
           end
@@ -35,7 +35,7 @@ module Api
 
       def update
         if @profile.update_attributes(profile_params)
-          render json: {success: true}
+          respond_with @profile, statue: :created, location: false
         else
           render json: {success: false}
         end
