@@ -32,7 +32,6 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
     controller.set 'cities', @store.find('city')
     controller.set 'directions', @store.find('direction')
     controller.set 'languages', @store.find('language')
-    controller.set 'next_step', @steps[1]
     controller.set 'steps', @steps
     controller.set 'genders', ['male', 'female']
     controller.set 'visa_kind', ['visa1', 'visa2']
