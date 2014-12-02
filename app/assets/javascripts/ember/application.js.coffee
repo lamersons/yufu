@@ -1,3 +1,4 @@
+#= require i18n
 #= require jquery
 #= require moment
 #= require moment/ru.js

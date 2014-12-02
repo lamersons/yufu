@@ -19,14 +19,14 @@ module Api
         profiles = current_user.profiles.map{|profile| profile._type}
         profiles << 'Profile::Base'
         profiles << 'Profile::Translator::Base'
-        if params[:profile][:type].in? profiles
+        if params[:profile][:_type].in? profiles
           render json: {success: false}
         else
-          @profile = params[:profile][:type].constantize.new
+          @profile = params[:profile][:_type].constantize.new
           current_user.profiles << @profile
           if @profile.update_attributes profile_params
             current_user.save
-            render json: {success: true}
+            respond_with @profile, statue: :created, location: false, root: 'profile'
           else
             render json: {success: false}
           end
@@ -35,7 +35,7 @@ module Api
 
       def update
         if @profile.update_attributes(profile_params)
-          render json: {success: true}
+          respond_with @profile, statue: :created, location: false, root: 'profile'
         else
           render json: {success: false}
         end

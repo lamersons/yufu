@@ -201,16 +201,34 @@
         p.h2
           = t('agent')
     .clear
+    /Needs rethinking
     p.text-block.translator
-      = ts('main.about.translator')
+      span.left
+        = t('main.about.col2')
+      span.center
+        = t('main.about.col2')
+      span.right
+        = t('main.about.col2')
     p.text-block.supplier
-      = ts('main.about.supplier')
+      span.left
+        = t('main.about.col2')
+      span.center
+        = t('main.about.col2')
+      span.right
+        = t('main.about.col2')
     p.text-block.agent
-      = ts('main.about.agent')
+      span.left
+        = t('main.about.col2')
+      span.center
+        = t('main.about.col2')
+      span.right
+        = t('main.about.col2')
 = form_for @user, url: url_for(controller: 'api/v1/users', action: 'create'), html: {class: 'reg-form clearfix'}, remote: true do |f|
   .container
     .now
       = t('main.register_now')
+      br
+      span
     .form-radios
       = label_tag I18n.t(:translator)
       = radio_button_tag 'user[_type]', 'Profile::Translator::Base', false, class: 'translator', class: 'translator-radio'
@@ -234,6 +252,8 @@
         .message.success
           = t('main.check_email').html_safe
         .message.error
+        .message.load-icon
+          = image_tag 'icons/load_img.gif'
 
 coffee:
   new RegForm()

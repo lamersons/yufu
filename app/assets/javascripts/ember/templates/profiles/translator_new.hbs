@@ -1,54 +1,55 @@
 <form class="section-form section-cabinet-common section-reg-translator">
-    <!-- Верхнее меню -->
-
-    <!-- /Верхнее меню -->
-    <!-- Контейнер -->
-    <div class="container clearfix">
-        <h1 class="main">{{ts 'frontend.profile.register_as'}} <span class="pink-bright">{{ts 'frontend.profile.partner-translator'}}</span></h1>
-        <p class="title">{{ts 'frontend.profile.partner_profile_form'}}</p>
-        <div class="height-10"></div>
-        <!-- Колонка -->
-
-        <div class="col-1">
-            <label class="radio no-left clearfix">
-                {{view Ember.RadioButton name="type" selectionBinding="_type" value="Profile::Translator::Individual"}}
-                <em></em>
-                <p><b>{{ts 'frontend.profile.as_person'}}</b></p>
-            </label>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1">
-            <label class="radio clearfix">
-                {{view Ember.RadioButton name="type" selectionBinding="_type" value="Profile::Translator::Company"}}
-                <em></em>
-                <p><b>{{ts 'frontend.profile.as_company'}}</b></p>
-            </label>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1 last">
-            <div class="custom-select" style="position: relative; top: -10px;">
-                {{view Ember.Select
-                selection=model.profile_language.content
-                prompt='Язык профиля'
-                content=languages
-                optionLabelPath='content.name'
-                optionValuePath='content.id'}}
-            </div>
-        </div>
-        <!-- /Колонка -->
-        <div class="clear"></div>
-        <div class="height-20"></div>
-        <div class="grey-line-thick"></div>
-        <div class="height-20"></div>
-        <p class="big-tooltip">
-            <span class="icon"></span>
-            {{ts 'frontend.profile.step_one_hint'}}
-        </p>
-        <div class="clear"></div>
-        <div class="height-20"></div>
-        <!-- Шаги -->
+  <div class="container clearfix">
+    <h1 class="main">{{ts 'frontend.profile.register_as'}} <span class="pink-bright">{{ts 'frontend.profile.partner-translator'}}</span></h1>
+    <p class="title">{{ts 'frontend.profile.partner_profile_form'}}</p>
+    <div class="height-10"></div>
+      <!-- Колонка -->
+    <div class="col-1">
+      <label class="radio no-left clearfix">
+        {{view Ember.RadioButton name="type" selectionBinding="_type" value="Profile::Translator::Individual"}}
+        <em></em>
+        <p><b>{{ts 'frontend.profile.as_person'}}</b></p>
+      </label>
     </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1">
+      <label class="radio clearfix">
+        {{view Ember.RadioButton name="type" selectionBinding="_type" value="Profile::Translator::Company"}}
+        <em></em>
+        <p><b>{{ts 'frontend.profile.as_company'}}</b></p>
+      </label>
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1 last">
+      <div class="custom-select" style="position: relative; top: -10px;">
+        {{view Ember.Select
+        selection=model.profile_language.content
+        prompt='Язык профиля'
+        content=languages
+        optionLabelPath='content.name'
+        optionValuePath='content.id'}}
+      </div>
+    </div>
+    <!-- /Колонка -->
+    <div class="clear"></div>
+    <div class="height-20"></div>
+    <div class="grey-line-thick"></div>
+    <div class="height-20"></div>
+    <p class="big-tooltip">
+      <span class="icon"></span>
+      {{ts 'frontend.profile.step_one_hint'}}
+    </p>
+    <div class="clear"></div>
+    <div class="height-20"></div>
+    <div class="steps clearfix">
+      <div class="col-1 button last">
+        <button type="submit" {{action 'create'}}>Продолжить</button>
+      </div>
+    </div>
+    <div class="height-30"></div>
+
+  </div>
     <!-- /Контейнер -->
 </form>

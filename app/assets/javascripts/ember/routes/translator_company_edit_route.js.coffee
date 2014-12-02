@@ -16,7 +16,7 @@ Yufu.TranslatorCompanyEditRoute = Ember.Route.extend({
 
   actions: {
     queryParamsDidChange: (paramsChanged, params)->
-      @render_template(params.step) unless @lock
+      @render_template(params.step || @steps[0]) unless @lock
   }
 
   renderTemplate: (controller, model)->

@@ -1,1 +1,97 @@
-step 2
+<div>
+    <div class="col-1">
+        <p>Город</p>
+        <div class="custom-select">
+            <select ng-options="dict.id as dict.name|translate for dict in dictionaries|filter:{category: 'cities'}" ng-model="man.cityId">
+                <!--<option value="" ng-if="false"></option>-->
+            </select>
+        </div>
+    </div>
+    <div class="col-1">
+        <p>Язык перевода</p>
+        <div class="custom-select">
+            <select ng-options="dict.id as dict.name|translate for dict in dictionaries|filter:{category: 'languages'}" ng-model="man.languageId">
+                <!--<option value="" ng-if="false"></option>-->
+            </select>
+        </div>
+    </div>
+    <div class="col-1 last">
+        <p>Уровень владения</p>
+        <div class="custom-select">
+            <select ng-options="dict.id as dict.name|translate for dict in dictionaries|filter:{category: 'language_levels'}" ng-model="man.languageLevelId">
+                <!--<option value="" ng-if="false"></option>-->
+            </select>
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    <div class="col-1 position-relative">
+        <p>Расчетная ставка <span class="help-text">(в день)</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-ras-2-1-{{$index}}" data-target=".js-tooltip-stavka-ras-2-1"></span></p>
+        <div class="hover-tooltip js-tooltip-stavka-ras-2-1" show-tooltip yu-parent="rel-js-tooltip-stavka-ras-2-1-{{$index}}">
+            <span class="icon"></span>
+            <p>Цены основаны на анализе рынка устных переводов с/на различные языки в Китае. Цена составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Даже если клиенту требуется перевод на 2 часа, он оплачивает 1 день или 8 часов. При бронировании заказчик указывает необходимость работы 10,12,14 или 16 часов в день, в этом случае за каждый час сверхурочной работы идет 1.5 часовой ставки т.е - оплата за 1 день/8 часов * 1.5. В связи с конъюнктурой рынка, Вашего и мнения других переводчиков цены могут изменяться на ежемесячной основе.</p>
+        </div>
+        <div class="bordered-block thin">
+            <div class="height-2"></div>
+            <p class="bold pink-bright">285 Eur</p>
+        </div>
+    </div>
+    <div class="col-1 last position-relative">
+        <p>Желаемая вами ставка <span class="help-text">(EUR в день)</span> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-stavka-des-2-1-{{$index}}" data-target=".js-tooltip-stavka-des-2-1"></span></p>
+        <div class="hover-tooltip js-tooltip-stavka-des-2-1" show-tooltip yu-parent="rel-js-tooltip-stavka-des-2-1-{{$index}}">
+            <span class="icon"></span>
+            <p>Ваше мнение важно для нас, так оно совместно с мнением др. Переводчиков будет формировать цену продажи. Цена перевода составляет 70% цены клиента. 30% цены заказа уходят на налоги, обслуживание кредитных карт заказчика и др.банковские услуги, комиссионные за маркетинг и поиск клиента, рекламу и развитие Интернет платформы. Просим, иметь в виду, что цена должна быть разумной, учитывать конъюнктуру рынка и количество переводчиков конкретного языка на рынке вкл местных переводчиков. Если цена будет слишком высока вы будете менее востребованными на рынке труда.</p>
+        </div>
+        <input type="text" ng-model="man.price">
+    </div>
+    <div class="col-1 last"></div>
+    <div class="clear"></div>
+
+    <div class="col-1">
+        <p>Имя</p>
+        <input type="text" ng-model="man.name">
+    </div>
+    <div class="col-1 position-relative">
+        <p>Фамилия</p>
+        <input type="text" ng-model="man.family">
+    </div>
+    <div class="col-1 last">
+        <p>Пол</p>
+        <div class="custom-select">
+            <select ng-model="man.sexId" ng-options="dict.id as dict.name|translate for dict in dictionaries|filter:{category: 'sex'}">
+                <!--<option value="" ng-if="false"></option>-->
+            </select>
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    <div class="col-1">
+        <p>Возраст</p>
+        <div class="custom-select">
+            <select ng-model="man.age" ng-options="year for year in [] | range:18:130">
+                <!--<option value="" ng-if="false"></option>-->
+            </select>
+        </div>
+    </div>
+    <div class="col-2 last photo position-relative clearfix">
+        <div class="dropzone dropzone-photo" nv-file-drop uploader="fileUploader" options="man">Или перетащите мышкой сюда</div>
+        <p>Загрузить фото</p>
+        <label class="file">
+            <input type="file" class="fileupload-with-dropzone" nv-file-select uploader="fileUploader" options="{{man}}" filters="imageFilter">
+            <em>Выбрать...</em>
+            <span class="tooltip-icon-small js-tooltip rel-js-tooltip-photo" data-target=".js-tooltip-photo"></span>
+        </label>
+        <p ng-show="man.photo"><a ng-href="{{man.photo.name.url}}" target="_blank"><img ng-src="{{man.photo.name.thumb.url}}" /></a></p>
+        <div class="height-5"></div>
+        <div class="hover-tooltip js-tooltip-photo" show-tooltip yu-parent="rel-js-tooltip-photo">
+            <span class="icon"></span>
+            <p>Будет посылаться клиенту, чтобы он вас мог узнать. Поэтому просим фото в фас и крупным планом.</p>
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    <div class="height-20"></div>
+    <div class="grey-line"></div>
+    <div class="height-20"></div>
+
+</div>
