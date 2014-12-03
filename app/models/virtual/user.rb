@@ -5,6 +5,6 @@ class Virtual::User < ActiveRecord::Base
 
   private
   def encrypt_password
-    self.password = Digest::SHA1.new(512).digest password
+    self.password = password.crypt '$6$'
   end
 end
