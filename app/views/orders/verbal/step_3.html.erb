@@ -160,13 +160,9 @@
         </div>
         <span><span class="greeting-interval"></span> on 2015-07-28 [ China Time ]</span>
     </div>
-    <div class="col-1">
-      <span><%=ts(:info)%></span>
-      <%=hg.text_field :info%>
-    </div>
     <div class="col-2 last">
-      <span><%=ts(:additional_info)%></span>
-      <%=hg.text_field :additional_info%></div>
+      <span><%=ts(:info)%></span>
+      <%=hg.text_area :info%></div>
     <div class="col-3">
         <label class="checkbox no-left clearfix">
           <%=hg.check_box :have_not_booked_yet%>

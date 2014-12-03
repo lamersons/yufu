@@ -1,10 +1,5 @@
 Yufu.FormattedTimestampMixin = Ember.Mixin.create(
-  format: 'DD/M/YYYY',
-  formattedBirthday: (->
-    date = @.get 'birthday'
-    format = @.get 'format'
-    moment(date).format format
-  ).property('birthday', 'format')
+  format: 'DD/M/YYYY'
 
   formattedUpdatedAt: (->
     date = @.get 'updated_at'
@@ -12,15 +7,4 @@ Yufu.FormattedTimestampMixin = Ember.Mixin.create(
     moment(date).format format
   ).property('updated_at', 'format')
 
-  formattedVisaTill: (->
-    date = @.get 'visa_till'
-    format = @.get 'format'
-    moment(date).format format
-    ).property('visa_till', 'format')
-
-  formattedPassportTill: (->
-    date = @.get 'passport_till'
-    format = @.get 'format'
-    moment(date).format format
-  ).property('passport_till', 'format')
 )

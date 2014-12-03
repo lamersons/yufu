@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_profile
 
   def create
-    @order = order_params[:_type].constantize.new
+    @order = order_params[:_type].constantize.new order_params
     if @order.save!
       redirect_to edit_order_path(@order.id)
     else

@@ -4,6 +4,6 @@ class @StepThreeAccordion
     return
   show_hide: ->
     if $(this).next().css('display') == 'none'
-      $(this).next().fadeIn(500)
+      $(this).next().show()
     else
-      $(this).next().fadeOut(500)
+      $(this).next().hide()
