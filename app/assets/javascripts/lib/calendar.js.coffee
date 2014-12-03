@@ -49,7 +49,7 @@ class @Calendar
     $('.dropdown').fadeOut(500)
     if $(object.target).closest('.choosen').is('td')
 
-      @unchoose_date $(object.target).closest('.choosen').find('input').attr('name')
+      @unchoose_date $(object.target).closest('.choosen').find('input')
       @unchoose_date $(object.target).closest('.choosen').find('sup').empty()
       $(object.target).closest('.choosen').removeClass('choosen')
       return

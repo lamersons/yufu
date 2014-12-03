@@ -17,3 +17,6 @@
 //= require moment
 //= require_tree ./lib
 //= require new_index
+//= require functions
+//= require additional
+//= require tooltips
