@@ -1,0 +1,27 @@
+<div class="modal-bg" ng-hide="hideModals"></div>
+<!-- /Бекграунд модального окна -->
+<!-- Модальное окно - языки без увеличения стоимости -->
+<div class="modal modal-cities-no-cost clearfix" >
+    <button {{action 'hide_directions'}} type="button" class="close" >{{ts 'ready'}}</button>
+    <p class="title">{{ts 'directions_list'}}</p>
+
+    <div class="clearfix"></div>
+    <div class="line"></div>
+    <!-- Обертка для скролбара -->
+    <div class="scroll">
+        <!-- Колонка -->
+        <div class="col-1">
+            {{#each direction in directions}}
+                <label class="checkbox clearfix">
+                    {{view Yufu.directionsCheckbox directionBinding="direction" profileBinding=this}}
+                    <em></em>
+                    <p>{{direction.name}}</p>
+                </label>
+            {{/each}}
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+    </div>
+    <!-- /Обретка для скроллбара -->
+</div>
+<!-- /Модальное окно - языки без увеличения стоимости -->

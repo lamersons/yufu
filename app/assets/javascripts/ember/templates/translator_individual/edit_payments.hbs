@@ -11,9 +11,10 @@
         <div class="col-1">
             <p>{{ts 'frontend.profile.payment_method'}}</p>
             <div class="custom-select">
-                <select ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'payments'}">
-                    <option value="" ng-if="false">{{ts 'frontend.profile.other'}}</option>
-                </select>
+                {{view Ember.Select
+                selection=model.pay_way
+                prompt='-'
+                content=pay_ways}}
             </div>
         </div>
         <!-- /Колонка -->

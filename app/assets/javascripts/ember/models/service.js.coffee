@@ -6,4 +6,5 @@ Yufu.Service = DS.Model.extend({
   written_translate_type: DS.attr 'string'
 
   profile: DS.belongsTo 'profile'
+  language: DS.belongsTo 'language', async: true
 })

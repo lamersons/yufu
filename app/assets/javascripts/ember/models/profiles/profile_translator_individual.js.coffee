@@ -32,3 +32,4 @@ Yufu.ProfileTranslatorIndividual = Yufu.Profile.extend
   applications:     DS.hasMany   'order_application', async: true
   nearby_cities:    DS.hasMany   'city',              async: true
   nearby_cities_with_surcharge: DS.hasMany 'city',    async: true
+  directions:       DS.hasMany 'direction',           async: true

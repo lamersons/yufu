@@ -40,17 +40,11 @@ RSpec.describe Api::V1::ProfilesController, :type => :controller do
   describe '#create' do
     before(:each){sign_in user}
 
-    let(:valid_attr){{ user_id: user.id, profile: {type: 'Profile::Translator::Individual', sex: 'male', visa: '123'}}}
-    let(:invalid_attr){{ user_id: user.id, profile: {type: 'Profile::Client', sex: 'male', visa: '123'}}}
+    let(:valid_attr){{ user_id: user.id, profile: {_type: 'Profile::Translator::Individual', sex: 'male', visa: '123'}}}
+    let(:invalid_attr){{ user_id: user.id, profile: {_type: 'Profile::Client', sex: 'male', visa: '123'}}}
 
     describe 'correct data' do
       subject{post :create, valid_attr}
-
-      it 'should be success' do
-        subject
-        expect(response.body).to eq({success: true}.to_json)
-      end
-
       it 'should create' do
         subject
         expect(user.reload.profiles.last.class).to eq(Profile::Translator::Individual)
@@ -93,22 +87,10 @@ RSpec.describe Api::V1::ProfilesController, :type => :controller do
 
     describe 'valid data' do
       subject{put :update, user_id: user.id, id: user.profiles.last.id, profile:{_type: 'Profile::Client', company_uid: 'Nimfa'}}
-      it 'should be success' do
-        subject
-        expect(response.body).to eq({success: true}.to_json)
-      end
 
       it 'should be updated' do
         subject
         expect(user.reload.profiles.last.company_uid).to eq('Nimfa')
-      end
-    end
-
-    describe 'invalid date' do
-      subject{put :update, user_id: user.id, id: user.profiles.last.id, profile:{_type: 'Profile::Client', company_name: 'Nimfa', feedback: 'does not give goods throw it to the swing'}}
-      it 'should not be success' do
-        subject
-        expect(response.body).to eq({success: true}.to_json)
       end
     end
 

@@ -8,5 +8,9 @@ module Order
     belongs_to :language
 
     embedded_in :order_verbal
+
+    def cost(currency = nil)
+      language.verbal_cost level, currency
+    end
   end
 end

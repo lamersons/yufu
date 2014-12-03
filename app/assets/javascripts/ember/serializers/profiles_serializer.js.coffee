@@ -3,9 +3,10 @@ Yufu.ProfileSerializer = DS.ActiveModelSerializer.extend DS.EmbeddedRecordsMixin
     hash['profile'] = @serialize record, options
 
   attrs:
-    services_attributes: {embedded: 'always'}
+    services: {embedded: 'always'}
     nearby_cities: {serialize: 'ids'}
     nearby_cities_with_surcharge: {serialize: 'ids'}
+    directions: {serialize: 'ids'}
 
 Yufu.ProfileTranslatorBaseSerializer = Yufu.ProfileSerializer.extend()
 

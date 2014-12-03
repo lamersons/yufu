@@ -19,14 +19,14 @@ module Api
         profiles = current_user.profiles.map{|profile| profile._type}
         profiles << 'Profile::Base'
         profiles << 'Profile::Translator::Base'
-        if params[:profile][:type].in? profiles
+        if params[:profile][:_type].in? profiles
           render json: {success: false}
         else
-          @profile = params[:profile][:type].constantize.new
+          @profile = params[:profile][:_type].constantize.new
           current_user.profiles << @profile
           if @profile.update_attributes profile_params
             current_user.save
-            respond_with @profile, statue: :created, location: false
+            respond_with @profile, statue: :created, location: false, root: 'profile'
           else
             render json: {success: false}
           end
@@ -35,7 +35,7 @@ module Api
 
       def update
         if @profile.update_attributes(profile_params)
-          respond_with @profile, statue: :created, location: false
+          respond_with @profile, statue: :created, location: false, root: 'profile'
         else
           render json: {success: false}
         end
@@ -53,11 +53,11 @@ module Api
         when 'Profile::Translator::Individual'
           params.require(:profile).permit :first_name, :last_name, :passport_till, :passport_num, :passport_country,
                                           :additional_email, :additional_phone, :phone, :qq, :skype, :wechat, :email, :additions, :sex, :visa,
-                                          :vise_till, :needs_job_resident_permit, :can_travel,
-                                          :has_driving_license, :has_car, :native_language_id, {nearby_cities_ids:[]},
-                                          {nearby_cities_with_surcharge_ids: []}, :city_id,  {directions_ids: []},
-                                          :years_in_china,
-                                          services_attributes: [:level, :has_hsk, :verbal_price, :written_price,
+                                          :vise_till, :needs_job_resident_permit, :can_travel, :status,
+                                          :has_driving_license, :has_car, :native_language_id, {nearby_city_ids:[]},
+                                          {nearby_cities_with_surcharge_ids: []}, :city_id,  {direction_ids: []},
+                                          :years_in_china, :pay_way,
+                                          services: [:level, :has_hsk, :verbal_price, :written_price,
                                                                 :written_translate_type, :language_id]
         end
 

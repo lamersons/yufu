@@ -11,12 +11,16 @@ Yufu.Profile = DS.Model.extend Yufu.FormattedTimestampMixin,
   first_name:       DS.attr 'string'
   last_name:        DS.attr 'string'
   middle_name:      DS.attr 'string'
+  status:           DS.attr 'string'
+  pay_way:          DS.attr 'string'
 
   created_at: DS.attr 'date'
   updated_at: DS.attr 'date'
 
 
-  orders:   DS.hasMany 'order',   async: true
+  orders:   DS.hasMany 'order'
 
 # Embedded relations don't work with STI correct
-  services_attributes: DS.hasMany 'service', embedded: 'always'
+  services:   DS.hasMany 'service',             embedded: 'always'
+
+
