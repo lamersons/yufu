@@ -171,7 +171,7 @@
             <div class="dropzone dropzone-photo" nv-file-drop uploader="fileUploader">{{ts 'frontend.profile.or_drag_here'}}</div>
             <p>{{ts 'frontend.profile.upload_photo'}}</p>
             <label class="file">
-                <input type="file" class="fileupload-with-dropzone" nv-file-select uploader="fileUploader">
+                {{view Yufu.FileUpload name="avatar" file=avatar object=model}}
                 <em>{{ts 'frontend.profile.choose'}}...</em>
                 <span class="tooltip-icon-small js-tooltip rel-js-tooltip-photo" data-target=".js-tooltip-photo"></span>
             </label>
