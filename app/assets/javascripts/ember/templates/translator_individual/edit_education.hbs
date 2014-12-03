@@ -9,20 +9,24 @@
         <div ng-include="'cabinet/profiles/translators/person-tabs.html'"></div>
 
         <div ng-repeat="edu in profile.educations">
+            {{#each education in model.educations}}
             <!-- Колонка -->
             <div class="col-1">
                 <p>{{ts 'frontend.profile.education'}}</p>
                 <div class="custom-select">
-                    <select ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'edu_levels'}">
-                        <option value="" ng-if="false">{{ts 'frontend.profile.other'}}</option>
-                    </select>
+                    {{view Yufu.SelectView
+                    object=education
+                    attr='grade'
+                    prompt='-'
+                    content=educations
+                    onChange='if_other'}}
                 </div>
             </div>
             <!-- /Колонка -->
             <!-- Колонка -->
             <div class="col-1">
                 <p>{{ts 'frontend.profile.other'}}</p>
-                <input type="text" disabled>
+                {{view Yufu.CustomTextField valueBinding='education.grade' name='grade' viewName='grade' style="width: 4em;" custom_values=educations}}
             </div>
             <!-- /Колонка -->
             <!-- Колонка -->
@@ -33,9 +37,10 @@
                     <p>{{ts 'frontend.profile.previous_industries'}}</p>
                 </div>
                 <div class="custom-select">
-                    <select ng-options="lang.value as lang.name|translate for lang in dictionaries|filter:{category: 'edu_directions'}">
-                        <option value="" ng-if="false">{{ts 'frontend.profile.other'}}</option>
-                    </select>
+                    {{view Ember.Select
+                    selection=education.specialization
+                    prompt='-'
+                    content=specializations}}
                 </div>
             </div>
             <!-- /Колонка -->
@@ -43,13 +48,13 @@
             <!-- Колонка -->
             <div class="col-2">
                 <p>{{ts 'frontend.profile.institution'}}</p>
-                <input type="text">
+                {{view Ember.TextField valueBinding='education.university' name='university' viewName='university' style="width: 4em;"}}
             </div>
             <!-- /Колонка -->
             <!-- Колонка -->
             <div class="col-1 last">
                 <p>{{ts 'frontend.profile.location'}}</p>
-                <input type="text">
+                {{view Ember.TextField valueBinding='education.location' name='location' viewName='location' style="width: 4em;"}}
             </div>
             <!-- /Колонка -->
             <div class="clear"></div>
@@ -74,14 +79,16 @@
                     <p>{{ts 'frontend.profile.upload_warning'}}</p>
                 </div>
             </div>
-            <!-- /Колонка -->
             <div class="clear"></div>
+            <div class="height-30"></div>
+            <div class="grey-line"></div>
+            <!-- /Колонка -->
+            {{/each}}
+
         </div>
 
-        <div class="height-30"></div>
-        <div class="grey-line"></div>
         <div class="height-20"></div>
-        <a href="" class="pink-bright" ng-click="profile.educations.push({})"><b class="bold">+</b> {{ts 'frontend.profile.add_education'}}</a>
+        <a {{action 'add_education' model}} href="" class="pink-bright" ><b class="bold">+</b> {{ts 'frontend.profile.add_education'}}</a>
         <div class="height-10"></div>
         <div ng-include="'cabinet/profiles/translators/person-steps.html'"></div>
     </div>
