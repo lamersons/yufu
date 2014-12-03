@@ -2,7 +2,7 @@ module Order
   class Verbal < Base
 
     GENDERS = ['male', 'female']
-    GOALS = ['business', 'entertainment']
+    GOALS   = ['business', 'entertainment']
     DEFAULTCOST = 115.0
 
 
@@ -31,5 +31,8 @@ module Order
       end
     end
 
+    def cost
+
+    end
   end
 end

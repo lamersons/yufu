@@ -8,7 +8,7 @@ Yufu.ProfileTranslatorIndividual = Yufu.Profile.extend
   wechat:           DS.attr 'string'
   next_step:        DS.attr 'number'
   additions:        DS.attr 'string'
-  birthday:         DS.attr 'date'
+  birthday:         DS.attr 'string'
   can_travel:       DS.attr 'boolean'
   sex:              DS.attr 'string'
 
@@ -33,3 +33,27 @@ Yufu.ProfileTranslatorIndividual = Yufu.Profile.extend
   nearby_cities:    DS.hasMany   'city',              async: true
   nearby_cities_with_surcharge: DS.hasMany 'city',    async: true
   directions:       DS.hasMany 'direction',           async: true
+
+  formattedVisaTill: ((key, value, previousValu) ->
+    if (arguments.length > 1)
+      @set 'visa_till', moment(value, format).toDate()
+    date = @.get 'visa_till'
+    format = @.get 'format'
+    moment(date).format format
+  ).property('visa_till', 'format')
+
+  formattedPassportTill: ((key, value, previousValu) ->
+    format = @.get 'format'
+    if (arguments.length > 1)
+      @set 'passport_till', moment(value, format).toDate()
+    date = @.get 'passport_till'
+    moment(date).format format
+  ).property('passport_till', 'format')
+
+  formattedBirthday: ((key, value, previousValu) ->
+    if (arguments.length > 1)
+      @set 'birthday', moment(value, format).toDate()
+    date = @.get 'birthday'
+    format = @.get 'format'
+    moment(date).format format
+  ).property('birthday', 'format')

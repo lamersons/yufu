@@ -6,5 +6,9 @@ module Order
     field :hours, type: Integer, default: 8
     belongs_to :order_language_criterion, class_name: 'Order::LanguageCriterion'
     embedded_in :order_verbal
+
+    def cost
+
+    end
   end
 end
