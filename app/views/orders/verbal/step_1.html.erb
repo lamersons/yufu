@@ -34,7 +34,6 @@
   </label>
 
   <div class="js-tooltip-block-city" show-tooltip yu-parent="rel-js-tooltip-block-city">
-    <span class="icon"></span>
     <%=ts(:include_near_city_hint)%>
   </div>
 </div>
@@ -42,78 +41,55 @@
 <!-- Колонка -->
 <% @order.language_criterions.each do |cr|%>
     <div class="container clearfix right-cont">
+      <div class="inline_lang_form">
+        <input type="hidden" name="order[language_criterions_attributes][][id]" value="<%cr.id%>">
+        <div class="col-1">
+          <p><%=ts(:translation_language)%></p>
+          <div class="custom-select">
+            <select name="order[language_criterions_attributes][][language_id]" >
+              <option></option>
+              <%Language.all.each do |l|%>
+                  <option value="<%=l.id%>" selected="<%='selected' if cr.language_id = l.id%>"><%=l.name%></option>
+              <%end%>
+            </select>
+          </div>
+          </div>
 
-      <input type="hidden" name="order[language_criterions_attributes][][id]" value="<%cr.id%>">
-      <div class="col-1">
-        <p><%=ts(:translation_language)%></p>
-        <div class="custom-select">
-          <select name="order[language_criterions_attributes][][language_id]" >
-            <option></option>
-            <%Language.all.each do |l|%>
-                <option value="<%=l.id%>" selected="<%='selected' if cr.language_id = l.id%>"><%=l.name%></option>
-            <%end%>
-          </select>
+
+        <div class="col-05">
+          <p><%=ts(:translation_level)%></p>
+
+          <div class="custom-select bordered">
+            <select name="order[language_criterions_attributes][][level]">
+              <option value=1 <%='selected' if cr.level == '1'%>><%=ts(:gide)%></option>
+              <option value=2 <%='selected' if cr.level == '2'%>><%=ts(:business)%></option>
+              <option value=3 <%='selected' if cr.level == '3'%>><%=ts(:expert)%></option>
+            </select>
+          </div>
+          </div>
+        <div class="col-05">
+          <p><%=ts(:price)%></p>
+          <input name="order[language_criterions_attributes][][cost]" type="text" value="<%=cr.cost%>">
         </div>
+        <div class="col-05 last remove_lang">
+          <a id="remove_lang" class="pink-bright"><%=ts(:delete_language)%></a>
         </div>
-
-
-      <div class="col-05">
-        <p><%=ts(:translation_level)%></p>
-
-        <div class="custom-select bordered">
-          <select name="order[language_criterions_attributes][][level]">
-            <option></option>
-            <option value=1 selected="<%='selected' if cr.level = 1%>">1</option>
-            <option value=2 selected="<%='selected' if cr.level = 2%>">2</option>
-            <option value=3 selected="<%='selected' if cr.level = 3%>">3</option>
-          </select>
-        </div>
-        </div>
-      <div class="col-05 last">
-        <p><%=ts(:price)%></p>
-
-        <input name="order[language_criterions_attributes][][cost]" type="text" value="<%=cr.cost%>">
-      </div>
     </div>
 <%end%>
-  <div class="container clearfix right-cont">
-    <div class="col-1">
-      <p><%=ts(:translation_language)%></p>
-      <div class="custom-select">
-        <select name="order[language_criterions_attributes][][language_id]" >
-          <option></option>
-          <%Language.all.each do |l|%>
-            <option value="<%=l.id%>"><%=l.name%></option>
-          <%end%>
-        </select>
-      </div>
-      </div>
 
-    <div class="col-05">
-      <p><%=ts(:translation_level)%></p>
 
-      <div class="custom-select bordered">
-        <select name="order[language_criterions_attributes][][level]" >
-          <option></option>
-          <option value=1>1</option>
-          <option value=2>2</option>
-          <option value=3>3</option>
-        </select>
-      </div>
-      </div>
-    <div class="col-05 last">
-        <p><%=ts(:price)%></p>
-
-      <input name="order[language_criterions_attributes][][cost]" type="text" >
-    </div>
 </div>
 <!-- /Колонка -->
 <div class="clear"></div>
 <div class="col-1"></div>
 <div class="col-2 last">
-  <a href="" ng-click="addLanguage()" class="pink-bright"><span class="bold">+</span> Добавить еще один дополнительный язык
-    <span class="tooltip-icon-small"></span></a>
+  <a id="add_lang" class="pink-bright"><span class="bold">+</span> <%=ts(:add_language)%>
+    <span class="tooltip-icon-small js-tooltip rel-js-tooltip-block-lang" data-target=".js-tooltip-block-lang"></span>
+  </a>
 </div>
+  <div class="js-tooltip-block-lang" show-tooltip yu-parent="rel-js-tooltip-block-lang">
+    Добавить новый язык
+  </div>
 <div class="clear"></div>
 
 
@@ -121,12 +97,12 @@
 <p class="title">Даты резервации</p>
 <%= render partial: 'orders/verbal/calendar'%>
 
-<p class="title additional-trigger" ng-click="toggleFlag('showAddon')">
+<p class="title additional-trigger">
   <%=ts(:additional)%>
   <span class="caret icons-caret-pink-right"></span>
 </p>
 <!-- Дополнительные требования -->
-<div class="additional" ng-show="showAddon">
+<div class="additional">
   <!-- Колонка -->
   <div class="col-1">
     <p>Пол переводчика</p>
@@ -193,3 +169,9 @@
 <%=render partial: 'orders/verbal/steps_nav', locals: {f: f}%>
 <%end%>
 <!-- /Раздел с формой -->
+
+<script>
+  new Lang
+  new Additional
+  new Tooltip
+</script>

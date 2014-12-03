@@ -41,7 +41,7 @@
       p
         = ts('main.spoken_translate.block1')
       .over
-        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Verbal'}), method: :post do
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Verbal', language_criterions_attributes: [{level: 1}]}), method: :post do
           p.zakaz
             = ts('make_order')
     .item
@@ -50,7 +50,7 @@
       p
         = ts('main.spoken_translate.block2')
       .over
-        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Verbal'}), method: :post do
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Verbal', language_criterions_attributes: [{level: 2}]}), method: :post do
           p.zakaz
             = ts('make_order')
     .item.third
@@ -59,7 +59,7 @@
       p
         = ts('main.spoken_translate.block3')
       .over
-        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Verbal'}), method: :post do
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Verbal', language_criterions_attributes: [{level: 3}]}), method: :post do
           p.zakaz
             = ts('make_order')
   .container.writing.clearfix
