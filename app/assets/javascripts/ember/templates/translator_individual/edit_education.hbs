@@ -69,7 +69,7 @@
             <div class="col-2 lang-test clearfix position-relative">
                 <div class="dropzone dropzone-lang-test">{{ts 'frontend.profile.or_drag_here'}}</div>
                 <label class="file">
-                    <input type="file" class="fileupload-with-dropzone" data-dropzone=".dropzone-lang-test" data-url="/test.html">
+                    {{view Yufu.FileUploadMultiple name="avatar" file=avatar object=education multiple='multiple'}}
                     <em>{{ts 'frontend.profile.choose'}}...</em>
                     <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-test-file"></span>
                 </label>

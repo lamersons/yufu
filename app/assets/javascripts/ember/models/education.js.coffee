@@ -5,6 +5,8 @@ Yufu.Education = DS.Model.extend({
   university:     DS.attr 'string'
   location:       DS.attr 'string'
 
-  profile: DS.belongsTo 'profile'
+  profile:          DS.belongsTo 'profile'
+  documents:        DS.hasMany 'document',            embedded: 'always'
+
 
 })
