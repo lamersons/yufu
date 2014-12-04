@@ -7,8 +7,17 @@ module Order
     belongs_to :order_language_criterion, class_name: 'Order::LanguageCriterion'
     embedded_in :order_verbal
 
-    def cost
+    validates_presence_of :date
 
+    delegate :language, :level, to: :order_language_criterion, allow_nil: true
+
+    def cost(currency = nil)
+      if hours <= 8
+        order_language_criterion.cost(currency) * hours
+      else
+        cost_by_hour = order_language_criterion.cost(currency)
+        cost_by_hour * 8 + 1.5 * cost_by_hour * (hours - 8)
+      end
     end
   end
 end
