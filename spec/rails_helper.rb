@@ -31,10 +31,12 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+    User.destroy_all
     DatabaseCleaner.start
   end
 
   config.after(:each) do
+    User.destroy_all
     DatabaseCleaner.clean
   end
 
