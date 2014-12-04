@@ -1,7 +1,10 @@
 Yufu.ProfilesIndexController = Ember.ArrayController.extend({
   actions: {
-    edit: (profile)->
-      @transitionToRoute 'profiles.edit', profile
+    activate: (profile, profileForReload) ->
+      profile.set 'is_active', true
+      profile.save().then =>
+        profileForReload.set 'is_active', false
+        @store.all('user').get('firstObject').reload()
 
   }
 

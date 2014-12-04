@@ -11,6 +11,7 @@ Yufu.ProfileTranslatorIndividual = Yufu.Profile.extend
   birthday:         DS.attr 'string'
   can_travel:       DS.attr 'boolean'
   sex:              DS.attr 'string'
+  is_active:        DS.attr 'boolean'
 
   passport_num:              DS.attr 'string'
   passport_till:             DS.attr 'date'

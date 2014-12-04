@@ -28,6 +28,8 @@ ru:
       partners_clients: Мои клиенты
 
     profile:
+      is_active: Активный
+      activate: Активировать
       translator_company:
         title: Анкета профиля компании
       online_checking: online checking

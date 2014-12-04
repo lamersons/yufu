@@ -67,7 +67,11 @@ class User
   end
 
   def translator_profile
-    profiles.where(:_type.in => [Profile::Translator::Individual.to_s, Profile::Translator::Company.to_s]).first
+    translator_profiles.where(is_active: true).first
+  end
+
+  def translator_profiles
+    profiles.where(:_type.in => [Profile::Translator::Individual.to_s, Profile::Translator::Company.to_s])
   end
 
   def partner_profile
