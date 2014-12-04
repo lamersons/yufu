@@ -10,6 +10,7 @@ class @Lang
     $('.inline_lang_form #language_id').last().attr('name', "order[language_criterions_attributes]["+$new_id+"][language_id]")
     $('.inline_lang_form #level').last().attr('name', "order[language_criterions_attributes]["+$new_id+"][level]")
     $('.inline_lang_form #cost').last().attr('name',"order[language_criterions_attributes]["+$new_id+"][cost]")
+    $('.inline_lang_form').last().find('#id').remove()
     $('.inline_lang_form #remove_lang').last().click @remove_lang
     if ($new_id > 0)
       $('.inline_lang_form .remove_lang').last().show()
