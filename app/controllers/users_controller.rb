@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes user_params
+      sign_in @user, bypass: true if @user.need_change_password?
       redirect_to user_path
     else
       render 'users/edit'
