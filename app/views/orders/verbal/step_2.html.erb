@@ -27,7 +27,7 @@
 
 <tr>
   <td><%=lc.language.name%> <sup>Разговорный</sup></td>
-  <%@order.reservation_dates.each_with_index do |date,  i|%>
+  <%lc.reservation_dates.each_with_index do |date,  i|%>
 
       <td class="active date_<%=i%>" style="<%='display: none' if i>=7 %>"  data-cost="<%=Order::Verbal::DEFAULTCOST%>">
         <em class="cost"><%=Order::Verbal::DEFAULTCOST*(1+(date.hours-8)*1.5/8)%> Eur</em>

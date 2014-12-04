@@ -37,4 +37,14 @@ RSpec.describe Order::Verbal, :type => :model do
     include_examples 'returns numeric'
   end
 
+  describe '#check_dates' do
+    let (:language_one) {create :language, name: 'Rus'}
+    let (:language_two) {create :language, name: 'Eng'}
+    let(:order) {create :order_verbal, {reservation_dates_attributes: [{date: '01.01.2015'},{date: '02.01.2015'}], language_criterions_attributes: [{language: language_one},{language: language_two}]}}
+
+    it 'expect to link criteria an dates' do
+      expect(order.reservation_dates.count).to eq(4)
+    end
+  end
+
 end
