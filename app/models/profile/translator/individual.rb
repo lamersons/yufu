@@ -4,6 +4,7 @@ module Profile
       include Mongoid::Paperclip
 
       GRADES = %w(standard senior)
+      before_save :set_avatar_extension
 
       field :additions,  localize: true
       field :email
@@ -43,11 +44,24 @@ module Profile
       has_and_belongs_to_many :directions
 
 
-      accepts_nested_attributes_for :services
+
+      accepts_nested_attributes_for :services, :educations
       has_mongoid_attached_file :avatar
       validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
 
       validates_inclusion_of :grade, in: GRADES
+
+      private
+      def set_avatar_extension
+        if self.avatar_content_type.nil?
+          return false
+        end
+        begin
+          name = SecureRandom.uuid
+        end while not Profile::Translator::Individual.where(avatar_file_name: name).empty?
+        extension = self.avatar_content_type.gsub('image/', '.')
+        self.avatar.instance_write(:file_name, name+extension)
+      end
     end
   end
 end
