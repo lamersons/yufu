@@ -54,11 +54,11 @@ module Profile
       private
       def set_avatar_extension
         if self.avatar_content_type.nil?
-          return false
+          return true
         end
         begin
           name = SecureRandom.uuid
-        end while not Profile::Translator::Individual.where(avatar_file_name: name).empty?
+        end while !Profile::Translator::Individual.where(avatar_file_name: name).empty?
         extension = self.avatar_content_type.gsub('image/', '.')
         self.avatar.instance_write(:file_name, name+extension)
       end
