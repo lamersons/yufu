@@ -12,6 +12,8 @@ Yufu.ProfileTranslatorIndividual = Yufu.Profile.extend
   can_travel:       DS.attr 'boolean'
   sex:              DS.attr 'string'
   is_active:        DS.attr 'boolean'
+  education:        DS.attr 'string'
+  avatar:           DS.attr('string')
 
   passport_num:              DS.attr 'string'
   passport_till:             DS.attr 'date'
@@ -27,9 +29,7 @@ Yufu.ProfileTranslatorIndividual = Yufu.Profile.extend
   years_in_china:            DS.attr 'number'
 
 # Relations
-  city:             DS.belongsTo 'city',              async: true
-  native_language:  DS.belongsTo 'language',          async: true
-  profile_language: DS.belongsTo 'language',          async: true
+
   applications:     DS.hasMany   'order_application', async: true
   nearby_cities:    DS.hasMany   'city',              async: true
   nearby_cities_with_surcharge: DS.hasMany 'city',    async: true

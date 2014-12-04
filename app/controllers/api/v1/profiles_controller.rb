@@ -58,7 +58,8 @@ module Api
                                           {nearby_cities_with_surcharge_ids: []}, :city_id,  {direction_ids: []},
                                           :years_in_china, :pay_way, :birthday, :visa_till, :passport_till,
                                           services: [:level, :has_hsk, :verbal_price, :written_price,
-                                                                :written_translate_type, :language_id]
+                                                                :written_translate_type, :language_id],
+                                          educations: [:grade, :university, :specialization, :location]
         end
 
       end

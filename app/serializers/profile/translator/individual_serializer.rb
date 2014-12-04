@@ -1,7 +1,7 @@
 class Profile::Translator::IndividualSerializer < Profile::Translator::BaseSerializer
   attributes :_type, :sex, :additions, :birthday, :visa, :visa_till, :needs_job_resident_permit, :can_travel, :has_driving_license, :has_car,
              :passport_num, :passport_till, :passport_country, :years_in_china, :city_id, :native_language_id,
-             :profile_language_id, :email, :additional_email,
+             :profile_language_id, :email, :additional_email, :status,
              :phone, :additional_phone, :qq, :wechat, :skype, :needs_job_resident_permit, :nearby_cities, :nearby_cities_with_surcharge, :directions, :pay_way
 
   has_many :services

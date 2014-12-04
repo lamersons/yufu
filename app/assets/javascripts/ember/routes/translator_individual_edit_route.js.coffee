@@ -16,6 +16,9 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
     show_directions: {
       refreshModel: true
     }
+    update: {
+      refreshModel: true
+    }
   }
 
   actions: {
@@ -42,9 +45,14 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
     controller.set 'statuses', ['status_1', 'status_2']
     controller.set 'lang_levels', ['level_1', 'level_2']
     controller.set 'pay_ways', ['bank', 'visa', 'alipay']
+    controller.set 'educations', ['3 grades', 'PTY', 'University', 'other']
+    controller.set 'specializations', ['business', 'entertainment']
     if model.get('services').content.length == 0
       new_service = @store.createRecord('service', {profile: model} )
       model.get('services').content.push new_service
+    if model.get('educations').content.length == 0
+      new_service = @store.createRecord('education', {profile: model} )
+      model.get('educations').content.push new_service
 
   renderTemplate: (controller, model)->
     @lock = false

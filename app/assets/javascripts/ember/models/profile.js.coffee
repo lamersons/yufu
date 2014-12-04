@@ -21,6 +21,10 @@ Yufu.Profile = DS.Model.extend Yufu.FormattedTimestampMixin,
   orders:   DS.hasMany 'order'
 
 # Embedded relations don't work with STI correct
-  services:   DS.hasMany 'service',             embedded: 'always'
+  educations:       DS.hasMany 'education',           embedded: 'always'
+  native_language:  DS.belongsTo 'language',          async: true
+  profile_language: DS.belongsTo 'language',          async: true
+  city:             DS.belongsTo 'city',              async: true
+  services:         DS.hasMany 'service',             embedded: 'always'
 
 
