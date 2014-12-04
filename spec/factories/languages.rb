@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :language do
     sequence(:name) {|n| "lan-#{n}"}
+    association :languages_group
   end
 end

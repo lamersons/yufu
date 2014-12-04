@@ -25,14 +25,27 @@ module Order
 
     delegate :name, to: :location, prefix: true, allow_nil: true
 
+    # TODO: should be removed
     def sum
       reservation_dates.inject(0.0) do |sum, elem|
         sum += Order::Verbal::DEFAULTCOST*(1+(elem.hours-8)*1.5/8)
       end
     end
 
-    def cost
+    def additional_cost(currency = nil)
+      10
+    end
 
+    def general_cost(currency = nil)
+      reservation_dates.to_a.inject(0) { |sum, n| sum + n.cost(currency) }
+    end
+
+    def cost_price(currency = nil)
+      general_cost(currency) + additional_cost(currency)
+    end
+
+    def price(currency = nil)
+      cost_price(currency) / Order::MARKUP
     end
   end
 end

@@ -1,7 +1,7 @@
 module Price
   class Base
     include Mongoid::Document
-    field :value, type: Float
+    field :value,  type: Float
 
     embedded_in :languages_group
 
