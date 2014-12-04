@@ -12,3 +12,4 @@ Yufu.ProfileTranslatorCompany = Yufu.Profile.extend
   additional_email:  DS.attr 'string'
   skype:             DS.attr 'string'
   qq:                DS.attr 'string'
+  is_active:         DS.attr 'boolean'

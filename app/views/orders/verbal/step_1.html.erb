@@ -42,7 +42,7 @@
 <% @order.language_criterions.each do |cr|%>
     <div class="container clearfix right-cont">
       <div class="inline_lang_form">
-        <input type="hidden" name="order[language_criterions_attributes][][id]" value="<%cr.id%>">
+        <input type="hidden" name="order[language_criterions_attributes][][id]" value="<%= cr.id.to_s%>">
         <div class="col-1">
           <p><%=ts(:translation_language)%></p>
           <div class="custom-select">

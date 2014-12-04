@@ -21,8 +21,9 @@ Yufu.ProfilesTranslatorNewController = Ember.Controller.extend
   updateOrCreate: (type, profile, route) ->
     if profile
       profile.set '_type', type
+      profile.set 'is_active', true
     else
-      profile = @store.createRecord 'profile', {_type: type}
+      profile = @store.createRecord 'profile', {_type: type, is_active: true}
     profile.save().then =>
       profile.unloadRecord()
       @transitionToRoute route, profile.id
