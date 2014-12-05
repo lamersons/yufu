@@ -1,6 +1,8 @@
 module Order
   class Verbal < Base
 
+
+    # before_save :check_dates
     GENDERS = ['male', 'female']
     GOALS   = ['business', 'entertainment']
     DEFAULTCOST = 115.0
@@ -46,6 +48,18 @@ module Order
 
     def price(currency = nil)
       cost_price(currency) / Order::MARKUP
+    end
+
+    private
+    def check_dates
+      reservation_dates.each do |date|
+        if date.order_language_criterion.nil?
+          language_criterions.each do |criterion|
+            criterion.reservation_dates.create date
+          end
+          date.destroy
+        end
+      end
     end
   end
 end
