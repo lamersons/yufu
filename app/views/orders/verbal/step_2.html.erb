@@ -17,34 +17,36 @@
 <table cellpadding="0" cellspacing="0" border="0">
 <tr>
 <td></td>
-<%@order.reservation_dates.each_with_index do |date, i|%>
-    <td class="date-cont" data-num="<%=i%>" style="<%='display: none' if i>=7 %>" >
-      <em><%=date.date.strftime '%d-%B-%Y'%></em>
-    </td>
+<%@order.different_dates.each_with_index do |date, i|%>
+        <td class="date-cont" data-num="<%=i%>" style="<%='display: none' if i>=7 %>" >
+          <em><%=date.date.strftime '%d-%B-%Y'%></em>
+        </td>
 <%end%>
 </tr>
 <%@order.language_criterions.each do |lc| %>
 
 <tr>
   <td><%=lc.language.name%> <sup>Разговорный</sup></td>
-  <%lc.reservation_dates.each_with_index do |date,  i|%>
-
-      <td class="active date_<%=i%>" style="<%='display: none' if i>=7 %>"  data-cost="<%=Order::Verbal::DEFAULTCOST%>">
-        <em class="cost"><%=Order::Verbal::DEFAULTCOST*(1+(date.hours-8)*1.5/8)%> Eur</em>
-        <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
-
-        <div class="dropdown">
-          <b class="icon"></b>
-          <em>8</em>
-          <em>10</em>
-          <em>12</em>
-          <em>14</em>
-          <em>16</em>
-          <input type="hidden" name="order[reservation_dates_attributes][][_id]" value="<%=date.id%>">
-          <input type="hidden" class="hours" name="order[reservation_dates_attributes][][hours]" value="<%=date.hours%>">
-          <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]" value="1">
-        </div>
-      </td>
+  <%i=0%>
+  <%@order.reservation_dates.each do |date|%>
+      <%- if date.order_language_criterion_id == lc.id%>
+          <td class="active date_<%=i%>" style="<%='display: none' if i>=7 %>"  data-cost="<%=date.cost%>">
+            <em class="cost"><%=date.cost*(1+(date.hours-8)*1.5/8)%> Eur</em>
+            <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
+            <div class="dropdown">
+              <b class="icon"></b>
+              <em>8</em>
+              <em>10</em>
+              <em>12</em>
+              <em>14</em>
+              <em>16</em>
+              <input type="hidden" name="order[reservation_dates_attributes][][_id]" value="<%=date.id%>">
+              <input type="hidden" class="hours" name="order[reservation_dates_attributes][][hours]" value="<%=date.hours%>">
+              <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]" value="1">
+            </div>
+          </td>
+          <%i += 1%>
+      <%end%>
   <%end%>
   <td></td>
 </tr>

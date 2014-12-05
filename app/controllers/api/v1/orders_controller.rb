@@ -68,7 +68,7 @@ module Api
                           when 'Order::Verbal'
                             [:include_near_city, :goal, :translator_sex, :location_id, :translator_native_language_id,
                              :native_language_id, :directions_ids, {language_criterions: [:level, :cost, :language_id]},
-                            {reservation_dates_attributes: [:date, :hours]}]
+                            {reservation_dates_attributes: [:date, :hours, :language_criterion_id]}]
                           else
                             []
                     end

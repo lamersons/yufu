@@ -2,7 +2,7 @@ module Order
   class Verbal < Base
 
 
-    # before_save :check_dates
+    before_save :check_dates
     GENDERS = ['male', 'female']
     GOALS   = ['business', 'entertainment']
     DEFAULTCOST = 115.0
@@ -50,15 +50,30 @@ module Order
       cost_price(currency) / Order::MARKUP
     end
 
+    def different_dates
+      dates = []
+      reservation_dates.each do |date|
+        unless dates.map{|d| d.date}.include? date.date || !date.fake?
+          dates << date
+        end
+      end
+      dates
+    end
+
     private
     def check_dates
+      temp_array = []
       reservation_dates.each do |date|
-        if date.order_language_criterion.nil?
+        if date.fake?
           language_criterions.each do |criterion|
-            criterion.reservation_dates.create date
+            attrs = date.attributes.except('_id')
+            attrs = attrs.merge order_language_criterion: criterion
+            temp_array << attrs
           end
-          date.destroy
         end
+      end
+      unless temp_array.empty?
+        write_attributes reservation_dates: temp_array
       end
     end
   end

@@ -7,8 +7,12 @@ class @ConfirmCalendar
     @first_date = $('td.date-cont').first()
     $('.arrow.right').click @next_week
     $('.arrow.left').click @prev_week
+    @rerender()
     return
   show_hide_dropdown: (object)=>
+    if $(object.target).closest('td.empty').length > 0
+      return
+
     if $(object.target).is('.dropdown-icon')
       if $(object.target).closest('td.active').find('.dropdown').css('display') == 'block'
         $(object.target).closest('td.active').find('.dropdown').fadeOut(500)
@@ -30,7 +34,7 @@ class @ConfirmCalendar
       return
     if $(object.target).closest('td.active').length > 0
       $('.dropdown').fadeOut(500)
-      $(object.target).closest('td.active').find('input.destroy').val('0')
+      $(object.target).closest('td.active').find('input.destroy').remove()
       $(object.target).closest('td.active').addClass('choosen')
       @recount_price $(object.target).closest('td.active'), $(object.target).closest('td.active').find('span b').html()
       return
@@ -51,7 +55,10 @@ class @ConfirmCalendar
     return
 
   next_week: =>
-    if @first_date.next().is('.date-cont')
+    date = @first_date
+    for i in [1..7]
+      date = $(date).next()
+    if date.next().is('.date-cont')
       $('td.date-cont').fadeOut(500)
       $('td.active').fadeOut(500)
       date = @first_date

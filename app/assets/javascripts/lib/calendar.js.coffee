@@ -51,15 +51,20 @@ class @Calendar
 
       @unchoose_date $(object.target).closest('.choosen').find('input')
       @unchoose_date $(object.target).closest('.choosen').find('sup').empty()
+      $(object.target).closest('.choosen').find('input').val('')
+      $("#real_date_inputs [name='#{$(object.target).closest('.choosen').data('input')}']").next().remove()
+      $("#real_date_inputs [name='#{$(object.target).closest('.choosen').data('input')}']").remove()
       $(object.target).closest('.choosen').removeClass('choosen')
       return
     if $(object.target).closest('table .table_body td')
       @show_hide_dropdown($(object.target).closest('table .table_body td').find('.dropdown'))
     if $(object.target).is('.dropdown em')
       $(object.target).parent().parent().addClass('choosen')
+
       $(object.target).parent().parent().find('sup').html $(object.target).html()
       $(object.target).parent().parent().find('input').val $(object.target).html()
-      @choose_date $(object.target).parent().parent().find('input').attr('name'), $(object.target).html()
+      @choose_date $(object.target).parent().parent().find('input').attr('name'), $(object.target).html(), $(object.target).closest('td')
+
     return
 
   show_hide_dropdown: (elem)->
@@ -68,9 +73,10 @@ class @Calendar
     else
       $(elem).fadeIn(500)
 
-  choose_date: (date, hours)->
+  choose_date: (date, hours, parent)->
     @days_num += 1
     @choosen.push {date: date, hours: hours}
+    $(parent).data('input', "order[reservation_dates_attributes][#{@days_num}][date]")
     $('#real_date_inputs').append("<input name='order[reservation_dates_attributes][#{@days_num}][date]' value='#{moment(date).format('D.M.YYYY')}'>")
     $('#real_date_inputs').append("<input name='order[reservation_dates_attributes][#{@days_num}][hours]' value='#{hours}'>")
 

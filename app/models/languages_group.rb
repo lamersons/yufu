@@ -3,6 +3,8 @@ class LanguagesGroup
 
   embeds_many :verbal_prices, class_name: 'Price::Verbal'
 
+  has_many :languages
+
   accepts_nested_attributes_for :verbal_prices
 
   def verbal_cost(level, currency = nil)
