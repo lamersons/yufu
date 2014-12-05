@@ -245,12 +245,12 @@
         span.text
           = t('languages.ru')
     .nav
-      a[href="#"]
-        | About
-      a[href="#"]
-        | Contacts
-      a[href="#"]
-        | F.A.Q.
+      - if public
+        = link_to 'Личный кабинет', user_path, class: 'bold','data-no-turbolink' => true
+      -else
+        a[href="/"]
+          | На главную
+
     .auth.clearfix
       span.icon
       - if user_signed_in?

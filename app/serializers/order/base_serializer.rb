@@ -1,5 +1,4 @@
 class Order::BaseSerializer < ActiveModel::Serializer
-  include MongoIdSerializer
   attributes :id, :state, :type, :application_status
 
   has_one :airport_pick_up

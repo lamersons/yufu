@@ -1,15 +1,9 @@
 # for more details see: http://emberjs.com/guides/controllers/
 
-Yufu.BannersNewController = Ember.Controller.extend({
+Yufu.BannersNewController = Ember.ObjectController.extend({
   actions: {
     create: ->
-      attributes = {
-        name:   @get('name')
-        width:  @get('width')
-        height: @get('height')
-      }
-      banner = @store.createRecord 'banner', attributes
-      banner.save().then (=>
+      @model.save().then (=>
         @transitionToRoute 'banners'
       ), (=>
         $('.error').show()

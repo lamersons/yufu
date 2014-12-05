@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Price::Base, :type => :model do
-  let(:default_currency) {create :currency, default: true}
-  before(:each) {default_currency}
+  include_context 'default currency'
+
   let(:price) {build :price_base}
   describe '#cost' do
     context 'with currency' do

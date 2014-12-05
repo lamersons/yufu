@@ -16,9 +16,20 @@ RSpec.describe Currency, :type => :model do
   end
 
   describe '.default' do
+    subject{Currency.default}
     it 'returns first default currency' do
       default = create :currency, default: true
-      expect(Currency.default).to eq(default)
+      expect(subject).to eq(default)
+    end
+
+    context 'default currency does not exist' do
+      it 'returns new currency' do
+        is_expected.not_to be_persisted
+        is_expected.to be_a(Currency)
+      end
+      it 'returns currency with rate 1' do
+        expect(subject.rate).to eq(1)
+      end
     end
   end
 

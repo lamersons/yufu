@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::OrdersController, :type => :controller do
+  include_context 'default currency'
 
   let(:order) {create :order_verbal}
 
