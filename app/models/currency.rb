@@ -14,7 +14,7 @@ class Currency
   end
 
   def self.default
-    where(default: true).first
+    where(default: true).first || Currency.new
   end
 
   protected

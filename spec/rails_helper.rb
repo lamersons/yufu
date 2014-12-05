@@ -24,19 +24,19 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include FactoryGirl::Syntax::Methods
+  config.use_transactional_fixtures = false
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner[:active_record].strategy = :transaction
+    DatabaseCleaner[:mongoid].strategy       = :truncation
     DatabaseCleaner.clean_with :truncation
   end
 
   config.before(:each) do
-    User.destroy_all
     DatabaseCleaner.start
   end
 
   config.after(:each) do
-    User.destroy_all
     DatabaseCleaner.clean
   end
 

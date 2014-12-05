@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Order::Verbal, :type => :model do
-  let(:default_currency) {create :currency, default: true}
-  before(:each) {default_currency}
+  include_context 'default currency'
 
   RSpec.shared_examples 'returns numeric' do
     it 'returns numeric' do
