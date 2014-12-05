@@ -223,7 +223,7 @@
   <% @order.reservation_dates.each_with_index do |date, i|%>
       <p class="point"><span class="bold number"><%=i%>.</span> <%=date.date.strftime '%a'%>. <%=date.date.mday%>
         <%date.date.strftime '%m'%> <%=date.date.year%> <%=ts(:y)%>., <%=ts(:in)%>. <%=@order.location.name%>, <%=ts(:interpretation)%>,
-        <%=@order.language_criterions.last.language.name%>, <%=ts(:level)%> - <%=ts("level_#{@order.language_criterions.last.level}")%>, <%=date.hours%> <%=ts(:hours)%> = <span class="semi-bold"><%=Order::Verbal::DEFAULTCOST*(1+(date.hours-8)*1.5/8)%> Eur</span></p>
+        <%=@order.language_criterions.last.language.name%>, <%=ts(:level)%> - <%=ts("level_#{@order.language_criterions.last.level}")%>, <%=date.hours%> <%=ts(:hours)%> = <span class="semi-bold"><%=date.cost*(1+(date.hours-8)*1.5/8)%> Eur</span></p>
   <%end%>
   <div class="line"></div>
   <p class="pink-bright bold"><%=ts(:total)%>: <%=@order.sum%> Eur</p>

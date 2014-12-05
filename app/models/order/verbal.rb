@@ -30,7 +30,7 @@ module Order
     # TODO: should be removed
     def sum
       reservation_dates.inject(0.0) do |sum, elem|
-        sum += Order::Verbal::DEFAULTCOST*(1+(elem.hours-8)*1.5/8)
+        sum += elem.cost*(1+(elem.hours-8)*1.5/8)
       end
     end
 
