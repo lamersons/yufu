@@ -4,7 +4,6 @@ module Profile
       include Mongoid::Paperclip
 
       GRADES = %w(standard senior)
-      before_save :set_avatar_extension
 
       field :additions,  localize: true
       field :email
@@ -50,6 +49,15 @@ module Profile
       validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
 
       validates_inclusion_of :grade, in: GRADES
+      before_save :set_avatar_extension
+      before_save :set_total_approve, unless: :total_approve
+
+      def approved?
+        return true if total_approve
+        services.each   {|s| return false unless s.is_approved}
+        educations.each {|e| return false unless e.is_approved}
+        true
+      end
 
       private
       def set_avatar_extension
@@ -61,6 +69,11 @@ module Profile
         end while !Profile::Translator::Individual.where(avatar_file_name: name).empty?
         extension = self.avatar_content_type.gsub('image/', '.')
         self.avatar.instance_write(:file_name, name+extension)
+      end
+
+      def set_total_approve
+        self.total_approve = approved?
+        true
       end
     end
   end

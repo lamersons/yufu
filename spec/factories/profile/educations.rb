@@ -6,5 +6,6 @@ FactoryGirl.define do
     specialization "MyString"
     university "MyString"
     location "MyString"
+    is_approved true
   end
 end

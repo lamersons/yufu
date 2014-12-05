@@ -3,6 +3,9 @@ FactoryGirl.define do
     association :user
     first_name 'name'
     last_name 'name 2'
+    total_approve true
+    services   {[build(:service)]}
+    educations {[build(:education)]}
   end
 
   factory :translator_company, class: Profile::Translator::Company do
