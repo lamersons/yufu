@@ -6,11 +6,12 @@ Yufu::Application.routes.draw do
   mount Mercury::Engine => '/'
   root to: 'main#index'
 
-  mount RailsAdmin::Engine => '/administration', as: 'rails_admin'
   mount I18nDashboard::Engine => '/i18n_dashboard'
 
   devise_for :admin
   devise_for :users
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   resource :user
   resources :banners, only: :show
