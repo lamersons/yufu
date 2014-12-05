@@ -13,6 +13,7 @@ Yufu.Profile = DS.Model.extend Yufu.FormattedTimestampMixin,
   middle_name:      DS.attr 'string'
   status:           DS.attr 'string'
   pay_way:          DS.attr 'string'
+  total_approve:    DS.attr 'boolean'
 
   created_at: DS.attr 'date'
   updated_at: DS.attr 'date'
