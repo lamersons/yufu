@@ -15,7 +15,6 @@ module Order
       order_language_criterion_id.nil?
     end
 
-
     def cost(currency = nil)
       language_criterion = order_verbal.language_criterions.find order_language_criterion_id
       if hours <= 8

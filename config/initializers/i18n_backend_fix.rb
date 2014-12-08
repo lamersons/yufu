@@ -8,8 +8,6 @@ module I18n
         return true
       end
 
-      protected
-
       def translations
         trans = {}
         backends.reverse.each do |backend| # reverse so that the top most will be merged-in
@@ -17,9 +15,10 @@ module I18n
             trans.deep_merge!(translations)
           end
         end
-        return trans
+        trans
       end
 
+      protected
       def init_translations
         backends.each do |backend|
           backend.instance_eval do
@@ -41,12 +40,12 @@ module I18n
       protected
       def translations
         trans = {}
-        store.keys.delete_if{|k| k.include?("#") || %w(system_keys keys_digest)}.each do |k|
+        store.keys.delete_if{|k| k.include?("#") || %w(keys system_keys keys_digest).include?(k)}.each do |k|
           trans_pointer = trans
           key_array = k.split(".")
           last_key = key_array.delete_at(key_array.length-1)
           key_array.each do |current|
-            if !trans_pointer.has_key?(current.to_sym)
+            unless trans_pointer.has_key?(current.to_sym)
               trans_pointer[current.to_sym] = {}
             end
             trans_pointer = trans_pointer[current.to_sym]
