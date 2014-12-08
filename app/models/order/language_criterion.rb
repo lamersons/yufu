@@ -7,7 +7,7 @@ module Order
     field :cost,  type: Float
     belongs_to :language
 
-    embedded_in :order_verbal
+    belongs_to :order, class_name: 'Order::Verbal', inverse_of: :language_criterions
 
     def cost(currency = nil)
       language.verbal_cost level, currency

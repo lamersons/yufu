@@ -10,13 +10,13 @@
 <!-- Колонка -->
 <div class="col-1">
   <p><%=ts(:fist_name)%></p>
-  <%=ci.text_field :first_name%>
+  <%=ci.text_field :first_name, value: @order.client_info.first_name%>
 </div>
 <!-- /Колонка -->
 <!-- Колонка -->
 <div class="col-1">
   <p><%=ts(:last_name)%></p>
-  <%=ci.text_field :last_name%>
+  <%=ci.text_field :last_name, value: @order.client_info.last_name%>
 </div>
 <!-- /Колонка -->
 <!-- Колонка -->
@@ -223,7 +223,7 @@
   <% @order.reservation_dates.each_with_index do |date, i|%>
       <p class="point"><span class="bold number"><%=i%>.</span> <%=date.date.strftime '%a'%>. <%=date.date.mday%>
         <%date.date.strftime '%m'%> <%=date.date.year%> <%=ts(:y)%>., <%=ts(:in)%>. <%=@order.location.name%>, <%=ts(:interpretation)%>,
-        <%=@order.language_criterions.last.language.name%>, <%=ts(:level)%> - <%=ts("level_#{@order.language_criterions.last.level}")%>, <%=date.hours%> <%=ts(:hours)%> = <span class="semi-bold"><%=date.cost*(1+(date.hours-8)*1.5/8)%> Eur</span></p>
+        <%=date.order_language_criterion.language.name%>, <%=ts(:level)%> - <%=ts("level_#{date.order_language_criterion.level}")%>, <%=date.hours%> <%=ts(:hours)%> = <span class="semi-bold"><%=date.cost*(1+(date.hours-8)*1.5/8)%> Eur</span></p>
   <%end%>
   <div class="line"></div>
   <p class="pink-bright bold"><%=ts(:total)%>: <%=@order.sum%> Eur</p>

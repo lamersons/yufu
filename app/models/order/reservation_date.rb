@@ -17,11 +17,10 @@ module Order
 
 
     def cost(currency = nil)
-      language_criterion = order_verbal.language_criterions.find order_language_criterion_id
       if hours <= 8
-        language_criterion.cost(currency) * hours
+        order_language_criterion.cost(currency) * hours
       else
-        cost_by_hour = language_criterion.cost(currency)
+        cost_by_hour = order_language_criterion.cost(currency)
         cost_by_hour * 8 + 1.5 * cost_by_hour * (hours - 8)
       end
     end

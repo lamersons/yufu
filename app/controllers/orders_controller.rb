@@ -25,7 +25,10 @@ class OrdersController < ApplicationController
     if @order.update_attributes order_params
       @order.update_attribute :step, @order.step+1
       session[:back_to_order] = edit_order_path(@order)
-      authenticate_user! if @order.step == 3
+      if @order.step == 3
+        authenticate_user!
+        @order.update_attribute :owner, current_user.profiles.where(_type: 'Profile::Client').first
+      end
     end
     redirect_to edit_order_path(@order)
   end

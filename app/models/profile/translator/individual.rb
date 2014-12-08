@@ -52,6 +52,8 @@ module Profile
       before_save :set_avatar_extension
       before_save :set_total_approve, unless: :total_approve
 
+
+
       def approved?
         return true if total_approve
         services.each   {|s| return false unless s.is_approved}

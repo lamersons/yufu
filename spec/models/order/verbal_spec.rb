@@ -37,17 +37,11 @@ RSpec.describe Order::Verbal, :type => :model do
   end
 
   describe '#check_dates' do
-    let (:language_one) {create :language, name: 'Rus'}
-    let (:language_two) {create :language, name: 'Eng'}
-    let (:date_one) {new :reservation_date, date: '01.02.2014'}
     let(:order) do
-      order = create :order_verbal, language_criterions_attributes: [{language: language_one},{language: language_two}]
-      # order.reservation_dates.first.destroy
-      order.language_criterions.first.destroy
-      order.reservation_dates.build date: '01.02.2014'
-      order.reservation_dates.build date: '02.02.2014'
-      order.save!
-      order
+      create :order_verbal, language_criterions: [(build :order_language_criterion, {language: (build :language, name: 'Rus')}),
+                                                  (build :order_language_criterion,{language: (build :language, name: 'Eng')})],
+                     reservation_dates: [(build :order_reservation_date, date: '01.02.2014', order_language_criterion: nil),
+                                         (build :order_reservation_date, date: '02.02.2014', order_language_criterion: nil)]
     end
 
     it 'expect to link criteria an dates' do
