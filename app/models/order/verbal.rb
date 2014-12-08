@@ -3,6 +3,7 @@ module Order
 
 
     before_save :check_dates
+    before_create :create_client_info
     GENDERS = ['male', 'female']
     GOALS   = ['business', 'entertainment']
     DEFAULTCOST = 115.0
@@ -17,7 +18,7 @@ module Order
     belongs_to :translator_native_language, class_name: 'Language'
     belongs_to :native_language,            class_name: 'Language'
 
-    embeds_many :language_criterions, class_name: 'Order::LanguageCriterion'
+    has_many :language_criterions,    class_name: 'Order::LanguageCriterion', inverse_of: :order
     embeds_many :reservation_dates,   class_name: 'Order::ReservationDate'
 
     accepts_nested_attributes_for :language_criterions, allow_destroy: true
@@ -75,6 +76,10 @@ module Order
       unless temp_array.empty?
         write_attributes reservation_dates: temp_array
       end
+    end
+
+    def create_client_info
+      build_client_info
     end
   end
 end
