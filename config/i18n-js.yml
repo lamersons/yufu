@@ -20,6 +20,7 @@
 #     - file: "public/javascripts/translations.js"
 #       only: "*"
 #
+fallbacks: :default_locale
 
 translations:
  - file: "public/system/javascripts/translations.js"

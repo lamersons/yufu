@@ -25,6 +25,8 @@ Yufu.Router.map ()->
 
     @resource 'partners_clients'
 
+  @resource 'translations'
+
   @route 'agent', ->
     @resource 'vassals'
     @resource 'banners', ->
