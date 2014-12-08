@@ -36,7 +36,7 @@ module Profile
       belongs_to :native_language, class_name: 'Language'
 
       embeds_many :services,   class_name: 'Profile::Translator::Service'
-      embeds_many :educations, class_name: 'Profile::Education'
+      embeds_many :educations, class_name: 'Profile::Education', :cascade_callbacks => true
 
       has_and_belongs_to_many :nearby_cities,                  class_name: 'City'
       has_and_belongs_to_many :nearby_cities_with_surcharge,   class_name: 'City'
