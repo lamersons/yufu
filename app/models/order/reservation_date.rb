@@ -15,7 +15,6 @@ module Order
       order_language_criterion_id.nil?
     end
 
-
     def cost(currency = nil)
       if hours <= 8
         order_language_criterion.cost(currency) * hours
