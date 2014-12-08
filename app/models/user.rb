@@ -59,6 +59,11 @@ class User
   end
   alias :is_client :client?
 
+  def can_manage_localizations?
+    localizations.count > 0
+  end
+  alias :can_manage_localizations :can_manage_localizations?
+
   def partner?
     profiles.where(_type: Profile::Partner.to_s).count > 0
   end
