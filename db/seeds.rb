@@ -7,7 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Admin
-Admin.create email: 'admin@example.com', password: 'password'
-admin = Admin.first
-admin.permissions << Permission.new(action: 'manage', subject_class: :all)
-admin.save
+flag = Admin.create email: 'admin@example.com', password: 'password'
+if flag
+  admin = Admin.last
+  admin.permissions << Permission.new(action: 'manage', subject_class: :all)
+  admin.save
+end
+# Create and set enabled ru and en locales
+Localization.create name: 'ru', enable: true
+Localization.create name: 'en', enable: true

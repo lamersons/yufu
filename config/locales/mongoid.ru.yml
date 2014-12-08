@@ -6,6 +6,11 @@ ru:
         few:   Банера
         many:  Банеров
         other: Банеры
+      localization:
+        one: Локализация
+        few: Локализации
+        many: Локализаций
+        other: Локализации
       order/verbal:
         one:   Устный Перевод
         few:   Устных Перевода
@@ -50,6 +55,9 @@ ru:
         height: Высота
         src: Код для вставки
         name: Имя
+      localization:
+        name: Имя
+        enable: Публично доступна
 
       order/base:
         id: № Заказа

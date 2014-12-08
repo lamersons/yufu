@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
+    raise CanCan::AccessDenied if params[:locale].present? &&
+        Localization.enabled.where(name: params[:locale]).count < 1
     I18n.locale = params[:locale] || I18n.default_locale
   end
 

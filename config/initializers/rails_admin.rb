@@ -36,6 +36,13 @@ RailsAdmin.config do |config|
       'I18n Dashboard' => '/i18n_dashboard'
   }
 
+  config.model Localization do
+    field :name, :enum do
+      enum {I18n.available_locales}
+    end
+    field :enable
+  end
+
   config.model Permission do
     field :name
     field :action, :enum do
