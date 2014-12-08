@@ -3,11 +3,11 @@
 <%= f.hidden_field :_type%>
 <!-- Контейнер -->
 <div class="container clearfix">
-<h1 class="main">Разместить заказ на <span class="pink-bright">Устный перевод</span></h1>
+  <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:interpretation)%></span></h1>
 
-<p class="title">Выбор стоимости</p>
+<p class="title"><%=ts(:choose_the_proce)%></p>
 
-<p>Подтвердите резервацию отметив подходящие вам цены (Цена за сумму часов)</p>
+<p><%=ts(:confirm_reservation)%></p>
 <!-- Календарь -->
 <div class="calendar">
 <span class="arrow left"></span>
@@ -27,7 +27,7 @@
 <%@order.language_criterions.each do |lc| %>
 <tr>
   <%unless lc.language.nil?%>
-  <td><%=lc.language.name%> <sup>Разговорный</sup></td>
+  <td><%=lc.language.name%> <sup><%=ts(:interpretation)%></sup></td>
   <%i=0%>
   <%@order.reservation_dates.each do |date|%>
       <%- if date.order_language_criterion_id == lc.id%>
@@ -60,10 +60,9 @@
 </div>
 </div>
 <!-- /Календарь -->
-<p class="description">Рабочий день переводчика - 8 часов. Цена за каждый сверхурочный час работы переводчика
-  высчитывается по формуле:<br> цена за 1 рабочий день / 8 часов * 1.5 </p>
+<p class="description"><%=ts(:about_translator_working_day)%><br> <%=ts(:extra_hours_formula)%> </p>
 
-<p class="sum">Cуммарная стоимость выбранных услуг</p>
+<p class="sum"><%=ts(:total_amount)%></p>
 
 <div class="bordered-block">
   <p> <%=ts(:price_here)%></p>

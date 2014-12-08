@@ -1,8 +1,6 @@
 class Localization
   include Mongoid::Document
 
-  AVAILABLE_NAMES = (I18n.available_locales.map { |l| l.to_s })
-
   field :name
   field :enable, type: Mongoid::Boolean, default: false
 

@@ -91,7 +91,7 @@
   </a>
 </div>
   <div class="js-tooltip-block-lang" show-tooltip yu-parent="rel-js-tooltip-block-lang">
-    Добавить новый язык
+    <%=ts(:add_language)%>
   </div>
 <div class="clear"></div>
 
@@ -108,7 +108,7 @@
 <div class="additional">
   <!-- Колонка -->
   <div class="col-1">
-    <p>Пол переводчика</p>
+    <p><%=ts(:translator_sex)%></p>
 
       <!--<select ng-model="order.sexTranslator" ng-options="sex_translator.value as sex_translator.name for sex_translator in sexes"></select>-->
       <div class="custom-select">
@@ -117,13 +117,13 @@
 
   </div>
   <div class="col-1">
-    <p>Родной язык переводчика</p>
+    <p><%=ts(:translator_native_language)%></p>
     <div class="custom-select">
       <%=f.select :translator_native_language, Language.all.collect {|c| [c.name, c.id]}%>
     </div>
   </div>
   <div class="col-1 last">
-    <p>Ваш родной язык</p>
+    <p><%=ts(:native_language)%></p>
     <div class="custom-select">
       <%=f.select :native_language, Language.all.collect {|c| [c.name, c.id]}%>
     </div>
@@ -152,7 +152,7 @@
   <!-- Колонка -->
   <div class="col-1">
     <div class="height-10"></div>
-    <p>Цель вашего визита</p>
+    <p><%=ts(:goal)%></p>
 
       <div class="custom-select">
         <%=f.select :goal, Order::Verbal::GOALS.select{|c| [c, I18n.t(c)]}%>
@@ -162,7 +162,7 @@
 </div>
 <!-- /Дополнительные требования -->
 <div class="clear"></div>
-<p class="text-small pink-bright pull-right">Пожалуйста заполните отмеченные поля!</p>
+<p class="text-small pink-bright pull-right"><%=ts(:fill_in_marked_fields)%></p>
 <div class="clear"></div>
 
 <div ng-include="'orders/interpretations/steps.html'"></div>
