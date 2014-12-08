@@ -3,7 +3,7 @@
       <div class="col-1 button first">
         <%if @order.step > 1%>
             <%= link_to url_for(controller: :orders, action: :update, order: {step: @order.step-2}), method: :put do%>
-                <button>Назад</button>
+                <button><%=ts(:previous)%></button>
             <%end%>
         <%end%>
       </div>
@@ -19,7 +19,7 @@
         <%end%>
       </div>
       <div class="col-1 button last">
-        <button type="submit" >Продолжить</button>
+        <button type="submit" ><%=ts(:next)%></button>
       </div>
     </div>
 </div>
