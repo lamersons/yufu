@@ -18,11 +18,12 @@ Yufu::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :languages,    only: [:index, :show]
-      resources :directions,   only: [:index, :show]
-      resources :cities,       only: [:index, :show]
-      resources :users,        only: [:index, :show, :update, :create]
-      resources :banners,      only: [:index, :show, :update, :create]
+      resources :languages,     only: [:index, :show]
+      resources :directions,    only: [:index, :show]
+      resources :cities,        only: [:index, :show]
+      resources :localizations, only: [:index, :show]
+      resources :users,         only: [:index, :show, :update, :create]
+      resources :banners,       only: [:index, :show, :update, :create]
       resources :profiles
       resources :translations
       # Should be subresources of profile. but emberjs not suppored it.

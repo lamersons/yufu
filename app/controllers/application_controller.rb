@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
+    if params[:locale].present?
+      localization = Localization.enabled.where(name: params[:locale]).first
+      raise CanCan::AccessDenied if localization.nil?
+      can :read, localization
+    end
     I18n.locale = params[:locale] || I18n.default_locale
   end
 

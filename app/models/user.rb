@@ -39,6 +39,7 @@ class User
   has_many   :vassals,  class_name: 'User'
   has_many   :profiles, class_name: 'Profile::Base', dependent: :destroy
   has_many   :banners,  dependent: :destroy
+  has_and_belongs_to_many :localizations
 
   embeds_many :permissions
   accepts_nested_attributes_for :permissions, :profiles
@@ -57,6 +58,11 @@ class User
     profiles.where(_type: Profile::Client.to_s).count > 0
   end
   alias :is_client :client?
+
+  def can_manage_localizations?
+    localizations.count > 0
+  end
+  alias :can_manage_localizations :can_manage_localizations?
 
   def partner?
     profiles.where(_type: Profile::Partner.to_s).count > 0

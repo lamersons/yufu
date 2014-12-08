@@ -34,6 +34,10 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+
+    # Create and set enabled ru and en locales
+    Localization.create name: 'ru', enable: true
+    Localization.create name: 'en', enable: true
   end
 
   config.after(:each) do
