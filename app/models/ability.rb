@@ -16,5 +16,7 @@ class Ability
       end
     end
 
+    can :read, Localization.enabled
+    can :manage, user.localizations
   end
 end

@@ -39,6 +39,7 @@ class User
   has_many   :vassals,  class_name: 'User'
   has_many   :profiles, class_name: 'Profile::Base', dependent: :destroy
   has_many   :banners,  dependent: :destroy
+  has_and_belongs_to_many :localizations
 
   embeds_many :permissions
   accepts_nested_attributes_for :permissions, :profiles
