@@ -29,8 +29,13 @@ class OrdersController < ApplicationController
         authenticate_user!
         @order.update_attribute :owner, current_user.profiles.where(_type: 'Profile::Client').first
       end
+      redirect_to edit_order_path(@order)
+    else
+      type = /::\S*/.match(@order._type).to_s.underscore
+      step = @order.step
+      render "/orders#{type}/step_#{step}"
     end
-    redirect_to edit_order_path(@order)
+
   end
   def set_profile
     if user_signed_in?
@@ -42,7 +47,7 @@ class OrdersController < ApplicationController
 
   def order_params
     order_params = [
-        {client_info_attributes: [:first_name, :last_name, :birthday, :company, :country]},
+        {client_info_attributes: [:first_name, :last_name, :birthday, :company, :country]}, :step,
         {airport_pick_up_attributes: [:need_car, :double_way, :flight_number, :airport, :arriving_date]},
         {car_rent_attributes: [:duration, :car_id]},
         {hotel_attributes: [:greeted_at, :info, :additional_info]},
