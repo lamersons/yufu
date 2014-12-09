@@ -67,9 +67,19 @@
             </div>
             <!-- Колонка -->
             <div class="col-2 lang-test clearfix position-relative">
-                <div class="dropzone dropzone-lang-test">{{ts 'frontend.profile.or_drag_here'}}</div>
+                <div class="dropzone dropzone-lang-test">
+                {{#view Yufu.UploadDragAndDropMultiple name="doc" object=education model='document' parent='education'}}
+                    <div class="doc_list">
+                        {{#each document in education.documents}}
+                            <span class="doc_name">
+                                {{document.name}}
+                            </span>
+                        {{/each}}
+                    </div>
+                    {{ts 'frontend.profile.or_drag_here'}}
+                {{/view}}</div>
                 <label class="file">
-                    {{view Yufu.FileUploadMultiple name="avatar" file=avatar object=education multiple='multiple'}}
+                    {{view Yufu.FileUploadMultiple name="doc" file=avatar object=education multiple='multiple' model='document' parent='education'}}
                     <em>{{ts 'frontend.profile.choose'}}...</em>
                     <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-test-file"></span>
                 </label>

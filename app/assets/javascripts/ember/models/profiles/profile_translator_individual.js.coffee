@@ -14,6 +14,7 @@ Yufu.ProfileTranslatorIndividual = Yufu.Profile.extend
   is_active:        DS.attr 'boolean'
   education:        DS.attr 'string'
   avatar:           DS.attr('string')
+  avatar_name:      DS.attr('string')
 
   passport_num:              DS.attr 'string'
   passport_till:             DS.attr 'date'

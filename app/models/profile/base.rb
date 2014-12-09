@@ -4,6 +4,7 @@ module Profile
     include Mongoid::Timestamps
     include Personalized
 
+    field :is_active
     field :phone
     field :additional_phone
     field :total_approve, type: Boolean, default: false
