@@ -5,12 +5,12 @@ module Api
 
       def index
         @translations = I18nDashboard::Translation.all
-        original_locale = params[:original_locale].blank? ? I18n.locale : params[:original_locale]
+        target_locale = params[:target_locale].blank? ? I18n.locale : params[:target_locale]
         respond_to do |formats|
           formats.json do
             objects = []
             @translations.each do |tr|
-              objects << {id: tr, value: t(tr, default: ''), original: t(tr, locale: original_locale) }
+              objects << {id: tr, original: t(tr), value: t(tr, locale: target_locale, default: '') }
             end
             render json: {translations: objects}
           end
