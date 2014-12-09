@@ -28,6 +28,11 @@
     {{#link-to "profiles" tagName="a" class="item" }}
       <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.profile'}}<span class="caret"></span></span>
     {{/link-to}}
+    {{#if currentUser.can_manage_localizations}}
+      {{#link-to "translations" tagName="a" class="item" }}
+          <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.translations'}}<span class="caret"></span></span>
+      {{/link-to}}
+    {{/if}}
 
   </div>
 </div>

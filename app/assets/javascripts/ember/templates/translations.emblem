@@ -1,0 +1,21 @@
+.clearfix
+  .table-container
+    table
+      thead
+        tr
+          td
+            | Оригиал
+          td
+            | Перевод
+        tr
+          td
+          td
+            = view Ember.Select valueBinding=target_locale content=currentUser.localizations.content optionLabelPath='content.name' optionValuePath='content.name' prompt='Язык перевода'
+
+      tbody
+        = each
+          tr
+            td
+              = original
+            td
+              = view Ember.TextField valueBinding=value name=value viewName=value
