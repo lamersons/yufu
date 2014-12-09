@@ -14,6 +14,20 @@
 # for more details see: http://emberjs.com/guides/application/
 window.Yufu = Ember.Application.create({rootElement: '#yufu_app'})
 
+
+$(window).on 'dragover', (e)->
+  e.preventDefault()
+  e.stopPropagation()
+
+$(window).on 'dragenter',(e)->
+  e.preventDefault()
+  e.stopPropagation()
+
+$(window).on 'drop', (e)->
+  e.preventDefault()
+  e.stopPropagation()
+  return false
+
 Ember.RadioButton = Ember.View.extend({
     tagName : "input",
     type : "radio",

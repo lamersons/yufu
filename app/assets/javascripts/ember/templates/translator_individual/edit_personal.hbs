@@ -168,7 +168,16 @@
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-2 last photo position-relative clearfix">
-            <div class="dropzone dropzone-photo" nv-file-drop uploader="fileUploader">{{ts 'frontend.profile.or_drag_here'}}</div>
+            <div class="dropzone dropzone-photo" nv-file-drop uploader="fileUploader">
+                {{#view Yufu.UploadDragAndDrop name="avatar" object=model}}
+                    {{ts 'frontend.profile.or_drag_here'}}
+                    <div class="doc_list">
+                        {{#if model.avatar_name}}
+                        <span class="doc_name">{{model.avatar_name}}</span>
+                        {{/if}}
+                    </div>
+                {{/view}}
+            </div>
             <p>{{ts 'frontend.profile.upload_photo'}}</p>
             <label class="file">
                 {{view Yufu.FileUpload name="avatar" file=avatar object=model}}

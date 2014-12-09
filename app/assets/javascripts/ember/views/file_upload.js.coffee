@@ -1,4 +1,4 @@
-Yufu.FileUpload = Ember.TextField.extend
+Yufu.FileUpload = Ember.TextField.extend Yufu.FileUploadMixin,
   type: 'file'
   attributeBindings: ['name', 'file']
   file: null
@@ -10,10 +10,4 @@ Yufu.FileUpload = Ember.TextField.extend
     # supported by adding `multiple` on the input element
     # and iterating over the files list here.
     if input.files && input.files[0]
-      reader = new FileReader()
-      that = this
-      reader.onload = (e)->
-        fileToUpload = e.target.result
-        Ember.run ->
-          that.get('object').set('avatar', fileToUpload)
-    return reader.readAsDataURL(evt.target.files[0])
+      @file_upload(input.files[0], @get('name'), @get('object'))

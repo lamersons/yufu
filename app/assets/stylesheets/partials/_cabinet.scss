@@ -133,3 +133,19 @@
 		}//TABLE
 	}//DIV.table-container
 }//.section-cabinet
+
+DIV.dropzone{
+  .doc_list {
+    top: 0px;
+    padding: 5px;
+    position: absolute;
+    .doc_name {
+      color: #000;
+      font-size: 12px;
+      display: inline-block;
+      border: 1px solid gray;
+      padding: 0 10px 0 10px;
+      @include border-radius(40px);
+    }
+  }
+}
