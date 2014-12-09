@@ -7,4 +7,7 @@ Yufu.User = DS.Model.extend
   is_translator: DS.attr 'boolean'
   is_client:     DS.attr 'boolean'
   is_partner:    DS.attr 'boolean'
+  can_manage_localizations: DS.attr 'boolean'
+
+  localizations: DS.hasMany 'localization', async: true
 
