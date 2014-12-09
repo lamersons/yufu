@@ -4,6 +4,7 @@ module Order
 
     before_save :check_dates
     before_create :create_client_info
+    after_save :check_pay_way
     GENDERS = ['male', 'female']
     GOALS   = ['business', 'entertainment']
     DEFAULTCOST = 115.0
@@ -18,6 +19,7 @@ module Order
     belongs_to :translator_native_language, class_name: 'Language'
     belongs_to :native_language,            class_name: 'Language'
 
+    has_many :payments,               class_name: 'Order::Payment'
     has_many :language_criterions,    class_name: 'Order::LanguageCriterion', inverse_of: :order
     embeds_many :reservation_dates,   class_name: 'Order::ReservationDate'
 
@@ -80,6 +82,15 @@ module Order
 
     def create_client_info
       build_client_info
+    end
+
+    def check_pay_way
+      if pay_way_changed? && !paid? && !pay_way.blank?
+        case pay_way
+          when 'bank'
+            payments.create gateway_class: 'Order::Gateway::Bank'
+        end
+      end
     end
   end
 end
