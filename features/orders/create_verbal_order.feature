@@ -3,15 +3,15 @@ Feature: create verbal order
   This feature checks if all the data is saved in the database.
   Background:
     Given a user with password and email "user@example.com", "password"
-    And a city with name: "NewVasjuki"
-    And a city with name: "OldMoscow"
-    And language with name: "Russian"
-    And language with name: "Mumbu-umbu"
-    And direction with name: "Go by taxo"
-    And direction with name: "Go by cab"
+    And object of "city" with name: "NewVasjuki"
+    And object of "city" with name: "OldMoscow"
+    And object of "language" with name: "Russian"
+    And object of "language" with name: "Mumbu-umbu"
+    And object of "direction" with name: "Go by taxo"
+    And object of "direction" with name: "Go by cab"
     And today is "01.11.2014"
 
-
+  @javascript
   Scenario: fulfil the form on step one
     When I go to "/"
     And  I select verbal translation
