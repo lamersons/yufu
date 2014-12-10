@@ -1,3 +1,5 @@
+.translations_controls
+  button.pink Save
 .clearfix
   .table-container
     table
@@ -10,12 +12,12 @@
         tr
           td
           td
-            = view Ember.Select valueBinding=target_locale content=currentUser.localizations.content optionLabelPath='content.name' optionValuePath='content.name' prompt='Язык перевода'
+            = view Ember.Select value=target_locale content=currentUser.localizations.content optionLabelPath='content.name' optionValuePath='content.name' prompt='Язык перевода'
 
       tbody
         = each
           tr
             td
               = original
-            td
-              = view Ember.TextField valueBinding=value name=value viewName=value
+            td{action 'focusOut' this on="focusOut"}
+              = view Ember.TextField value=value name='value' viewName='value'
