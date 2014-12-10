@@ -60,6 +60,10 @@ module Order
 
     end
 
+    def paid?
+      state == 'close' || state == 'rated'
+    end
+
     def application_status_for(profile)
       applications.where(translator: profile).first.try(:status)
     end

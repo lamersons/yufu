@@ -77,4 +77,20 @@ RSpec.describe Order::Verbal, :type => :model do
     end
   end
 
+
+  describe 'create payment and gateway' do
+    let(:order) {create :order_verbal}
+
+    subject{order.update_attribute :pay_way, 'bank'}
+
+    it 'expect to create payment' do
+      expect{subject}.to change{order.payments.last.class}.to eq(Order::Payment)
+    end
+
+
+    it 'expect to create payment' do
+      expect{subject}.to change{order.payments.last.try(:gateway_class)}.to eq('Order::Gateway::Bank')
+    end
+  end
+
 end

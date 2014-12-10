@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     @directions = Direction.all
     @order = Order::Base.find params[:id]
     type = /::\S*/.match(@order._type).to_s.underscore
-    step = @order.step
+    step = @order.step < 4 ? @order.step : @order.pay_way
     render "/orders#{type}/step_#{step}"
   end
 
