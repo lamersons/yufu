@@ -5,6 +5,7 @@
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require lib/tooltips
 #= require_self
 #= require ./yufu
 #= require datepicker/ember-date-picker.js
@@ -47,4 +48,5 @@ ifStepHelper = (key, v2, options)->
 
 
 Handlebars.registerHelper('ifStep', ifStepHelper)
+
 

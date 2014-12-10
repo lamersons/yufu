@@ -82,5 +82,6 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
       return
     else
       @disconnectOutlet {outlet: 'modal'}
+#    new Tooltip
 
 })
