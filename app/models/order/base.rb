@@ -41,8 +41,16 @@ module Order
       state :close
       state :rated
 
+      event :paying do
+        transition [:new] => :paying
+      end
+
       event :paid do
         transition [:paying, :additional_paying] => :wait_application
+      end
+
+      event :unpaid do
+        transition [:wait_application, :additional_paying] => :paying
       end
 
       event :assigned_to do
@@ -61,7 +69,7 @@ module Order
     end
 
     def paid?
-      state == 'close' || state == 'rated'
+      state == 'close' || state == 'rated' || state == 'closed' || state == 'wait_application'
     end
 
     def application_status_for(profile)
