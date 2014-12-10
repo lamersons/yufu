@@ -4,7 +4,7 @@ class @Tooltip
     $(".js-tooltip").mouseleave @hide_tooltip
 
   show_tooltip: ->
-    $($(@).data('target')).show()
+    $($(@).closest('div').find($(@).data('target'))).show()
 
   hide_tooltip: ->
     $($(@).data('target')).hide()
