@@ -1,5 +1,7 @@
 .translations_controls
-  button.pink Save
+  button.pink
+    a{bind-attr href="preview_link"} target="_blank"
+      = ts 'frontend.translations.preview'
 .clearfix
   .table-container
     table

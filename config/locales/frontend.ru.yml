@@ -18,7 +18,7 @@ ru:
       banners: Банеры
 
     main_menu:
-      transaltions: Переводы
+      translations: Переводы
       news: Новости
       messages: Сообщения
       bookings: Бронирования
@@ -110,7 +110,8 @@ ru:
       edit: Редактировать
       add_language: Добавить язык
 
-
+    translations:
+      preview: Предпросмотр
 
 
 
