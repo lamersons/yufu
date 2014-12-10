@@ -100,6 +100,7 @@ group :development do
   gem 'rvm-capistrano'
   gem 'net-ssh', '~> 2.7.0'
   gem 'capistrano-unicorn', :require => false
+  gem 'better_errors'
 end
 
 group :production do
