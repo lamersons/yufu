@@ -25,7 +25,7 @@ Yufu::Application.routes.draw do
       resources :users,         only: [:index, :show, :update, :create]
       resources :banners,       only: [:index, :show, :update, :create]
       resources :profiles
-      resources :translations
+      resources :translations, constraints: { id: /[0-z\.]+/ }
       # Should be subresources of profile. but emberjs not suppored it.
       # For access to this resources profile_id should be passed
       resources :applications, only: [:index, :show, :update, :create], path: 'order_applications'
