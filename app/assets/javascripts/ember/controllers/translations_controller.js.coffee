@@ -5,6 +5,10 @@ Yufu.TranslationsController = Ember.ArrayController.extend
 
   target_locale: null
 
+  preview_link: (->
+    "/?locale=#{@target_locale}"
+  ).property('target_locale')
+
   localesHandler: (->
     @transitionToRoute 'translations', queryParams: target_locale: @target_locale
   ).observes('target_locale')
