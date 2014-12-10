@@ -91,6 +91,55 @@ RSpec.describe Order::Verbal, :type => :model do
     it 'expect to create payment' do
       expect{subject}.to change{order.payments.last.try(:gateway_class)}.to eq('Order::Gateway::Bank')
     end
+
+    it 'expect to change state' do
+      expect{subject}.to change{order.state}.from('new').to('paying')
+    end
+  end
+
+  describe 'change order state' do
+    describe 'to paid' do
+      let(:order) {create :order_verbal, pay_way: 'bank'}
+
+      subject{order.payments.first.update_attribute :state, 'paid'}
+
+      it 'expect order to be paid' do
+        expect{subject}.to change{order.state}.to('wait_application')
+      end
+    end
+    describe 'to unpaid' do
+      let(:order) {create :order_verbal, pay_way: 'bank'}
+
+      subject{order.payments.first.update_attribute :state, 'paying'}
+
+      before(:each) do
+        order.payments.first.update_attribute :state, 'paid'
+      end
+
+      it 'expect order to be paid' do
+        order.paid
+        expect{subject}.to change{order.state}.to('paying')
+      end
+
+      it 'can not change from closed' do
+        order.update_attribute :state, 'close'
+        subject
+        expect(order.state).to eq('close')
+      end
+
+      it 'can not change from rated' do
+        order.update_attribute :state, 'rated'
+        expect(order.state).to eq('rated')
+      end
+
+      it 'can not change from in_progress' do
+        order.update_attribute :state, 'in_progress'
+        expect(order.state).to eq('in_progress')
+      end
+    end
+
+
+
   end
 
 end

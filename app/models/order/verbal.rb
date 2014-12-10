@@ -89,6 +89,8 @@ module Order
         case pay_way
           when 'bank'
             payments.create gateway_class: 'Order::Gateway::Bank'
+            PaymentsMailer.bank_payment(owner).deliver
+            self.paying
         end
       end
     end
