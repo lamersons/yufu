@@ -30,6 +30,7 @@ class @Calendar
         $(this).find('input').attr('name', date)
         $(this).removeClass()
         $(this).addClass("#{date.getDate()}-#{date.getMonth()}-#{date.getFullYear()}")
+        $(this).addClass("day#{date.getDate()}-#{date.getMonth()}-#{date.getFullYear()}")
         date.setDate(date.getDate()+1)
     for work_day in @choosen
       day = new Date(work_day['date'])
