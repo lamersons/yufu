@@ -1,0 +1,13 @@
+form#new_message
+  label
+    = ts 'mongoid.attributes.message.recipient'
+  br
+  = view Ember.Select selection=recipient.content content=users viewName='name' optionLabelPath='content.email' optionValuePath='content.id'
+  br
+  label
+    = ts 'mongoid.attributes.message.body'
+  = view Ember.TextArea value=body name='body' viewName='body'
+
+
+  button.pink#submit{action 'create'}
+    = ts 'create'

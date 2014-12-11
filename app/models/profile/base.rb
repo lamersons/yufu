@@ -13,8 +13,11 @@ module Profile
 
     belongs_to :user
 
-    accepts_nested_attributes_for :user
-
     scope :approved, -> {where total_approve: true}
+    validates_presence_of :user
+
+    after_save if: -> {user.changed?} do
+      user.save
+    end
   end
 end

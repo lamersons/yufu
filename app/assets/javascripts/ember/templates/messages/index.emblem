@@ -1,0 +1,14 @@
+
+.ui.divided.list
+  = each
+    .item
+      a.ui.image
+        img src='/no-avatar.png'
+      .content
+        .name
+          = sender.email
+        .description
+          = body
+          br
+          link-to 'messages.new' (query-params recipient_id=sender.id)
+            ts 'frontend.messages.reply'

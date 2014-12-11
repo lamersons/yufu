@@ -3,6 +3,14 @@ class Ability
 
   def initialize(user)
     user ||= User.new
+
+    can :read, Localization, enable: true
+    can :manage, user.localizations
+
+    can :manage, Message, sender: user
+    can :read,   Message, recipient: user
+
+
     user.permissions.each do |permission|
       if permission.subject_id.nil?
         if permission.subject_class.to_sym == :all
@@ -16,7 +24,5 @@ class Ability
       end
     end
 
-    can :read, Localization.enabled
-    can :manage, user.localizations
   end
 end
