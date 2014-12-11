@@ -13,7 +13,12 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update_attributes user_params
       sign_in @user, bypass: true if @user.need_change_password?
-      redirect_to user_path
+      if session[:back_to_order].nil?
+        redirect_to user_path
+      else
+        session[:back_to_order] = nil
+        redirect_to session[:back_to_order]
+      end
     else
       render 'users/edit'
     end

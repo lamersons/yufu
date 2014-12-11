@@ -119,13 +119,13 @@
   <div class="col-1">
     <p><%=ts(:translator_native_language)%></p>
     <div class="custom-select">
-      <%=f.select :translator_native_language, Language.all.collect {|c| [c.name, c.id]}%>
+      <%=f.select :translator_native_language_id, Language.all.collect {|c| [c.name, c.id]}%>
     </div>
   </div>
   <div class="col-1 last">
     <p><%=ts(:native_language)%></p>
     <div class="custom-select">
-      <%=f.select :native_language, Language.all.collect {|c| [c.name, c.id]}%>
+      <%=f.select :native_language_id, Language.all.collect {|c| [c.name, c.id]}%>
     </div>
   </div>
   <div class="clear"></div>

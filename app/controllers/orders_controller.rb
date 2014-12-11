@@ -15,6 +15,10 @@ class OrdersController < ApplicationController
     @user = current_user
     @directions = Direction.all
     @order = Order::Base.find params[:id]
+    if @order.step == 3
+      session[:back_to_order] = edit_order_path(@order)
+      authenticate_user!
+    end
     type = /::\S*/.match(@order._type).to_s.underscore
     step = @order.step < 4 ? @order.step : @order.pay_way
     render "/orders#{type}/step_#{step}"

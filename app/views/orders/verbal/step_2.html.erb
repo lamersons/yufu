@@ -31,7 +31,7 @@
   <%i=0%>
   <%@order.reservation_dates.each do |date|%>
       <%- if date.order_language_criterion_id == lc.id%>
-          <td class="active date_<%=i%>" style="<%='display: none' if i>=7 %>"  data-cost="<%=date.cost%>">
+          <td class="active date_<%=i%> day<%=date.date.strftime '%d-%m-%Y'%>" style="<%='display: none' if i>=7 %>"  data-cost="<%=date.cost%>">
             <em class="cost"><%=date.cost*(1+(date.hours-8)*1.5/8)%> Eur</em>
             <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
             <div class="dropdown">
