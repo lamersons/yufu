@@ -40,6 +40,11 @@ class User
   has_many   :vassals,  class_name: 'User'
   has_many   :profiles, class_name: 'Profile::Base', dependent: :destroy
   has_many   :banners,  dependent: :destroy
+
+  # messaging system
+  has_many :inbox,  class_name: 'Message', inverse_of: :recipient
+  has_many :outbox, class_name: 'Message', inverse_of: :sender
+
   has_and_belongs_to_many :localizations
 
   embeds_many :permissions
