@@ -52,18 +52,4 @@ RailsAdmin.config do |config|
       enum { %w(I18n User City Direction Language) }
     end
   end
-
-  config.model Profile::Base do
-    field :user do
-      nested_form false
-    end
-    include_all_fields
-  end
-
-  config.model Profile::Translator::Base do
-    field :user do
-      nested_form false
-    end
-    include_all_fields
-  end
 end
