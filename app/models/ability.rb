@@ -19,7 +19,7 @@ class Ability
     can :read, Localization.enabled
     can :manage, user.localizations
 
-    can(:manage, Message) { |message| message.sender    == user}
-    can(:read,   Message) { |message| message.recipient == user}
+    can :manage, Message, sender: user
+    can :read,   Message, recipient: user
   end
 end
