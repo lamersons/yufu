@@ -2,7 +2,8 @@ module Profile
   class Base
     include Mongoid::Document
     include Mongoid::Timestamps
-    include Personalized
+
+    delegate :first_name, :middle_name, :last_name, :first_name=, :last_name=, :middle_name=, to: :user
 
     field :is_active
     field :phone
@@ -12,7 +13,8 @@ module Profile
 
     belongs_to :user
 
-    scope :approved, -> {where total_approve: true}
+    accepts_nested_attributes_for :user
 
+    scope :approved, -> {where total_approve: true}
   end
 end
