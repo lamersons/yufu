@@ -59,4 +59,11 @@ RailsAdmin.config do |config|
     end
     include_all_fields
   end
+
+  config.model Profile::Translator::Base do
+    field :user do
+      nested_form false
+    end
+    include_all_fields
+  end
 end
