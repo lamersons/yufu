@@ -1,0 +1,4 @@
+.messages.clearfix
+  = partial 'messages/navigation'
+  = outlet
+.height-30

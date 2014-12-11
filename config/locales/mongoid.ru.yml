@@ -11,6 +11,11 @@ ru:
         few: Локализации
         many: Локализаций
         other: Локализации
+      message:
+        one: Сообщение
+        few: Сообщения
+        many: Сообщений
+        other: Сообщения
       order/verbal:
         one:   Устный Перевод
         few:   Устных Перевода
@@ -58,6 +63,10 @@ ru:
       localization:
         name: Имя
         enable: Публично доступна
+      message:
+        body: Текст
+        sender: Отправитель
+        recipient: Получатель
 
       order/base:
         id: № Заказа

@@ -1,5 +1,12 @@
 ru:
   frontend:
+
+    messages:
+      create: Написать новое сообщение
+      inbox: Входящие
+      outbox: Отправленные
+      reply: Ответить
+
     orders:
       available_as: Доступен как
       scopes:

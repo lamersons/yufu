@@ -2,9 +2,10 @@
 
 Yufu.Router.map ()->
   @resource('news')
-  @resource('messages')
   @resource('bookings')
   @resource('something')
+  @resource 'messages', ->
+    @route 'new'
 
   @resource 'users', ->
     @route 'show', {path: '/:id'}
