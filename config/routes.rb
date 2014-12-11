@@ -24,6 +24,7 @@ Yufu::Application.routes.draw do
       resources :localizations, only: [:index, :show]
       resources :users,         only: [:index, :show, :update, :create]
       resources :banners,       only: [:index, :show, :update, :create]
+      resources :messages,      only: [:index, :show, :create]
       resources :profiles
       resources :translations, constraints: { id: /[0-z\.]+/ }
       # Should be subresources of profile. but emberjs not suppored it.
