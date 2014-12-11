@@ -13,7 +13,7 @@ module Profile
 
     belongs_to :user
 
-    accepts_nested_attributes_for :user
+    accepts_nested_attributes_for :user, update_only: true
 
     scope :approved, -> {where total_approve: true}
   end
