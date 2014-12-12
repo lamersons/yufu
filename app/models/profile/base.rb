@@ -4,6 +4,8 @@ module Profile
     include Mongoid::Timestamps
 
     delegate :first_name, :middle_name, :last_name, :first_name=, :last_name=, :middle_name=, to: :user
+    delegate :avatar, :avatar_file_size, :avatar_file_name, :avatar_content_type, :avatar_file_size=, :avatar_file_name=, :avatar_content_type=, :avatar=, to: :user
+
 
     field :is_active
     field :phone

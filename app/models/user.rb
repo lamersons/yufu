@@ -1,11 +1,15 @@
 class User
   include Mongoid::Document
   include Personalized
+  include Mongoid::Paperclip
+  before_save :set_avatar_extension
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_mongoid_attached_file :avatar, :default_url => "/no-avatar.png"
+  validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
   ## Database authenticatable
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
@@ -89,5 +93,17 @@ class User
 
   def partner_profile
     profiles.where(:_type.in => [Profile::Partner.to_s]).first
+  end
+
+  private
+  def set_avatar_extension
+    if self.avatar_content_type.nil? || self.avatar_file_name != 'data'
+      return true
+    end
+    begin
+      name = SecureRandom.uuid
+    end while !User.where(avatar_file_name: name).empty?
+    extension = self.avatar_content_type.gsub('image/', '.')
+    self.avatar.instance_write(:file_name, name+extension)
   end
 end

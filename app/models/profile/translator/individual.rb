@@ -45,11 +45,9 @@ module Profile
 
 
       accepts_nested_attributes_for :services, :educations
-      has_mongoid_attached_file :avatar
-      validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
+
 
       validates_inclusion_of :grade, in: GRADES
-      before_save :set_avatar_extension
       before_save :set_total_approve, unless: :total_approve
 
 
@@ -61,17 +59,7 @@ module Profile
         true
       end
 
-      private
-      def set_avatar_extension
-        if self.avatar_content_type.nil?
-          return true
-        end
-        begin
-          name = SecureRandom.uuid
-        end while !Profile::Translator::Individual.where(avatar_file_name: name).empty?
-        extension = self.avatar_content_type.gsub('image/', '.')
-        self.avatar.instance_write(:file_name, name+extension)
-      end
+
 
       def set_total_approve
         self.total_approve = approved?
