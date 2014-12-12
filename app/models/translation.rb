@@ -22,6 +22,11 @@ class Translation
 
   def self.keys
     return @@keys unless @@keys.empty?
+    Translation.reset_keys
+  end
+
+  def self.reset_keys
+    @@keys = Set.new
     I18n.backend.send :init_translations
     I18n.backend.send(:translations).each do |locale, hash|
       hash.flatten_hash.each do |k, v|

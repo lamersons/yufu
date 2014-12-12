@@ -39,6 +39,8 @@ after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'   # app preloaded
 after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
 after 'deploy', 'i18n:export2js'
+after 'deploy', 'i18n:reset_keys'
+
 
 
 set :shared_assets, %w{uploads}
@@ -46,6 +48,10 @@ set :shared_assets, %w{uploads}
 namespace :i18n do
   task :export2js do
     run("cd #{deploy_to}/current && bundle exec rake i18n:js:export RAILS_ENV=production")
+  end
+
+  task :reset_keys do
+    run("cd #{deploy_to}/current && bundle exec rake yufu:i18n:reset_keys RAILS_ENV=production")
   end
 end
 
