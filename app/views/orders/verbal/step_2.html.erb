@@ -5,7 +5,7 @@
 <div class="container clearfix">
   <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:interpretation)%></span></h1>
 
-<p class="title"><%=ts(:choose_the_proce)%></p>
+<p class="title"><%=ts(:choose_the_price)%></p>
 
 <p><%=ts(:confirm_reservation)%></p>
 <!-- Календарь -->
@@ -20,7 +20,7 @@
 
 <%@order.different_dates.each_with_index do |date, i|%>
         <td class="date-cont" data-num="<%=i%>" style="<%='display: none' if i>=7 %>" >
-          <em><%=date.date.strftime '%d-%B-%Y'%></em>
+          <em><%=l date.date, format: :full%></em>
         </td>
 <%end%>
 </tr>
@@ -60,7 +60,7 @@
 </div>
 </div>
 <!-- /Календарь -->
-<p class="description"><%=ts(:about_translator_working_day)%><br> <%=ts(:extra_hours_formula)%> </p>
+<p class="description"><%=ts(:about_translator_working_day)%>:<br> <%=ts(:extra_hours_formula)%> </p>
 
 <p class="sum"><%=ts(:total_amount)%></p>
 
