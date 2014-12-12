@@ -12,11 +12,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authenticate_and_authorize_i18n!
-    authenticate_user unless admin_signed_in?
-    authorize! :manage, I18n
-  end
-
   def set_locale
     if params[:locale].present?
       localization = Localization.where(name: params[:locale]).first

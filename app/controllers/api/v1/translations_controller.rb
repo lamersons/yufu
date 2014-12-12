@@ -3,18 +3,11 @@ module Api
     class TranslationsController < ApplicationController
       before_action :authenticate_user!
 
+      respond_to :json
+
       def index
-        @translations = I18nDashboard::Translation.all
-        target_locale = params[:target_locale].blank? ? I18n.locale : params[:target_locale]
-        respond_to do |formats|
-          formats.json do
-            objects = []
-            @translations.each do |tr|
-              objects << {id: tr, original: t(tr), value: t(tr, locale: target_locale, default: '') }
-            end
-            render json: {translations: objects}
-          end
-        end
+        @translations = Translation.all params[:target_locale].blank? ? I18n.locale : params[:target_locale]
+        respond_with @translations
       end
 
       def update
@@ -23,5 +16,6 @@ module Api
         render json: { id: params[:id],  value: params[:translation][:value], original: t(params[:id])}
       end
     end
+
   end
 end

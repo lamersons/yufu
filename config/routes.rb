@@ -6,8 +6,6 @@ Yufu::Application.routes.draw do
   mount Mercury::Engine => '/'
   root to: 'main#index'
 
-  mount I18nDashboard::Engine => '/i18n_dashboard'
-
   devise_for :admin
   devise_for :users
 

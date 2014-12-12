@@ -13,7 +13,6 @@ gem 'mysql2'
 
 # I18n backend
 gem 'redis'
-gem 'i18n_dashboard', github: 'fourmach/i18n_dashboard'
 
 gem 'active_model_serializers'
 

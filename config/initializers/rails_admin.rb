@@ -32,10 +32,6 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  config.navigation_static_links = {
-      'I18n Dashboard' => '/i18n_dashboard'
-  }
-
   config.model Localization do
     field :name, :enum do
       enum {I18n.available_locales}
@@ -49,7 +45,7 @@ RailsAdmin.config do |config|
       enum {Permission::AVAILABLE_ACTIONS}
     end
     field :subject_class, :enum do
-      enum { %w(I18n User City Direction Language) }
+      enum { %w(User City Direction Language) }
     end
   end
 end
