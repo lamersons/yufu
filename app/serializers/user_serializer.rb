@@ -1,6 +1,10 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :email, :translator_profile_id, :is_translator, :is_partner, :is_client, :partner_profile_id,
-             :can_manage_localizations, :localizations
+             :can_manage_localizations, :localizations, :avatar_url
+
+  def avatar_url
+    @object.avatar.url
+  end
 
   def translator_profile_id
     object.translator_profile.try(:id).to_s

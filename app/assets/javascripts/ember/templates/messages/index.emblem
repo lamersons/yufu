@@ -3,7 +3,7 @@
   = each
     .item
       a.ui.image
-        img src='/no-avatar.png'
+        img src=sender.avatar_url
       .content
         .name
           = sender.email
