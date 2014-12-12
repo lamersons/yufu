@@ -57,13 +57,13 @@
   <%=f.fields_for :airport_pick_up_attributes do |air|%>
   <div class="tab" style="display: none">
     <label class="radio no-left clearfix">
-      <%=air.radio_button :need_a_car, '1', checked: @order.airport_pick_up.try(:need_a_car)%>
+      <%=air.radio_button :need_car, '1', checked: @order.airport_pick_up.try(:need_car)%>
 
       <em></em>
-      <p><%=ts(:need_a_car)%></p>
+      <p><%=ts(:need_car)%></p>
     </label>
     <label class="radio no-left clearfix">
-      <%=air.radio_button :need_a_car, '0', checked: @order.airport_pick_up.try(:need_a_car)%>
+      <%=air.radio_button :need_car, '0', checked: @order.airport_pick_up.try(:need_car)%>
       <em></em>
       <p><%=ts(:do_not_need_a_car)%></p>
     </label>
@@ -110,7 +110,7 @@
    <%end%>
   <p class="trigger">
     <span class="icon"></span>
-    Car rent
+    <%=ts(:car_rent)%>
   </p>
   <%=f.fields_for :car_rent_attributes do |c|%>
   <!-- /Тригер -->
@@ -155,7 +155,7 @@
         <div class="custom-select three-in-one inline">
           <%=hg.time_select :greeted_at%>
         </div>
-        <span><span class="greeting-interval"></span> on <span id="greet_time"><%=@order.reservation_dates.first.date.strftime '%d-%m-%Y'%></span> [ China Time ]</span>
+        <span><span class="greeting-interval"></span> on <span id="greet_time"><%=@order.reservation_dates.first.date.strftime '%d-%m-%Y'%></span> [ <%=ts(:china_time)%> ]</span>
     </div>
     <div class="col-2 last">
       <span><%=ts(:info)%></span>
@@ -218,18 +218,18 @@
 <div class="bordered-block points">
 
   <% @order.reservation_dates.each_with_index do |date, i|%>
-      <p class="point"><span class="bold number"><%=i%>.</span> <%=date.date.strftime '%a'%>. <%=date.date.mday%>
-        <%date.date.strftime '%m'%> <%=date.date.year%> <%=ts(:y)%>., <%=ts(:in)%>. <%=@order.location.name%>, <%=ts(:interpretation)%>,
+      <p class="point"><span class="bold number"><%=i%>.</span> <%=ts("week_days.#{date.date.strftime('%a')}")%> <%=date.date.mday%>
+        <%date.date.strftime '%m'%> <%=date.date.year%> <%=ts(:y)%>, <%=ts(:in)%> <%=@order.location.name%>, <%=ts(:interpretation)%>,
         <%=date.order_language_criterion.language.name%>, <%=ts(:level)%> - <%=ts("level_#{date.order_language_criterion.level}")%>, <%=date.hours%> <%=ts(:hours)%> = <span class="semi-bold"><%=date.cost*(1+(date.hours-8)*1.5/8)%> Eur</span></p>
   <%end%>
   <div class="line"></div>
   <p class="pink-bright bold"><%=ts(:total)%>: <%=@order.sum%> Eur</p>
 </div>
 <div class="height-10 " ></div>
-<label class="checkbox clearfix">
+<label class="checkbox clearfix" id="agree">
   <input id="i_agree" type="checkbox">
   <em></em>
-  <p><%=ts(:agree_first_part)%><a href="#"><%=ts(:service_conditions)%></a>, <a href="#"><%=ts(:cancel_conditions)%></a> <%=ts(:and)%> <a href="#"><%=ts(:compensation_rules)%></a> <%=ts(:agree_second_part)%></p>
+  <p><%=ts(:agree_first_part)%><a href="#"><%=ts(:service_conditions)%></a>, <a href="#"><%=ts(:cancel_conditions)%></a> <%=ts(:and)%> <a href="#"><%=ts(:compensation_rules)%></a> <%=ts(:agree_last_part)%></p>
 </label>
     <div class="clear" ></div>
 <div id="should_agree" class="hover-tooltip js-tooltip-agree col-1 first" style="position: relative; float: left">

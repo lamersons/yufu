@@ -56,7 +56,7 @@
           </div>
 
 
-        <div class="col-05">
+        <div class="col-07">
           <p><%=ts(:translation_level)%></p>
 
           <div class="custom-select bordered">
@@ -112,20 +112,20 @@
 
       <!--<select ng-model="order.sexTranslator" ng-options="sex_translator.value as sex_translator.name for sex_translator in sexes"></select>-->
       <div class="custom-select">
-        <%=f.select :translator_sex, Order::Verbal::GENDERS.select{|c| [I18n.t(c), c]}%>
+        <%=f.select :translator_sex, Order::Verbal::GENDERS.collect{|c| [I18n.t(c), c]}, include_blank: true%>
       </div>
 
   </div>
   <div class="col-1">
     <p><%=ts(:translator_native_language)%></p>
     <div class="custom-select">
-      <%=f.select :translator_native_language, Language.all.collect {|c| [c.name, c.id]}%>
+      <%=f.select :translator_native_language_id, Language.all.collect {|c| [c.name, c.id]}%>
     </div>
   </div>
   <div class="col-1 last">
     <p><%=ts(:native_language)%></p>
     <div class="custom-select">
-      <%=f.select :native_language, Language.all.collect {|c| [c.name, c.id]}%>
+      <%=f.select :native_language_id, Language.all.collect {|c| [c.name, c.id]}%>
     </div>
   </div>
   <div class="clear"></div>
@@ -155,7 +155,7 @@
     <p><%=ts(:goal)%></p>
 
       <div class="custom-select">
-        <%=f.select :goal, Order::Verbal::GOALS.select{|c| [c, I18n.t(c)]}%>
+        <%=f.select :goal, Order::Verbal::GOALS.collect{|c| [I18n.t(c), c]}%>
       </div>
   </div>
   <!-- /Колонка -->

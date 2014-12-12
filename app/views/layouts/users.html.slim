@@ -15,7 +15,7 @@ html
           a href="#" class="logo"
           - if user_signed_in?
             a href="#" class="avatar authorized"
-              = image_tag "avatar.png"
+              = image_tag current_user.avatar.url
               p Ваш баланс
               p class="bold" 11 000 €
             /div class="height-10"

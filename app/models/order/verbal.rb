@@ -73,6 +73,9 @@ module Order
             attrs = attrs.merge order_language_criterion: criterion
             temp_array << attrs
           end
+        else
+          attrs = date.attributes
+          temp_array << attrs
         end
       end
       unless temp_array.empty?

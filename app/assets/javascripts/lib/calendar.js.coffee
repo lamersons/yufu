@@ -6,7 +6,6 @@ class @Calendar
 
 
   constructor: ->
-    #TODO: send dates on different pages on submit
     @start_date = new Date
     @start_date.setDate(1)
     @render_calendar()
@@ -22,22 +21,22 @@ class @Calendar
     date = new Date(@start_date)
     dateNextMonth = new Date(@start_date)
     dateNextMonth.setMonth(dateNextMonth.getMonth()+1)
-    $('.calendar-title').html "#{I18n.t(moment(date).format('MMMM'))} #{date.getFullYear()} -
-        #{I18n.t(moment(dateNextMonth).format('MMMM'))} #{date.getFullYear()}"
+    $('.calendar-title').html "#{I18n.strftime date, '%B %Y' } -
+        #{I18n.l('date.formats.month_year', date)}"
     $('table .table_body td').each (index)->
       if $(this).find('.day').length > 0
         $(this).find('.day').html(date.getDate())
         $(this).find('input').attr('name', date)
         $(this).removeClass()
-        $(this).addClass("#{date.getDate()}-#{date.getMonth()}-#{date.getFullYear()}")
-        $(this).addClass("day#{date.getDate()}-#{date.getMonth()}-#{date.getFullYear()}")
+        $(this).addClass("#{date.getDate()}-#{date.getMonth()+1}-#{date.getFullYear()}")
+        $(this).addClass("day#{date.getDate()}-#{date.getMonth()+1}-#{date.getFullYear()}")
         date.setDate(date.getDate()+1)
     for work_day in @choosen
       day = new Date(work_day['date'])
-      if $(".#{day.getDate()}-#{day.getMonth()}-#{day.getFullYear()}").length > 0
-        $(".#{day.getDate()}-#{day.getMonth()}-#{day.getFullYear()}").addClass('choosen')
-        $(".#{day.getDate()}-#{day.getMonth()}-#{day.getFullYear()}").find('sup').html(work_day['hours'])
-        $(".#{day.getDate()}-#{day.getMonth()}-#{day.getFullYear()}").find('input').val(work_day['hours'])
+      if $(".#{day.getDate()}-#{day.getMonth()+1}-#{day.getFullYear()}").length > 0
+        $(".#{day.getDate()}-#{day.getMonth()+1}-#{day.getFullYear()}").addClass('choosen')
+        $(".#{day.getDate()}-#{day.getMonth()+1}-#{day.getFullYear()}").find('sup').html(work_day['hours'])
+        $(".#{day.getDate()}-#{day.getMonth()+1}-#{day.getFullYear()}").find('input').val(work_day['hours'])
     return
   next_page: =>
     @start_date.setDate(@start_date.getDate()+42)
