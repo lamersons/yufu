@@ -13,11 +13,12 @@
             | Перевод
         tr
           td
+            = input type='text' value=filter placeholder='Find'
           td
             = view Ember.Select value=target_locale content=currentUser.localizations.content optionLabelPath='content.name' optionValuePath='content.name' prompt='Язык перевода'
 
       tbody
-        = each
+        = each filteredContent
           tr
             td
               = original
