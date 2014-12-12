@@ -4,7 +4,6 @@ Yufu.TranslationsController = Ember.ArrayController.extend
   target_locale: null
 
   filteredContent: (->
-    console.log 'filter'
     filter = @get 'filter'
     rx = new RegExp filter, 'gi'
     translations = @get 'arrangedContent'
