@@ -41,7 +41,7 @@ class @ConfirmCalendar
     $('.dropdown').fadeOut(500)
 
   recount_price: (object, hours)->
-    price = parseInt $(object).data('cost')
+    price = parseFloat $(object).data('cost')
     hours = parseInt hours
     $(object).find('.cost').html("#{price*(1+(hours-8)*1.5/8)} Eur")
     sum = 0

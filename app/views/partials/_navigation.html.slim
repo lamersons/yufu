@@ -254,7 +254,7 @@
     .auth.clearfix
       span.icon
       - if user_signed_in?
-        = link_to t('sign_out'),  destroy_user_session_path, method: :delete
+        = link_to t('sign_out'), url_for(controller: 'devise/sessions', action: :destroy), method: :delete
       span.slash.bold
         |  • 
       - if user_signed_in?

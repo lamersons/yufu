@@ -30,6 +30,7 @@ Yufu::Application.routes.draw do
       resources :applications, only: [:index, :show, :update, :create], path: 'order_applications'
       resources :orders,       only: [:index, :show, :update, :create]
       resources :partners_clients, only: [:index, :show, :update, :create]
+      get 'languages_groups_price', to: 'languages_groups#price'
       # end subresource of profile
 
     end
