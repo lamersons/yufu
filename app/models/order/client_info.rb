@@ -8,20 +8,14 @@ module Order
     field :company
     field :country
 
+    embedded_in :order_base
+
     def first_name
-      if read_attribute(:first_name).blank?
-       return order.owner.first_name
-      else
-        return read_attribute :first_name
-      end
+      read_attribute(:first_name) || order.owner.try(:first_name)
     end
 
     def last_name
-      if read_attribute(:last_name).blank?
-        return order.owner.last_name
-      else
-        return read_attribute :last_name
-      end
+      read_attribute(:last_name) || order.owner.try(:last_name)
     end
 
 
