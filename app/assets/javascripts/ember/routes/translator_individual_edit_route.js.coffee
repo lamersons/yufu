@@ -47,6 +47,7 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
     controller.set 'pay_ways', ['bank', 'visa', 'alipay']
     controller.set 'educations', ['3 grades', 'PTY', 'University', 'other']
     controller.set 'specializations', ['business', 'entertainment']
+    controller.set 'localizations', @store.find('localization')
     if model.get('services').content.length == 0
       new_service = @store.createRecord('service', {profile: model} )
       model.get('services').content.push new_service

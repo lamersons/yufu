@@ -24,10 +24,11 @@
     <!-- Колонка -->
     <div class="col-1 last">
       <div class="custom-select" style="position: relative; top: -10px;">
-        {{view Ember.Select
-        selection=model.profile_language.content
+
+        {{view Yufu.LocaleSelect
+        selection=currentLocale
         prompt='Язык профиля'
-        content=languages
+        content=localizations
         optionLabelPath='content.name'
         optionValuePath='content.id'}}
       </div>

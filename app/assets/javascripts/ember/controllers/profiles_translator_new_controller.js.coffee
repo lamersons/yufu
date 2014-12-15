@@ -11,6 +11,9 @@ Yufu.ProfilesTranslatorNewController = Ember.Controller.extend
 
 
   }
+  currentLocale: ( ->
+    @store.all('localization').filterBy('name', I18n.locale).get('firstObject')
+  ).property()
 
   redirectOrCreat: (type, profile, route) ->
     if profile
