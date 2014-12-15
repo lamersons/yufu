@@ -13,6 +13,6 @@ class LanguagesGroup
   end
 
   def verbal_price(level, currency = nil)
-    verbal_cost(level, currency) / Order::MARKUP
+    (verbal_cost(level, currency) / Order::MARKUP).round(2)
   end
 end

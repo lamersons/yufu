@@ -15,6 +15,10 @@ module Order
       order_language_criterion_id.nil?
     end
 
+    def price(currency = nil)
+      (cost(currency)/ Order::MARKUP).round(2)
+    end
+
     def cost(currency = nil)
       if hours <= 8
         order_language_criterion.cost(currency) * hours
