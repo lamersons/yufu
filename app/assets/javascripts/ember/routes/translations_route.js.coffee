@@ -12,3 +12,16 @@ Yufu.TranslationsRoute = Ember.Route.extend
   setupController: (controller, model) ->
     controller.set 'model', model
     controller.set 'currentUser', @store.find('user', window.myId)
+
+  actions:
+    edit: (model) ->
+      @controllerFor('translations').set 'editable_model', model
+      @render 'translations/edit', outlet: 'modal'
+
+    save: (model) ->
+      model.save().then =>
+        @disconnectOutlet outlet: 'modal'
+
+    cancel: (model) ->
+      model.rollback()
+      @disconnectOutlet outlet: 'modal'

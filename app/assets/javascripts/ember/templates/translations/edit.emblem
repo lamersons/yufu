@@ -1,0 +1,9 @@
+.modal-bg
+.modal.clearfix
+  Ember.TextArea value=editable_model.value
+
+  button.pink{action 'cancel' editable_model}
+    ts 'frontend.cancel'
+
+  button.pink{action 'save' editable_model}
+    ts 'frontend.save'

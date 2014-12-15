@@ -1,6 +1,9 @@
 ru:
   frontend:
 
+    save: Сохранить
+    cancel: Отмена
+
     messages:
       create: Написать новое сообщение
       inbox: Входящие
