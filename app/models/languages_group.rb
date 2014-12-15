@@ -11,4 +11,8 @@ class LanguagesGroup
     price = verbal_prices.where(level: level).first
     price.nil? ? Float::INFINITY : price.cost(currency)
   end
+
+  def verbal_price(level, currency = nil)
+    verbal_cost(level, currency) / Order::MARKUP
+  end
 end
