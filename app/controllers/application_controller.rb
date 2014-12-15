@@ -29,4 +29,12 @@ class ApplicationController < ActionController::Base
   def current_user
     super || current_admin
   end
+
+  def current_ability
+    if current_admin.present?
+      @current_ability ||= Ability.new current_admin
+    else
+      @current_ability ||= Ability.new current_user
+    end
+  end
 end
