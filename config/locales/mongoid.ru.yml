@@ -36,6 +36,11 @@ ru:
         few: Профиля
         many: Профилей
         other: Профили
+      profile/client:
+        one: Клиент
+        few: Клиента
+        many: Клиентов
+        other: Клиенты
       profile/translator/base:
         one: Переводчик
         few: Переводчика
@@ -93,4 +98,8 @@ ru:
         address: Адрес
         years_in_business: Сколько лет в бизнесе
         service_phone: Сервисный мобильный телефонный номер
+      user:
+        first_name: Имя
+        last_name: Фамилия
+        middle_name: Отчество
 

@@ -21,9 +21,16 @@
     <br>
 {{/if}}
 
-{{translatorBase}}
+
 {{#if translatorBase}}
     <span>{{translatorBase._type}} </span>{{#link-to 'profiles.translator_new'}}{{ts 'frontend.profile.edit'}}{{/link-to}}
     <br>
 {{/if}}
+
+
+{{#if client}}
+    <span>Профиль клиента </span>{{#link-to 'client.edit' client}}{{ts 'frontend.profile.edit'}}{{/link-to}}
+    <br>
+{{/if}}
+
 

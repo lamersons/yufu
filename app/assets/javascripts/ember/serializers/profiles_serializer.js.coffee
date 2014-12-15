@@ -15,3 +15,5 @@ Yufu.ProfileTranslatorBaseSerializer = Yufu.ProfileSerializer.extend()
 Yufu.ProfileTranslatorIndividualSerializer = Yufu.ProfileSerializer.extend()
 
 Yufu.ProfileTranslatorCompanySerializer = Yufu.ProfileSerializer.extend()
+
+Yufu.ProfileClientSerializer = Yufu.ProfileSerializer.extend()

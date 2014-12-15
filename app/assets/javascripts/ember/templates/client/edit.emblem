@@ -1,0 +1,17 @@
+.col-1
+  label
+    = ts 'mongoid.attributes.user.first_name'
+  Ember.TextField value=first_name
+  label
+    = ts 'mongoid.attributes.user.last_name'
+  Ember.TextField value=last_name
+  label
+    = ts 'mongoid.attributes.user.middle_name'
+  Ember.TextField value=middle_name
+.clear
+.height-20
+.steps.clearfix
+  .col-1
+    button.pink{action 'save'}
+      ts 'frontend.save'
+.height-30

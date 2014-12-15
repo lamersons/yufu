@@ -43,25 +43,30 @@ module Api
 
       private
       def profile_params
-        case params[:profile][:_type]
-        when 'Profile::Client'
-          params.require(:profile).permit :company_name, :company_uid, :country
-        when 'Profile::Translator::Company'
-          params.require(:profile).permit :email, :additional_email, :qq, :skype,  :name, :company_uid, :years_in_business,
-                                          :location, :service_phone, :phone, :contacts_person, :address, :is_active,
-                                          employees_attributes: [:id, :sex, :age, :direction_id]
-        when 'Profile::Translator::Individual'
-          params.require(:profile).permit :first_name, :last_name, :passport_till, :passport_num, :passport_country,
-                                          :additional_email, :additional_phone, :phone, :qq, :skype, :wechat, :email, :additions, :sex, :visa,
-                                          :vise_till, :needs_job_resident_permit, :can_travel, :status, :is_active, :avatar,
-                                          :has_driving_license, :has_car, :native_language_id, {nearby_city_ids:[]},
-                                          {nearby_cities_with_surcharge_ids: []}, :city_id,  {direction_ids: []},
-                                          :years_in_china, :pay_way, :birthday, :visa_till, :passport_till,
-                                          services: [:id, :level, :has_hsk, :verbal_price, :written_price,
-                                                      :written_translate_type, :language_id],
-                                          educations: [:id, :grade, :university, :specialization, :location, documents: [:doc]]
-        end
-
+        # from Profile::Base
+        profile_params = [:first_name, :last_name, :middle_name, :avatar]
+        profile_params += case params[:profile][:_type]
+                            when 'Profile::Client'
+                             [:company_name, :company_uid, :country]
+                            when 'Profile::Translator::Company'
+                              [:email, :additional_email, :qq, :skype,  :name, :company_uid, :years_in_business,
+                                :location, :service_phone, :phone, :contacts_person, :address, :is_active,
+                                employees_attributes: [:id, :sex, :age, :direction_id]]
+                            when 'Profile::Translator::Individual'
+                              [ :passport_till, :passport_num, :passport_country,
+                                :additional_email, :additional_phone, :phone, :qq, :skype, :wechat, :email, :additions,
+                                :vise_till, :needs_job_resident_permit, :can_travel, :status, :is_active,:sex, :visa,
+                                :has_driving_license, :has_car, :native_language_id, {nearby_city_ids:[]},
+                                {nearby_cities_with_surcharge_ids: []}, :city_id,  {direction_ids: []},
+                                :years_in_china, :pay_way, :birthday, :visa_till, :passport_till,
+                                services: [:id, :level, :has_hsk, :verbal_price, :written_price,
+                                            :written_translate_type, :language_id],
+                                educations: [:id, :grade, :university, :specialization, :location, documents: [:doc]]
+                              ]
+                            else
+                              []
+                          end
+        params.require(:profile).permit profile_params
       end
       private
       def change_type
