@@ -4,7 +4,7 @@ ru:
   date: #Throws an exception otherwise.
     month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
     formats:
-      full: "%d %m %Y"
+      full: "%d %b %Y"
       default: "%Y-%m-%d"
       month_year: "%B %Y"
     order:
