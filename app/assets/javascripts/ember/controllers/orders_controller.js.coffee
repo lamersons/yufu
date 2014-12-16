@@ -3,7 +3,7 @@
 Yufu.OrdersController = Ember.ArrayController.extend({
   needs: ['application']
 
-  queryParams: ['scope', 'location', 'langauge']
+  queryParams: ['scope', 'location', 'langauge', 'client']
   scope: 'open'
 
   location: null

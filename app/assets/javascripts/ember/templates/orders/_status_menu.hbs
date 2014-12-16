@@ -1,14 +1,30 @@
 <div class="orders clearfix">
-  {{#link-to this.currentRoute (query-params scope='close')}}
-    {{ts 'frontend.orders.scopes.closed'}}
-  {{/link-to}}
-  {{#link-to this.currentRoute (query-params scope='reject')}}
-    {{ts 'frontend.orders.scopes.rejected'}}
-  {{/link-to}}
-  {{#link-to this.currentRoute (query-params scope='in_progress')}}
-    {{ts 'frontend.orders.scopes.in_progress'}}
-  {{/link-to}}
-  {{#link-to this.currentRoute (query-params scope='open')}}
-    {{ts 'frontend.orders.scopes.new'}}
-  {{/link-to}}
+  {{#if profile.is_translator}}
+    {{#link-to (query-params scope='close')}}
+      {{ts 'frontend.orders.scopes.closed'}}
+    {{/link-to}}
+    {{#link-to (query-params scope='reject')}}
+      {{ts 'frontend.orders.scopes.rejected'}}
+    {{/link-to}}
+    {{#link-to (query-params scope='in_progress')}}
+      {{ts 'frontend.orders.scopes.in_progress'}}
+    {{/link-to}}
+    {{#link-to (query-params scope='open')}}
+      {{ts 'frontend.orders.scopes.new'}}
+    {{/link-to}}
+  {{else}}
+    {{#link-to (query-params scope='close')}}
+      {{ts 'frontend.orders.scopes.closed'}}
+    {{/link-to}}
+    {{#link-to (query-params scope='in_progress')}}
+      {{ts 'frontend.orders.scopes.in_progress'}}
+    {{/link-to}}
+    {{#link-to (query-params scope='open')}}
+      {{ts 'frontend.orders.scopes.new'}}
+    {{/link-to}}
+    {{#link-to (query-params scope='paying')}}
+      {{ts 'frontend.orders.scopes.paying'}}
+    {{/link-to}}
+  {{/if}}
+
 </div>

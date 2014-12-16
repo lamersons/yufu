@@ -3,7 +3,7 @@ module Order
     include Mongoid::Document
     include Mongoid::Timestamps
 
-    SCOPES = %w(open in_progress close)
+    SCOPES = %w(open in_progress close paying)
     PAY_WAYS = %w(card bank alipay)
 
     field :step, type: Integer, default: 1
@@ -25,6 +25,7 @@ module Order
     accepts_nested_attributes_for :client_info
 
     scope :open,        -> (profile = nil) { where state: :wait_application }
+    scope :paying,      -> (profile) {profile.orders.where state: :paying}
     scope :in_progress, -> (profile) do
       where :state.in => [:in_progress, :additional_paying], connected_method_for(profile) => profile
     end

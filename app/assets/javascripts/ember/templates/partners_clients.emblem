@@ -22,4 +22,5 @@
           td
             = middle_name
           td
-            = orders_count
+            link-to 'verbal' (query-params client=this.id)
+              = orders_count

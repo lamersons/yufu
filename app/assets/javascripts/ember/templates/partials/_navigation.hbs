@@ -10,6 +10,9 @@
       {{#link-to "partners_clients" this.currentUser.partner_profile_id tagName="a" class="item" }}
         <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.partners_clients'}}<span class="caret"></span></span>
       {{/link-to}}
+      {{#link-to "verbal" this.currentUser.partner_profile_id tagName="a" class="item" }}
+          <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.orders'}}<span class="caret"></span></span>
+      {{/link-to}}
     {{/if}}
     {{#if currentUser.is_translator}}
       {{#link-to "verbal" this.currentUser.translator_profile_id tagName="a" class="item" }}
