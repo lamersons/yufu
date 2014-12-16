@@ -2,20 +2,15 @@ ru:
   modules:
     virtual: Управление почтой
   date: #Throws an exception otherwise.
-    month_names: [~, Января, Февраля, Марта, Апреля, Мая, Июня, Июля, Августа, Сентября, Октября, Ноября, Декабря]
+    month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
     formats:
-      full: "%d %B %Y"
+      full: "%d %b %Y"
       default: "%Y-%m-%d"
       month_year: "%B %Y"
     order:
       - "year"
       - "month"
       - "day"
-  time:
-    formats:
-      full: "%d %B %Y"
-      default: "%Y-%m-%d"
-      month_year: "%B %Y"
   create: Создать
   page:
     title: YuFu - С нами в Китае легко! Мы думаем на вашем языке
