@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 
   before_action :set_profile
+  before_action :filter_params, only: [:update]
 
   def create
     @order = order_params[:_type].constantize.new order_params
@@ -66,6 +67,14 @@ class OrdersController < ApplicationController
                         []
                     end
     params.require(:order).permit order_params
+  end
+
+  def filter_params
+    if params[:order][:car_rent_attributes]
+      if params[:order][:car_rent_attributes][:duration].blank?
+        params[:order][:car_rent_attributes].clear
+      end
+    end
   end
 
 end
