@@ -21,8 +21,8 @@ class @Calendar
     date = new Date(@start_date)
     dateNextMonth = new Date(@start_date)
     dateNextMonth.setMonth(dateNextMonth.getMonth()+1)
-    $('.calendar-title').html "#{I18n.strftime date, '%B %Y' } -
-        #{I18n.l('date.formats.month_year', date)}"
+    $('.calendar-title').html " #{I18n.l('date.formats.month_year', date)} -
+        #{I18n.l('date.formats.month_year', dateNextMonth)}"
     $('table .table_body td').each (index)->
       if $(this).find('.day').length > 0
         $(this).find('.day').html(date.getDate())
