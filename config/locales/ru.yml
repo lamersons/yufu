@@ -246,3 +246,6 @@ ru:
   agree_last_part: заказчику услуг.
   should_agree: Подтвердите, пожалуйста согласие с условиями
 
+
+#step two
+  select_at_last_one_date: Выберете, пожалуйста, хотя бы одну дату

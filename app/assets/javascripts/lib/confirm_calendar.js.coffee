@@ -7,6 +7,7 @@ class @ConfirmCalendar
     @first_date = $('td.date-cont').first()
     $('.arrow.right').click @next_week
     $('.arrow.left').click @prev_week
+    $('#edit_order').submit @validate_form
     @rerender()
     return
   show_hide_dropdown: (object)=>
@@ -34,11 +35,17 @@ class @ConfirmCalendar
       return
     if $(object.target).closest('td.active').length > 0
       $('.dropdown').fadeOut(500)
-      $(object.target).closest('td.active').find('input.destroy').remove()
+      $(object.target).closest('td.active').find('input.destroy').val('0')
       $(object.target).closest('td.active').addClass('choosen')
       @recount_price $(object.target).closest('td.active'), $(object.target).closest('td.active').find('span b').html()
       return
     $('.dropdown').fadeOut(500)
+
+  validate_form: ->
+    if $("input.destroy[value='0']").length == 0
+      $('#should_confirm').show()
+      return false
+    return true
 
   recount_price: (object, hours)->
     price = parseFloat $(object).data('cost')
