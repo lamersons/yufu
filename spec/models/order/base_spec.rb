@@ -33,6 +33,7 @@ RSpec.describe Order::Base, :type => :model do
     end
   end
 
+
   describe '#can_send_primary_application?' do
     it 'returns true if order has not primary application' do
       order = create :order_verbal
@@ -53,6 +54,30 @@ RSpec.describe Order::Base, :type => :model do
     end
     it 'sets assignee as nil' do
       expect{subject}.to change{order.reload.assignee}.to(nil)
+    end
+  end
+
+  describe '#set_owner!' do
+    let(:order) {create :order_base }
+    subject{order.set_owner! user}
+
+    context 'user has only client profile' do
+      let(:user) {create :client}
+      it "sets owner as user's client profile" do
+        expect{subject}.to change{order.reload.owner}.to(user.client_profile)
+      end
+    end
+
+    context 'user has client and partner profile' do
+      let(:user) {create :user, profiles: [build(:profile_partner), build(:profile_client)]}
+      it "sets owner as user's partner profile" do
+        expect{subject}.to change{order.reload.owner}.to(user.partner_profile)
+      end
+    end
+
+    context 'user is translator' do
+      let(:user) {create :translator}
+      it {expect{subject}.to raise_error(ArgumentError)}
     end
   end
 end
