@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
       session[:back_to_order] = edit_order_path(@order)
       if @order.step == 3
         authenticate_user!
-        @order.update_attribute :owner, current_user.profiles.where(_type: 'Profile::Client').first
+        @order.set_owner! current_user
       end
       redirect_to edit_order_path(@order)
     else
@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
         {airport_pick_up_attributes: [:need_car, :double_way, :flight_number, :airport, :arriving_date]},
         {car_rent_attributes: [:duration, :car_id]},
         {hotel_attributes: [:greeted_at, :info, :additional_info]},
-        :_type
+        :_type, :partners_client
     ]
     order_params += case params[:order][:_type]
                       when 'Order::Verbal'

@@ -95,6 +95,9 @@ class User
     profiles.where(:_type.in => [Profile::Partner.to_s]).first
   end
 
+  def client_profile
+    profiles.where(:_type.in => [Profile::Client.to_s]).first
+  end
   private
   def set_avatar_extension
     if self.avatar_content_type.nil? || self.avatar_file_name != 'data'

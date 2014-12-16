@@ -86,6 +86,17 @@ module Order
       applications.where(status: 'primary').empty?
     end
 
+    def set_owner!(user)
+      if user.partner?
+        self.update! owner: user.partner_profile
+      else if user.client?
+             self.update! owner: user.client_profile
+           else
+             raise ArgumentError, 'user has not suitable profile'
+           end
+      end
+    end
+
     def self.connected_method_for(profile)
       if profile.is_a? Profile::Translator::Base
         :assignee

@@ -6,41 +6,49 @@
 <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:interpretation)%></span></h1>
 <p class="title"><%=ts(:client_info)%></p>
 
-<%=f.fields_for :client_info_attributes do |ci|%>
-<!-- Колонка -->
-<div class="col-1">
-  <p><%=ts(:fist_name)%></p>
-  <%=ci.text_field :first_name, value: @order.client_info.first_name, required: true%>
-</div>
-<!-- /Колонка -->
-<!-- Колонка -->
-<div class="col-1">
-  <p><%=ts(:last_name)%></p>
-  <%=ci.text_field :last_name, value: @order.client_info.last_name, required: true%>
-</div>
-<!-- /Колонка -->
-<!-- Колонка -->
-<div class="col-1 last clearfix birth">
-  <p><%=ts(:birthday)%></p>
-  <div class="custom-select three-in-one">
-  <%=ci.date_select :birthday, :start_year => 1940, use_month_numbers: true,  required: true%>
-    </div>
-</div>
-<!-- /Колонка -->
-<!-- Колонка -->
-<div class="col-1">
-  <p><%=ts(:company)%></p>
-  <%=ci.text_field :company, value: @order.client_info.company, required: true%>
-</div>
-<!-- /Колонка -->
-<!-- Колонка -->
-<div class="col-1">
-  <p><%=ts(:country)%></p>
+<%- if current_user.partner? %>
+  <p><%=ts('mongoid.attributes.order/base.partners_client')%></p>
   <div class="custom-select">
-    <%=ci.select :country, Order::ClientInfo::CONTRIES, required: true, value: @order.client_info.company %>
+    <%= f.select :partners_client, current_user.partner_profile.clients.map {|c| [c.name, c.id]} %>
   </div>
-</div>
-    <%end%>
+
+<% else %>
+  <%=f.fields_for :client_info_attributes do |ci|%>
+  <!-- Колонка -->
+  <div class="col-1">
+    <p><%=ts(:fist_name)%></p>
+    <%=ci.text_field :first_name, value: @order.client_info.first_name, required: true%>
+  </div>
+  <!-- /Колонка -->
+  <!-- Колонка -->
+  <div class="col-1">
+    <p><%=ts(:last_name)%></p>
+    <%=ci.text_field :last_name, value: @order.client_info.last_name, required: true%>
+  </div>
+  <!-- /Колонка -->
+  <!-- Колонка -->
+  <div class="col-1 last clearfix birth">
+    <p><%=ts(:birthday)%></p>
+    <div class="custom-select three-in-one">
+    <%=ci.date_select :birthday, :start_year => 1940, use_month_numbers: true,  required: true%>
+      </div>
+  </div>
+  <!-- /Колонка -->
+  <!-- Колонка -->
+  <div class="col-1">
+    <p><%=ts(:company)%></p>
+    <%=ci.text_field :company, value: @order.client_info.company, required: true%>
+  </div>
+  <!-- /Колонка -->
+  <!-- Колонка -->
+  <div class="col-1">
+    <p><%=ts(:country)%></p>
+    <div class="custom-select">
+      <%=ci.select :country, Order::ClientInfo::CONTRIES, required: true, value: @order.client_info.company %>
+    </div>
+  </div>
+  <%end%>
+<%end%>
 <!-- /Колонка -->
 <div class="clear"></div>
 <p class="title"><%=ts(:additional_service)%></p>
