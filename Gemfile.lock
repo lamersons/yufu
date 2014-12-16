@@ -317,8 +317,6 @@ GEM
       rspec-support (~> 3.0.0)
     rspec-support (3.0.4)
     rubyzip (1.1.6)
-    russian (0.6.0)
-      i18n (>= 0.5.0)
     rvm-capistrano (1.5.4)
       capistrano (~> 2.15.4)
     safe_yaml (1.0.4)
@@ -436,7 +434,6 @@ DEPENDENCIES
   redis
   rspec-mocks
   rspec-rails (~> 3.0.0)
-  russian
   rvm-capistrano
   sass-rails (~> 4.0.2)
   sdoc
