@@ -27,13 +27,13 @@ Feature: create verbal order
     And  I select in pre calendar date: "day5-12-2014" for "8" hours
     And  I select in pre calendar date: "day6-12-2014" for "10" hours
     And  I fade out "Additional"
-    And  I select in box "order_translator_sex" as "male"
+    And  I select in box "order_translator_sex" as "female"
     And  I select in box "order_translator_native_language_id" as "Russian"
     And  I select in box "order_native_language_id" as "Mumbu-umbu"
     And  I check box with text: "Go by taxo"
     And  I select in box "order_goal" as "business"
     And  I submit the form "edit_order"
-    And order should have fields "include_near_city, translator_sex, goal" as "true, male, business"
+    And order should have fields "include_near_city, translator_sex, goal" as "true, female, business"
     Then order should have one relation "location, translator_native_language, native_language" with "name, name, name" as "NewVasjuki, Russian, Mumbu-umbu"
      And order should have relations "language_criterions, language_criterions" with fields "level, cost" as "1, 100500"
      And order should have relations "reservation_dates, reservation_dates" with fields "date, hours" as "2014-12-05 00:00:00 UTC, 8"

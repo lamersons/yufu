@@ -3,6 +3,9 @@ Feature: Create a new order
   Order may be created by registered users and guests
   Describe only verbal orders, because mechanism for the creation of other orders of the same
 
+  Background:
+    Given default locales
+
   Scenario Outline:
     When I go to "/"
      And I click on link "create <order_type> order"

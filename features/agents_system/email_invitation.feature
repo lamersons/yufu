@@ -4,6 +4,7 @@ Feature: email invitation
   Background:
     Given a user with email "overlord@example.com"
       And I signed in as user with email "overlord@example.com"
+      And default locales
 
   @javascript
   Scenario: send invitation
