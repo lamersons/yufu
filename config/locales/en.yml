@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      full: "%d %b %Y"
+      default: "%Y-%m-%d"
+      month_year: "%B %Y"

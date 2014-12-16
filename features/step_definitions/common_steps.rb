@@ -1,4 +1,4 @@
-Given(/^a user with email "(.*?)"$/) do |email|
+Given(/^a new user with email "(.*?)"$/) do |email|
   FactoryGirl.create :user, email: email, password: 'password'
 end
 

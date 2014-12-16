@@ -1,7 +1,11 @@
 Feature: Registration
   In order to users can register on the service
 
-  @javascript
+  Background:
+    Given object of "language" with name: "Russian"
+    And   object of "language" with name: "Mumbu-umbu"
+
+    @javascript
   Scenario: Submit registration form
     When I go to "/"
      And Select user's type: "translator"

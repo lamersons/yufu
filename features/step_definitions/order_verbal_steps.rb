@@ -137,7 +137,8 @@ When(/^I go for edit order$/) do
 end
 
 Then(/^I should see in price preview "(.*?)" date price for "(.*?)" hours$/) do |date, hours|
-  price = Order::Verbal.last.reservation_dates.where( date: date).first.cost*(1+(hours.to_i-8)*1.5/8)
+  cost = Order::Verbal.last.reservation_dates.where( date: date).first.order_language_criterion.price
+  price = (cost*8 + (hours.to_i-8)*1.5*cost).to_i
   expect(page).to have_css('span.pink-bright', text: "#{price} Eur")
 end
 

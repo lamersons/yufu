@@ -3,7 +3,7 @@ When(/^I go to "(.*?)"$/) do |url|
 end
 
 And(/^Select user's type: "(.*?)"$/) do |type|
-  page.find(".#{type}").click
+  page.find(".item.#{type}").click
 end
 
 And(/^a user with email "(.*?)" should be exist$/) do |email|

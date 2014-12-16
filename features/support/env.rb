@@ -36,6 +36,8 @@ World(RSpec::Mocks::ExampleMethods)
 
 Before do
   RSpec::Mocks.setup
+  Localization.create name: 'ru', enable: true
+  Localization.create name: 'en', enable: true
 end
 
 After do

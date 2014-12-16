@@ -40,4 +40,3 @@ Feature: Manage orders
     And I select orders
     And I select "closed" scope
     Then I should see "1" order
-

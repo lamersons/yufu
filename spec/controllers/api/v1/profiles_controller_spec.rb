@@ -68,7 +68,7 @@ RSpec.describe Api::V1::ProfilesController, :type => :controller do
 
     describe 'nested_attr' do
       let(:valid_attr){{ user_id: user.id,
-                         profile: {type: 'Profile::Translator::Company', employees_attributes: [{sex: 'male', age: 23},{sex: 'female', age: 123}]}}}
+                         profile: {_type: 'Profile::Translator::Company', employees_attributes: [{sex: 'male', age: 23},{sex: 'female', age: 123}]}}}
       subject{post :create, valid_attr}
 
       it 'should be correct data' do
