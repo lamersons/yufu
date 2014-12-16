@@ -15,6 +15,10 @@ module Order
       order_language_criterion_id.nil?
     end
 
+    def price_for_hours
+
+    end
+
     def price(currency = nil)
       (cost(currency)/ Order::MARKUP).round(2)
     end
