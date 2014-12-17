@@ -11,4 +11,14 @@ RSpec.describe LanguagesGroup, :type => :model do
       it {expect(languages_group.verbal_cost('fake')).to eq(Float::INFINITY)}
     end
   end
+
+  describe '#written_cost' do
+    context 'price with requested level exist' do
+      it {expect(languages_group.written_cost('standard')).to eq(languages_group.written_prices.first.cost)}
+    end
+    context "price with requested level doesn't exist" do
+      it {expect(languages_group.written_cost('fake')).to eq(Float::INFINITY)}
+    end
+  end
+
 end

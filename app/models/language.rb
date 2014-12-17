@@ -15,7 +15,6 @@ class Language
   validates_presence_of :name, uniqueness: true
   validates_presence_of :languages_group
 
-
-
-  delegate :verbal_cost, to: :languages_group, allow_nil: true
+  delegate :verbal_cost,  to: :languages_group, allow_nil: true
+  delegate :written_cost, to: :languages_group, allow_nil: true
 end

@@ -49,6 +49,13 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Price::Verbal do
+    field :level, :enum do
+      enum {Order::Verbal::TRANSLATION_LEVELS}
+    end
+    field :value
+  end
+
   config.model Vacancy do
     edit do
       field :name
