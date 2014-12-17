@@ -31,7 +31,7 @@ RSpec.describe Order::Verbal, :type => :model do
     let(:order) {create :order_verbal}
     subject{order.price}
     it 'returns price of services for clients. include markup' do
-      expect(subject).to eq(order.cost_price / 0.7)
+      expect(subject).to eq((order.cost_price / 0.7).round(2))
     end
     include_examples 'returns numeric'
   end
