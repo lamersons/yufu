@@ -18,7 +18,7 @@ module Order
     belongs_to :native_language,            class_name: 'Language'
 
     has_many :payments,               class_name: 'Order::Payment'
-    has_many :language_criterions,    class_name: 'Order::LanguageCriterion', inverse_of: :order
+    has_many :language_criterions,    class_name: 'Order::LanguageCriterion', inverse_of: :order, dependent: :destroy
     embeds_many :reservation_dates,   class_name: 'Order::ReservationDate'
 
     accepts_nested_attributes_for :language_criterions, allow_destroy: true
