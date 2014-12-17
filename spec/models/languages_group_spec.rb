@@ -5,10 +5,10 @@ RSpec.describe LanguagesGroup, :type => :model do
   include_context 'default currency'
   describe '#verbal_cost' do
     context 'price with requested level exist' do
-      it {expect(languages_group.verbal_cost(1)).to eq(languages_group.verbal_prices.first.cost)}
+      it {expect(languages_group.verbal_cost('guide')).to eq(languages_group.verbal_prices.first.cost)}
     end
     context "price with requested level doesn't exist" do
-      it {expect(languages_group.verbal_cost(10)).to eq(Float::INFINITY)}
+      it {expect(languages_group.verbal_cost('fake')).to eq(Float::INFINITY)}
     end
   end
 end

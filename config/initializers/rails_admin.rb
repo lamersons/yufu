@@ -48,4 +48,11 @@ RailsAdmin.config do |config|
       enum { %w(User City Direction Language) }
     end
   end
+
+  config.model Vacancy do
+    edit do
+      field :name
+      field :text, :ck_editor
+    end
+  end
 end

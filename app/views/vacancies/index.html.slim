@@ -1,0 +1,68 @@
+| <!doctype html> 
+html
+  head
+    meta[charset="utf-8"]
+    meta[name="viewport" content="width=1100px"]
+    title
+      | yufu
+    link[href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic" rel="stylesheet" type="text/css"]
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+  body
+    .nav-top
+      .container.clearfix
+        .nav-job
+          b
+            | Vacancies for yufu.net company limited
+    .header
+      .container
+        a.logo[href="#"]
+        p.first
+          | No muss, no fuss
+          br
+          |  in China with us
+    .block.first
+      .container.clearfix.about
+        .tabular
+          .col1.menu
+            p.h1.hiring
+              |  We are looking for
+            - @vacancies.each do |v|
+              .tab-item id=v.id.to_s
+                = v.name
+          - @vacancies.each do |v|
+            .tab binding-id=v.id.to_s
+              = raw v.text
+    .about
+      .container.clearfix
+        .col1
+          p.title
+            | About us
+          p
+            | Гонгконгская кяомпания, которая специализируется, главным образом, на устных последовательных переводах бизнес уровня.
+        .col2
+          p
+            | Все переводчики нашей компании проходят строгий отбор на основании сертификата о высшем образовании, сертификата на знание языка, опыта работы, онлайн тестировании.
+        .col3
+          p
+            | Юфу - это знания и опыт китайских переводчиков со всего мира, проживающих во всех уголках Китая.
+        span.bottom-arrow
+    .footer
+      .container.clearfix
+        .col1
+          a.logo[href="#"]
+          .social
+            a.facebook[href="#"]
+            a.twitter[href="#"]
+        .col2
+          p
+            | • Phone: +356 656 987 9874
+          p
+            | • e-mail: 
+            a
+              | yufu@yufu.net
+        .col3
+          p
+            | Copyright by YUFU.NET Ltd.
+coffee:
+  new TabularController()

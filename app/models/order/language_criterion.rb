@@ -1,13 +1,13 @@
 module Order
   class LanguageCriterion
     include Mongoid::Document
-    LEVELS = [1, 2, 3]
 
     field :level
-    field :cost,  type: Float
     belongs_to :language
 
     belongs_to :order, class_name: 'Order::Verbal', inverse_of: :language_criterions
+
+    validates_inclusion_of :level, in: Order::Verbal::TRANSLATION_LEVELS
 
     def price(currency = nil)
       (cost(currency)/Order::MARKUP).round(2)

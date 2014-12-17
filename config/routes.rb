@@ -5,6 +5,7 @@ Yufu::Application.routes.draw do
   put 'translations/update'
   mount Mercury::Engine => '/'
   root to: 'main#index'
+  get '/' => 'vacancies#index', constraints: {subdomain: 'jobs'}
 
   devise_for :admin
   devise_for :users
@@ -13,6 +14,7 @@ Yufu::Application.routes.draw do
 
   resource :user
   resources :banners, only: :show
+  resources :vacancies, only: :index
 
   namespace :api do
     namespace :v1 do

@@ -1,7 +1,7 @@
 module ApplicationHelper
-  def ts(key)
+  def ts(key, options = {})
     ActionController::Base.helpers.content_tag(:span, {id: "#{key}", 'data-mercury' => 'simple'}) do
-      (t key).html_safe
+      (t key, options).html_safe
     end
   end
 end
