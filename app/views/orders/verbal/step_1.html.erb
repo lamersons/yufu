@@ -61,15 +61,15 @@
 
           <div class="custom-select bordered">
             <select name="order[language_criterions_attributes][][level]" id="order_language_criterion_level" >
-              <option value='guide' <%='selected' if cr.level == 'guide'%>><%=ts(:gide)%></option>
-              <option value='business' <%='selected' if cr.level == 'business'%>><%=ts(:business)%></option>
-              <option value='expert' <%='selected' if cr.level == 'expert'%>><%=ts(:expert)%></option>
+              <option value='guide' <%='selected' if cr.level == 'guide'%>><%=ts(:guide, scope: 'enums.order/verbal.translation_levels')%></option>
+              <option value='business' <%='selected' if cr.level == 'business'%>><%=ts(:business, scope: 'enums.order/verbal.translation_levels')%></option>
+              <option value='expert' <%='selected' if cr.level == 'expert'%>><%=ts(:expert, scope: 'enums.order/verbal.translation_levels')%></option>
             </select>
           </div>
           </div>
         <div class="col-05">
           <p><%=ts(:price)%></p>
-          <input id="order_language_criterion_cost" name="order[language_criterions_attributes][][cost]" type="text" value="<%=cr.price%>" readonly>
+          <input type="text" value="<%=cr.price%>" readonly>
         </div>
         <div class="col-05 last remove_lang">
           <a id="remove_lang" class="pink-bright"><%=ts(:delete_language)%></a>
