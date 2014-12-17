@@ -3,7 +3,7 @@
 <!-- Бекграунд модального окна -->
 <div class="modal-bg" ></div>
 <div class="modal modal-lang clearfix" ng-hide="hideModals">
-  <%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'add_languages'), remote: true do |al| %>
+  <%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'add_available_languages'), remote: true do |al| %>
     <%= al.submit class: 'close'%>
     <p class="title">Языки перевода</p>
     <div class="clearfix"></div>
