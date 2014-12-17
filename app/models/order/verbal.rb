@@ -51,7 +51,7 @@ module Order
     end
 
     def price(currency = nil)
-      (cost_price(currency) / Order::MARKUP).round(2)
+      Price.with_markup cost_price(currency)
     end
 
     def different_dates

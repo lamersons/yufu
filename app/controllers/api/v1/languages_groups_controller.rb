@@ -4,7 +4,7 @@ module Api
       respond_to :json
       def price
         @language_group = Language.find(params[:language_id]).languages_group
-        respond_with price: @language_group.verbal_price(params[:level].gsub(/level_/, '').to_i)
+        respond_with price: Price.with_markup(@language_group.verbal_cost(params[:level].gsub(/level_/, '').to_s))
       end
     end
   end

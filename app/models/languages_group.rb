@@ -1,7 +1,8 @@
 class LanguagesGroup
   include Mongoid::Document
 
-  embeds_many :verbal_prices, class_name: 'Price::Verbal'
+  embeds_many :verbal_prices,  class_name: 'Price::Verbal'
+  embeds_many :written_prices, class_name: 'Price::Written'
 
   has_many :languages
 
@@ -12,7 +13,8 @@ class LanguagesGroup
     price.nil? ? Float::INFINITY : price.cost(currency)
   end
 
-  def verbal_price(level, currency = nil)
-    (verbal_cost(level, currency) / Order::MARKUP).round(2)
+  def written_cost(level, currency = nil)
+    price = written_prices.where(level: level).first
+    price.nil? ? Float::INFINITY : price.cost(currency)
   end
 end

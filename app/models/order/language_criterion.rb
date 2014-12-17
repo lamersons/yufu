@@ -10,7 +10,7 @@ module Order
     validates_inclusion_of :level, in: Order::Verbal::TRANSLATION_LEVELS
 
     def price(currency = nil)
-      (cost(currency)/Order::MARKUP).round(2)
+      Price.with_markup cost(currency)
     end
 
     def cost(currency = nil)
