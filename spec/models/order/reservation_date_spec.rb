@@ -13,15 +13,15 @@ RSpec.describe Order::ReservationDate, :type => :model do
       it {should be_a Numeric}
     end
 
-    context 'houre <= 8' do
-      let(:order) {create :order_verbal, reservation_dates: [build(:order_reservation_date)]}
+    context 'hours <= 8' do
+      let(:order) {create :order_verbal, reservation_dates: [build(:order_reservation_date, order_language_criterion: nil)]}
       let(:expected) {reservation_date.order_language_criterion.cost * reservation_date.hours}
 
       include_examples 'checkers'
     end
 
-    context 'houre > 8' do
-      let(:order) {create :order_verbal, reservation_dates: [build(:order_reservation_date, hours: 10)]}
+    context 'hours > 8' do
+      let(:order) {create :order_verbal, reservation_dates: [build(:order_reservation_date, hours: 10, order_language_criterion: nil)]}
       let(:expected) {reservation_date.order_language_criterion.cost * 8 + 2 * 1.5 * reservation_date.order_language_criterion.cost}
 
       include_examples 'checkers'

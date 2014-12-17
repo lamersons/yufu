@@ -2,8 +2,8 @@ module Personalized
   extend ActiveSupport::Concern
 
   included do
-    field :first_name,  localize: true
-    field :last_name,   localize: true
+    field :first_name
+    field :last_name
     field :middle_name, localize: true
   end
 
