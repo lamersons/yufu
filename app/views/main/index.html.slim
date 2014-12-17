@@ -69,7 +69,7 @@
       p
         = ts('main.written_translate.block1')
       .over
-        = link_to '#' do
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', language_criterions_attributes: [{level: 1, language_id: Language.first.id}]}), class: 'create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .item

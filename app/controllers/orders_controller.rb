@@ -3,6 +3,8 @@ class OrdersController < ApplicationController
   before_action :set_profile
   before_action :filter_params, only: [:update]
 
+  respond_to :json, :html
+
   def create
     @order = order_params[:_type].constantize.new order_params
     if @order.save!
@@ -15,6 +17,7 @@ class OrdersController < ApplicationController
   def edit
     @user = current_user
     @directions = Direction.all
+    @languages = Language.all
     @order = Order::Base.find params[:id]
     if @order.step == 3
       session[:back_to_order] = edit_order_path(@order)
@@ -42,6 +45,16 @@ class OrdersController < ApplicationController
     end
 
   end
+
+  def add_available_languages
+    @order = Order::Base.find params[:id]
+    if @order.update_attributes available_languages_params
+      respond_with @order
+    else
+      respond_with @order.errors, status: :unprocessable_entity
+      end
+  end
+
   def set_profile
     if user_signed_in?
       @profile = current_user.profiles.where(_type: 'Profile::Client').first
@@ -67,6 +80,10 @@ class OrdersController < ApplicationController
                         []
                     end
     params.require(:order).permit order_params
+  end
+
+  def available_languages_params
+    params.require(:order).permit available_languages_ids: []
   end
 
   def filter_params

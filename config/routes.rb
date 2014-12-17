@@ -36,6 +36,10 @@ Yufu::Application.routes.draw do
     end
   end
 
-  resources :orders, only: [:new, :create, :edit, :update]
+  resources :orders, only: [:new, :create, :edit, :update] do
+    member do
+      post :add_available_languages
+    end
+  end
 
 end
