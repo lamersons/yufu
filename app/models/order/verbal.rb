@@ -1,10 +1,8 @@
 module Order
   class Verbal < Base
 
+    TRANSLATION_LEVELS = %w(guide business expert)
 
-    before_save :check_dates
-    before_create :create_client_info
-    after_save :check_pay_way
     GENDERS = ['male', 'female']
     GOALS   = ['business', 'entertainment']
     DEFAULTCOST = 115.0
@@ -30,6 +28,9 @@ module Order
 
     delegate :name, to: :location, prefix: true, allow_nil: true
 
+    before_save :check_dates
+    before_create :create_client_info
+    after_save :check_pay_way
     # TODO: should be removed
     def sum
       reservation_dates.inject(0.0) do |sum, elem|

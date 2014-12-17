@@ -4,6 +4,7 @@ RSpec.describe Api::V1::OrdersController, :type => :controller do
   include_context 'default currency'
 
   let(:order) {create :order_verbal}
+  let(:language) {create :language}
 
   before(:each) do
     request.accept = 'application/json'
@@ -14,13 +15,14 @@ RSpec.describe Api::V1::OrdersController, :type => :controller do
     let(:attributes) {{
         _type: 'Order::Verbal',
         airport_pick_up: {need_car: true, double_way: true, flight_number: '123', airport: 'airport'},
+        language_criterions_attributes: [{language_id: language.to_param, level: 'guide'}],
         include_near_city: true
     }}
     subject{post :create, {order: attributes}}
     it 'creates new verbal order' do
       expect{subject}.to change{Order::Verbal.count}.by(1)
     end
-    it 'permits attributes for verbsl order' do
+    it 'permits attributes for verbal order' do
       expect{subject}.to change{assigns(:order).try :include_near_city}.to(true)
     end
   end

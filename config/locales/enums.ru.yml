@@ -1,0 +1,7 @@
+ru:
+  enums:
+    order/verbal:
+      translation_levels:
+        guide: разговорный(гид)
+        business: бизнес
+        expert: эксперт

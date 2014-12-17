@@ -67,7 +67,7 @@ module Api
           order_params += case params[:order][:_type]
                           when 'Order::Verbal'
                             [:include_near_city, :goal, :translator_sex, :location_id, :translator_native_language_id,
-                             :native_language_id, :directions_ids, {language_criterions: [:level, :cost, :language_id]},
+                             :native_language_id, :directions_ids, {language_criterions_attributes: [:level, :cost, :language_id]},
                             {reservation_dates_attributes: [:date, :hours, :language_criterion_id]}]
                           else
                             []

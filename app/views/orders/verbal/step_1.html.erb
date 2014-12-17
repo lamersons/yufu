@@ -61,9 +61,9 @@
 
           <div class="custom-select bordered">
             <select name="order[language_criterions_attributes][][level]" id="order_language_criterion_level" >
-              <option value=1 <%='selected' if cr.level == '1'%>><%=ts(:gide)%></option>
-              <option value=2 <%='selected' if cr.level == '2'%>><%=ts(:business)%></option>
-              <option value=3 <%='selected' if cr.level == '3'%>><%=ts(:expert)%></option>
+              <option value='guide' <%='selected' if cr.level == 'guide'%>><%=ts(:gide)%></option>
+              <option value='business' <%='selected' if cr.level == 'business'%>><%=ts(:business)%></option>
+              <option value='expert' <%='selected' if cr.level == 'expert'%>><%=ts(:expert)%></option>
             </select>
           </div>
           </div>
