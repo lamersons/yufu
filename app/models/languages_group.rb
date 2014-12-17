@@ -6,7 +6,7 @@ class LanguagesGroup
 
   has_many :languages
 
-  accepts_nested_attributes_for :verbal_prices
+  accepts_nested_attributes_for :verbal_prices, :written_prices
 
   def verbal_cost(level, currency = nil)
     price = verbal_prices.where(level: level).first
