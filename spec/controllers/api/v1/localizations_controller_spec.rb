@@ -14,7 +14,7 @@ RSpec.describe Api::V1::LocalizationsController, :type => :controller do
     end
     it 'assigns all localizations as @localizations' do
       get :index
-      expect(assigns(:localizations)).to eq(Localization.all)
+      expect(assigns(:localizations)).to eq(Localization.enabled)
     end
   end
 
