@@ -13,6 +13,7 @@ Yufu::Application.routes.draw do
 
   resource :user
   resources :banners, only: :show
+  resources :vacancies, only: :index
 
   namespace :api do
     namespace :v1 do

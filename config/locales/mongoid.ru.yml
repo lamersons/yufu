@@ -51,9 +51,15 @@ ru:
         few: Компании-переводчика
         many: Компаний-переводчиков
         other: Компании-переводчики
+      vacancy:
+        one: Вакансия
+        few: Вакансии
+        many: Вакансий
+        other: Вакансии
 
 
     attributes:
+
       created_at: Создан
       updated_at: Обнавлен
       first_name: Имя
@@ -103,4 +109,7 @@ ru:
         first_name: Имя
         last_name: Фамилия
         middle_name: Отчество
+      vacancy:
+        name: Название
+        text: Описание
 

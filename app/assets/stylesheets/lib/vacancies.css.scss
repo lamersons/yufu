@@ -1,0 +1,64 @@
+.tabular {
+  .menu {
+    >.tab-item {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      text-align: center;
+      color: #ec008c;
+      border: 1px solid #ec008c;
+      border-radius: 5px;
+      font-weight: bold;
+
+
+      &:hover {
+        background: #ec008c;
+        color: white;
+        cursor: pointer;
+      }
+
+      &.selected {
+        background: #ec008c;
+        color: white;
+      }
+    }
+  }
+  .tab {
+    background: #ececec;
+    float: left;
+    box-sizing: border-box;
+    width: 634px;
+    margin-top: 75px;
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
+    &.open {
+      display: block;
+    }
+  }
+}
+
+.header P {
+  font-size: 2.65em;
+  text-align: right;
+  margin-left: 250px;
+  padding-top: 60px;
+  padding-right: 10px;
+  line-height: 1;
+}
+
+DIV.nav-top DIV.nav-job {
+  float: right;
+  box-sizing: border-box;
+  /* width: 404px;*/
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-top: 4px;
+}
+DIV.about DIV.col1 P.hiring {
+  color: #c65aa2;
+  font-weight: 700;
+  font-size: 1.5em;
+  height: 45px;
+  margin:0 auto;
+  margin-top: 25px;
+}
