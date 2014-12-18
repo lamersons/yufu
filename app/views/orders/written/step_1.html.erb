@@ -1,0 +1,135 @@
+<!-- Раздел с формой -->
+<%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-1"} do |f| %>
+<!-- Бекграунд модального окна -->
+<div class="modal-bg" ></div>
+<div class="modal modal-lang clearfix" ng-hide="hideModals">
+  <%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'add_available_languages'), remote: true do |al| %>
+    <%= al.submit class: 'close'%>
+    <p class="title">Языки перевода</p>
+    <div class="clearfix"></div>
+    <div class="line"></div>
+    <!-- Обертка для скролбара -->
+    <div class="scroll">
+        <!-- Колонка -->
+      <% @languages.each do |d|%>
+          <label class="checkbox clearfix">
+            <input type="checkbox" name="order[available_languages_ids][]" value="<%=d.id%>" <%'checked' if @order.available_languages.include? d%> >
+            <em></em>
+            <p><%=d.name%></p>
+          </label>
+      <%end%>
+        <div class="clear"></div>
+    </div>
+  <%end%>
+    <!-- /Обретка для скроллбара -->
+</div>
+
+
+<div class="container clearfix">
+  <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:written)%></span></h1>
+    <div class="height-3"></div>
+    <p class="title"><%=ts(:translation_params)%></p>
+    <!-- Колонка -->
+    <div class="col-1">
+        <p>Язык оригинала</p>
+        <div class="custom-select">
+            <%=f.select :original_language, Language.all%>
+        </div>
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1">
+        <p>Язык перевода</p>
+        <div class="custom-select">
+            <select ng-model="order.translationTo" ng-options="language.value as language.name for language in languages">
+            </select>
+        </div>
+    </div>
+    <!-- /Колонка -->
+    <div class="clear"></div>
+    <!-- Колонка -->
+    <div class="col-1">
+        <p>Тип перевода</p>
+        <div class="custom-select">
+            <select ng-model="order.typeOfTranslation" ng-options="dict as dict.name|translate for dict in dictionaries|filter:{category: 'type_of_translation'}">
+            </select>
+        </div>
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1 last">
+      <p>Число слов</p>
+        <input type="text" ng-model="order.wordCount">
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <!--div class="col-1 last lang">
+        <p class="trigger modal-trigger" data-modal="modal-lang" ng-click="toggleModal()"><b>+</b> Выбрать несколько языков <span class="tooltip-icon-small js-tooltip rel-js-tooltip-lang" data-target=".js-tooltip-lang"></span></p>
+        <div class="hover-tooltip js-tooltip-lang clearfix" show-tooltip yu-parent="rel-js-tooltip-lang">
+            <span class="icon"></span>
+            <p>Текст подсказки поместить нужно в этот блок</p>
+        </div>
+        <div class="choosen">
+            <b>Выбранные языки:</b>
+            <div>Китайский(традиционный)</div>
+            <div>Китайский(упрощенный)</div>
+        </div>
+    </div-->
+    <!-- /Колонка -->
+    <div class="clear height-10"></div>
+    <p class="title">Стоимость</p>
+    <!-- Колонка -->
+    <div class="col-1">
+        <label class="radio no-left clearfix">
+            <input type="radio" name="cost" value="ta" ng-model="order.methodOfTranslation" checked>
+            <em></em>
+            <p>
+                <span class="semi-bold">Перевод + корретировка</span>
+                <span class="height-3"></span>
+                <span class="text-small">Русский <span class="bold">></span> Китайский (традиционный),</span>
+                <span class="text-small">Русский <span class="bold">></span> Китайский (упрощенный)</span>
+                <span class="height-5"></span>
+                <span class="price">Цена: <span class="bold pink-bright">325 €</span></span>
+                <span class="text-small">(0.17 $) / слово</span>
+                <span class="height-7"></span>
+                <span>Срок сдачи: <span class="semi-bold">5 суток с момента получения аванса</span></span>
+                <span class="height-5"></span>
+                <span class="text-small">Профессиональный переводчик + контроль качества другим переводчиком + координация их работы менеджером проекта для обеспечения высокого качества конечного результата. Обеспечение единства терминологии. Простое, но эффективное решение.</span>
+            </p>
+        </label>
+    </div>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="col-1">
+        <label class="radio no-left clearfix">
+            <input type="radio" name="cost" value="t" ng-model="order.methodOfTranslation">
+            <em></em>
+            <p>
+                <span class="semi-bold">Перевод</span>
+                <span class="height-3"></span>
+                <span class="text-small">Русский <span class="bold">></span> Китайский (традиционный),</span>
+                <span class="text-small">Русский <span class="bold">></span> Китайский (упрощенный)</span>
+                <span class="height-5"></span>
+                <span class="price">Цена: <span class="bold pink-bright">215 €</span></span>
+                <span class="text-small">(0.12 $) / слово</span>
+                <span class="height-7"></span>
+                <span>Срок сдачи: <span class="semi-bold">1 сутки с момента получения аванса</span></span>
+                <span class="height-5"></span>
+                <span class="text-small">Недорогое и быстрое решение, позволяющее отредактировать машинный перевод и исправить наиболее грубые ошибки. Профессиональный переводчик вычитает и отредактирует машинный перевод. Отличный компромисс между профессиональным и машинным переводом. Услуга недоступна для PDF-файлов и картинок.</span>
+            </p>
+        </label>
+    </div>
+    <!-- /Колонка -->
+    <div class="clearfix"></div>
+    <div class="height-20"></div>
+    <p class="big-tooltip">
+        <span class="icon"></span>
+        Перевод стандартных документов, таких как свидетельство о рождении, диплом об образовании, водительские права, папорт и любые др. официальные  документы. Документы принимаются в отсканированном виде. Выполненный заказ в виде File.pdf , в целях безопасности и конфиденциальности, вы скачиваете с вашей личной странички. В случае необходимости перевод сертифицируется и выде сканированной копии размещатся там же. Оригинал сертифицированного документа может быть отослан Вам почтой за Ваш счет.
+    </p>
+
+    <div ng-include="'orders/written/steps.html'"></div>
+</div>
+<!-- /Контейнер -->
+<%=render partial: 'orders/verbal/steps_nav', locals: {f: f}%>
+<%end%>
+<!-- /Раздел с формой -->

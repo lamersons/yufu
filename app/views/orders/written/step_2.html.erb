@@ -1,0 +1,118 @@
+<!-- Раздел с формой -->
+<!--<form class="section-form written written-step-2" action="test.php" method="post" enctype="multipart/form-data" ng-init="step=2">-->
+<%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-1"} do |f| %>
+    <!-- Контейнер -->
+    <div class="container clearfix">
+        <h1 class="main">Разместить заказ на <span class="pink-bright">Письменный перевод</span></h1>
+        <div class="height-3"></div>
+        <p class="title">Отправка файла</p>
+        <!-- Колонка -->
+        <div class="col-1 position-relative">
+            <p>Загрузите файл для перевода</p>
+            <label class="file">
+                <input type="file" nv-file-select uploader="fileUploader">
+                <em>Выбрать...</em>
+                <span class="tooltip-icon-small js-tooltip rel-js-tooltip-file" data-target=".js-tooltip-file"></span>
+            </label>
+            <div class="height-5"></div>
+            <div class="hover-tooltip js-tooltip-file" show-tooltip yu-parent="rel-js-tooltip-file">
+                <span class="icon"></span>
+                <p>Передача файла может занять несколько минут.<br>Если Вы хотите отправить несколько файлов, создайте zip-архив.</p>
+            </div>
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-2 last drop" nv-file-drop uploader="fileUploader">
+            Или перетащите мышкой сюда
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+        <div class="height-20"></div>
+        <p class="title">Получение перевода</p>
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Email получателя</p>
+            <input type="email" placeholder="Ваш email" name="email" ng-model="order.emailDestinationForElectronicTranslation">
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-2 last position-relative">
+            <p>Дополнительная информация <span class="tooltip-icon-small js-tooltip rel-js-tooltip-additional" data-target=".js-tooltip-additional"></span></p>
+            <div class="hover-tooltip js-tooltip-additional" show-tooltip yu-parent="rel-js-tooltip-additional">
+                <span class="icon"></span>
+                <p>Введите дополнительную уточняющую информацию к заказу, если имеются особые пожелания.</p>
+                <p>Например, если заказ срочный.</p>
+            </div>
+            <textarea rows="3" ng-model="order.additionalInformation"></textarea>
+        </div>
+        <!-- /Колонка -->
+        <div class="clear"></div>
+        <p class="title">Получение оригинала</p>
+        <div class="height-10"></div>
+        <!-- Колонка -->
+        <div class="col-1">
+            <label class="checkbox no-left long clearfix">
+                <input type="checkbox" value="mail" ng-model="order.wayDeliveryForPaperTranslation">
+                <em></em>
+                <p>Выслать выполненный заказ <br>по почте</p>
+            </label>
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1">
+            <label class="checkbox no-left clearfix">
+                <input type="checkbox" value="urgent_mail" ng-model="order.wayDeliveryForPaperTranslation">
+                <em></em>
+                <p>Выслать срочным письмом</p>
+            </label>
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1 last">
+            <label class="checkbox no-left clearfix">
+                <input type="checkbox" value="сourier" ng-model="order.wayDeliveryForPaperTranslation">
+                <em></em>
+                <p>Выслать курьером</p>
+            </label>
+        </div>
+        <!-- /Колонка -->
+        <div class="clearfix"></div>
+        <div class="height-10"></div>
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Имя получателя</p>
+            <input type="text" ng-model="order.nameDestinationForPaperTranslation" disabled>
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1">
+            <p>Адрес получателя</p>
+            <input type="text" ng-model="order.addressDestinationForPaperTranslation" disabled>
+        </div>
+        <!-- /Колонка -->
+        <!-- Колонка -->
+        <div class="col-1 last">
+            <p>Почтовый индекс</p>
+            <input type="text" ng-model="order.postcodeDestinationForPaperTranslation" disabled>
+        </div>
+        <!-- /Колонка -->
+        <div class="clearfix"></div>
+        <div class="height-20"></div>
+        <p class="big-tooltip short-text">
+            <span class="icon"></span>
+            Внимание! Почтовые расходы будут добавлены к вашему счету
+        </p>
+        <div class="height-10"></div>
+        <p style="padding-left: 10px;">Суммарная стоимость выбранных услуг</p>
+        <div class="bordered-block thin">
+            <p>115 Eur + 170 Eur = <span class="bold pink-bright">285 Eur</span></p>
+        </div>
+        <div class="height-30"></div>
+
+      <div ng-include="'orders/written/steps.html'"></div>
+
+    </div>
+    <!-- /Контейнер -->
+    <%=render partial: 'orders/verbal/steps_nav', locals: {f: f}%>
+<%end%>
+<!-- /Раздел с формой -->
