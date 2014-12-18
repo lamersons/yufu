@@ -11,7 +11,7 @@
 #= require datepicker/ember-date-picker.js
 #= require datepicker/ember-spin-box
 #= require datepicker/templates
-#= require ckeditor/ckeditor
+#= require ckeditor/init
 #= require ckeditor/adapters/jquery
 
 # for more details see: http://emberjs.com/guides/application/
