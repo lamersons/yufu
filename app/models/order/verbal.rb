@@ -17,7 +17,7 @@ module Order
     belongs_to :translator_native_language, class_name: 'Language'
     belongs_to :native_language,            class_name: 'Language'
 
-    has_many :payments,               class_name: 'Order::Payment'
+
     has_many :language_criterions,    class_name: 'Order::LanguageCriterion', inverse_of: :order, dependent: :destroy
     embeds_many :reservation_dates,   class_name: 'Order::ReservationDate'
 

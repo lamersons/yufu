@@ -20,6 +20,7 @@ module Order
     embeds_one :hotel,           class_name: 'Order::Hotel'
 
     has_many :applications, class_name: 'Order::Application', dependent: :destroy
+    has_many :payments,    class_name: 'Order::Payment', inverse_of: :order
 
     accepts_nested_attributes_for :airport_pick_up, :car_rent, :hotel
     accepts_nested_attributes_for :client_info

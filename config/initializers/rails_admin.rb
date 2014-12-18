@@ -1,5 +1,7 @@
-RailsAdmin.config do |config|
+require Rails.root.join('lib', 'rails_admin_pay_order.rb')
+RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::PayOrder)
 
+RailsAdmin.config do |config|
   ### Popular gems integration
 
   ## == Devise ==
@@ -26,6 +28,7 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
+    pay_order
 
     ## With an audit adapter, you can add:
     # history_index
@@ -37,6 +40,14 @@ RailsAdmin.config do |config|
       enum {I18n.available_locales}
     end
     field :enable
+  end
+
+  config.model Message do
+    list do
+      scopes [:backoffice_inbox, :backoffice_outbox]
+    end
+    field :body, :ck_editor
+    field :recipient
   end
 
   config.model Permission do

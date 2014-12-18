@@ -4,7 +4,7 @@ module Order
 
     after_save :check_if_paid
 
-    belongs_to :order_verbal, class_name: 'Order::Verbal'
+    belongs_to :order, class_name: 'Order::Base', inverse_of: :payments
 
     field :state, default: 'paying'
     field :gateway_class
@@ -25,6 +25,7 @@ module Order
       if state_changed? && state_was == 'paid' && state == 'paying'
         order_verbal.unpaid
       end
+      true
     end
   end
 end

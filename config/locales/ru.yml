@@ -1,4 +1,11 @@
 ru:
+  admin:
+    actions:
+      pay_order:
+        menu: Пометить заказ как оплаченный
+        success: Закза отмечен, как оплаченный
+        error: Беда. Неудалось отметить закза как оплаченный
+
   modules:
     virtual: Управление почтой
   date: #Throws an exception otherwise.

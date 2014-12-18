@@ -7,5 +7,10 @@ class Message
   belongs_to :sender,    class_name: 'User', inverse_of: :outbox
   belongs_to :recipient, class_name: 'User', inverse_of: :inbox
 
-  validates_presence_of :body, :sender, :recipient
+  default_scope -> {desc :created_at}
+  scope :backoffice_inbox,  -> {where recipient: nil}
+  scope :backoffice_outbox, -> {where :sender.in => Admin.all.map(&:id)}
+
+  validates_presence_of :body, :sender
+
 end
