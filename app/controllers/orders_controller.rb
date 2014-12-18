@@ -3,8 +3,6 @@ class OrdersController < ApplicationController
   before_action :set_profile
   before_action :filter_params, only: [:update]
 
-  respond_to :json, :html
-
   def create
     @order = order_params[:_type].constantize.new order_params
     if @order.save!
@@ -19,6 +17,7 @@ class OrdersController < ApplicationController
     @directions = Direction.all
     @languages = Language.all
     @order = Order::Base.find params[:id]
+    @show_modal = params[:show_modal]
     if @order.step == 3
       session[:back_to_order] = edit_order_path(@order)
       authenticate_user!
@@ -49,10 +48,10 @@ class OrdersController < ApplicationController
   def add_available_languages
     @order = Order::Base.find params[:id]
     if @order.update_attributes available_languages_params
-      respond_with @order
+      redirect_to edit_order_path(@order)+'&show_modal=false'
     else
-      respond_with @order.errors, status: :unprocessable_entity
-      end
+      render 'orders/written/step_1'
+    end
   end
 
   def set_profile
@@ -76,6 +75,9 @@ class OrdersController < ApplicationController
                         [:include_near_city, :goal, :translator_sex, :location_id, :translator_native_language_id,
                          :native_language_id, {direction_ids: []}, {language_criterions_attributes: [:id, :level, :cost, :language_id]},
                          {reservation_dates_attributes: [:_id, :date, :hours, :_destroy]}]
+                      when 'Order::Written'
+                        [:translation_type, :words_number, :level, :original_language_id, {translation_languages_ids: []},
+                         :file, get_translation: [:email, :additional], get_original: [:type, :name, :address, :index]]
                       else
                         []
                     end
@@ -83,7 +85,7 @@ class OrdersController < ApplicationController
   end
 
   def available_languages_params
-    params.require(:order).permit available_languages_ids: []
+    params.require(:order).permit available_language_ids: []
   end
 
   def filter_params
