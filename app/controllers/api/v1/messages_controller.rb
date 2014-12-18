@@ -35,7 +35,7 @@ module Api
         end
 
         def message_params
-          params.require(:message).permit :body, :recipient_id
+          params.require(:message).permit :body#, :recipient_id
         end
 
         def set_message

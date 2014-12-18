@@ -42,6 +42,14 @@ RailsAdmin.config do |config|
     field :enable
   end
 
+  config.model Message do
+    list do
+      scopes [:backoffice_inbox, :backoffice_outbox]
+    end
+    field :body, :ck_editor
+    field :recipient
+  end
+
   config.model Permission do
     field :name
     field :action, :enum do
