@@ -20,6 +20,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.0.11)
       actionpack (= 4.0.11)
@@ -268,6 +269,18 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.11)
       sprockets-rails (~> 2.0)
+    rails-assets-ember (1.5.1)
+      rails-assets-handlebars (>= 1.0.0, < 2.0.0)
+      rails-assets-jquery (>= 1.7.0, <= 2.1.0)
+    rails-assets-ember-components (0.2.0)
+      rails-assets-ember (>= 1.5.1, < 2)
+      rails-assets-ember-utils (~> 0.1.0)
+      rails-assets-ic-styled (~> 1.1.6)
+    rails-assets-ember-utils (0.1.0)
+    rails-assets-handlebars (1.3.0)
+    rails-assets-ic-styled (1.1.7)
+      rails-assets-ember (>= 1.4.0, <= 1.5.1)
+    rails-assets-jquery (2.1.0)
     rails_admin (0.6.3)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
@@ -415,6 +428,7 @@ DEPENDENCIES
   ember-source (= 1.7.0)
   emblem-rails
   factory_girl_rails
+  font-awesome-rails
   formtastic
   gon
   html2slim
@@ -433,6 +447,7 @@ DEPENDENCIES
   quiet_assets
   rack
   rails (~> 4.0.8)
+  rails-assets-ember-components
   rails_admin
   ransack!
   redis

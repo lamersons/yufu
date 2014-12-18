@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~>4.0.8'
@@ -41,12 +42,14 @@ gem 'ember-source', '1.7.0'
 gem 'emblem-rails'
 gem 'momentjs-rails'
 gem 'i18n-js', '~> 3.0.0.rc8'
+gem 'rails-assets-ember-components'
 
 # For edit translations
 gem 'mercury-rails', github: 'jejacks0n/mercury'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
+gem 'font-awesome-rails'
 
 gem 'semantic-ui-sass'
 

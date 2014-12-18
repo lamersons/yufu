@@ -17,12 +17,12 @@
       = else
         a.ui.image
           img src=sender.avatar_url
-          .content
-            .name
-              = sender.email
-            .description
-              == body
-              br
-              link-to 'messages.new' (query-params recipient_id=sender.id)
-                ts 'frontend.messages.reply'
+        .content
+          .name
+            = sender.email
+          .description
+            == body
+            br
+            link-to 'messages.new' (query-params recipient_id=sender.id)
+              ts 'frontend.messages.reply'
           = else

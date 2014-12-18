@@ -6,7 +6,7 @@ form#new_message
   /br
   label
     = ts 'mongoid.attributes.message.body'
-  = view Ember.TextArea value=body name='body' viewName='body'
+  = wysiwyg-editor content=body
 
 
   button.pink#submit{action 'create'}
