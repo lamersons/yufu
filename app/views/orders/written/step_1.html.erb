@@ -1,11 +1,12 @@
 <!-- Раздел с формой -->
-<%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-1"} do |f| %>
+<div class="section-form section-form-written section-form-written-step-1 step-1">
 <!-- Бекграунд модального окна -->
+<% if @show_modal != 'false'%>
 <div class="modal-bg" ></div>
 <div class="modal modal-lang clearfix" ng-hide="hideModals">
-  <%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'add_available_languages'), remote: true do |al| %>
-    <%= al.submit class: 'close'%>
-    <p class="title">Языки перевода</p>
+  <%= form_for @order, url: url_for(controller: 'orders', action: 'add_available_languages'), method: :post,  html: {id: 'add_languages'} do |al| %>
+    <%= al.submit I18n.t(:done), class: 'close' %>
+    <p class="title"><%=ts(:translation_languages)%></p>
     <div class="clearfix"></div>
     <div class="line"></div>
     <!-- Обертка для скролбара -->
@@ -13,7 +14,7 @@
         <!-- Колонка -->
       <% @languages.each do |d|%>
           <label class="checkbox clearfix">
-            <input type="checkbox" name="order[available_languages_ids][]" value="<%=d.id%>" <%'checked' if @order.available_languages.include? d%> >
+            <input type="checkbox" name="order[available_language_ids][]" value="<%=d.id%>" <%='checked' if @order.available_language_ids.include? d.id%> >
             <em></em>
             <p><%=d.name%></p>
           </label>
@@ -23,7 +24,10 @@
   <%end%>
     <!-- /Обретка для скроллбара -->
 </div>
+<%end%>
 
+<%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update') do |f| %>
+<%= f.hidden_field :_type%>
 
 <div class="container clearfix">
   <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:written)%></span></h1>
@@ -31,35 +35,33 @@
     <p class="title"><%=ts(:translation_params)%></p>
     <!-- Колонка -->
     <div class="col-1">
-        <p>Язык оригинала</p>
+        <p><%=ts(:original_language)%></p>
         <div class="custom-select">
-            <%=f.select :original_language, Language.all%>
+            <%=f.select :original_language, @order.available_languages.map {|l| [l.name, l.id]}%>
         </div>
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1">
-        <p>Язык перевода</p>
+        <p><%=ts(:translation_language)%></p>
         <div class="custom-select">
-            <select ng-model="order.translationTo" ng-options="language.value as language.name for language in languages">
-            </select>
+          <%=f.select :translation_languages, @order.available_languages.map {|l| [l.name, l.id]}%>
         </div>
     </div>
     <!-- /Колонка -->
     <div class="clear"></div>
     <!-- Колонка -->
     <div class="col-1">
-        <p>Тип перевода</p>
+        <p><%=ts(:translation_type)%></p>
         <div class="custom-select">
-            <select ng-model="order.typeOfTranslation" ng-options="dict as dict.name|translate for dict in dictionaries|filter:{category: 'type_of_translation'}">
-            </select>
+          <%=f.select :translation_type, Order::Written::TYPES.map {|l| [I18n.t(l), l]}%>
         </div>
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 last">
       <p>Число слов</p>
-        <input type="text" ng-model="order.wordCount">
+        <%=f.text_field :words_number, required: true%>
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
@@ -81,7 +83,7 @@
     <!-- Колонка -->
     <div class="col-1">
         <label class="radio no-left clearfix">
-            <input type="radio" name="cost" value="ta" ng-model="order.methodOfTranslation" checked>
+            <%=f.radio_button :level, Order::Written::LEVELS[0], required: true%>
             <em></em>
             <p>
                 <span class="semi-bold">Перевод + корретировка</span>
@@ -102,7 +104,7 @@
     <!-- Колонка -->
     <div class="col-1">
         <label class="radio no-left clearfix">
-            <input type="radio" name="cost" value="t" ng-model="order.methodOfTranslation">
+          <%=f.radio_button :level, Order::Written::LEVELS[1], required: true%>
             <em></em>
             <p>
                 <span class="semi-bold">Перевод</span>
@@ -132,4 +134,9 @@
 <!-- /Контейнер -->
 <%=render partial: 'orders/verbal/steps_nav', locals: {f: f}%>
 <%end%>
+</div>
+
+<script>
+  new WrittenStepOne
+</script>
 <!-- /Раздел с формой -->

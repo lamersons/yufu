@@ -1,5 +1,7 @@
 <!-- Раздел с формой -->
 <%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-1"} do |f| %>
+    <%= hidden_field_tag :profile_id, params[:profile_id]%>
+    <%= f.hidden_field :_type%>
 <div class="section-form payment" ng-init="order.step=3">
     <!-- Контейнер -->
     <div class="container clearfix">

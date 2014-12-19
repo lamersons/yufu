@@ -10,7 +10,7 @@
         <div class="col-1 position-relative">
             <p>Загрузите файл для перевода</p>
             <label class="file">
-                <input type="file" nv-file-select uploader="fileUploader">
+                <%=f.file_field :file%>
                 <em>Выбрать...</em>
                 <span class="tooltip-icon-small js-tooltip rel-js-tooltip-file" data-target=".js-tooltip-file"></span>
             </label>
@@ -29,10 +29,11 @@
         <div class="clear"></div>
         <div class="height-20"></div>
         <p class="title">Получение перевода</p>
+        <%=f.fields_for :get_translation do |t|%>
         <!-- Колонка -->
         <div class="col-1">
             <p>Email получателя</p>
-            <input type="email" placeholder="Ваш email" name="email" ng-model="order.emailDestinationForElectronicTranslation">
+          <%=t.text_field :email, required: true, placeholder: I18n.t(:your_email)%>
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
@@ -43,16 +44,18 @@
                 <p>Введите дополнительную уточняющую информацию к заказу, если имеются особые пожелания.</p>
                 <p>Например, если заказ срочный.</p>
             </div>
-            <textarea rows="3" ng-model="order.additionalInformation"></textarea>
+            <%=t.text_area :additional%>
         </div>
+        <%end%>
         <!-- /Колонка -->
+        <%=f.fields_for :get_original do |o|%>
         <div class="clear"></div>
         <p class="title">Получение оригинала</p>
         <div class="height-10"></div>
         <!-- Колонка -->
         <div class="col-1">
             <label class="checkbox no-left long clearfix">
-                <input type="checkbox" value="mail" ng-model="order.wayDeliveryForPaperTranslation">
+                <%=o.radio_button :type, Order::GetOriginal::TYPES[0]%>
                 <em></em>
                 <p>Выслать выполненный заказ <br>по почте</p>
             </label>
@@ -61,7 +64,7 @@
         <!-- Колонка -->
         <div class="col-1">
             <label class="checkbox no-left clearfix">
-                <input type="checkbox" value="urgent_mail" ng-model="order.wayDeliveryForPaperTranslation">
+              <%=o.radio_button :type, Order::GetOriginal::TYPES[1]%>
                 <em></em>
                 <p>Выслать срочным письмом</p>
             </label>
@@ -70,7 +73,7 @@
         <!-- Колонка -->
         <div class="col-1 last">
             <label class="checkbox no-left clearfix">
-                <input type="checkbox" value="сourier" ng-model="order.wayDeliveryForPaperTranslation">
+              <%=o.radio_button :type, Order::GetOriginal::TYPES[2]%>
                 <em></em>
                 <p>Выслать курьером</p>
             </label>
@@ -81,19 +84,19 @@
         <!-- Колонка -->
         <div class="col-1">
             <p>Имя получателя</p>
-            <input type="text" ng-model="order.nameDestinationForPaperTranslation" disabled>
+          <%=o.text_field :name, required: true, placeholder: I18n.t(:name)%>
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1">
             <p>Адрес получателя</p>
-            <input type="text" ng-model="order.addressDestinationForPaperTranslation" disabled>
+          <%=o.text_field :address, required: true, placeholder: I18n.t(:address)%>
         </div>
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-1 last">
             <p>Почтовый индекс</p>
-            <input type="text" ng-model="order.postcodeDestinationForPaperTranslation" disabled>
+            <%=o.text_field :index, required: true, placeholder: I18n.t(:index)%>
         </div>
         <!-- /Колонка -->
         <div class="clearfix"></div>
@@ -102,6 +105,7 @@
             <span class="icon"></span>
             Внимание! Почтовые расходы будут добавлены к вашему счету
         </p>
+      <%end%>
         <div class="height-10"></div>
         <p style="padding-left: 10px;">Суммарная стоимость выбранных услуг</p>
         <div class="bordered-block thin">
