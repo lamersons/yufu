@@ -8,7 +8,7 @@ class User
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_mongoid_attached_file :avatar, :default_url => "/no-avatar.png"
+  has_mongoid_attached_file :avatar, default_url: "/no-avatar.png", style: {thumb: '73x73'}
   validates_attachment_content_type :avatar, content_type: %w(image/jpg image/jpeg image/png)
   ## Database authenticatable
   field :email,              type: String, default: ""

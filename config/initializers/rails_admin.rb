@@ -50,7 +50,7 @@ RailsAdmin.config do |config|
       scopes [:backoffice_inbox, :backoffice_outbox]
     end
     field :body, :ck_editor
-    field :recipient
+    include_all_fields
   end
 
   config.model Permission do

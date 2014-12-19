@@ -3,5 +3,9 @@
 Yufu.MessagesIndexController = Ember.ArrayController.extend({
   queryParams: ['scope']
   scope: 'inbox'
+
+  actions:
+    toggleBody: (message) ->
+      $('.body#' + message.id).toggleClass 'min'
 })
 
