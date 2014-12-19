@@ -44,6 +44,12 @@
 		&.last {
 			margin-right: 0;
 		}
+      &.half-width{
+        .custom-select{
+          width: 300px;
+          float: right;
+        }
+      }
 	}
 	
 	//Главный заголовок

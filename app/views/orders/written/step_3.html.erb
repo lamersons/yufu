@@ -5,9 +5,8 @@
 <div class="section-form payment" ng-init="order.step=3">
     <!-- Контейнер -->
     <div class="container clearfix">
-        <h1 class="main">Разместить заказ на <span class="pink-bright">Письменный перевод</span></h1>
-        <p class="title">Оплата заказа – № 23s548</p>
-        <p>Подробности заказа</p>
+        <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:written)%></span></h1>
+        <p class="title"><%=ts(:order_details)%> – № <%=@order.id%></p>
         <div class="bordered-block points">
             <p class="point"><span class="bold number">1.</span> Ср. 3 сент. 2014 г., письменный перевод+корректура, русский > китайский (традиционный), 1055 слов,  срок сдачи: +&nbsp;7&nbsp;сент.&nbsp;2014&nbsp;г. = <span class="semi-bold">210 Eur</span></p>
             <p class="point"><span class="bold number">2.</span> Чт. 4 сент. 2014 г., письменный перевод+корректура, русский > китайский (упрощенный), 1055 слов,  срок сдачи: +&nbsp;7&nbsp;сент.&nbsp;2014&nbsp;г. = <span class="semi-bold">115 Eur</span></p>
@@ -16,100 +15,83 @@
         </div>
         <div class="height-10"></div>
         <label class="checkbox clearfix">
-            <input type="checkbox">
+            <input id="i_agree" type="checkbox">
             <em></em>
-            <p>Бронируя этот заказ, вы соглашаетесь оплачивать полную указанную сумму, которая включает все сервисные сборы, вы вниматально ознакомились и полностью согласны с <a href="#">Условими предоставления услуг</a>, <a href="#">Правилами отмены бронирования</a> и <a href="#">Правилами компенсации</a> заказчику услуг.</p>
+            <p><%=ts(:agree_first_part)%><a href="#"> <%=ts(:service_conditions)%></a>, <a href="#"><%=ts(:cancel_conditions)%></a> <%=ts(:and)%> <a href="#"><%=ts(:compensation_rules)%></a> <%=ts(:agree_last_part)%></p>
         </label>
         <div class="height-20"></div>
         <p class="title">Информация о плательщике</p>
-        <!-- Колонка -->
-        <div class="col-1">
-            <p>Имя</p>
-            <input type="text" ng-model="order.clientName" required>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1">
-            <p>Фамилия</p>
-            <input type="text" ng-model="order.clientSurname" required>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1 last clearfix birth">
-            <p>Дата рождения</p>
-            <select select-date yu-model="order.clientBirthdateOn"></select>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1">
-            <p>Контактный e-mail</p>
-            <input type="email" ng-model="order.clientEmail" required>
-        </div>
+          <%- if current_user.partner? %>
+              <p><%=ts('mongoid.attributes.order/base.partners_client')%></p>
+              <div class="custom-select">
+                <%= f.select :partners_client, current_user.partner_profile.clients.map {|c| [c.name, c.id]} %>
+              </div>
+
+          <% else %>
+            <%=f.fields_for :client_info_attributes do |ci|%>
+                <div class="col-1">
+                  <p><%=ts(:fist_name)%></p>
+                  <%=ci.text_field :first_name, value: @order.client_info.first_name, required: true%>
+                </div>
+                <div class="col-1">
+                  <p><%=ts(:last_name)%></p>
+                  <%=ci.text_field :last_name, value: @order.client_info.last_name, required: true%>
+                </div>
+                <div class="col-1 last clearfix birth">
+                  <p><%=ts(:birthday)%></p>
+                  <div class="custom-select three-in-one">
+                    <%=ci.date_select :birthday, :start_year => 1940, use_month_numbers: true,  required: true%>
+                  </div>
+                </div>
+                <div class="col-1">
+                  <p><%=ts(:email)%></p>
+                  <%=ci.text_field :email, value: @order.client_info.email, required: true%>
+                </div>
+              <%end%>
+        <%end%>
         <!-- /Колонка -->
         <div class="clear"></div>
-        <p class="title">Способ оплаты</p>
+        <p class="title"><%=ts(:pay_ways)%></p>
         <!-- Колонка -->
-        <div class="col-1 payment-method plastic-card">
-            <div class="line"></div>
-            <span class="icon"></span>
-            <div class="height-5"></div>
-            <label class="checkbox clearfix">
-                <input type="checkbox" value="paymentcard" ng-model="order.paymentMethod">
-                <em></em>
-                <p>Платежная карта</p>
-            </label>
+      <div class="col-1 payment-method plastic-card">
+        <div class="line"></div>
+        <span class="icon"></span>
+        <div class="height-5"></div>
+        <label class="checkbox clearfix">
+          <%=f.radio_button :pay_way, Order::Base::PAY_WAYS[0]%>
+          <em></em>
+          <p><%=ts(:visa)%></p>
+        </label>
+      </div>
+      <!-- /Колонка -->
+      <!-- Колонка -->
+      <div class="col-1 payment-method bank-transfer">
+        <div class="line"></div>
+        <span class="icon"></span>
+        <div class="height-5"></div>
+        <label class="checkbox clearfix">
+          <%=f.radio_button :pay_way, Order::Base::PAY_WAYS[1]%>
+          <em></em>
+          <p><%=ts(:bank)%></p>
+        </label>
+      </div>
+      <!-- /Колонка -->
+      <!-- Колонка -->
+      <div class="col-1 last payment-method alipay">
+        <span class="icon"></span>
+        <div class="height-5"></div>
+        <label class="checkbox clearfix">
+          <%=f.radio_button :pay_way, Order::Base::PAY_WAYS[2]%>
+          <em></em>
+          <p><%=ts(:alipay)%> <span class="tooltip-icon-small js-tooltip" data-target=".js-tooltip-al"></span></p>
+        </label>
+        <div class="hover-tooltip js-tooltip-al" style="text-align: left;">
+          <span class="icon"></span>
+          <p><%=ts(:alipay_tooltip)%></p>
         </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1 payment-method alipay">
-            <span class="icon"></span>
-            <div class="height-5"></div>
-            <label class="checkbox clearfix">
-                <input type="checkbox" value="alipay" ng-model="order.paymentMethod">
-                <em></em>
-                <p>alipay.com</p>
-            </label>
-        </div>
+      </div>
         <!-- /Колонка -->
         <div class="clear height-20"></div>
-        <p class="title">Платежная информация</p>
-        <!-- Колонка -->
-        <div class="col-1">
-            <p>Тип платежной карты</p>
-            <input type="text" ng-model="order.typePaymentCard" required>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1">
-            <p>Имя на карте</p>
-            <input type="text" ng-model="order.cardholderName" required>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1 last clearfix card-expired">
-            <p>Платежная карта годна до</p>
-            <select select-card-expires-on yu-model="order.cardExpired"></select>
-        </div>
-        <!-- /Колонка -->
-        <div class="clear"></div>
-        <!-- Колонка -->
-        <div class="col-1">
-            <p>Номер платежной карты</p>
-            <input type="text" ng-model="order.card_number" required>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-2 last cvc clearfix">
-            <p>CVC код</p>
-            <input type="text" ng-model="order.card_cvv" required>
-            <p class="tip text-small">CVC код вы можете найти на обратной стороне</p>
-        </div>
-        <!-- /Колонка -->
-        <div class="clear"></div>
-        <p class="payment"><span class="icon"></span> Оплата с вас будет взята только если зарезервированный переводчик подтвердит ваш запрос. <br>У него 24 часа, чтобы ответить вам. Если запрос не подтвержден, деньги списаны не будут.</p>
-        <div class="clear"></div>
-
-        <div ng-include="'orders/written/steps.html'"></div>
 
     </div>
     <!-- /Контейнер -->
