@@ -43,6 +43,9 @@ Yufu::Application.routes.draw do
     member do
       post :add_available_languages
     end
+    collection do
+      get :precount_written_price
+    end
   end
 
 end

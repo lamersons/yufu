@@ -18,5 +18,6 @@ module Order
 
     embeds_one :get_translation,                     class_name: 'Order::GetTranslation'
     embeds_one :get_original,                        class_name: 'Order::GetOriginal'
+    embeds_one :payment_information,                 class_name: 'Order::PaymentInformation'
   end
 end

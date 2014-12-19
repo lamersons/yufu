@@ -29,7 +29,6 @@ module Order
     delegate :name, to: :location, prefix: true, allow_nil: true
 
     before_save :check_dates
-    before_create :create_client_info
     after_save :check_pay_way
     # TODO: should be removed
     def sum
@@ -84,9 +83,6 @@ module Order
       end
     end
 
-    def create_client_info
-      build_client_info
-    end
 
     def check_pay_way
       if pay_way_changed? && !paid? && !pay_way.blank?

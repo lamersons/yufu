@@ -5,6 +5,7 @@ module Order
 
     SCOPES = %w(open in_progress close paying)
     PAY_WAYS = %w(card bank alipay)
+    before_create :create_client_info
 
     field :step, type: Integer, default: 1
     field :pay_way
@@ -105,6 +106,10 @@ module Order
       else
         :owner
       end
+    end
+
+    def create_client_info
+      build_client_info
     end
 
   end

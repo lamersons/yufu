@@ -22,7 +22,7 @@
         <div class="clear"></div>
     </div>
   <%end%>
-    <!-- /Обретка для скроллбара -->
+  <!-- /Обретка для скроллбара -->
 </div>
 <%end%>
 
@@ -30,6 +30,7 @@
 <%= f.hidden_field :_type%>
 
 <div class="container clearfix">
+  <div class="languages_wrap">
   <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:written)%></span></h1>
     <div class="height-3"></div>
     <p class="title"><%=ts(:translation_params)%></p>
@@ -42,10 +43,10 @@
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
-    <div class="col-1">
+    <div class="col-1 translation_lang_wrap" >
         <p><%=ts(:translation_language)%></p>
         <div class="custom-select">
-          <%=f.select :translation_languages, @order.available_languages.map {|l| [l.name, l.id]}%>
+          <%=f.select :translation_languages, @order.available_languages.map {|l| [l.name, l.id]}, {},{class: 'select_translation_language'}%>
         </div>
     </div>
     <!-- /Колонка -->
@@ -63,6 +64,12 @@
       <p>Число слов</p>
         <%=f.text_field :words_number, required: true%>
     </div>
+
+    </div>
+      <div class="col-3 last">
+        <a id="add_lang" class="pink-bright"><span class="bold">+</span> <%=ts(:add_language)%></a>
+      </div>
+      <div class="clear"></div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <!--div class="col-1 last lang">
@@ -88,8 +95,7 @@
             <p>
                 <span class="semi-bold">Перевод + корретировка</span>
                 <span class="height-3"></span>
-                <span class="text-small">Русский <span class="bold">></span> Китайский (традиционный),</span>
-                <span class="text-small">Русский <span class="bold">></span> Китайский (упрощенный)</span>
+                <span class="langs"></span>
                 <span class="height-5"></span>
                 <span class="price">Цена: <span class="bold pink-bright">325 €</span></span>
                 <span class="text-small">(0.17 $) / слово</span>

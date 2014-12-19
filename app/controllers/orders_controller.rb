@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   before_action :set_profile
   before_action :filter_params, only: [:update]
+  respond_to :json
 
   def create
     @order = order_params[:_type].constantize.new order_params
@@ -33,8 +34,8 @@ class OrdersController < ApplicationController
       @order.update_attribute :step, @order.step+1
       session[:back_to_order] = edit_order_path(@order)
       if @order.step == 3
-        authenticate_user!
         @order.set_owner! current_user
+        authenticate_user!
       end
       redirect_to edit_order_path(@order)
     else
@@ -43,6 +44,15 @@ class OrdersController < ApplicationController
       render "/orders#{type}/step_#{step}"
     end
 
+  end
+
+  def precount_written_price
+    prices = []
+    params[:languages].each do |id|
+      language = Language.find id
+      prices << {name: language.name, price: Price.with_markup(language.written_cost(params[:level]))}
+    end
+    respond_with prices: prices
   end
 
   def add_available_languages
@@ -85,7 +95,11 @@ class OrdersController < ApplicationController
   end
 
   def available_languages_params
-    params.require(:order).permit available_language_ids: []
+    params.require(:order).permit [{available_language_ids: []}, :level]
+  end
+
+  def precount_params
+    params.permit languages: []
   end
 
   def filter_params
