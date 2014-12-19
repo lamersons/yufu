@@ -9,6 +9,8 @@ Yufu.WysiwygEditorComponent = Ember.Component.extend(
     btnSize = @get("btnSize")
     height = @get("height")
     @$("textarea").ckeditor $.noop, {
+      extraPlugins: 'autogrow'
+      autoGrow_onStartup: true
       toolbar: [
         { name: 'document', items: [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ] }
         [ 'Cut', 'Copy', 'Paste', 'Undo', 'Redo' ]

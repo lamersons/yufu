@@ -13,6 +13,7 @@
 #= require datepicker/templates
 #= require ckeditor/init
 #= require ckeditor/adapters/jquery
+#= require autogrow/plugin
 
 # for more details see: http://emberjs.com/guides/application/
 window.Yufu = Ember.Application.create({rootElement: '#yufu_app'})
