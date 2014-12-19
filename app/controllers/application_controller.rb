@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def after_sign_in_path_for(resource)
-    unless session[:back_to_order].nil?
+    return super if resource.is_a? Admin
+    if session[:back_to_order].present?
       session[:back_to_order]
     else
       resource.need_change_password? ? edit_user_path : super

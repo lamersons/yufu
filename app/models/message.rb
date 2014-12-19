@@ -11,6 +11,14 @@ class Message
   scope :backoffice_inbox,  -> {where recipient: nil}
   scope :backoffice_outbox, -> {where :sender.in => Admin.all.map(&:id)}
 
+  has_and_belongs_to_many :attachments
+
+  accepts_nested_attributes_for :attachments
+
   validates_presence_of :body, :sender
 
+  def from_backoffice?
+    sender.is_a? Admin
+  end
+  alias :from_backoffice :from_backoffice?
 end
