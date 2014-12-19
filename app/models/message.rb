@@ -13,4 +13,8 @@ class Message
 
   validates_presence_of :body, :sender
 
+  def from_backoffice?
+    sender.is_a? Admin
+  end
+  alias :from_backoffice :from_backoffice?
 end

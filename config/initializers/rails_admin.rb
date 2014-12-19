@@ -1,5 +1,7 @@
 require Rails.root.join('lib', 'rails_admin_pay_order.rb')
+require Rails.root.join('lib', 'rails_admin_reply.rb')
 RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::PayOrder)
+RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::Reply)
 
 RailsAdmin.config do |config|
   ### Popular gems integration
@@ -29,6 +31,7 @@ RailsAdmin.config do |config|
     delete
     show_in_app
     pay_order
+    reply
 
     ## With an audit adapter, you can add:
     # history_index

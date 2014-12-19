@@ -8,8 +8,4 @@ class MessageSerializer < ActiveModel::Serializer
   def recipient_id
     @object.recipient_id.to_s
   end
-
-  def from_backoffice
-    @object.sender.is_a? Admin
-  end
 end
