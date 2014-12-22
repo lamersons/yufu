@@ -6,3 +6,5 @@ Yufu.Message = DS.Model.extend
 
   sender:    DS.belongsTo 'user', async: true
   recipient: DS.belongsTo 'user', async: true
+
+  attachments: DS.hasMany 'attachment', embedded: 'always'
