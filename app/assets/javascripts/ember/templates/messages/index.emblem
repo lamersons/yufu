@@ -9,9 +9,16 @@
             a.ui.image
               img src='no-avatar.png'
             | Administrator
-          .description
-            .body.min{action 'toggleBody' this} id=this.id
+          .description.min id=this.id
+            .body{action 'toggleBody' this}
               == body
+            .attachments
+              | Приложенные документы:
+              ul
+                = each attachment in attachments
+                  li
+                    a href=attachment.url target='_blank'
+                      = attachment.fileName
             br
             link-to 'messages.new'
               ts 'frontend.messages.reply'

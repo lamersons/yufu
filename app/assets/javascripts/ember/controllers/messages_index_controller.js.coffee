@@ -6,6 +6,7 @@ Yufu.MessagesIndexController = Ember.ArrayController.extend({
 
   actions:
     toggleBody: (message) ->
-      $('.body#' + message.id).toggleClass 'min'
+      $('.description#' + message.id).toggleClass 'min'
+      
 })
 
