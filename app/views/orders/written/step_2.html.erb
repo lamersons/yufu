@@ -1,7 +1,7 @@
 <!-- Раздел с формой -->
 <!--<form class="section-form written written-step-2" action="test.php" method="post" enctype="multipart/form-data" ng-init="step=2">-->
 <%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-1"} do |f| %>
-    <!-- Контейнер -->
+    <%= f.hidden_field :_type%>
     <div class="container clearfix">
         <h1 class="main">Разместить заказ на <span class="pink-bright">Письменный перевод</span></h1>
         <div class="height-3"></div>
@@ -55,7 +55,7 @@
         <!-- Колонка -->
         <div class="col-1">
             <label class="checkbox no-left long clearfix">
-                <%=o.radio_button :type, Order::GetOriginal::TYPES[0]%>
+                <%=o.radio_button :type, Order::GetOriginal::TYPES[0] %>
                 <em></em>
                 <p>Выслать выполненный заказ <br>по почте</p>
             </label>
@@ -109,7 +109,11 @@
         <div class="height-10"></div>
         <p style="padding-left: 10px;">Суммарная стоимость выбранных услуг</p>
         <div class="bordered-block thin">
-            <p>115 Eur + 170 Eur = <span class="bold pink-bright">285 Eur</span></p>
+          <p>
+          <%@order.translation_languages.each_with_index do |l, i|%>
+           <%=Price.with_markup(l.languages_group.written_cost(@order.level))*@order.words_number%><%=' +' unless i == @order.translation_languages.count-1%>
+          <%end%>
+          = <span class="bold pink-bright"><%=@order.price%></span></p>
         </div>
         <div class="height-30"></div>
 

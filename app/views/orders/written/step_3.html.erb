@@ -8,10 +8,11 @@
         <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:written)%></span></h1>
         <p class="title"><%=ts(:order_details)%> – № <%=@order.id%></p>
         <div class="bordered-block points">
-            <p class="point"><span class="bold number">1.</span> Ср. 3 сент. 2014 г., письменный перевод+корректура, русский > китайский (традиционный), 1055 слов,  срок сдачи: +&nbsp;7&nbsp;сент.&nbsp;2014&nbsp;г. = <span class="semi-bold">210 Eur</span></p>
-            <p class="point"><span class="bold number">2.</span> Чт. 4 сент. 2014 г., письменный перевод+корректура, русский > китайский (упрощенный), 1055 слов,  срок сдачи: +&nbsp;7&nbsp;сент.&nbsp;2014&nbsp;г. = <span class="semi-bold">115 Eur</span></p>
+            <% @order.translation_languages.each do |l|%>
+                <p class="point"><span class="bold number">1.</span><%=ts(@order.level)%> <%=@order.original_language.name %> > <%=l.name%> <%=@order.words_number%> <%=ts('words')%> = <span class="semi-bold"><%=(Price.with_markup(l.languages_group.written_cost(@order.level))*@order.words_number).round(2)%></span></p>
+            <%end%>
             <div class="line"></div>
-            <p class="pink-bright bold">Сумма к оплате: 325 Eur</p>
+            <p class="pink-bright bold">Сумма к оплате: <%=@order.price%></p>
         </div>
         <div class="height-10"></div>
         <label class="checkbox clearfix">

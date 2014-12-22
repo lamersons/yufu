@@ -34,8 +34,8 @@ class OrdersController < ApplicationController
       @order.update_attribute :step, @order.step+1
       session[:back_to_order] = edit_order_path(@order)
       if @order.step == 3
-        @order.set_owner! current_user
         authenticate_user!
+        @order.set_owner! current_user
       end
       redirect_to edit_order_path(@order)
     else
@@ -86,8 +86,9 @@ class OrdersController < ApplicationController
                          :native_language_id, {direction_ids: []}, {language_criterions_attributes: [:id, :level, :cost, :language_id]},
                          {reservation_dates_attributes: [:_id, :date, :hours, :_destroy]}]
                       when 'Order::Written'
-                        [:translation_type, :words_number, :level, :original_language_id, {translation_languages_ids: []},
-                         :file, get_translation: [:email, :additional], get_original: [:type, :name, :address, :index]]
+                        [:translation_type, :words_number, :level, {translation_language_ids: []},
+                         :file, {get_original_attributes: [:type, :name, :address, :index]}, :original_language_id,
+                        {get_translation_attributes: [:email, :additional]}, {get_original: [:type, :name, :address, :index]}]
                       else
                         []
                     end
