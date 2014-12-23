@@ -31,6 +31,7 @@ role :web, domain
 role :app, domain
 role :db,  domain, :primary => true
 
+
 before 'deploy:setup', 'rvm:install_rvm'
 before 'deploy:setup', 'rvm:install_ruby'
 

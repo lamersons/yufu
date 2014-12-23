@@ -72,6 +72,9 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    capistrano-sidekiq (0.4.0)
+      capistrano
+      sidekiq
     capistrano-unicorn (0.2.0)
       capistrano (< 3.0)
     capybara (2.3.0)
@@ -426,6 +429,7 @@ DEPENDENCIES
   better_errors
   cancancan
   capistrano
+  capistrano-sidekiq
   capistrano-unicorn
   capybara (~> 2.3.0)
   ckeditor
