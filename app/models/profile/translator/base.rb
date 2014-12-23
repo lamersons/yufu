@@ -13,6 +13,14 @@ module Profile
 
       after_save :resolve_active, if: -> { is_active_changed? && is_active }
 
+      # TODO implement after realize translator's calendar feature
+      scope :free_on, -> (date) {approved}
+
+      # TODO implement after realize translator's calendar feature
+      def busy?(date)
+        false
+      end
+
       protected
       def resolve_active
         self.user.translator_profiles.where(is_active: true, :id.ne => self.id).update is_active: false
