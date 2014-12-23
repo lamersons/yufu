@@ -35,18 +35,23 @@
     <div class="height-3"></div>
     <p class="title"><%=ts(:translation_params)%></p>
     <!-- Колонка -->
-    <div class="col-1">
-        <p><%=ts(:original_language)%></p>
-        <div class="custom-select">
-            <%=f.select :original_language, @order.available_languages.map {|l| [l.name, l.id]}%>
+        <div class="col-1">
+            <p><%=ts(:original_language)%></p>
+            <div class="custom-select">
+                <%=f.select :original_language_id, @order.available_languages.map {|l| [l.name, l.id]}, include_blank: true%>
+            </div>
         </div>
-    </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 translation_lang_wrap" >
         <p><%=ts(:translation_language)%></p>
         <div class="custom-select">
-          <%=f.select :translation_languages, @order.available_languages.map {|l| [l.name, l.id]}, {},{class: 'select_translation_language'}%>
+          <select name="order[translation_language_ids][]" id="order_translation_language_ids"  class='select_translation_language'>
+            <option></option>
+            <%Language.all.each do |l|%>
+                <option value="<%=l.id%>" <%='selected' if @order.translation_language_ids.first== l.id%>><%=l.name%></option>
+            <%end%>
+          </select>
         </div>
     </div>
     <!-- /Колонка -->
@@ -58,12 +63,27 @@
           <%=f.select :translation_type, Order::Written::TYPES.map {|l| [I18n.t(l), l]}%>
         </div>
     </div>
-    <!-- /Колонка -->
-    <!-- Колонка -->
     <div class="col-1 last">
       <p>Число слов</p>
-        <%=f.text_field :words_number, required: true%>
+      <%=f.text_field :words_number, required: true%>
     </div>
+    <% @order.translation_language_ids.each_with_index do |lang_id, i| %>
+        <%if i > 0%>
+        <div class="col-2 half-width" >
+          <div class="custom-select">
+              <select name="order[translation_language_ids][]" id="order_translation_language_ids"  class='select_translation_language'>
+                <option></option>
+                <%Language.all.each do |l|%>
+                    <option value="<%=l.id%>" <%='selected' if lang_id== l.id%>><%=l.name%></option>
+                <%end%>
+              </select>
+          </div>
+        </div>
+        <%end%>
+    <%end%>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+
 
     </div>
       <div class="col-3 last">
@@ -88,17 +108,19 @@
     <div class="clear height-10"></div>
     <p class="title">Стоимость</p>
     <!-- Колонка -->
-    <div class="col-1">
+    <div class="col-1 level_1">
         <label class="radio no-left clearfix">
             <%=f.radio_button :level, Order::Written::LEVELS[0], required: true%>
             <em></em>
             <p>
                 <span class="semi-bold">Перевод + корретировка</span>
-                <span class="height-3"></span>
-                <span class="langs"></span>
+                <span class="langs">
+                  <%-@order.translation_languages.each do |l|%>
+                      <span class='text-small'><%=@order.original_language.name%>  <span class='bold'>></span> <%=l.name%></span>
+                    <%end%>
+                </span>
                 <span class="height-5"></span>
-                <span class="price">Цена: <span class="bold pink-bright">325 €</span></span>
-                <span class="text-small">(0.17 $) / слово</span>
+                <span class="price">Цена: <span class="bold pink-bright"><span class="price_cont"><%=@order.price Order::Written::LEVELS[0]%></span> </span></span>
                 <span class="height-7"></span>
                 <span>Срок сдачи: <span class="semi-bold">5 суток с момента получения аванса</span></span>
                 <span class="height-5"></span>
@@ -108,18 +130,20 @@
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
-    <div class="col-1">
+    <div class="col-1 level_2">
         <label class="radio no-left clearfix">
           <%=f.radio_button :level, Order::Written::LEVELS[1], required: true%>
             <em></em>
             <p>
                 <span class="semi-bold">Перевод</span>
                 <span class="height-3"></span>
-                <span class="text-small">Русский <span class="bold">></span> Китайский (традиционный),</span>
-                <span class="text-small">Русский <span class="bold">></span> Китайский (упрощенный)</span>
+                <span class="langs">
+                  <%-@order.translation_languages.each do |l|%>
+                      <span class='text-small'><%=@order.original_language.name%>  <span class='bold'>></span> <%=l.name%></span>
+                    <%end%>
+                </span>
                 <span class="height-5"></span>
-                <span class="price">Цена: <span class="bold pink-bright">215 €</span></span>
-                <span class="text-small">(0.12 $) / слово</span>
+                <span class="price">Цена: <span class="bold pink-bright"><span class="price_cont"><%=@order.price Order::Written::LEVELS[1]%></span> </span></span>
                 <span class="height-7"></span>
                 <span>Срок сдачи: <span class="semi-bold">1 сутки с момента получения аванса</span></span>
                 <span class="height-5"></span>
