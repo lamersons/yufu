@@ -48,7 +48,7 @@ module Profile
 
 
       validates_inclusion_of :grade, in: GRADES
-      before_save :set_total_approve, unless: :total_approve
+      before_save :set_total_approve, unless: -> { total_approve || total_approve_changed?}
 
 
 

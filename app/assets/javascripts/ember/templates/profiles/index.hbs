@@ -32,5 +32,9 @@
     <span>Профиль клиента </span>{{#link-to 'client.edit' client}}{{ts 'frontend.profile.edit'}}{{/link-to}}
     <br>
 {{/if}}
-
+{{#if partner}}
+    <span>Профиль партнера </span>{{#link-to 'partner.edit' partner}}{{ts 'frontend.profile.edit'}}{{/link-to}}
+    <br>
+{{/if}}
+<div class="height-30"></div>
 

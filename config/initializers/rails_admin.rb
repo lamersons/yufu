@@ -42,7 +42,7 @@ RailsAdmin.config do |config|
     field :name, :enum do
       enum {I18n.available_locales}
     end
-    field :enable
+    include_all_fields
   end
 
   config.model Message do
