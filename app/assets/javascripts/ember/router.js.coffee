@@ -14,6 +14,8 @@ Yufu.Router.map ()->
     @route 'translator_new'
     @resource 'client', ->
       @route 'edit', {path: '/:id/edit'}
+    @resource 'partner', ->
+      @route 'edit', {path: '/:id/edit'}
     @resource 'translator_company', ->
       @route 'edit', {path: '/:id/edit'}
     @resource 'translator_individual', ->

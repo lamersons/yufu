@@ -19,6 +19,8 @@ Yufu.TranslationsRoute = Ember.Route.extend
       @render 'translations/edit', outlet: 'modal'
 
     save: (model) ->
+      console.log @controllerFor('translations').get('target_locale')
+      model.set 'locale', @controllerFor('translations').get('target_locale')
       model.save().then =>
         @disconnectOutlet outlet: 'modal'
 

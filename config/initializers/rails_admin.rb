@@ -42,7 +42,7 @@ RailsAdmin.config do |config|
     field :name, :enum do
       enum {I18n.available_locales}
     end
-    field :enable
+    include_all_fields
   end
 
   config.model Message do
@@ -69,6 +69,13 @@ RailsAdmin.config do |config|
     end
     field :value
   end
+  config.model Price::Written do
+    field :level, :enum do
+      enum {Order::Written::TYPES}
+    end
+    include_all_fields
+  end
+
 
   config.model Vacancy do
     edit do

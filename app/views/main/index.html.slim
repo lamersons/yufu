@@ -1,7 +1,7 @@
 .block.first
   .container.clearfix
     p.h1
-      = ts('main.we_offer')
+      = ts('frontend.main_menu.profile')
     .item.inactive-item.verbal[data-target="verbal"]
       a
         span.icon
@@ -233,9 +233,9 @@
       = label_tag I18n.t(:translator)
       = radio_button_tag 'user[_type]', 'Profile::Translator::Base', false, class: 'translator', class: 'translator-radio'
       = label_tag I18n.t(:supplier)
-      = radio_button_tag 'user[_type]', 'Profile::Client', false, class: 'client', class: 'supplier-radio'
+      = radio_button_tag 'user[_type]', 'Profile::Partner', false, class: 'partner', class: 'supplier-radio'
       = label_tag I18n.t(:agent)
-      = radio_button_tag 'user[_type]', 'Profile::Partner', false, class: 'partner', class: 'agent-radio'
+      = radio_button_tag 'user[_type]', 'Profile::Client', false, class: 'client', class: 'agent-radio'
     .email
       = f.email_field :email, class: 'email', :readonly => true, placeholder: I18n.t('main.your_email')
       p.after-input-text
