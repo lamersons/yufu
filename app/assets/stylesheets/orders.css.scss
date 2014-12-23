@@ -4,6 +4,24 @@
   }
 }
 
+// Smart Selector
+.custom-combobox-toggle {
+  position: absolute;
+}
+
+.ui-icon-triangle-1-s {
+  background: none !important;
+}
+
+.ui-button {
+  border: none !important;
+  background: none !important;
+}
+
+.ui-button-text {
+  padding: 18px !important;
+}
+
 .custom-combobox {
   position: relative;
   display: inline-block;
@@ -19,7 +37,7 @@
 
 .custom-combobox-input {
   margin: 0;
-  padding: 7px 52px 7px 10px;
+  padding: 7px 25px 7px 10px;
 }
 
 .circles{
@@ -30,7 +48,7 @@
 
 .ui-autocomplete {
   max-height: 125px;
-  width: 288px !important;
+  width: 285px !important;
   overflow-y: auto;   /* prevent horizontal scrollbar */
   overflow-x: hidden; /* add padding to account for vertical scrollbar */
   z-index:1000 !important;
