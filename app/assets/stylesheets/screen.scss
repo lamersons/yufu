@@ -15,6 +15,10 @@ A {
   cursor: pointer;
 }
 
+input:focus {
+  outline: none;
+}
+
 //Кнопки-ссылки
 BUTTON {
   > A {
