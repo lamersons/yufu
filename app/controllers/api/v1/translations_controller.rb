@@ -12,9 +12,10 @@ module Api
 
       def update
         target_locale = params[:translation][:locale]
-        I18n.backend.store_translations(target_locale, {params[:id] => params[:translation][:value]}, :escape => false)
-        # TODO: need using delayed jobs (sidekiq vs resque)
-        I18n::JS.export
+        if target_locale.present?
+          I18n.backend.store_translations(target_locale, {params[:id] => params[:translation][:value]}, escape: false)
+          I18nJsExportWorker.perform_async
+        end
         render json: { id: params[:id],  value: params[:translation][:value], original: t(params[:id])}
       end
     end

@@ -19,6 +19,9 @@ gem 'active_model_serializers'
 
 gem 'state_machine'
 
+# delayed jobs
+gem 'sidekiq'
+
 # Search engine
 gem 'ransack', github: 'Zhomart/ransack', branch: 'mongoid'
 
