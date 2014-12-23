@@ -21,7 +21,7 @@
 <div class="col-1 position-relative">
   <p><%=ts(:translation_place)%></p>
 
-  <div class="custom-select ">
+  <div class="custom-select ui-widget">
     <%=f.select :location_id, City.all.collect {|c| [c.name, c.id]}%>
   </div>
   <label class="checkbox clearfix long">
