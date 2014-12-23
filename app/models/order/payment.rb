@@ -20,10 +20,10 @@ module Order
     private
     def check_if_paid
       if state_changed? && state == 'paid'
-        order_verbal.paid
+        order.paid
       end
       if state_changed? && state_was == 'paid' && state == 'paying'
-        order_verbal.unpaid
+        order.unpaid
       end
       true
     end

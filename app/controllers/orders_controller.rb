@@ -83,7 +83,8 @@ class OrdersController < ApplicationController
     order_params += case params[:order][:_type]
                       when 'Order::Verbal'
                         [:include_near_city, :goal, :translator_sex, :location_id, :translator_native_language_id,
-                         :native_language_id, {direction_ids: []}, {language_criterions_attributes: [:id, :level, :cost, :language_id]},
+                         :native_language_id, {direction_ids: []}, {reserve_language_criterions_attributes: [:id, :level, :cost, :language_id]},
+                         {main_language_criterion_attributes: [:id, :level, :cost, :language_id]},
                          {reservation_dates_attributes: [:_id, :date, :hours, :_destroy]}]
                       when 'Order::Written'
                         [:translation_type, :words_number, :level, {translation_language_ids: []},

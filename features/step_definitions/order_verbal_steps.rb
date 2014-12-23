@@ -78,7 +78,7 @@ Given(/^a new object "(.*?)"$/) do |klass|
 end
 
 Given(/^an empty order_verbal for user "(.*?)"$/) do |email|
-  FactoryGirl.create :order_verbal, reservation_dates: [], language_criterions: [], owner: User.where(email: email).first.profiles.where(_type: 'Profile::Client').first
+  FactoryGirl.create :order_verbal, reservation_dates: [],reserve_language_criterions: [], owner: User.where(email: email).first.profiles.where(_type: 'Profile::Client').first
 end
 
 And(/^order should have one relation "(.*?)" with "(.*?)" as "(.*?)"$/) do |relations, fields, values|
@@ -118,7 +118,7 @@ Given(/^order in on step "(.*?)"$/) do |step|
 end
 
 And(/^order has a language criterion$/) do
-  Order::Verbal.last.language_criterions.create language_id: Language.first.id, level: 1, cost: 10055
+  Order::Verbal.last.main_language_criterion.update_attributes language_id: Language.first.id, level: 1
 end
 
 And(/^order has relation of "(.*?)" with "(.*?)" as "(.*?)"$/) do |relation, fields, values|
@@ -128,6 +128,7 @@ And(/^order has relation of "(.*?)" with "(.*?)" as "(.*?)"$/) do |relation, fie
     params[field] = values_list[i]
   end
   Order::Verbal.last.send(relation).create params
+
   Order::Verbal.last.save
 end
 
@@ -171,5 +172,11 @@ And(/^I should see in fields "(.*?)" values "(.*?)"$/) do |fields, values|
   values_list = values.split(', ')
   fields_list.each_with_index do |field, i|
     find_field(field).value.should eq values_list[i]
+  end
+end
+
+And(/^dates are connected to main criterion$/) do
+  Order::Verbal.last.reservation_dates.each do |date|
+    date.update_attribute :order_language_criterion_id, Order::Verbal.last.main_language_criterion.id
   end
 end

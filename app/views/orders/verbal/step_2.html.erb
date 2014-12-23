@@ -24,7 +24,30 @@
         </td>
 <%end%>
 </tr>
-<%@order.language_criterions.each do |lc| %>
+<tr>
+    <td><%=@order.main_language_criterion.language.name%> <sup><%=ts(:interpretation)%></sup></td>
+    <%i=0%>
+    <%@order.reservation_dates.each do |date|%>
+            <td class="active date_<%=i%> day<%=date.date.strftime '%d-%m-%Y'%>" style="<%='display: none' if i>=7 %>"  data-cost="<%=@order.main_language_criterion.price%>">
+              <em class="cost"><%=date.price%> Eur</em>
+              <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
+              <div class="dropdown">
+                <b class="icon"></b>
+                <em>8</em>
+                <em>10</em>
+                <em>12</em>
+                <em>14</em>
+                <em>16</em>
+                <input type="hidden" name="order[reservation_dates_attributes][][_id]" value="<%=date.id%>">
+                <input type="hidden" class="hours" name="order[reservation_dates_attributes][][hours]" value="<%=date.hours%>">
+                <input type="hidden" class="hours" name="order[reservation_dates_attributes][][order_language_criterion_id]" value="<%=@order.main_language_criterion.id%>">
+                <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]" value="1">
+              </div>
+            </td>
+    <%end%>
+    <td></td>
+</tr>
+<%@order.reserve_language_criterions.each do |lc| %>
 <tr>
   <%unless lc.language.nil?%>
   <td><%=lc.language.name%> <sup><%=ts(:interpretation)%></sup></td>
@@ -43,6 +66,7 @@
               <em>16</em>
               <input type="hidden" name="order[reservation_dates_attributes][][_id]" value="<%=date.id%>">
               <input type="hidden" class="hours" name="order[reservation_dates_attributes][][hours]" value="<%=date.hours%>">
+              <input type="hidden" class="hours" name="order[reservation_dates_attributes][][order_language_criterion_id]" value="<%=lc.id%>">
               <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]" value="1">
             </div>
           </td>

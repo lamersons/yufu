@@ -22,7 +22,7 @@ Feature: create verbal order
     And  I select in box "order_location_id" as "NewVasjuki"
     And  I check box name: "include_near_city"
     And  I select in box "order_language_criterion_language" as "Mumbu-umbu"
-    And  I select in box "order_language_criterion_level" as "Gide"
+    And  I select in box "order_language_criterion_level" as "Guide"
     And  I select in pre calendar date: "day5-12-2014" for "8" hours
     And  I select in pre calendar date: "day6-12-2014" for "10" hours
     And  I fade out "Additional"
@@ -32,13 +32,13 @@ Feature: create verbal order
     And  I check box with text: "Go by taxo"
     And  I select in box "order_goal" as "business"
     And  I submit the form "edit_order"
-    And order should have fields "include_near_city, translator_sex, goal" as "true, female, business"
+    And  order should have fields "include_near_city, translator_sex, goal" as "true, female, business"
     Then order should have one relation "location, translator_native_language, native_language" with "name, name, name" as "NewVasjuki, Russian, Mumbu-umbu"
-     And order should have relations "language_criterions, language_criterions" with fields "level" as "1"
+     And order should have one relation "main_language_criterion" with "level" as "guide"
      And order should have relations "reservation_dates, reservation_dates" with fields "date, hours" as "2014-12-05 00:00:00 UTC, 8"
      And order should have relations "reservation_dates, reservation_dates" with fields "date, hours" as "2014-12-06 00:00:00 UTC, 8"
      And order should have relations "directions" with fields "name" as "Go by taxo"
-     And order should have relation "language_criterions" with relation "language" with field "name" as "Mumbu-umbu"
+     And order should have one relation "main_language_criterion" with relation "language" class name "Language" with field "name" as "Mumbu-umbu"
 
     @javascript
     Scenario: fulfil the form on step two
@@ -47,6 +47,7 @@ Feature: create verbal order
       And   order has a language criterion
       And   order has relation of "reservation_dates" with "date, hours" as "2014-12-05 00:00:00 UTC, 8"
       And   order has relation of "reservation_dates" with "date, hours" as "2014-12-06 00:00:00 UTC, 8"
+      And   dates are connected to main criterion
       When  I go for edit order
       And   I select in confirm calendar date: "day05-12-2014" for "10" hours
       Then  I should see in price preview "2014-12-05 00:00:00 UTC, 8" date price for "10" hours
@@ -63,6 +64,7 @@ Feature: create verbal order
       And   order has a language criterion
       And   order has relation of "reservation_dates" with "date, hours" as "2014-12-05 00:00:00 UTC, 8"
       And   order has relation of "reservation_dates" with "date, hours" as "2014-12-06 00:00:00 UTC, 8"
+      And   dates are connected to main criterion
       When  I go for edit order
       And   I fill in "user_email" as "user@example.com"
       And   I fill in "user_password" as "password"

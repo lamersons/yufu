@@ -15,7 +15,7 @@ RSpec.describe Api::V1::OrdersController, :type => :controller do
     let(:attributes) {{
         _type: 'Order::Verbal',
         airport_pick_up: {need_car: true, double_way: true, flight_number: '123', airport: 'airport'},
-        language_criterions_attributes: [{language_id: language.to_param, level: 'guide'}],
+        main_language_criterion_attributes: [{language_id: language.to_param, level: 'guide'}],
         include_near_city: true
     }}
     subject{post :create, {order: attributes}}

@@ -38,14 +38,14 @@ RSpec.describe Order::Verbal, :type => :model do
 
   describe '#check_dates' do
     let(:order) do
-      create :order_verbal, language_criterions: [(build :order_language_criterion, {language: (build :language, name: 'Rus')}),
-                                                  (build :order_language_criterion,{language: (build :language, name: 'Eng')})],
+      create :order_verbal, main_language_criterion: (build :order_language_criterion, {language: (build :language, name: 'Rus')}),
+             reserve_language_criterions: [(build :order_language_criterion,{language: (build :language, name: 'Eng')})],
                      reservation_dates: [(build :order_reservation_date, date: '01.02.2014', order_language_criterion: nil),
                                          (build :order_reservation_date, date: '02.02.2014', order_language_criterion: nil)]
     end
 
     it 'expect to link criteria an dates' do
-      expect(order.reservation_dates.count).to eq(4)
+      expect(order.reservation_dates.count).to eq(2)
     end
 
     it 'expect dates without criterion' do
@@ -55,7 +55,7 @@ RSpec.describe Order::Verbal, :type => :model do
           count += 1
         end
       end
-      expect(count).to eq(0)
+      expect(count).to eq(2)
     end
 
     it '#different' do

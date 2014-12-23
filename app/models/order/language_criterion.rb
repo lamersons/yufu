@@ -5,7 +5,7 @@ module Order
     field :level
     belongs_to :language
 
-    belongs_to :order, class_name: 'Order::Verbal', inverse_of: :language_criterions
+    belongs_to :order, class_name: 'Order::Verbal', inverse_of: :main_language_criterion
 
     validates_inclusion_of :level, in: Order::Verbal::TRANSLATION_LEVELS
 

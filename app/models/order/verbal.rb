@@ -18,11 +18,13 @@ module Order
     belongs_to :native_language,            class_name: 'Language'
 
 
-    has_many :language_criterions,    class_name: 'Order::LanguageCriterion', inverse_of: :order, dependent: :destroy
-    embeds_many :reservation_dates,   class_name: 'Order::ReservationDate'
+    has_many :reserve_language_criterions,    class_name: 'Order::LanguageCriterion'
+    has_one :main_language_criterion,         class_name: 'Order::LanguageCriterion', polymorphic: true
+    embeds_many :reservation_dates,           class_name: 'Order::ReservationDate', polymorphic: true
 
-    accepts_nested_attributes_for :language_criterions, allow_destroy: true
-    accepts_nested_attributes_for :reservation_dates, allow_destroy: true
+    accepts_nested_attributes_for :reserve_language_criterions,  allow_destroy: true
+    accepts_nested_attributes_for :main_language_criterion
+    accepts_nested_attributes_for :reservation_dates,            allow_destroy: true
 
     has_and_belongs_to_many :directions
 
@@ -65,21 +67,10 @@ module Order
 
     private
     def check_dates
-      temp_array = []
       reservation_dates.each do |date|
         if date.fake?
-          language_criterions.each do |criterion|
-            attrs = date.attributes.except('_id')
-            attrs = attrs.merge order_language_criterion: criterion
-            temp_array << attrs
-          end
-        else
-          attrs = date.attributes
-          temp_array << attrs
+          date.write_attribute :order_language_criterion, main_language_criterion
         end
-      end
-      unless temp_array.empty?
-        write_attributes reservation_dates: temp_array
       end
     end
 
