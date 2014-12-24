@@ -70,7 +70,7 @@ module Order
     def check_dates
       reservation_dates.each do |date|
         if date.fake?
-          date.write_attribute :order_language_criterion, main_language_criterion
+          date.write_attribute :order_language_criterion_id, main_language_criterion.id
         end
       end
     end
