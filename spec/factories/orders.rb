@@ -13,5 +13,15 @@ FactoryGirl.define do
     association :native_language,            factory: :language
 
     reservation_dates   {[build(:order_reservation_date)]}
+
+    transient do
+      reserve_language_criterions_count 5
+    end
+
+    after(:create) do |order, evaluator|
+      create_list(:order_language_criterion, evaluator.reserve_language_criterions_count,
+                  reserve_socket: order) if order.reserve_language_criterions.blank?
+      create :order_language_criterion, main_socket: order if order.main_language_criterion.blank?
+    end
   end
 end

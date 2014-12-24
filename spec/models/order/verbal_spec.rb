@@ -141,4 +141,20 @@ RSpec.describe Order::Verbal, :type => :model do
 
   end
 
+  describe 'connect language criterions' do
+    let(:order) {create :order_verbal, reserve_language_criterions_count: 10}
+
+    it 'creates main criterions' do
+      expect(order.main_language_criterion).to be_a(Order::LanguageCriterion)
+    end
+
+    it 'creates reserve criterions' do
+      expect(order.reserve_language_criterions.count).to eq(10)
+      order.reserve_language_criterions.each do |cr|
+        expect(cr).to be_a(Order::LanguageCriterion)
+      end
+    end
+
+  end
+
 end
