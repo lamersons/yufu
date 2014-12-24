@@ -44,4 +44,22 @@ RSpec.describe User, :type => :model do
       it {is_expected.to be_falsey}
     end
   end
+
+  describe 'update password'  do
+    let(:user) {User.first}
+
+    before(:each) {create :user, password: 'password'}
+
+    subject {user.password = new_password}
+
+    context 'new password equals old' do
+      let(:new_password) {'password'}
+      it {expect{subject}.to change{user.valid?}.from(true).to(false)}
+    end
+
+    context 'new password equals old' do
+      let(:new_password) {'new_password'}
+      it {expect{subject}.not_to change{user.valid?}}
+    end
+  end
 end

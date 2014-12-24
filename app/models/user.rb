@@ -58,6 +58,9 @@ class User
 
   scope :without_admins, -> {where _type: 'User'}
 
+  #check that new  password is not equals to old
+  validate :new_password, if: -> {password.present? && encrypted_password_was.present?}
+
   def translator?
     profiles.where(:_type.in => [Profile::Translator::Individual.to_s, Profile::Translator::Company.to_s],
                    is_active: true, total_approve: true ).count > 0
@@ -98,7 +101,14 @@ class User
   def client_profile
     profiles.where(:_type.in => [Profile::Client.to_s]).first
   end
+
   private
+  def new_password
+    bcrypt   = ::BCrypt::Password.new(encrypted_password_was)
+    password = ::BCrypt::Engine.hash_secret("#{self.password}#{self.class.pepper}", bcrypt.salt)
+    errors[:password] << I18n.t('mongoid.errors.messages.password_is_not_new') if bcrypt.eql? password
+  end
+
   def set_avatar_extension
     if self.avatar_content_type.nil? || self.avatar_file_name != 'data'
       return true

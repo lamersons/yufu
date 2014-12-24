@@ -18,9 +18,10 @@ module Order
     belongs_to :native_language,            class_name: 'Language'
 
 
-    has_many :reserve_language_criterions,    class_name: 'Order::LanguageCriterion'
-    has_one :main_language_criterion,         class_name: 'Order::LanguageCriterion', polymorphic: true
-    embeds_many :reservation_dates,           class_name: 'Order::ReservationDate', polymorphic: true
+    has_many :reserve_language_criterions,    class_name: 'Order::LanguageCriterion', inverse_of: :reserve_socket
+    has_one :main_language_criterion,         class_name: 'Order::LanguageCriterion', inverse_of: :main_socket
+
+    embeds_many :reservation_dates,           class_name: 'Order::ReservationDate'
 
     accepts_nested_attributes_for :reserve_language_criterions,  allow_destroy: true
     accepts_nested_attributes_for :main_language_criterion

@@ -38,8 +38,7 @@ RSpec.describe Order::Verbal, :type => :model do
 
   describe '#check_dates' do
     let(:order) do
-      create :order_verbal, main_language_criterion: (build :order_language_criterion, {language: (build :language, name: 'Rus')}),
-             reserve_language_criterions: [(build :order_language_criterion,{language: (build :language, name: 'Eng')})],
+      create :order_verbal,
                      reservation_dates: [(build :order_reservation_date, date: '01.02.2014', order_language_criterion: nil),
                                          (build :order_reservation_date, date: '02.02.2014', order_language_criterion: nil)]
     end
@@ -139,6 +138,22 @@ RSpec.describe Order::Verbal, :type => :model do
     end
 
 
+
+  end
+
+  describe 'connect language criterions' do
+    let(:order) {create :order_verbal, reserve_language_criterions_count: 10}
+
+    it 'creates main criterions' do
+      expect(order.main_language_criterion).to be_a(Order::LanguageCriterion)
+    end
+
+    it 'creates reserve criterions' do
+      expect(order.reserve_language_criterions.count).to eq(10)
+      order.reserve_language_criterions.each do |cr|
+        expect(cr).to be_a(Order::LanguageCriterion)
+      end
+    end
 
   end
 
