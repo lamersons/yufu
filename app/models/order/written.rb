@@ -12,7 +12,7 @@ module Order
     has_mongoid_attached_file :file
     do_not_validate_attachment_file_type :file
 
-    belongs_to :original_language,                      class_name: 'Language'
+    belongs_to :original_language,                   class_name: 'Language'
     has_and_belongs_to_many :translation_languages,  class_name: 'Language'
     has_and_belongs_to_many :available_languages,    class_name: 'Language'
 
@@ -20,12 +20,12 @@ module Order
     embeds_one :get_original,                        class_name: 'Order::GetOriginal'
     accepts_nested_attributes_for :get_original, :get_translation
 
-    def price(curr_level = level)
-      sum = 0
-      translation_languages.each do |tl|
-        sum+=Price.with_markup(tl.languages_group.written_cost(curr_level))
-      end
-      (sum*words_number).round(2)
+    def cost(currency = nil, curr_level = level)
+      (translation_languages.inject(0) {|sum, l| sum + l.written_cost(translation_type, currency)}) * words_number
+    end
+
+    def price(currency = nil, curr_level = level)
+      Price.with_markup(cost curr_level, currency)
     end
   end
 end

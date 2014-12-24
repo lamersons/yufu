@@ -26,9 +26,6 @@ module Profile
       field :years_in_china, type: Integer
       field :status
       field :pay_way
-      belongs_to :city
-
-
       field :can_travel,          type: Mongoid::Boolean
       field :has_driving_license, type: Mongoid::Boolean
       field :has_car,             type: Mongoid::Boolean

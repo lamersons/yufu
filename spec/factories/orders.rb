@@ -24,4 +24,13 @@ FactoryGirl.define do
       create :order_language_criterion, main_socket: order if order.main_language_criterion.blank?
     end
   end
+
+  factory :order_written, class: Order::Written do
+    association :owner, factory: :profile_client
+    translation_type 'standard'
+    level 'translate_and_correct'
+    association :original_language, factory: :language
+    translation_languages {[create(:language)]}
+    words_number 2000
+  end
 end
