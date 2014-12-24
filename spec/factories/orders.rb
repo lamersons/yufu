@@ -12,8 +12,6 @@ FactoryGirl.define do
     association :translator_native_language, factory: :language
     association :native_language,            factory: :language
 
-    reserve_language_criterions {[]}
-    main_language_criterion {build(:order_language_criterion)}
     reservation_dates   {[build(:order_reservation_date)]}
   end
 end
