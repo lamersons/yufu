@@ -109,7 +109,11 @@ ru:
         first_name: Имя
         last_name: Фамилия
         middle_name: Отчество
+        password: Пароль
       vacancy:
         name: Название
         text: Описание
 
+    errors:
+      messages:
+        password_is_not_new: Необходимо выбрать новый пароль
