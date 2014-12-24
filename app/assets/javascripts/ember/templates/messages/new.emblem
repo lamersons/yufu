@@ -8,6 +8,28 @@ form#new_message
     = ts 'mongoid.attributes.message.body'
   = wysiwyg-editor content=body
 
+  .col-2.lang-test.clearfix.position-relative
+    .dropzone.dropzone-lang-test
+        view Yufu.UploadDragAndDropMultiple name="doc" object=education model='document' parent='education'
+            .doc_list: each document in education.documents: span.doc_name {{document.name}}
+            = ts 'frontend.profile.or_drag_here'
+    label.file
+        view Yufu.FileUploadMultiple name="doc" file=avatar object=education multiple='multiple' model='document' parent='education'
+        em
+            ts 'frontend.profile.choose'
+            | ...
+        span.tooltip-icon-small.js-tooltip data-target=".js-tooltip-test-file"
+    .height-5
+    .hover-tooltip.js-tooltip-test-file style='width: 300px;'
+        span.icon
+        p = ts 'frontend.profile.upload_warning'
+
+  .clear
+  .height-10
+  .grey-line
+  .height-10
+
+
 
   button.pink#submit{action 'create'}
     = ts 'create'
