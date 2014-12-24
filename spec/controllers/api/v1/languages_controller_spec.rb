@@ -7,7 +7,10 @@ RSpec.describe Api::V1::LanguagesController, :type => :controller do
   let(:language) {create :language}
 
   describe 'GET index' do
-    before(:each){language}
+    before(:each) do
+      Language.all.delete
+      language
+    end
     it 'returns http success' do
       get :index
       expect(response).to be_success
