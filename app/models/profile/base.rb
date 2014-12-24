@@ -3,8 +3,9 @@ module Profile
     include Mongoid::Document
     include Mongoid::Timestamps
 
-    delegate :first_name, :middle_name, :last_name, :first_name=, :last_name=, :middle_name=, :email, to: :user
-    delegate :avatar, :avatar_file_size, :avatar_file_name, :avatar_content_type, :avatar_file_size=, :avatar_file_name=, :avatar_content_type=, :avatar=, to: :user
+    delegate :first_name, :middle_name, :last_name, :first_name=, :last_name=, :middle_name=, :email, :avatar,
+             :avatar_file_size, :avatar_file_name, :avatar_content_type, :avatar_file_size=, :avatar_file_name=,
+             :avatar_content_type=, :avatar=, to: :user
 
     field :phone
     field :additional_phone
@@ -17,7 +18,7 @@ module Profile
     validates_presence_of :user
 
     after_save if: -> {user.changed?} do
-      user.save
+      user.save!
     end
   end
 end

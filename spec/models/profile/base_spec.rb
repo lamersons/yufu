@@ -26,6 +26,7 @@ RSpec.describe Profile::Base, :type => :model do
     let(:user) {profile.user}
 
     it 'updates delegated attributes' do
+      user.password = nil
       expect{profile.update first_name: 'name'}.to change{user.reload.first_name}.to('name')
     end
   end
