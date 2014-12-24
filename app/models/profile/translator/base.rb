@@ -6,8 +6,7 @@ module Profile
       field :skype
       field :is_active, type: Mongoid::Boolean
 
-      belongs_to :primary_city, class_name: 'City'
-
+      belongs_to :city
       has_many :orders, class_name: 'Order::Base', inverse_of: :assignee
       has_many :applications, class_name: 'Order::Application'
 

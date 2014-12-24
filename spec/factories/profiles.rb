@@ -7,6 +7,7 @@ FactoryGirl.define do
     services   {[build(:service)]}
     educations {[build(:education)]}
     is_active true
+    association :city
   end
 
   factory :translator_company, class: Profile::Translator::Company do
@@ -15,6 +16,7 @@ FactoryGirl.define do
     last_name 'name 2'
     total_approve true
     is_active true
+    association :city
   end
 
   factory :profile_partner, class: Profile::Partner do
