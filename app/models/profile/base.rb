@@ -18,7 +18,7 @@ module Profile
     validates_presence_of :user
 
     after_save if: -> {user.changed?} do
-      user.save!
+      user.save
     end
   end
 end
