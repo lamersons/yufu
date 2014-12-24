@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
 
-  let(:user) {create :user}
+  let(:user) {create :user, password: 'password'}
   before(:each) do
     sign_in user
   end
@@ -29,6 +29,16 @@ RSpec.describe UsersController, :type => :controller do
 
     context 'password and password_confirmation are not equal' do
       let(:attr) { {password: 'new_password', password_confirmation: 'other_password'} }
+
+      it {expect{subject}.not_to change{user.reload.encrypted_password}}
+
+      it "renders edit template and shows errors" do
+        expect(subject).to render_template('users/edit')
+      end
+    end
+
+    context 'new password is equal to old' do
+      let(:attr) { {password: 'password', password_confirmation: 'password'} }
 
       it {expect{subject}.not_to change{user.reload.encrypted_password}}
 

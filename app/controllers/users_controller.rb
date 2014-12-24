@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         redirect_to session[:back_to_order]
       end
     else
-      render 'users/edit'
+      render 'users/edit', layout: 'application'
     end
   end
 

@@ -1,4 +1,7 @@
 ru:
+  new_password: Новый пароль
+  new_password_confirmation: Подтвердите пароль
+
   admin:
     actions:
       pay_order:
