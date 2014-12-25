@@ -17,7 +17,8 @@
           td
             = input type='text' value=filter placeholder='Find'
           td
-            = view Ember.Select value=target_locale content=currentUser.localizations.content optionLabelPath='content.language_name' optionValuePath='content.name' prompt='Язык перевода'
+            .custom-select
+              = view Ember.Select value=target_locale content=currentUser.localizations.content optionLabelPath='content.language_name' optionValuePath='content.name' prompt='Язык перевода'
 
       tbody
         = each filteredContent

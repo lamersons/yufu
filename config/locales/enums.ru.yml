@@ -5,3 +5,14 @@ ru:
         guide: разговорный(гид)
         business: бизнес
         expert: эксперт
+
+    order/written:
+      types:
+        law: Юридический перевод
+        technical: Технический перевод
+        standard: Стандартный перевод
+        artistic: Художественный перевод
+        site_localisation: Локализация сайта
+        language_localisation: Языковая локализация
+
+

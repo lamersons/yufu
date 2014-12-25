@@ -1,8 +1,8 @@
+#= require i18n
+#= require jquery
 #= require ckeditor/init
 #= require ckeditor/adapters/jquery
 #= require autogrow/plugin
-#= require i18n
-#= require jquery
 #= require moment
 #= require moment/ru.js
 #= require handlebars
@@ -15,7 +15,6 @@
 #= require datepicker/ember-spin-box
 #= require datepicker/templates
 
-# for more details see: http://emberjs.com/guides/application/
 window.Yufu = Ember.Application.create({rootElement: '#yufu_app'})
 
 

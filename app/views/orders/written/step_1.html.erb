@@ -31,7 +31,7 @@
 
 <div class="container clearfix">
   <div class="languages_wrap">
-  <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:written)%></span></h1>
+  <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=@order.model_name.human%></span></h1>
     <div class="height-3"></div>
     <p class="title"><%=ts(:translation_params)%></p>
     <!-- Колонка -->
@@ -60,7 +60,7 @@
     <div class="col-1">
         <p><%=ts(:translation_type)%></p>
         <div class="custom-select">
-          <%=f.select :translation_type, Order::Written::TYPES.map {|l| [I18n.t(l), l]}%>
+          <%=f.select :translation_type, Order::Written::TYPES.map {|l| [I18n.t(l, scope: 'enums.order/written.types'), l]}%>
         </div>
     </div>
     <div class="col-1 last">
@@ -120,7 +120,7 @@
                     <%end%>
                 </span>
                 <span class="height-5"></span>
-                <span class="price">Цена: <span class="bold pink-bright"><span class="price_cont"><%=@order.price Order::Written::LEVELS[0]%></span> </span></span>
+                <span class="price">Цена: <span class="bold pink-bright"><span class="price_cont"><%=@order.price nil, Order::Written::LEVELS[0]%></span> </span></span>
                 <span class="height-7"></span>
                 <span>Срок сдачи: <span class="semi-bold">5 суток с момента получения аванса</span></span>
                 <span class="height-5"></span>
@@ -143,7 +143,7 @@
                     <%end%>
                 </span>
                 <span class="height-5"></span>
-                <span class="price">Цена: <span class="bold pink-bright"><span class="price_cont"><%=@order.price Order::Written::LEVELS[1]%></span> </span></span>
+                <span class="price">Цена: <span class="bold pink-bright"><span class="price_cont"><%=@order.price nil, Order::Written::LEVELS[1]%></span> </span></span>
                 <span class="height-7"></span>
                 <span>Срок сдачи: <span class="semi-bold">1 сутки с момента получения аванса</span></span>
                 <span class="height-5"></span>
