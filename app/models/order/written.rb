@@ -2,8 +2,8 @@ module Order
   class Written < Base
     include Mongoid::Paperclip
 
-    TYPES = ['law', 'technical', 'standard', 'artistic', 'site_localisation', 'language_localisation']
-    LEVELS = ['translate_and_correct', 'translate']
+    TYPES  = %w(law technical  standard artistic site_localisation language_localisation)
+    LEVELS = %w(translate_and_correct translate)
 
     field :translation_type
     field :words_number, type: Integer, default: 0

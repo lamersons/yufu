@@ -31,7 +31,7 @@
 
 <div class="container clearfix">
   <div class="languages_wrap">
-  <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:written)%></span></h1>
+  <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=@order.model_name.human%></span></h1>
     <div class="height-3"></div>
     <p class="title"><%=ts(:translation_params)%></p>
     <!-- Колонка -->
@@ -60,7 +60,7 @@
     <div class="col-1">
         <p><%=ts(:translation_type)%></p>
         <div class="custom-select">
-          <%=f.select :translation_type, Order::Written::TYPES.map {|l| [I18n.t(l), l]}%>
+          <%=f.select :translation_type, Order::Written::TYPES.map {|l| [I18n.t(l, scope: 'enums.order/written.types'), l]}%>
         </div>
     </div>
     <div class="col-1 last">
