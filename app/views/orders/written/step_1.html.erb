@@ -120,7 +120,7 @@
                     <%end%>
                 </span>
                 <span class="height-5"></span>
-                <span class="price">Цена: <span class="bold pink-bright"><span class="price_cont"><%=@order.price Order::Written::LEVELS[0]%></span> </span></span>
+                <span class="price">Цена: <span class="bold pink-bright"><span class="price_cont"><%=@order.price nil, Order::Written::LEVELS[0]%></span> </span></span>
                 <span class="height-7"></span>
                 <span>Срок сдачи: <span class="semi-bold">5 суток с момента получения аванса</span></span>
                 <span class="height-5"></span>
@@ -143,7 +143,7 @@
                     <%end%>
                 </span>
                 <span class="height-5"></span>
-                <span class="price">Цена: <span class="bold pink-bright"><span class="price_cont"><%=@order.price Order::Written::LEVELS[1]%></span> </span></span>
+                <span class="price">Цена: <span class="bold pink-bright"><span class="price_cont"><%=@order.price nil, Order::Written::LEVELS[1]%></span> </span></span>
                 <span class="height-7"></span>
                 <span>Срок сдачи: <span class="semi-bold">1 сутки с момента получения аванса</span></span>
                 <span class="height-5"></span>

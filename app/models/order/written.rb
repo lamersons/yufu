@@ -6,7 +6,7 @@ module Order
     LEVELS = ['translate_and_correct', 'translate']
 
     field :translation_type
-    field :words_number, type: Integer
+    field :words_number, type: Integer, default: 0
     field :level
 
     has_mongoid_attached_file :file
