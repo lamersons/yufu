@@ -157,4 +157,18 @@ RSpec.describe Order::Verbal, :type => :model do
 
   end
 
+  describe '#add_extra_dates' do
+    let(:order) {create :order_verbal, reservation_dates: [build(:order_reservation_date, date: Date.parse('06.01.2015'))]}
+
+    it 'expect extra dates' do
+      expect(order.reservation_dates.where(date: Date.parse('05.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('04.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('03.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('07.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('08.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('09.01.2015')).count).to eq(1)
+    end
+
+  end
+
 end

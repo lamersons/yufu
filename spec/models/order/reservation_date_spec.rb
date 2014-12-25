@@ -42,8 +42,5 @@ RSpec.describe Order::ReservationDate, :type => :model do
       expect(new_date.valid?).to be_falsey
     end
 
-    it 'another order' do
-
-    end
   end
 end
