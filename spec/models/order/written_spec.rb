@@ -26,7 +26,7 @@ RSpec.describe Order::Written, type: :model do
 
   describe '#price' do
     it 'returns cost with markup' do
-      expect{order.price}.to eq(Price.with_markup order.cost)
+      expect(order.price).to eq(Price.with_markup(order.cost))
     end
   end
 

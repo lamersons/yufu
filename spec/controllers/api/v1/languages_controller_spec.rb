@@ -7,14 +7,13 @@ RSpec.describe Api::V1::LanguagesController, :type => :controller do
   let(:language) {create :language}
 
   describe 'GET index' do
-    before(:each){language}
     it 'returns http success' do
       get :index
       expect(response).to be_success
     end
     it 'assigns all languages as @languages' do
       get :index
-      expect(assigns(:languages)).to eq([language])
+      expect(assigns(:languages)).to eq(Language.all)
     end
   end
 

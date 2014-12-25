@@ -25,7 +25,7 @@ module Order
     end
 
     def price(currency = nil, curr_level = level)
-      Price.with_markup(cost curr_level, currency)
+      Price.with_markup(cost currency, curr_level)
     end
   end
 end
