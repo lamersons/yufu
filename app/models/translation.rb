@@ -1,6 +1,9 @@
 class Translation
   include ActiveModel::Serializable
 
+  EXCEPTED_KEYS = /#{%w(mongoid.errors.messages. number. time. date.formats. support.array errors.messages. ransack.
+                    flash. will_paginate. activemodel. views. admin.js. errors.format helpers. admin.loading
+                     admin.misc.filter_date_format ).join('|')}/
   @@keys = Set.new
   attr_accessor :key, :original, :value
 
@@ -30,7 +33,7 @@ class Translation
     I18n.backend.send :init_translations
     I18n.backend.send(:translations).each do |locale, hash|
       hash.flatten_hash.each do |k, v|
-        @@keys << k
+        @@keys << k unless EXCEPTED_KEYS === k
       end
     end
     @@keys
