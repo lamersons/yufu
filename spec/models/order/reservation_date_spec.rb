@@ -28,4 +28,22 @@ RSpec.describe Order::ReservationDate, :type => :model do
     end
 
   end
+
+  describe 'validates a pair of date and order_id' do
+    let(:order) {create :order_verbal, reservation_dates: [build(:order_reservation_date, date: Date.parse('01.01.2015'))]}
+    let(:new_order) {create :order_verbal, reservation_dates: [build(:order_reservation_date, date: Date.parse('10.10.2015'))]}
+    it 'correct date' do
+      new_date = build :order_reservation_date, order_verbal: order, date: Date.parse('02.01.2015')
+      expect(new_date.valid?).to be_truthy
+    end
+
+    it 'incorrect date' do
+      new_date = build :order_reservation_date, order_verbal: order, date: Date.parse('01.01.2015')
+      expect(new_date.valid?).to be_falsey
+    end
+
+    it 'another order' do
+
+    end
+  end
 end

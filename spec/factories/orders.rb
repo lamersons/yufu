@@ -14,6 +14,7 @@ FactoryGirl.define do
 
     reservation_dates   {[build(:order_reservation_date)]}
 
+
     transient do
       reserve_language_criterions_count 5
     end

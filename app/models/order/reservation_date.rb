@@ -7,7 +7,8 @@ module Order
     belongs_to :order_language_criterion, class_name: 'Order::LanguageCriterion'
     embedded_in :order_verbal, class_name: 'Order::Verbal'
 
-    validates_presence_of :date
+    validates_presence_of    :date
+    validates_uniqueness_of  :date, scope: [:order_verbal]
 
     delegate :language, :level, to: :order_language_criterion, allow_nil: true
 

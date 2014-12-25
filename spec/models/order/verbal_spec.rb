@@ -38,7 +38,7 @@ RSpec.describe Order::Verbal, :type => :model do
 
   describe '#check_dates' do
     let(:order) do
-      create :order_verbal,
+      create :order_verbal, main_language_criterion: (build :order_language_criterion),
                      reservation_dates: [(build :order_reservation_date, date: '01.02.2014', order_language_criterion: nil),
                                          (build :order_reservation_date, date: '02.02.2014', order_language_criterion: nil)]
     end
@@ -54,7 +54,7 @@ RSpec.describe Order::Verbal, :type => :model do
           count += 1
         end
       end
-      expect(count).to eq(2)
+      expect(count).to eq(0)
     end
 
     it '#different' do
