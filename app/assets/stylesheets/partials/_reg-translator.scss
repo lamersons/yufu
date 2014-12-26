@@ -69,3 +69,14 @@
 		}
 	}
 }//.section-reg-translator.section-reg-translator-6
+
+//Стили для сообщений
+#new_message {
+  //Зона дропа при загрузке файла
+  DIV.lang-test {
+    DIV.dropzone {
+      float: right;
+      width: 75%;
+    }
+  }
+}//.section-reg-translator.section-reg-translator-3
