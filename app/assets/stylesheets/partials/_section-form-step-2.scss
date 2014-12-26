@@ -55,6 +55,9 @@
 					width: ($grid-container-width - 10px * 2 - 40px - 200px) / 7;
 					position: relative;
 					//Первый столбец
+                    &.nav_td{
+                      width: 36px;
+                    }
 					&:first-of-type {
 						width: 200px;
 						text-align: left;

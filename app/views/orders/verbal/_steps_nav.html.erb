@@ -8,13 +8,13 @@
         <%end%>
       </div>
       <div class="col-1 clearfix circles">
-        <%= link_to url_for(controller: :orders, action: :update, order: {step: 0}), method: :put do%>
+        <%= link_to url_for(controller: :orders, action: :update, order: {step: 1}), method: :put do%>
             <span class=<%='active' if @order.step == 1%>>1</span>
         <%end%>
-        <%= link_to url_for(controller: :orders, action: :update, order: {step: 1}), method: :put do%>
+        <%= link_to url_for(controller: :orders, action: :update, order: {step: 2}), method: :put do%>
             <span class=<%='active' if @order.step == 2%>>2</span>
         <%end%>
-        <%= link_to url_for(controller: :orders, action: :update, order: {step: 2}), method: :put do%>
+        <%= link_to url_for(controller: :orders, action: :update, order: {step: 3}), method: :put do%>
             <span class=<%='active' if @order.step == 3%>>3</span>
         <%end%>
       </div>

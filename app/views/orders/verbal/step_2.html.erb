@@ -1,6 +1,7 @@
 <!-- Раздел с формой -->
 <%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-2"} do |f| %>
 <%= f.hidden_field :_type%>
+<%= f.hidden_field :step, value: 3%>
 <!-- Контейнер -->
 <div class="container clearfix">
   <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:interpretation)%></span></h1>
@@ -18,7 +19,7 @@
 <tr>
 <td></td>
 
-<%@order.different_dates.each_with_index do |date, i|%>
+<%@reservation_dates.each_with_index do |date, i|%>
         <td class="date-cont" data-num="<%=i%>" style="<%='display: none' if i>=7 %>" >
           <em><%=l date.date, format: :full%></em>
         </td>
@@ -27,8 +28,8 @@
 <tr>
     <td><%=@order.main_language_criterion.language.name%> <sup><%=ts(:interpretation)%></sup></td>
     <%i=0%>
-    <%@order.reservation_dates.each do |date|%>
-            <td class="active date_<%=i%> day<%=date.date.strftime '%d-%m-%Y'%>" style="<%='display: none' if i>=7 %>" data-date="<%=date.date.strftime '%d-%m-%Y'%>" data-cost="<%=@order.main_language_criterion.price%>">
+    <%@reservation_dates.each do |date|%>
+            <td class="active date_<%=i%> day<%=date.date.strftime '%d-%m-%Y'%> <%='choosen' if date.human_made%>" style="<%='display: none' if i>=7 %>" data-date="<%=date.date.strftime '%d-%m-%Y'%>" data-cost="<%=@order.main_language_criterion.price%>">
               <em class="cost"><%=date.price%> Eur</em>
               <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
               <div class="dropdown">
@@ -41,17 +42,18 @@
                 <input type="hidden" name="order[reservation_dates_attributes][][_id]" value="<%=date.id%>">
                 <input type="hidden" class="hours" name="order[reservation_dates_attributes][][hours]" value="<%=date.hours%>">
                 <input type="hidden" class="hours" name="order[reservation_dates_attributes][][order_language_criterion_id]" value="<%=@order.main_language_criterion.id%>">
-                <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]" value="1">
+                <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]"  value="<%=date.human_made ? '0' : '1'%>">
               </div>
             </td>
+      <%i += 1%>
     <%end%>
-    <td></td>
+    <td class="nav_td"></td>
 </tr>
 <%@order.reserve_language_criterions.each do |lc| %>
 <tr>
   <td><%=lc.language.name%> <sup><%=ts(:interpretation)%></sup></td>
   <%i=0%>
-  <%@order.reservation_dates.each do |date|%>
+  <%@reservation_dates.each do |date|%>
           <td class="active date_<%=i%> day<%=date.date.strftime '%d-%m-%Y'%>" style="<%='display: none' if i>=7 %>"  data-cost="<%=lc.price%>" data-date="<%=date.date.strftime '%d-%m-%Y'%>">
             <em class="cost"><%=date.price%> Eur</em>
             <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>

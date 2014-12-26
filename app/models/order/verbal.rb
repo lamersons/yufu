@@ -32,7 +32,7 @@ module Order
     delegate :name, to: :location, prefix: true, allow_nil: true
 
     before_save :check_dates
-    before_save :add_extra_dates
+    after_save :add_extra_dates
     after_save :check_pay_way
     # TODO: should be removed
     def sum
@@ -70,13 +70,27 @@ module Order
     private
 
     def add_extra_dates
-      reservation_dates.each do |date|
-        reservation_dates.create date: {day: date.day+1, year: date.year, month: date.month}
-        reservation_dates.create  date: {day: date.day+2, year: date.year, month: date.month}
-        reservation_dates.create  date: {day: date.day+3, year: date.year, month: date.month}
-        reservation_dates.create  date: {day: date.day-1, year: date.year, month: date.month}
-        reservation_dates.create  date: {day: date.day-2, year: date.year, month: date.month}
-        reservation_dates.create  date: {day: date.day-3, year: date.year, month: date.month}
+      if step == 2
+        reservation_dates.made_by_human.each do |date|
+          add_extra_date(date, 1)
+          add_extra_date(date, 2)
+          add_extra_date(date, 3)
+          add_extra_date(date, -1)
+          add_extra_date(date, -2)
+          add_extra_date(date, -3)
+        end
+      end
+      if step == 1
+        reservation_dates.where(human_made: false).destroy
+      end
+    end
+
+    def add_extra_date(date, num)
+      new_date = reservation_dates.build(date: date.date+num, human_made: false)
+      if new_date.valid?
+        new_date.save!
+      else
+        new_date.destroy
       end
     end
 

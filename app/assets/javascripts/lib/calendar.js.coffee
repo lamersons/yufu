@@ -8,11 +8,23 @@ class @Calendar
   constructor: ->
     @start_date = new Date
     @start_date.setDate(1)
+    @get_choosen()
     @render_calendar()
     $('.calendar .arrow.right').click @next_page
     $('.calendar .arrow.left').click @prev_page
     $('body').click @date_click
     return
+
+  get_choosen: ->
+    $.ajax
+      url: "/api/v1/reservation_dates?order_id=#{$('input#order_id').val()}"
+      format: 'json'
+      async: false
+      success: (data)=>
+        for date in data.reservation_dates
+          @choosen.push {date: date['date'], hours: date['hours']}
+    return
+
 
   render_calendar: ->
     $('.choosen').removeClass('choosen')

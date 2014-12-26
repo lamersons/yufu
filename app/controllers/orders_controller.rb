@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
     @directions = Direction.all
     @languages = Language.all
     @order = Order::Base.find params[:id]
+    @reservation_dates = @order.reservation_dates.order('date ASC')
     @show_modal = params[:show_modal]
     if @order.step == 3
       session[:back_to_order] = edit_order_path(@order)
@@ -31,7 +32,6 @@ class OrdersController < ApplicationController
   def update
     @order = Order::Base.find params[:id]
     if @order.update_attributes order_params
-      @order.update_attribute :step, @order.step+1
       session[:back_to_order] = edit_order_path(@order)
       if @order.step == 3
         authenticate_user!

@@ -2,6 +2,8 @@
 <%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-1"} do |f| %>
 <%= hidden_field_tag :profile_id, params[:profile_id]%>
 <%= f.hidden_field :_type%>
+<%= f.hidden_field :step, value: 2%>
+<input type="hidden" id="order_id" value="<%=@order.id%>">
 <!-- Контейнер -->
 <div class="container clearfix">
 <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:interpretation)%></span></h1>

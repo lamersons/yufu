@@ -169,6 +169,22 @@ RSpec.describe Order::Verbal, :type => :model do
       expect(order.reservation_dates.where(date: Date.parse('09.01.2015')).count).to eq(1)
     end
 
+    it 'only one field' do
+      order.update reservation_dates_attributes: [date: Date.parse('20.01.2015')]
+      expect(order.reservation_dates.where(date: Date.parse('05.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('04.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('03.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('07.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('08.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('09.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('21.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('22.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('23.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('19.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('18.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('17.01.2015')).count).to eq(1)
+    end
+
   end
 
 end
