@@ -20,6 +20,7 @@ Yufu.FileUploadMixin = Ember.Mixin.create(
               for_parent[parent] = object
               document = object.store.createRecord(name,for_parent )
               document.set(attr, fileToUpload)
+              document.set('fileName', file.name)
               document.set('name', file.name))(file)
         reader.readAsDataURL(file)
 

@@ -10,13 +10,17 @@ Yufu.Service = DS.Model.extend({
 
   val_price: (->
     res = null
-    $.ajax
-      url: "api/v1/languages_groups_price"
-      dataType: 'json'
-      data: {language_id: @get('language').content.get('id'), level: @get('level')}
-      async: false
-      success: (data)=>
-        res = data.price
-        @set('price', data.price)
-    return res).property('language.id', 'level')
+    if @get('language')? && @get('level')?
+      $.ajax
+        url: "api/v1/languages_groups_price"
+        dataType: 'json'
+        data: {language_id: @get('language').content.get('id'), level: @get('level')}
+        async: false
+        success: (data)=>
+          res = data.price
+          @set('price', data.price)
+      return res
+    else
+      0
+  ).property('language', 'level')
 })

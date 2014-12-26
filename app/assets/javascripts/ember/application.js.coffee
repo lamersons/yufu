@@ -15,8 +15,8 @@
 #= require datepicker/ember-spin-box
 #= require datepicker/templates
 
-window.Yufu = Ember.Application.create({rootElement: '#yufu_app'})
-
+window.Yufu = Ember.Application.create
+  rootElement: '#yufu_app'
 
 $(window).on 'dragover', (e)->
   e.preventDefault()

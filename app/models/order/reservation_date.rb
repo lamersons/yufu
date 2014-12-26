@@ -15,6 +15,20 @@ module Order
 
     scope :made_by_human, -> {where human_made: true}
 
+    def available?(language = nil, level = nil)
+      language = language || order_language_criterion.try(:language)
+      level    = level || order_language_criterion.try(:level)
+      !Profile::Translator::Individual.free_on(date).support(language, level).empty?
+    end
+    alias :available_for? :available?
+
+    def available_level(language = nil)
+      return level if available?(language)
+      Order::Verbal::TRANSLATION_LEVELS.reverse.each do |lvl|
+        return lvl if available?(language, lvl)
+      end
+    end
+
     def fake?
       order_language_criterion_id.nil?
     end
