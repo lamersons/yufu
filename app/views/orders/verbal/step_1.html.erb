@@ -18,154 +18,155 @@
 <!-- /Колонка -->
 <div class="clear"></div>
 <!-- Колонка -->
-<div class="col-1 position-relative">
-  <p><%=ts(:translation_place)%></p>
+<div style="min-height: 195px">
+    <div class="col-1 position-relative">
+      <p><%=ts(:translation_place)%></p>
 
-  <div class="custom-select ui-widget">
-    <%=f.select :location_id, City.with_approved_translators.collect {|c| [c.name, c.id]}%>
-  </div>
-  <label class="checkbox clearfix long">
-    <%=f.check_box :include_near_city %>
-    <em></em>
-
-    <p><%=ts(:include_near_city)%>
-      <span class="tooltip-icon-small js-tooltip rel-js-tooltip-block-city" data-target=".js-tooltip-block-city"></span>
-    </p>
-  </label>
-
-  <div class="js-tooltip-block-city" show-tooltip yu-parent="rel-js-tooltip-block-city">
-    <%=ts(:include_near_city_hint)%>
-  </div>
-</div>
-<!-- /Колонка -->
-<!-- Колонка -->
-  <div class="container clearfix right-cont">
-    <div class="inline_lang_form">
-      <div class="col-1">
-        <p><%=ts(:translation_language)%></p>
-        <div class="custom-select">
-          <select name="order[main_language_criterion][language_id]" id="order_language_criterion_language" >
-            <option></option>
-            <%Language.all.each do |l|%>
-                <option value="<%=l.id%>" <%='selected' if @order.main_language_criterion.try(:language_id) == l.id%>><%=l.name%></option>
-            <%end%>
-          </select>
-        </div>
+      <div class="custom-select ui-widget">
+        <%=f.select :location_id, City.with_approved_translators.collect {|c| [c.name, c.id]}%>
       </div>
+      <label class="checkbox clearfix long" style="position: absolute">
+        <%=f.check_box :include_near_city %>
+        <em></em>
 
+        <p><%=ts(:include_near_city)%>
+          <span class="tooltip-icon-small js-tooltip rel-js-tooltip-block-city" data-target=".js-tooltip-block-city"></span>
+        </p>
+      </label>
 
-      <div class="col-07">
-        <p><%=ts(:translation_level)%></p>
-
-        <div class="custom-select bordered">
-          <select name="order[main_language_criterion][level]" id="order_language_criterion_level" >
-            <option value='guide' <%='selected' if @order.main_language_criterion.try(:level) == 'guide'%>><%=ts(:guide, scope: 'enums.order/verbal.translation_levels')%></option>
-            <option value='business' <%='selected' if @order.main_language_criterion.try(:level) == 'business'%>><%=ts(:business, scope: 'enums.order/verbal.translation_levels')%></option>
-            <option value='expert' <%='selected' if @order.main_language_criterion.try(:level) == 'expert'%>><%=ts(:expert, scope: 'enums.order/verbal.translation_levels')%></option>
-          </select>
-        </div>
+      <div class="js-tooltip-block-city" show-tooltip yu-parent="rel-js-tooltip-block-city">
+        <%=ts(:include_near_city_hint)%>
       </div>
-      <div class="col-05">
-        <p><%=ts(:price)%></p>
-        <input type="text" value="<%=@order.main_language_criterion.try(:price)%>" readonly>
-      </div>
-      <div class="col-05 last remove_lang">
-        <a id="remove_lang" class="pink-bright"><%=ts(:delete_language)%></a>
-      </div>
-      <div class="clear"></div>
     </div>
-
-    <div class="inline_lang_form invisible" style="display: none">
-      <input id="id" type="hidden" name="order[reserve_language_criterions_attributes][][id]" value="" disabled>
-      <div class="col-1">
-        <p><%=ts(:reserve_translation_language)%></p>
-        <div class="custom-select">
-          <select name="order[reserve_language_criterions_attributes][][language_id]" id="order_language_criterion_language" disabled>
-            <option></option>
-            <%Language.all.each do |l|%>
-                <option value="<%=l.id%>"><%=l.name%></option>
-            <%end%>
-          </select>
-        </div>
-      </div>
-
-
-      <div class="col-07">
-        <p><%=ts(:translation_level)%></p>
-
-        <div class="custom-select bordered">
-          <select name="order[reserve_language_criterions_attributes][][level]" id="order_language_criterion_level" disabled>
-            <option value='guide' ><%=ts(:guide, scope: 'enums.order/verbal.translation_levels')%></option>
-            <option value='business' ><%=ts(:business, scope: 'enums.order/verbal.translation_levels')%></option>
-            <option value='expert' ><%=ts(:expert, scope: 'enums.order/verbal.translation_levels')%></option>
-          </select>
-        </div>
-      </div>
-      <div class="col-05">
-        <p><%=ts(:price)%></p>
-        <input type="text" value="" readonly disabled>
-      </div>
-      <div class="col-05 last remove_lang">
-        <a id="remove_lang" class="pink-bright"><%=ts(:delete_language)%></a>
-      </div>
-      <div class="clear"></div>
-    </div>
-<% @order.reserve_language_criterions.each do |cr|%>
+    <!-- /Колонка -->
+    <!-- Колонка -->
+    <div class="container clearfix right-cont">
       <div class="inline_lang_form">
-        <input id="id" type="hidden" name="order[reserve_language_criterions_attributes][][id]" value="<%= cr.id.to_s%>">
         <div class="col-1">
           <p><%=ts(:translation_language)%></p>
           <div class="custom-select">
-            <select name="order[reserve_language_criterions_attributes][][language_id]" id="order_language_criterion_language" >
+            <select name="order[main_language_criterion][language_id]" id="order_language_criterion_language" >
               <option></option>
               <%Language.all.each do |l|%>
-                  <option value="<%=l.id%>" <%='selected' if cr.language_id == l.id%>><%=l.name%></option>
+                  <option value="<%=l.id%>" <%='selected' if @order.main_language_criterion.try(:language_id) == l.id%>><%=l.name%></option>
               <%end%>
             </select>
           </div>
-          </div>
+        </div>
 
 
         <div class="col-07">
           <p><%=ts(:translation_level)%></p>
 
           <div class="custom-select bordered">
-            <select name="order[reserve_language_criterions_attributes][][level]" id="order_language_criterion_level" >
-              <option value='guide' <%='selected' if cr.level == 'guide'%>><%=ts(:guide, scope: 'enums.order/verbal.translation_levels')%></option>
-              <option value='business' <%='selected' if cr.level == 'business'%>><%=ts(:business, scope: 'enums.order/verbal.translation_levels')%></option>
-              <option value='expert' <%='selected' if cr.level == 'expert'%>><%=ts(:expert, scope: 'enums.order/verbal.translation_levels')%></option>
+            <select name="order[main_language_criterion][level]" id="order_language_criterion_level" >
+              <option value='guide' <%='selected' if @order.main_language_criterion.try(:level) == 'guide'%>><%=ts(:guide, scope: 'enums.order/verbal.translation_levels')%></option>
+              <option value='business' <%='selected' if @order.main_language_criterion.try(:level) == 'business'%>><%=ts(:business, scope: 'enums.order/verbal.translation_levels')%></option>
+              <option value='expert' <%='selected' if @order.main_language_criterion.try(:level) == 'expert'%>><%=ts(:expert, scope: 'enums.order/verbal.translation_levels')%></option>
             </select>
           </div>
-          </div>
+        </div>
         <div class="col-05">
           <p><%=ts(:price)%></p>
-          <input type="text" value="<%=cr.price%>" readonly>
+          <input type="text" value="<%=@order.main_language_criterion.try(:price)%>" readonly>
         </div>
         <div class="col-05 last remove_lang">
           <a id="remove_lang" class="pink-bright"><%=ts(:delete_language)%></a>
         </div>
         <div class="clear"></div>
+      </div>
+
+      <div class="inline_lang_form invisible" style="display: none">
+        <input id="id" type="hidden" name="order[reserve_language_criterions_attributes][][id]" value="" disabled>
+        <div class="col-1">
+          <p><%=ts(:reserve_translation_language)%></p>
+          <div class="custom-select">
+            <select name="order[reserve_language_criterions_attributes][][language_id]" id="order_language_criterion_language" disabled>
+              <option></option>
+              <%Language.all.each do |l|%>
+                  <option value="<%=l.id%>"><%=l.name%></option>
+              <%end%>
+            </select>
+          </div>
         </div>
-<%end%>
+
+
+        <div class="col-07">
+          <p><%=ts(:translation_level)%></p>
+
+          <div class="custom-select bordered">
+            <select name="order[reserve_language_criterions_attributes][][level]" id="order_language_criterion_level" disabled>
+              <option value='guide' ><%=ts(:guide, scope: 'enums.order/verbal.translation_levels')%></option>
+              <option value='business' ><%=ts(:business, scope: 'enums.order/verbal.translation_levels')%></option>
+              <option value='expert' ><%=ts(:expert, scope: 'enums.order/verbal.translation_levels')%></option>
+            </select>
+          </div>
+        </div>
+        <div class="col-05">
+          <p><%=ts(:price)%></p>
+          <input type="text" value="" readonly disabled>
+        </div>
+        <div class="col-05 last remove_lang">
+          <a id="remove_lang" class="pink-bright"><%=ts(:delete_language)%></a>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <% @order.reserve_language_criterions.each do |cr|%>
+          <div class="inline_lang_form">
+            <input id="id" type="hidden" name="order[reserve_language_criterions_attributes][][id]" value="<%= cr.id.to_s%>">
+            <div class="col-1">
+              <p><%=ts(:translation_language)%></p>
+              <div class="custom-select">
+                <select name="order[reserve_language_criterions_attributes][][language_id]" id="order_language_criterion_language" >
+                  <option></option>
+                  <%Language.all.each do |l|%>
+                      <option value="<%=l.id%>" <%='selected' if cr.language_id == l.id%>><%=l.name%></option>
+                  <%end%>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="col-07">
+              <p><%=ts(:translation_level)%></p>
+
+              <div class="custom-select bordered">
+                <select name="order[reserve_language_criterions_attributes][][level]" id="order_language_criterion_level" >
+                  <option value='guide' <%='selected' if cr.level == 'guide'%>><%=ts(:guide, scope: 'enums.order/verbal.translation_levels')%></option>
+                  <option value='business' <%='selected' if cr.level == 'business'%>><%=ts(:business, scope: 'enums.order/verbal.translation_levels')%></option>
+                  <option value='expert' <%='selected' if cr.level == 'expert'%>><%=ts(:expert, scope: 'enums.order/verbal.translation_levels')%></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-05">
+              <p><%=ts(:price)%></p>
+              <input type="text" value="<%=cr.price%>" readonly>
+            </div>
+            <div class="col-05 last remove_lang">
+              <a id="remove_lang" class="pink-bright"><%=ts(:delete_language)%></a>
+            </div>
+            <div class="clear"></div>
+          </div>
+      <%end%>
+
+      <div class="clear"></div>
+      <div class="clear"></div>
+
+
+    </div>
+    <!-- /Колонка -->
+    <div class="clear height-10"></div>
+    <div class="col-1"></div>
+    <div class="col-2 last">
+      <a id="add_lang" class="pink-bright"><span class="bold">+</span> <%=ts(:add_language)%>
+        <span class="tooltip-icon-small js-tooltip rel-js-tooltip-block-lang" data-target=".js-tooltip-block-lang"></span>
+      </a>
+      <div class="js-tooltip-block-lang" show-tooltip yu-parent="rel-js-tooltip-block-lang">
+        <%=ts(:add_language)%>
+      </div>
+    </div>
     <div class="clear"></div>
-    <div class="clear"></div>
-
-
 </div>
-<!-- /Колонка -->
-<div class="clear"></div>
-<div class="col-1"></div>
-<div class="col-2 last">
-  <a id="add_lang" class="pink-bright"><span class="bold">+</span> <%=ts(:add_language)%>
-    <span class="tooltip-icon-small js-tooltip rel-js-tooltip-block-lang" data-target=".js-tooltip-block-lang"></span>
-  </a>
-  <div class="js-tooltip-block-lang" show-tooltip yu-parent="rel-js-tooltip-block-lang">
-    <%=ts(:add_language)%>
-  </div>
-</div>
-<div class="clear"></div>
-
-
 
 <p class="title">Даты резервации</p>
 <%= render partial: 'orders/verbal/calendar'%>
