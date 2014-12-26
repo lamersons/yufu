@@ -1,6 +1,50 @@
 require 'rails_helper'
 
 RSpec.describe Order::ReservationDate, :type => :model do
+
+  describe '#available?' do
+    let(:translator) {create :profile_translator_individual}
+    let(:reservation_date) do
+      language = translator.services.first.language
+      lvl = translator.services.first.level
+      cr = create :order_language_criterion, language: language, level: lvl
+      build :order_reservation_date, order_language_criterion: cr
+    end
+
+    before(:each) {translator}
+
+    context 'not pass arguments' do
+      context 'there is translator who support lvl and language set for reservation_date' do
+        subject{reservation_date.available?}
+        it{is_expected.to be_truthy}
+      end
+
+      context 'there is no translator who support lvl and language set for reservation_date' do
+        subject{build(:order_reservation_date).available?}
+        it{is_expected.to be_falsey}
+      end
+    end
+
+    context 'pass arguments' do
+      let(:reservation_date) {build :order_reservation_date}
+      subject{reservation_date.available? language, level}
+      context 'there is translator who support passed lvl and language' do
+        let(:language) {translator.services.first.language}
+        let(:level) {translator.services.first.level}
+
+        it{is_expected.to be_truthy}
+      end
+
+      context 'there is no translator who support passed lvl and language' do
+        let(:language) {create :language}
+        let(:level) {'guide'}
+
+        it{is_expected.to be_falsey}
+      end
+    end
+
+  end
+
   describe '#cost' do
     let(:default_currency) {create :currency, default: true}
     let(:reservation_date) {order.reservation_dates.first}
