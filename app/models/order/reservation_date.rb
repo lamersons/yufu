@@ -12,6 +12,10 @@ module Order
 
     delegate :language, :level, to: :order_language_criterion, allow_nil: true
 
+    def available?
+      !Profile::Translator::Base.free_on(date).empty?
+    end
+
     def fake?
       order_language_criterion_id.nil?
     end

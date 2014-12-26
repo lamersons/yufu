@@ -29,5 +29,20 @@ RSpec.describe Profile::Translator::Individual, :type => :model do
     end
   end
 
+  describe 'scope supported' do
+    let(:translator_in_scope) {create :profile_translator_individual}
+    let(:translator_with_other_language) {create :profile_translator_individual}
+    let(:translator_with_other_level) {create :profile_translator_individual, services: [build(:service, level: 'guide')]}
+    let(:service) {translator_in_scope.services.first}
+
+    before(:each) { translator_in_scope; translator_with_other_language; translator_with_other_level }
+
+    subject{Profile::Translator::Individual.support service.language, service.level}
+
+    it{is_expected.to include(translator_in_scope)}
+    it{is_expected.not_to include(translator_with_other_language)}
+    it{is_expected.not_to include(translator_with_other_level)}
+  end
+
 
 end

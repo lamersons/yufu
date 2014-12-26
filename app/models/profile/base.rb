@@ -15,6 +15,7 @@ module Profile
     belongs_to :user
 
     scope :approved, -> {where total_approve: true}
+
     validates_presence_of :user
 
     after_save if: -> {user.changed?} do
