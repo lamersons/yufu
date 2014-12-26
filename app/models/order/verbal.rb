@@ -32,7 +32,7 @@ module Order
     delegate :name, to: :location, prefix: true, allow_nil: true
 
     before_save :check_dates
-    before_save :add_extra_dates
+    # before_save :add_extra_dates
     after_save :check_pay_way
     # TODO: should be removed
     def sum

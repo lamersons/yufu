@@ -21,6 +21,7 @@ gem 'state_machine'
 
 # delayed jobs
 gem 'sidekiq'
+gem 'whenever'
 
 # Search engine
 gem 'ransack', github: 'Zhomart/ransack', branch: 'mongoid'

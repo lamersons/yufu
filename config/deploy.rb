@@ -1,7 +1,7 @@
 
 require 'rvm/capistrano' # Для работы rvm
 require 'bundler/capistrano' # Для работы bundler. При изменении гемов bundler автоматически обновит все гемы на сервере, чтобы они в точности соответствовали гемам разработчика.
-# require 'whenever/capistrano' # built-in Capistrano recipe for easy crontab updates with deploys
+require 'whenever/capistrano' # built-in Capistrano recipe for easy crontab updates with deploys
 require 'capistrano-unicorn'
 
 
