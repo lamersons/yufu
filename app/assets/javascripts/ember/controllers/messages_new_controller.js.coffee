@@ -9,3 +9,4 @@ Yufu.MessagesNewController = Ember.ObjectController.extend
       @model.save().then =>
         @transitionToRoute 'messages'
 
+

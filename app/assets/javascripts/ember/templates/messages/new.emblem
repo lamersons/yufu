@@ -10,25 +10,26 @@ form#new_message
 
   .col-2.lang-test.clearfix.position-relative
     .dropzone.dropzone-lang-test
-        view Yufu.UploadDragAndDropMultiple name="doc" object=education model='document' parent='education'
-            .doc_list: each document in education.documents: span.doc_name {{document.name}}
-            = ts 'frontend.profile.or_drag_here'
+      view Yufu.UploadDragAndDropMultiple name="file" object=model model='attachment' parent='message'
+        .doc_list
+          = each attachment in model.attachments
+            span.doc_name {{attachment.name}}
+        = ts 'frontend.profile.or_drag_here'
     label.file
-        view Yufu.FileUploadMultiple name="doc" file=avatar object=education multiple='multiple' model='document' parent='education'
+      view Yufu.FileUploadMultiple name="file" file=avatar object=model multiple='multiple' model='attachment' parent='message'
         em
-            ts 'frontend.profile.choose'
+          ts 'frontend.profile.choose'
             | ...
-        span.tooltip-icon-small.js-tooltip data-target=".js-tooltip-test-file"
+      span.tooltip-icon-small.js-tooltip data-target=".js-tooltip-test-file"
     .height-5
     .hover-tooltip.js-tooltip-test-file style='width: 300px;'
-        span.icon
-        p = ts 'frontend.profile.upload_warning'
+      span.icon
+      p = ts 'frontend.profile.upload_warning'
 
   .clear
-  .height-10
+  .height-20
   .grey-line
   .height-10
-
 
 
   button.pink#submit{action 'create'}
