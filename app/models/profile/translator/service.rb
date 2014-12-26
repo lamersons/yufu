@@ -14,6 +14,8 @@ module Profile
 
       embedded_in :profile_translator_individual
 
+      validates_inclusion_of :level, in: Order::Verbal::TRANSLATION_LEVELS
+
       def name
         "#{language.name} | lvl: #{level}"
       end

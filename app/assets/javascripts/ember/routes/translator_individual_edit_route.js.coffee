@@ -43,7 +43,7 @@ Yufu.TranslatorIndividualEditRoute = Ember.Route.extend({
     controller.set 'sense_of_translation', ['from chinese', 'to chinese']
     controller.set 'truefalse', [true, false]
     controller.set 'statuses', ['status_1', 'status_2']
-    controller.set 'lang_levels', ['level_1', 'level_2']
+    controller.set 'lang_levels', @store.find('verbal_translation_level')
     controller.set 'pay_ways', ['bank', 'visa', 'alipay']
     controller.set 'educations', ['3 grades', 'PTY', 'University', 'other']
     controller.set 'specializations', ['business', 'entertainment']

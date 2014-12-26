@@ -43,9 +43,12 @@
         <p>{{ts 'frontend.profile.language_level'}}</p>
         <div class="custom-select">
             {{view Ember.Select
-            selection=service.level
+            value=service.level
             prompt='-'
-            content=lang_levels}}
+            content=lang_levels
+            optionLabelPath='content.value'
+            optionValuePath='content.id'
+            }}
         </div>
     </div>
     <!-- /Колонка -->
