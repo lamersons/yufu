@@ -19,6 +19,13 @@ module Order
     end
     alias :available_for? :available?
 
+    def available_level(language = nil)
+      return level if available?(language)
+      Order::Verbal::TRANSLATION_LEVELS.reverse.each do |lvl|
+        return lvl if available?(language, lvl)
+      end
+    end
+
     def fake?
       order_language_criterion_id.nil?
     end

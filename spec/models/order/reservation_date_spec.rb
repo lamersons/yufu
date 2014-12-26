@@ -45,6 +45,40 @@ RSpec.describe Order::ReservationDate, :type => :model do
 
   end
 
+  describe '#available_level' do
+    subject{reservation_date.available_level}
+    context 'current level is available' do
+      let(:translator) {create :profile_translator_individual}
+      let(:reservation_date) do
+        language = translator.services.first.language
+        lvl = translator.services.first.level
+        cr = create :order_language_criterion, language: language, level: lvl
+        build :order_reservation_date, order_language_criterion: cr
+      end
+      it 'returns current level for reservation_date' do
+        is_expected.to eq(reservation_date.order_language_criterion.level)
+      end
+    end
+    context 'current level is not available' do
+      let(:translator) {create :profile_translator_individual }
+      let(:translator_guide) {create :profile_translator_individual,
+                                     services: [(build :service,
+                                                       language: translator.services.first.language, level: 'guide')]}
+
+      let(:reservation_date) do
+        translator_guide
+        language = translator.services.first.language
+        lvl = 'business'
+        cr = create :order_language_criterion, language: language, level: lvl
+        build :order_reservation_date, order_language_criterion: cr
+      end
+
+      it 'returns max available level' do
+        is_expected.to eq('expert')
+      end
+    end
+  end
+
   describe '#cost' do
     let(:default_currency) {create :currency, default: true}
     let(:reservation_date) {order.reservation_dates.first}
