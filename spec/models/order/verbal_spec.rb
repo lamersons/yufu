@@ -38,7 +38,7 @@ RSpec.describe Order::Verbal, :type => :model do
 
   describe '#check_dates' do
     let(:order) do
-      create :order_verbal,
+      create :order_verbal, main_language_criterion: (build :order_language_criterion),
                      reservation_dates: [(build :order_reservation_date, date: '01.02.2014', order_language_criterion: nil),
                                          (build :order_reservation_date, date: '02.02.2014', order_language_criterion: nil)]
     end
@@ -54,7 +54,7 @@ RSpec.describe Order::Verbal, :type => :model do
           count += 1
         end
       end
-      expect(count).to eq(2)
+      expect(count).to eq(0)
     end
 
     it '#different' do
@@ -153,6 +153,20 @@ RSpec.describe Order::Verbal, :type => :model do
       order.reserve_language_criterions.each do |cr|
         expect(cr).to be_a(Order::LanguageCriterion)
       end
+    end
+
+  end
+
+  describe '#add_extra_dates' do
+    let(:order) {create :order_verbal, reservation_dates: [build(:order_reservation_date, date: Date.parse('06.01.2015'))]}
+
+    it 'expect extra dates' do
+      expect(order.reservation_dates.where(date: Date.parse('05.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('04.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('03.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('07.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('08.01.2015')).count).to eq(1)
+      expect(order.reservation_dates.where(date: Date.parse('09.01.2015')).count).to eq(1)
     end
 
   end
