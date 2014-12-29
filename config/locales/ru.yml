@@ -252,6 +252,8 @@ ru:
   should_agree: Подтвердите, пожалуйста согласие с условиями
 
   order:
+    verbal:
+      attention: Внимание!
     written:
       or_drop_here: Или перетащите сюда
       upload: Загрузите

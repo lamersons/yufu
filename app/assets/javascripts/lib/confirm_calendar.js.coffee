@@ -8,6 +8,11 @@ class @ConfirmCalendar
     $('.arrow.right').click @next_week
     $('.arrow.left').click @prev_week
     $('#edit_order').submit @validate_form
+    $('.attention-text span').hover ->
+      console.log '!!!'
+#      $(this).parent().next().fadeIn()
+#    , ->
+#      $(this).parent().next().fadeOut()
     @rerender()
     return
   show_hide_dropdown: (object)=>
