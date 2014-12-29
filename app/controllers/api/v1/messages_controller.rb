@@ -45,10 +45,12 @@ module Api
 
         # TODO: should be moved to frontend
         def resolve_params!
-          params[:message][:attachments_attributes] = params[:message].delete :attachments
-          params[:message][:attachments_attributes].each do |a|
-            a['data'] = a.delete :file
-            a['data_file_name'] = a.delete :file_name
+          unless params[:message][:attachments].blank?
+            params[:message][:attachments_attributes] = params[:message].delete :attachments
+            params[:message][:attachments_attributes].each do |a|
+              a['data'] = a.delete :file
+              a['data_file_name'] = a.delete :file_name
+            end
           end
         end
     end
