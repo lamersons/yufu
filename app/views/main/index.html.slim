@@ -69,7 +69,7 @@
       p
         = ts('main.written_translate.block1')
       .over
-        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', language_criterions_attributes: [{level: 1, language_id: Language.first.id}]}), class: 'create_order', method: :post do
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'law'}), class: 'create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .item
@@ -78,7 +78,7 @@
       p
         = ts('main.written_translate.block2')
       .over
-        = link_to '#' do
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'technical'}), class: 'create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .item.third
@@ -87,7 +87,7 @@
       p
         = ts('main.written_translate.block3')
       .over
-        = link_to '#' do
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'standard'}), class: 'create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .clear
@@ -97,7 +97,7 @@
       p
         = ts('main.written_translate.block4')
       .over
-        = link_to '#' do
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'artistic'}), class: 'create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .item
@@ -106,7 +106,7 @@
       p
         = ts('main.written_translate.block5')
       .over
-        = link_to '#' do
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'site_localisation'}), class: 'create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .item.third
@@ -115,7 +115,7 @@
       p
         = ts('main.written_translate.block6')
       .over
-        = link_to '#' do
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'language_localisation'}), class: 'create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .clear.height-10

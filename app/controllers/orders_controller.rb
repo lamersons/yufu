@@ -89,7 +89,7 @@ class OrdersController < ApplicationController
                          {main_language_criterion: [:id, :level, :cost, :language_id]},
                          {reservation_dates_attributes: [:_id, :date, :hours, :_destroy]}]
                       when 'Order::Written'
-                        [:translation_type, :words_number, :level, {translation_language_ids: []},
+                        [:translation_type, :words_number, :level, :translation_type, {translation_language_ids: []},
                          :file, {get_original_attributes: [:type, :name, :address, :index]}, :original_language_id,
                         {get_translation_attributes: [:email, :additional]}, {get_original: [:type, :name, :address, :index]}]
                       else
