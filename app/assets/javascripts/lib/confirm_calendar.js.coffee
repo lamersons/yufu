@@ -9,11 +9,13 @@ class @ConfirmCalendar
     $('.arrow.left').click @prev_week
     $('#edit_order').submit @validate_form
     $('.attention-text span').hover ->
-      console.log '!!!'
-#      $(this).parent().next().fadeIn()
-#    , ->
-#      $(this).parent().next().fadeOut()
+      $(this).parent().next().fadeIn()
+    , ->
+      $(this).parent().next().fadeOut()
     @rerender()
+    $('form').submit ->
+      if $('choosen').length == 0
+        return false
     return
   show_hide_dropdown: (object)=>
     if $(object.target).closest('td.empty').length > 0

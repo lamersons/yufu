@@ -34,7 +34,7 @@
               <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
               <% unless date.available?(@order.main_language_criterion.language, @order.location, @order.main_language_criterion.level) || date.available_level(@order.main_language_criterion.language, @order.location).nil? %>
                   <div class="attention-text"><%=ts('order.verbal.attention')%></div>
-                  <p class="attention-tooltip attention-2"><b class="icon"></b>Только переводчик эксперт доступен на этот день</p>
+                  <p class="attention-tooltip attention-2"><b class="icon"></b>Только переводчик <%=I18n.t("level_#{date.available_level(@order.main_language_criterion.language, @order.location)}")%> доступен на этот день</p>
               <%end%>
               <div class="dropdown">
                 <b class="icon"></b>
@@ -48,7 +48,7 @@
                 <input type="hidden" class="hours" name="order[reservation_dates_attributes][][order_language_criterion_id]" value="<%=@order.main_language_criterion.id%>">
                 <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]"  value="<%=date.human_made ? '0' : '1'%>">
               </div>
-              <p class="attention-tooltip attention-2"><b class="icon"></b>Только переводчик эксперт доступен на этот день</p>
+              <p class="attention-tooltip attention-2"><b class="icon"></b>Только переводчик <%=I18n.t("level_#{date.available_level(@order.main_language_criterion.language, @order.location)}")%> доступен на этот день</p>
             </td>
       <%i += 1%>
     <%end%>
@@ -64,7 +64,7 @@
             <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
             <% unless date.available?(lc.language, @order.location, lc.level) || date.available_level(lc.language, @order.location).nil? %>
                 <div class="attention-text"><%=ts('order.verbal.attention')%></div>
-                <p class="attention-tooltip attention-2"><b class="icon"></b>Только переводчик эксперт доступен на этот день</p>
+                <p class="attention-tooltip attention-2"><b class="icon"></b>Только переводчик <%=ts(date.available_level(lc.language, @order.location))%> доступен на этот день</p>
             <%end%>
             <div class="dropdown">
               <b class="icon"></b>

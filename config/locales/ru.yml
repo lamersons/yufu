@@ -237,6 +237,9 @@ ru:
   level_1: Гид
   level_2: Бизнес
   level_3: Эксперт
+  level_guide: гид
+  level_business: бизнес
+  level_expert: эксперт
   hours: часов
   pay_ways: Способ оплаты
   visa: Платежная карта
