@@ -18,7 +18,9 @@ class OrdersController < ApplicationController
     @directions = Direction.all
     @languages = Language.all
     @order = Order::Base.find params[:id]
-    @reservation_dates = @order.reservation_dates.order('date ASC')
+    if @order._type == 'Order::Verbal'
+      @reservation_dates = @order.reservation_dates.order('date ASC')
+    end
     @show_modal = params[:show_modal]
     if @order.step == 3
       session[:back_to_order] = edit_order_path(@order)
