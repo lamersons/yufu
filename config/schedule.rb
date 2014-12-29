@@ -23,6 +23,6 @@ set :output, 'log/whenever.log'
 
 job_type :sidekiq,  "cd :path && RAILS_ENV=:environment bundle exec sidekiq-client :task :output"
 
-every 1.day, at: '01:20 am' do
+every 1.day, at: '02:15 am' do
   sidekiq 'push OrderCleanerWorker'
 end
