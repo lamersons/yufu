@@ -35,11 +35,21 @@ module Api
         end
 
         def message_params
-          params.require(:message).permit :body#, :recipient_id
+          resolve_params!
+          params.require(:message).permit :body, attachments_attributes: [:data, :data_file_name]#, :recipient_id
         end
 
         def set_message
           @message = Message.find params[:id]
+        end
+
+        # TODO: should be moved to frontend
+        def resolve_params!
+          params[:message][:attachments_attributes] = params[:message].delete :attachments
+          params[:message][:attachments_attributes].each do |a|
+            a['data'] = a.delete :file
+            a['data_file_name'] = a.delete :file_name
+          end
         end
     end
   end
