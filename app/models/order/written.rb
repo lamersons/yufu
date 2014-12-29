@@ -2,6 +2,8 @@ module Order
   class Written < Base
     include Mongoid::Paperclip
 
+    before_create :build_relations
+
     TYPES  = %w(law technical  standard artistic site_localisation language_localisation)
     LEVELS = %w(translate_and_correct translate)
 
@@ -26,6 +28,12 @@ module Order
 
     def price(currency = nil, curr_level = level)
       Price.with_markup(cost currency, curr_level)
+    end
+
+    private
+    def build_relations
+      build_get_original
+      build_get_translation
     end
   end
 end

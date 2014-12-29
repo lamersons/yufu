@@ -5,14 +5,14 @@
 <div class="section-form payment" ng-init="order.step=3">
     <!-- Контейнер -->
     <div class="container clearfix">
-        <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=ts(:written)%></span></h1>
+        <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=@order.model_name.human%></span></h1>
         <p class="title"><%=ts(:order_details)%> – № <%=@order.id%></p>
         <div class="bordered-block points">
             <% @order.translation_languages.each do |l|%>
                 <p class="point"><span class="bold number">1.</span><%=ts(@order.level)%> <%=@order.original_language.name %> > <%=l.name%> <%=@order.words_number%> <%=ts('words')%> = <span class="semi-bold"><%=(Price.with_markup(l.languages_group.written_cost(@order.level))*@order.words_number).round(2)%></span></p>
             <%end%>
             <div class="line"></div>
-            <p class="pink-bright bold">Сумма к оплате: <%=@order.price%></p>
+            <p class="pink-bright bold"><%ts('order.written.sum_to_pay')%> <%=@order.price%></p>
         </div>
         <div class="height-10"></div>
         <label class="checkbox clearfix">
@@ -21,7 +21,7 @@
             <p><%=ts(:agree_first_part)%><a href="#"> <%=ts(:service_conditions)%></a>, <a href="#"><%=ts(:cancel_conditions)%></a> <%=ts(:and)%> <a href="#"><%=ts(:compensation_rules)%></a> <%=ts(:agree_last_part)%></p>
         </label>
         <div class="height-20"></div>
-        <p class="title">Информация о плательщике</p>
+        <p class="title"><%=ts('order.written.payer_info')%></p>
           <%- if current_user.partner? %>
               <p><%=ts('mongoid.attributes.order/base.partners_client')%></p>
               <div class="custom-select">
@@ -31,21 +31,21 @@
           <% else %>
             <%=f.fields_for :client_info_attributes do |ci|%>
                 <div class="col-1">
-                  <p><%=ts(:fist_name)%></p>
+                  <p><%=Order::ClientInfo.human_attribute_name(:fist_name)%></p>
                   <%=ci.text_field :first_name, value: @order.client_info.first_name, required: true%>
                 </div>
                 <div class="col-1">
-                  <p><%=ts(:last_name)%></p>
+                  <p><%=Order::ClientInfo.human_attribute_name(:last_name)%></p>
                   <%=ci.text_field :last_name, value: @order.client_info.last_name, required: true%>
                 </div>
                 <div class="col-1 last clearfix birth">
-                  <p><%=ts(:birthday)%></p>
+                  <p><%=Order::ClientInfo.human_attribute_name(:birthday)%></p>
                   <div class="custom-select three-in-one">
                     <%=ci.date_select :birthday, :start_year => 1940, use_month_numbers: true,  required: true%>
                   </div>
                 </div>
                 <div class="col-1">
-                  <p><%=ts(:email)%></p>
+                  <p><%=Order::ClientInfo.human_attribute_name(:email)%></p>
                   <%=ci.text_field :email, value: @order.client_info.email, required: true%>
                 </div>
               <%end%>

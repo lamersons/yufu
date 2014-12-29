@@ -4,8 +4,8 @@ class @WrittenStepOne
     $('.select_translation_language').change @recount_price
     $('#order_original_language').change @recount_price
     $('#order_words_number').on 'input', @recount_price
-    $('#order_location_id').combobox()
-    $('#order_location_id').hasScrollBar()
+#    $('#order_location_id').combobox()
+#    $('#order_location_id').hasScrollBar()
     return
 
   add_language: =>

@@ -89,6 +89,28 @@ ru:
         language_criterions: Языки
         reservation_dates: Даты
         days: Дней
+      order/written:
+        original_language: Основной язык перевода
+        translation_language: Язык перевода
+        translation_type: Тип перевода
+        words_number: Число слов
+        file: файл для перевода
+        get_translation: Получение перевода
+        get_original: Получение оригинала
+      order/get_translation:
+        email: Email
+        additional: Дополнительно
+      order/get_original:
+        name: Имя получателя
+        address: Адрес получателя
+        index: Почтовый индекс
+      order/client_info:
+        first_name: Имя
+        last_name: Фамилия
+        email: Email
+        birthday: Дата рождения
+
+
       partners_client:
         orders_count: Кол-во заказов
       profile/translator/base:
