@@ -92,6 +92,7 @@ GEM
     ckeditor (4.1.1)
       cocaine
       orm_adapter (~> 0.5.0)
+    cli (1.3.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -366,6 +367,9 @@ GEM
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
+    sidekiq-client-cli (0.1.7)
+      cli
+      sidekiq (>= 2.15)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -479,6 +483,7 @@ DEPENDENCIES
   selenium-webdriver
   semantic-ui-sass
   sidekiq
+  sidekiq-client-cli
   simplecov
   slim-rails
   state_machine

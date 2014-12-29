@@ -8,7 +8,8 @@ RSpec.describe Order::ReservationDate, :type => :model do
       language = translator.services.first.language
       lvl = translator.services.first.level
       cr = create :order_language_criterion, language: language, level: lvl
-      build :order_reservation_date, order_language_criterion: cr
+      build :order_reservation_date, order_language_criterion: cr,
+            order_verbal: create(:order_verbal, location: translator.city)
     end
 
     before(:each) {translator}
@@ -20,14 +21,16 @@ RSpec.describe Order::ReservationDate, :type => :model do
       end
 
       context 'there is no translator who support lvl and language set for reservation_date' do
-        subject{build(:order_reservation_date).available?}
+        subject{build(:order_reservation_date,
+                      order_verbal: create(:order_verbal, location: translator.city)).available?}
         it{is_expected.to be_falsey}
       end
     end
 
     context 'pass arguments' do
       let(:reservation_date) {build :order_reservation_date}
-      subject{reservation_date.available? language, level}
+      let(:city) {translator.city}
+      subject{reservation_date.available? language, city, level}
       context 'there is translator who support passed lvl and language' do
         let(:language) {translator.services.first.language}
         let(:level) {translator.services.first.level}
@@ -53,7 +56,8 @@ RSpec.describe Order::ReservationDate, :type => :model do
         language = translator.services.first.language
         lvl = translator.services.first.level
         cr = create :order_language_criterion, language: language, level: lvl
-        build :order_reservation_date, order_language_criterion: cr
+        build :order_reservation_date, order_language_criterion: cr,
+              order_verbal: create(:order_verbal, location: translator.city)
       end
       it 'returns current level for reservation_date' do
         is_expected.to eq(reservation_date.order_language_criterion.level)
@@ -70,7 +74,8 @@ RSpec.describe Order::ReservationDate, :type => :model do
         language = translator.services.first.language
         lvl = 'business'
         cr = create :order_language_criterion, language: language, level: lvl
-        build :order_reservation_date, order_language_criterion: cr
+        build :order_reservation_date, order_language_criterion: cr,
+              order_verbal: create(:order_verbal, location: translator.city)
       end
 
       it 'returns max available level' do

@@ -12,20 +12,22 @@ module Order
     validates_uniqueness_of  :date, scope: [:order_verbal]
 
     delegate :language, :level, to: :order_language_criterion, allow_nil: true
+    delegate :location, to: :order_verbal
 
     scope :made_by_human, -> {where human_made: true}
 
-    def available?(language = nil, level = nil)
+    def available?(language = nil, city = nil, level = nil)
       language = language || order_language_criterion.try(:language)
-      level    = level || order_language_criterion.try(:level)
-      !Profile::Translator::Individual.free_on(date).support(language, level).empty?
+      city     = city     || order_verbal.location
+      level    = level    || order_language_criterion.try(:level)
+      !Profile::Translator::Individual.free_on(date).support(language, city, level).empty?
     end
     alias :available_for? :available?
 
-    def available_level(language = nil)
+    def available_level(language = nil, city = nil)
       return level if available?(language)
       Order::Verbal::TRANSLATION_LEVELS.reverse.each do |lvl|
-        return lvl if available?(language, lvl)
+        return lvl if available?(language, city, lvl)
       end
     end
 
