@@ -1,7 +1,7 @@
 <!-- Раздел с формой -->
 <div class="section-form section-form-written section-form-written-step-1 step-1">
 <!-- Бекграунд модального окна -->
-<% if @show_modal != 'false'%>
+<% if false %>
 <div class="modal-bg" ></div>
 <div class="modal modal-lang clearfix" ng-hide="hideModals">
   <%= form_for @order, url: url_for(controller: 'orders', action: 'add_available_languages'), method: :post,  html: {id: 'add_languages'} do |al| %>
@@ -38,7 +38,7 @@
         <div class="col-1">
             <p><%=Order::Written.human_attribute_name(:original_language)%></p>
             <div class="custom-select">
-                <%=f.select :original_language_id, @order.available_languages.map {|l| [l.name, l.id]}, include_blank: true%>
+                <%=f.select :original_language_id, Language.all.map {|l| [l.name, l.id]}, include_blank: true%>
             </div>
         </div>
     <!-- /Колонка -->
