@@ -6,6 +6,7 @@ FactoryGirl.define do
     total_approve true
     services   {[build(:service)]}
     educations {[build(:education)]}
+    nearby_cities {[create(:city), create(:city)]}
     is_active true
     association :city
   end

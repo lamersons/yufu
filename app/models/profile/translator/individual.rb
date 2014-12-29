@@ -47,9 +47,11 @@ module Profile
       validates_inclusion_of :grade, in: GRADES
       before_save :set_total_approve, unless: -> { total_approve || total_approve_changed?}
 
-      scope :support, -> (language, level)  do
-        language_id = language.is_a?(Language) ? language.id : language
-        where 'services.language_id' => language_id, 'services.level' => level
+      scope :support, -> (language, city, level)  do
+        langauge_id = language.is_a?(Language) ? language.id : language
+        city_id     = city.is_a?(City) ? city.id : city
+        where('services.language_id' => langauge_id, 'services.level' => level)
+            .any_of({city_id: city_id}, {nearby_city_ids: city_id})
       end
 
       def approved?
