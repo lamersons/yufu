@@ -4,6 +4,7 @@ Yufu.OrderAdapter = Yufu.ApplicationAdapter.extend
 
 Yufu.Order = DS.Model.extend {
   state: DS.attr 'string'
+  cost: DS.attr 'number'
   application_status: DS.attr 'string'
 
   # verbal relation

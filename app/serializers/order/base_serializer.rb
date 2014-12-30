@@ -1,5 +1,5 @@
 class Order::BaseSerializer < ActiveModel::Serializer
-  attributes :id, :state, :type, :application_status
+  attributes :id, :state, :type, :application_status, :cost
 
   has_one :airport_pick_up
   has_one :car_rent

@@ -63,9 +63,10 @@
           </td>
           <td>01-09-2014</td>
           <td class="center">{{reservation_dates_count}}</td>
-          <td>200 €</td>
+          <td>{{cost}} €</td>
           <td class="center">{{state}}</td>
-          {{#if profile.is_translator}}
+
+          {{#if controller.profile.is_translator}}
             <td class="access">
               {{#if hasPrimaryApplication}}
                 <b>{{ts 'frontend.order_application.statuses.primary'}}</b>
