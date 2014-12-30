@@ -60,7 +60,7 @@
     <div class="col-1">
         <p><%=Order::Written.human_attribute_name(:translation_type)%></p>
         <div class="custom-select">
-          <%=f.select :translation_type, Order::Written::TYPES.map {|l| [I18n.t(l, scope: 'enums.order/written.types'), l]}%>
+          <%=f.select :level, Order::Written::TYPES.map {|l| [I18n.t(l, scope: 'enums.order/written.types'), l]}%>
         </div>
     </div>
     <div class="col-1 last">
@@ -110,7 +110,7 @@
     <!-- Колонка -->
     <div class="col-1 level_1">
         <label class="radio no-left clearfix">
-            <%=f.radio_button :level, Order::Written::LEVELS[0], required: true%>
+            <%=f.radio_button :second_level, Order::Written::LEVELS[0], required: true%>
             <em></em>
             <p>
                 <span class="semi-bold">Перевод + корретировка</span>
@@ -132,7 +132,7 @@
     <!-- Колонка -->
     <div class="col-1 level_2">
         <label class="radio no-left clearfix">
-          <%=f.radio_button :level, Order::Written::LEVELS[1], required: true%>
+          <%=f.radio_button :second_level, Order::Written::LEVELS[1], required: true%>
             <em></em>
             <p>
                 <span class="semi-bold">Перевод</span>

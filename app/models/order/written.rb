@@ -10,6 +10,7 @@ module Order
     field :translation_type
     field :words_number, type: Integer, default: 0
     field :level
+    field :second_level
 
     has_mongoid_attached_file :file
     do_not_validate_attachment_file_type :file
@@ -23,7 +24,7 @@ module Order
     accepts_nested_attributes_for :get_original, :get_translation
 
     def cost(currency = nil, curr_level = level)
-      (translation_languages.inject(0) {|sum, l| sum + l.written_cost(translation_type, currency)}) * words_number
+      (translation_languages.inject(0) {|sum, l| sum + l.written_cost(curr_level, currency)}) * words_number
     end
 
     def price(currency = nil, curr_level = level)

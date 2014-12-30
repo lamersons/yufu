@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
     prices = []
     params[:languages].each do |id|
       language = Language.find id
-      prices << {name: language.name, price: Price.with_markup(language.written_cost(params[:level]))}
+      prices << {name: language.name, price: Price.with_markup(language.written_cost(params[:level])*params[:words_number].to_i)}
     end
     respond_with prices: prices
   end

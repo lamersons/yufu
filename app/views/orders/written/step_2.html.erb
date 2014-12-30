@@ -111,7 +111,7 @@
         <div class="bordered-block thin">
           <p>
           <%@order.translation_languages.each_with_index do |l, i|%>
-           <%=Price.with_markup(l.languages_group.written_cost(@order.level))*@order.words_number%><%=' +' unless i == @order.translation_languages.count-1%>
+           <%=(Price.with_markup(l.languages_group.written_cost(@order.level)*@order.words_number))%><%=' +' unless i == @order.translation_languages.count-1%>
           <%end%>
           = <span class="bold pink-bright"><%=@order.price%></span></p>
         </div>
