@@ -13,9 +13,11 @@ class @ConfirmCalendar
     , ->
       $(this).parent().next().fadeOut()
     @rerender()
-    $('form').submit ->
-      if $('choosen').length == 0
-        return false
+    $('.inavailable').hover ->
+      $(this).find('.inavailable-tooltip').fadeIn()
+    , ->
+      $(this).find('.inavailable-tooltip').fadeOut()
+    @recount_sum()
     return
   show_hide_dropdown: (object)=>
     if $(object.target).closest('td.empty').length > 0
@@ -58,23 +60,28 @@ class @ConfirmCalendar
       return false
     return true
 
-  recount_price: (object, hours)->
+  recount_price: (object, hours)=>
     price = parseFloat $(object).data('cost')
     hours = parseInt hours
-    $(object).find('.cost').html("#{price * 8 + 1.5 * price * (hours - 8)} Eur")
+    $(object).find('.cost').html("#{Math.round(100*(price * 8 + 1.5 * price * (hours - 8)))/100} Eur")
+    @recount_sum()
+    return
+
+  recount_sum: ->
     sum = 0
     cost_str = ''
     $('.choosen').each (i)->
       cost_str += "#{$(this).find('.cost').html()} + "
       sum += parseFloat $(this).find('.cost').html()
     cost_str = cost_str.substring(0, cost_str.length - 2)
-    cost_str += "= <span class='bold pink-bright'>#{sum} Eur</span>"
+    cost_str += "= <span class='bold pink-bright'>#{Math.round(sum*100)/100} Eur</span>"
     $('.bordered-block p').html cost_str
     return
 
+
   next_week: =>
     date = @first_date
-    for i in [1..7]
+    for i in [1..6]
       date = $(date).next()
     if date.next().is('.date-cont')
       $('td.date-cont').fadeOut(500)

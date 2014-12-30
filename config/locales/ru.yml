@@ -263,6 +263,7 @@ ru:
   order:
     verbal:
       attention: Внимание!
+      invailable_date: Нет свободных переводчиков на данную дату
     written:
       or_drop_here: Или перетащите сюда
       upload: Загрузите
