@@ -16,8 +16,9 @@ class UsersController < ApplicationController
       if session[:back_to_order].nil?
         redirect_to user_path
       else
+        path = session[:back_to_order].dup
         session[:back_to_order] = nil
-        redirect_to session[:back_to_order]
+        redirect_to path
       end
     else
       render 'users/edit', layout: 'application'
