@@ -21,7 +21,7 @@ module Api
 
       def update
         if current_user.update(user_params)
-          head :ok
+          respond_with current_user, statue: :updated, location: false
         else
           render json: current_user.errors, status: :unprocessable_entity
         end

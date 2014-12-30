@@ -2,6 +2,8 @@
   h1.main
     = ts 'frontend.settings.title'
   .height-10
+  .flash
+    = message
   .clear
   label.checkbox
     Ember.Checkbox checkedBinding=duplicate_messages_on_email
