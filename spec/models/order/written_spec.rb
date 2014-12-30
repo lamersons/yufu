@@ -6,11 +6,11 @@ RSpec.describe Order::Written, type: :model do
 
   describe '#cost' do
     let(:expected_cost) do
-      (order.translation_languages.inject (0) {|sum, l| sum + l.written_cost(order.translation_type)}) * order.words_number
+      (order.translation_languages.inject (0) {|sum, l| sum + l.written_cost(order.level)}) * order.words_number
     end
 
     context 'pass level' do
-      let(:level) {'translate'}
+      let(:level) {'law'}
       subject{order.cost nil, level}
       it {is_expected.to eq(expected_cost)}
       it {is_expected.not_to eq(Float::INFINITY)}
