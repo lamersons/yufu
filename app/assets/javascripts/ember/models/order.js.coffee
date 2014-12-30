@@ -6,6 +6,11 @@ Yufu.Order = DS.Model.extend {
   state: DS.attr 'string'
   application_status: DS.attr 'string'
 
+  # verbal relation
+  main_language_criterion: DS.belongsTo 'language_criterion', embedded: 'always'
+  reserve_language_criterions: DS.hasMany 'language_criterion', embedded: 'always'
+  # end verbal relation
+
   hasPrimaryApplication: (->
     @get('application_status') == 'primary'
   ).property('application_status')

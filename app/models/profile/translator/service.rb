@@ -17,7 +17,7 @@ module Profile
       validates_inclusion_of :level, in: Order::Verbal::TRANSLATION_LEVELS
 
       def name
-        "#{language.name} | lvl: #{level}"
+        "#{language.try(:name)} | lvl: #{level}"
       end
     end
   end

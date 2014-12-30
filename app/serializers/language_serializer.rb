@@ -1,3 +1,3 @@
 class LanguageSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :short_name
 end

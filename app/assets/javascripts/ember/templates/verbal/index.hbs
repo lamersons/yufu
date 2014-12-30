@@ -49,7 +49,18 @@
         <tr>
           <td>{{id}}</td>
           <td>{{location_name}}</td>
-          <td>EN <sup>RU LV</sup></td>
+          <td>
+              <span {{bind-attr title=main_language_criterion.language.name}}>
+                {{main_language_criterion.language.short_name}}
+              </span>
+              <sup>
+                  {{#each cr in reserve_language_criterions}}
+                    <span {{bind-attr title=cr.language.name}}>
+                      {{cr.language.short_name}}
+                    </span>
+                  {{/each}}
+              </sup>
+          </td>
           <td>01-09-2014</td>
           <td class="center">{{reservation_dates_count}}</td>
           <td>200 €</td>
