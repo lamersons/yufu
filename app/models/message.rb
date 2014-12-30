@@ -18,7 +18,7 @@ class Message
   validates_presence_of :body, :sender
   validates_associated :attachments
 
-  before_create :send_dublicates
+  after_create :send_dublicates
 
   def from_backoffice?
     sender.is_a? Admin
