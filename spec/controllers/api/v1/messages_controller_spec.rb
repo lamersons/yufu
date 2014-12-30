@@ -34,14 +34,14 @@ RSpec.describe Api::V1::MessagesController, :type => :controller do
     context 'scope inbox' do
       let(:scope) {{}}
       it 'assigns inbox messages as @messages' do
-        expect{subject}.to change{assigns :messages}.to([inbox_message])
+        expect{subject}.to change{assigns :messages_mailer}.to([inbox_message])
       end
     end
 
     context 'scope outbox' do
       let(:scope) {{scope: 'outbox'}}
       it 'assigns outbox messages as @messages' do
-        expect{subject}.to change{assigns :messages}.to([message])
+        expect{subject}.to change{assigns :messages_mailer}.to([message])
       end
     end
   end

@@ -39,6 +39,10 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  # Settings
+  field :duplicate_messages_on_email, type: Mongoid::Boolean, default: false
+  field :duplicate_messages_on_sms,   type: Mongoid::Boolean, default: false
+
   #agent's system
   belongs_to :overlord, class_name: 'User'
   has_many   :vassals,  class_name: 'User'
