@@ -2,6 +2,8 @@ ru:
   new_password: Новый пароль
   new_password_confirmation: Подтвердите пароль
 
+  new_messsage: Новое сообщение в Yufu.net
+
   login_form:
     title: Вход в систему
     submit: Войти
