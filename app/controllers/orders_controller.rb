@@ -87,7 +87,7 @@ class OrdersController < ApplicationController
                         [:include_near_city, :goal, :translator_sex, :location_id, :translator_native_language_id,
                          :native_language_id, {direction_ids: []}, {reserve_language_criterions_attributes: [:id, :level, :cost, :language_id]},
                          {main_language_criterion: [:id, :level, :cost, :language_id]},
-                         {reservation_dates_attributes: [:_id, :date, :hours, :_destroy]}]
+                         {reservation_dates_attributes: [:_id, :date, :hours, :_destroy, :order_language_criterion_id]}]
                       when 'Order::Written'
                         [:translation_type, :words_number, :level, :translation_type, {translation_language_ids: []},
                          :file, {get_original_attributes: [:type, :name, :address, :index]}, :original_language_id,
