@@ -2,6 +2,10 @@ ru:
   new_password: Новый пароль
   new_password_confirmation: Подтвердите пароль
 
+  login_form:
+    title: Вход в систему
+    submit: Войти
+
   admin:
     actions:
       pay_order:

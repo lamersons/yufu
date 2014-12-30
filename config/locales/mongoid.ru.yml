@@ -132,6 +132,7 @@ ru:
         last_name: Фамилия
         middle_name: Отчество
         password: Пароль
+        remember_me: Запомнить меня
       vacancy:
         name: Название
         text: Описание
