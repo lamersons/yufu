@@ -147,7 +147,7 @@
 		border-top: 1px solid #ededed;
 	}
 	//Текстовое поле, Текстовая область
-	INPUT[type=text], INPUT[type=email], TEXTAREA, .pseudo_textarea {
+	INPUT[type=text], INPUT[type=password], INPUT[type=email], TEXTAREA, .pseudo_textarea {
 		display: block;
 		box-shadow: none;
 		outline: none;
@@ -170,6 +170,28 @@
 			border: none;
 		}
 	}
+
+    INPUT[type=submit] {
+      font-weight: 300;
+      color: white;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1em;
+      border: none;
+      background: $font-pink-bright-color;
+      @include border-radius(10px);
+      display: inline-block;
+      padding: 5px 10px 5px 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      &.button-grey {
+        background: #e1e1e1;
+      }
+      &.button-disabled {
+        background: image-url("select-disabled-bg.png");
+        cursor: default;
+      }
+    }
+
 	TEXTAREA {
 		height: auto;
 		padding-top: 5px;

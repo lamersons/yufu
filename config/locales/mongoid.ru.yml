@@ -132,6 +132,9 @@ ru:
         last_name: Фамилия
         middle_name: Отчество
         password: Пароль
+        remember_me: Запомнить меня
+        duplicate_messages_on_email: Дублировать сообщения на Email
+        duplicate_messages_on_sms: Дублировать сообщения по смс
       vacancy:
         name: Название
         text: Описание

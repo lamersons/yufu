@@ -39,7 +39,7 @@ module Api
 
       private
       def user_params
-        params.require(:user).permit :email, :overlord_id
+        params.require(:user).permit :email, :overlord_id, :duplicate_messages_on_email, :duplicate_messages_on_sms
       end
     end
 

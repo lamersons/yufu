@@ -30,6 +30,9 @@
           <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.translations'}}<span class="caret"></span></span>
       {{/link-to}}
     {{/if}}
+    {{#link-to "settings" tagName="a" class="item" }}
+        <span {{bind-attr href="view.href"}}>{{ts 'frontend.main_menu.settings'}}<span class="caret"></span></span>
+    {{/link-to}}
 
   </div>
 </div>
