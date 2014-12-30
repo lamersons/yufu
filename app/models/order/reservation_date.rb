@@ -29,6 +29,7 @@ module Order
       Order::Verbal::TRANSLATION_LEVELS.reverse.each do |lvl|
         return lvl if available?(language, city, lvl)
       end
+      return nil
     end
 
     def fake?

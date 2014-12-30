@@ -8,7 +8,14 @@ class @ConfirmCalendar
     $('.arrow.right').click @next_week
     $('.arrow.left').click @prev_week
     $('#edit_order').submit @validate_form
+    $('.attention-text span').hover ->
+      $(this).parent().next().fadeIn()
+    , ->
+      $(this).parent().next().fadeOut()
     @rerender()
+    $('form').submit ->
+      if $('choosen').length == 0
+        return false
     return
   show_hide_dropdown: (object)=>
     if $(object.target).closest('td.empty').length > 0
@@ -34,13 +41,14 @@ class @ConfirmCalendar
       @recount_price $(object.target).closest('td.active'), $(object.target).closest('td.active').find('span b').html()
       return
     if $(object.target).closest('td.active').length > 0
-      $('.dropdown').fadeOut(500)
-      $("td[data-date='#{$(object.target).closest('td.active').data('date')}']").removeClass('choosen')
-      $("td[data-date='#{$(object.target).closest('td.active').data('date')}']").find('input').attr('disabled', true)
-      $(object.target).closest('td.active').find('input.destroy').val('0')
-      $(object.target).closest('td.active').find('input').attr('disabled', false)
-      $(object.target).closest('td.active').addClass('choosen')
-      @recount_price $(object.target).closest('td.active'), $(object.target).closest('td.active').find('span b').html()
+      unless $(object.target).closest('td.active').hasClass('inavailable')
+        $('.dropdown').fadeOut(500)
+        $("td[data-date='#{$(object.target).closest('td.active').data('date')}']").removeClass('choosen')
+        $("td[data-date='#{$(object.target).closest('td.active').data('date')}']").find('input').attr('disabled', true)
+        $(object.target).closest('td.active').find('input.destroy').val('0')
+        $(object.target).closest('td.active').find('input').attr('disabled', false)
+        $(object.target).closest('td.active').addClass('choosen')
+        @recount_price $(object.target).closest('td.active'), $(object.target).closest('td.active').find('span b').html()
       return
     $('.dropdown').fadeOut(500)
 
