@@ -95,7 +95,8 @@ module Order
       else if user.client?
              self.update! owner: user.client_profile
            else
-             raise ArgumentError, 'user has not suitable profile'
+             user.profiles << Profile::Client.new
+             self.update! owner: user.client_profile
            end
       end
     end

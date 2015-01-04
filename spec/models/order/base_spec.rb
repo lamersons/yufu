@@ -77,7 +77,10 @@ RSpec.describe Order::Base, :type => :model do
 
     context 'user is translator' do
       let(:user) {create :translator}
-      it {expect{subject}.to raise_error(ArgumentError)}
+      # it {expect{subject}.to raise_error(ArgumentError)}
+      it 'creates client profile for user' do
+        expect{subject}.to change{user.client?}.from(false).to(true)
+      end
     end
   end
 end
