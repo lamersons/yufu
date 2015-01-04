@@ -22,6 +22,15 @@ ru:
       statuses:
         primary: Основной
         secondary: Резервный
+    profiles:
+      title: Мои профили
+      translator_individual: Индивидуальный переводчик
+      translator_company: Компания
+      translator: Переводчик
+      client: Клиент
+      partner: Партенр
+
+
     agents_system:
       invites: Инвайты
       my_link: Моя ссылка

@@ -1,40 +1,49 @@
-
-{{#if translatorIndividual}}
-  <span>{{translatorIndividual._type}} </span>
-  {{#link-to 'translator_individual.edit' translatorIndividual}}{{ts 'frontend.profile.edit'}}{{/link-to}}
-  {{#if translatorIndividual.is_active}}
-    {{ts 'frontend.profile.is_active'}}
-  {{else}}
-    <button class="pink" {{action 'activate' translatorIndividual translatorCompany}}> {{ts 'frontend.profile.activate'}}</button>
-  {{/if}}
-  <br>
-{{/if}}
-
-{{#if translatorCompany}}
-    <span>{{translatorCompany._type}} </span>
-    {{#link-to 'translator_company.edit' translatorCompany}}{{ts 'frontend.profile.edit'}}{{/link-to}}
-    {{#if translatorCompany.is_active}}
+<div class="container clearfix">
+  <h1 class="main">{{ts 'frontend.profiles.title'}}</h1>
+  {{#if translatorIndividual}}
+    {{#link-to 'translator_individual.edit' translatorIndividual}}
+      {{ts 'frontend.profiles.translator_individual'}}
+    {{/link-to}}
+    {{#if translatorIndividual.is_active}}
       {{ts 'frontend.profile.is_active'}}
     {{else}}
-        <button class="pink" {{action 'activate' translatorCompany translatorIndividual}}> {{ts 'frontend.profile.activate'}}</button>
+      <button class="pink" {{action 'activate' translatorIndividual translatorCompany}}> {{ts 'frontend.profile.activate'}}</button>
     {{/if}}
     <br>
-{{/if}}
+  {{/if}}
+
+  {{#if translatorCompany}}
+      {{#link-to 'translator_company.edit' translatorCompany}}
+        {{ts 'frontend.profiles.translator_company'}}
+      {{/link-to}}
+      {{#if translatorCompany.is_active}}
+        {{ts 'frontend.profile.is_active'}}
+      {{else}}
+          <button class="pink" {{action 'activate' translatorCompany translatorIndividual}}> {{ts 'frontend.profile.activate'}}</button>
+      {{/if}}
+      <br>
+  {{/if}}
 
 
-{{#if translatorBase}}
-    <span>{{translatorBase._type}} </span>{{#link-to 'profiles.translator_new'}}{{ts 'frontend.profile.edit'}}{{/link-to}}
-    <br>
-{{/if}}
+  {{#if translatorBase}}
+      {{#link-to 'profiles.translator_new'}}
+        {{ts 'frontend.profiles.translator'}}
+      {{/link-to}}
+      <br>
+  {{/if}}
 
 
-{{#if client}}
-    <span>Профиль клиента </span>{{#link-to 'client.edit' client}}{{ts 'frontend.profile.edit'}}{{/link-to}}
-    <br>
-{{/if}}
-{{#if partner}}
-    <span>Профиль партнера </span>{{#link-to 'partner.edit' partner}}{{ts 'frontend.profile.edit'}}{{/link-to}}
-    <br>
-{{/if}}
-<div class="height-30"></div>
-
+  {{#if client}}
+      {{#link-to 'client.edit' client}}
+          {{ts 'frontend.profiles.client'}}
+      {{/link-to}}
+      <br>
+  {{/if}}
+  {{#if partner}}
+      {{#link-to 'partner.edit' partner}}
+        {{ts 'frontend.profiles.partner'}}
+      {{/link-to}}
+      <br>
+  {{/if}}
+  <div class="height-30"></div>
+</div>
