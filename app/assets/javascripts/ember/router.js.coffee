@@ -40,7 +40,7 @@ Yufu.Router.map ()->
 
     @resource 'link'
 
-
+  @route 'settings'
 
   @resource('balance')
 

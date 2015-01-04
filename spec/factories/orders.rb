@@ -29,7 +29,7 @@ FactoryGirl.define do
   factory :order_written, class: Order::Written do
     association :owner, factory: :profile_client
     translation_type 'standard'
-    level 'translate_and_correct'
+    level 'law'
     association :original_language, factory: :language
     translation_languages {[create(:language)]}
     words_number 2000

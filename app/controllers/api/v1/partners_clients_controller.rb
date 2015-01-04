@@ -39,7 +39,7 @@ module Api
           @profile = Profile::Base.find params[:profile_id]
         end
         def partners_client_params
-          params.require(:partners_client).permit :first_name, :last_name
+          params.require(:partners_client).permit :first_name, :last_name, :middle_name
         end
     end
   end

@@ -63,7 +63,7 @@ RSpec.describe Order::Verbal, :type => :model do
   end
 
   describe 'remove reservation date' do
-    let(:order) {create :order_verbal, reservation_dates: [(build :order_reservation_date), (build :order_reservation_date)]}
+    let(:order) {create :order_verbal, reservation_dates: [(build :order_reservation_date, date: Date.parse('06.01.2015')), (build :order_reservation_date, date: Date.parse('07.01.2015'))]}
     let(:first_date) {order.reservation_dates.first}
     let(:last_date)  {order.reservation_dates.last}
     subject{order.update_attributes reservation_dates_attributes: [{id: first_date.id.to_s, _destroy: true}, {id: last_date.id.to_s, hours: 12}]}
@@ -158,7 +158,7 @@ RSpec.describe Order::Verbal, :type => :model do
   end
 
   describe '#add_extra_dates' do
-    let(:order) {create :order_verbal, reservation_dates: [build(:order_reservation_date, date: Date.parse('06.01.2015'))]}
+    let(:order) {create :order_verbal, step: 2,  reservation_dates: [build(:order_reservation_date, date: Date.parse('06.01.2015'))]}
 
     it 'expect extra dates' do
       expect(order.reservation_dates.where(date: Date.parse('05.01.2015')).count).to eq(1)

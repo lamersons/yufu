@@ -21,6 +21,7 @@ gem 'state_machine'
 
 # delayed jobs
 gem 'sidekiq'
+gem 'sidekiq-client-cli'
 gem 'whenever'
 
 # Search engine

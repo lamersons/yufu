@@ -9,6 +9,8 @@ Yufu.User = DS.Model.extend
   is_client:     DS.attr 'boolean'
   is_partner:    DS.attr 'boolean'
   can_manage_localizations: DS.attr 'boolean'
+  duplicate_messages_on_email: DS.attr 'boolean'
+  duplicate_messages_on_sms: DS.attr 'boolean'
 
   localizations: DS.hasMany 'localization', async: true
 

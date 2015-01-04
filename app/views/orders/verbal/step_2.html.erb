@@ -29,9 +29,16 @@
     <td><%=@order.main_language_criterion.language.name%> <sup><%=ts(:interpretation)%></sup></td>
     <%i=0%>
     <%@reservation_dates.each do |date|%>
-            <td class="active date_<%=i%> day<%=date.date.strftime '%d-%m-%Y'%> <%='choosen' if date.human_made%>" style="<%='display: none' if i>=7 %>" data-date="<%=date.date.strftime '%d-%m-%Y'%>" data-cost="<%=@order.main_language_criterion.price%>">
+            <td class="active date_<%=i%> day<%=date.date.strftime '%d-%m-%Y'%> <%='inavailable' if date.available_level(@order.main_language_criterion.language, @order.location).nil? %> <%='choosen' if date.available?(@order.main_language_criterion.language, @order.location, @order.main_language_criterion.level)%>" style="<%='display: none' if i>=7 %>" data-date="<%=date.date.strftime '%d-%m-%Y'%>" data-cost="<%=@order.main_language_criterion.price%>">
               <em class="cost"><%=date.price%> Eur</em>
+              <%if date.available_level(@order.main_language_criterion.language, @order.location).nil?%>
+                  <div class="inavailable-tooltip tooltip" style="display: none"><%=ts('order.verbal.invailable_date')%></div>
+              <%end%>
               <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
+              <% unless date.available?(@order.main_language_criterion.language, @order.location, @order.main_language_criterion.level) || date.available_level(@order.main_language_criterion.language, @order.location).nil? %>
+                  <div class="attention-text"><%=ts('order.verbal.attention')%></div>
+                  <p class="attention-tooltip attention-2"><b class="icon"></b>Только переводчик <%=I18n.t("level_#{date.available_level(@order.main_language_criterion.language, @order.location)}")%> доступен на этот день</p>
+              <%end%>
               <div class="dropdown">
                 <b class="icon"></b>
                 <em>8</em>
@@ -42,8 +49,9 @@
                 <input type="hidden" name="order[reservation_dates_attributes][][_id]" value="<%=date.id%>">
                 <input type="hidden" class="hours" name="order[reservation_dates_attributes][][hours]" value="<%=date.hours%>">
                 <input type="hidden" class="hours" name="order[reservation_dates_attributes][][order_language_criterion_id]" value="<%=@order.main_language_criterion.id%>">
-                <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]"  value="<%=date.human_made ? '0' : '1'%>">
+                <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]"  value="<%=date.available?(@order.main_language_criterion.language, @order.location, @order.main_language_criterion.level) ? '0' : '1'%>">
               </div>
+              <p class="attention-tooltip attention-2"><b class="icon"></b>Только переводчик <%=I18n.t("level_#{date.available_level(@order.main_language_criterion.language, @order.location)}")%> доступен на этот день</p>
             </td>
       <%i += 1%>
     <%end%>
@@ -54,9 +62,16 @@
   <td><%=lc.language.name%> <sup><%=ts(:interpretation)%></sup></td>
   <%i=0%>
   <%@reservation_dates.each do |date|%>
-          <td class="active date_<%=i%> day<%=date.date.strftime '%d-%m-%Y'%>" style="<%='display: none' if i>=7 %>"  data-cost="<%=lc.price%>" data-date="<%=date.date.strftime '%d-%m-%Y'%>">
+          <td class="active date_<%=i%> day<%=date.date.strftime '%d-%m-%Y'%> <%='inavailable' if date.available_level(lc.language, @order.location).nil? %>" style="<%='display: none' if i>=7 %>"  data-cost="<%=lc.price%>" data-date="<%=date.date.strftime '%d-%m-%Y'%>">
             <em class="cost"><%=date.price%> Eur</em>
+            <%if date.available_level(@order.main_language_criterion.language, @order.location).nil?%>
+                <div class="inavailable-tooltip tooltip" style="display: none"><%=ts('order.verbal.invailable_date')%></div>
+            <%end%>
             <span><i class="dropdown-icon"></i> <b><%=date.hours%> <%=ts(:h)%></b></span>
+            <% unless date.available?(lc.language, @order.location, lc.level) || date.available_level(lc.language, @order.location).nil? %>
+                <div class="attention-text"><%=ts('order.verbal.attention')%></div>
+                <p class="attention-tooltip attention-2"><b class="icon"></b>Только переводчик <%=I18n.t("level_#{date.available_level(lc.language, @order.location)}")%> доступен на этот день</p>
+            <%end%>
             <div class="dropdown">
               <b class="icon"></b>
               <em>8</em>
@@ -69,9 +84,11 @@
               <input type="hidden" class="hours" name="order[reservation_dates_attributes][][order_language_criterion_id]" value="<%=lc.id%>">
               <input type="hidden" class="destroy" name="order[reservation_dates_attributes][][_destroy]" value="1">
             </div>
+
           </td>
           <%i += 1%>
   <%end%>
+  <td class="nav_td"></td>
 </tr>
 <%end%>
 </table>

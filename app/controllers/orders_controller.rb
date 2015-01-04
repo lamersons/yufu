@@ -18,7 +18,9 @@ class OrdersController < ApplicationController
     @directions = Direction.all
     @languages = Language.all
     @order = Order::Base.find params[:id]
-    @reservation_dates = @order.reservation_dates.order('date ASC')
+    if @order._type == 'Order::Verbal'
+      @reservation_dates = @order.reservation_dates.order('date ASC')
+    end
     @show_modal = params[:show_modal]
     if @order.step == 3
       session[:back_to_order] = edit_order_path(@order)
@@ -50,7 +52,7 @@ class OrdersController < ApplicationController
     prices = []
     params[:languages].each do |id|
       language = Language.find id
-      prices << {name: language.name, price: Price.with_markup(language.written_cost(params[:level]))}
+      prices << {name: language.name, price: Price.with_markup(language.written_cost(params[:level])*params[:words_number].to_i)}
     end
     respond_with prices: prices
   end
@@ -85,9 +87,9 @@ class OrdersController < ApplicationController
                         [:include_near_city, :goal, :translator_sex, :location_id, :translator_native_language_id,
                          :native_language_id, {direction_ids: []}, {reserve_language_criterions_attributes: [:id, :level, :cost, :language_id]},
                          {main_language_criterion: [:id, :level, :cost, :language_id]},
-                         {reservation_dates_attributes: [:_id, :date, :hours, :_destroy]}]
+                         {reservation_dates_attributes: [:_id, :date, :hours, :_destroy, :order_language_criterion_id]}]
                       when 'Order::Written'
-                        [:translation_type, :words_number, :level, {translation_language_ids: []},
+                        [:translation_type, :words_number, :level, :translation_type, {translation_language_ids: []},
                          :file, {get_original_attributes: [:type, :name, :address, :index]}, :original_language_id,
                         {get_translation_attributes: [:email, :additional]}, {get_original: [:type, :name, :address, :index]}]
                       else

@@ -3,8 +3,8 @@ class @Lang
     $("#add_lang").click @add_lang
     $("#remove_lang").click @remove_lang
     $( "#target" ).submit @check_langs
-    $('#order_language_criterion_language').change @count_price
-    $('#order_language_criterion_level').change @count_price
+    $('.language_criterion_select_level').change @count_price
+    $('.language_criterion_select_language').change @count_price
   add_lang: =>
     $html = $('.inline_lang_form.invisible').html()
     $('.right-cont').append('<div class="inline_lang_form">'+$html+'</div>')
@@ -17,6 +17,8 @@ class @Lang
     $('.inline_lang_form #remove_lang').last().click @remove_lang
     if ($new_id > 0)
       $('.inline_lang_form .remove_lang').last().show()
+    $('.language_criterion_select_level').last().change @count_price
+    $('.language_criterion_select_language').last().change @count_price
 
   remove_lang: ->
     $(@).parents('.inline_lang_form').remove()

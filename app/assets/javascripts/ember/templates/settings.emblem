@@ -1,0 +1,23 @@
+.section-form
+  h1.main
+    = ts 'frontend.settings.title'
+  .height-10
+  .flash
+    = message
+  .clear
+  label.checkbox
+    Ember.Checkbox checkedBinding=duplicate_messages_on_email
+    em
+    p
+      = ts 'mongoid.attributes.user.duplicate_messages_on_email'
+  .clear
+  label.checkbox
+    Ember.Checkbox checkedBinding=duplicate_messages_on_sms
+    em
+    p
+      = ts 'mongoid.attributes.user.duplicate_messages_on_sms'
+  .clear
+  .height-10
+  button.pink#submit{action 'save'}
+    = ts 'frontend.save'
+  .height-50

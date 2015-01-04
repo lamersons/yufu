@@ -2,7 +2,7 @@
     <div class="steps clearfix">
       <div class="col-1 button first">
         <%if @order.step > 1%>
-            <%= link_to url_for(controller: :orders, action: :update, order: {step: @order.step-2}), method: :put do%>
+            <%= link_to url_for(controller: :orders, action: :update, order: {step: @order.step-1}), method: :put do%>
                 <button><%=ts(:previous)%></button>
             <%end%>
         <%end%>

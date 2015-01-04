@@ -16,11 +16,19 @@ class Message
   accepts_nested_attributes_for :attachments
 
   validates_presence_of :body, :sender
-
   validates_associated :attachments
+
+  after_create :send_dublicates
 
   def from_backoffice?
     sender.is_a? Admin
   end
   alias :from_backoffice :from_backoffice?
+  
+  private
+  def send_dublicates
+    if recipient.present? && recipient.duplicate_messages_on_email?
+      MessagesMailer.create(self).deliver
+    end
+  end
 end

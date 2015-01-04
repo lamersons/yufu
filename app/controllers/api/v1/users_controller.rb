@@ -21,7 +21,7 @@ module Api
 
       def update
         if current_user.update(user_params)
-          head :ok
+          respond_with current_user, statue: :updated, location: false
         else
           render json: current_user.errors, status: :unprocessable_entity
         end
@@ -39,7 +39,7 @@ module Api
 
       private
       def user_params
-        params.require(:user).permit :email, :overlord_id
+        params.require(:user).permit :email, :overlord_id, :duplicate_messages_on_email, :duplicate_messages_on_sms
       end
     end
 

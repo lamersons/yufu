@@ -2,6 +2,12 @@ ru:
   new_password: Новый пароль
   new_password_confirmation: Подтвердите пароль
 
+  new_messsage: Новое сообщение в Yufu.net
+
+  login_form:
+    title: Вход в систему
+    submit: Войти
+
   admin:
     actions:
       pay_order:
@@ -237,6 +243,9 @@ ru:
   level_1: Гид
   level_2: Бизнес
   level_3: Эксперт
+  level_guide: гид
+  level_business: бизнес
+  level_expert: эксперт
   hours: часов
   pay_ways: Способ оплаты
   visa: Платежная карта
@@ -251,6 +260,28 @@ ru:
   agree_last_part: заказчику услуг.
   should_agree: Подтвердите, пожалуйста согласие с условиями
 
+  order:
+    verbal:
+      attention: Внимание!
+      invailable_date: Нет свободных переводчиков на данную дату
+    written:
+      or_drop_here: Или перетащите сюда
+      upload: Загрузите
+      additional_info_hint: <p>Введите дополнительную уточняющую информацию к заказу, если имеются особые пожелания.</p>
+                            <p>Например, если заказ срочный.</p>
+      choose: Выбрать
+      shipping_cost_add: Внимание! Почтовые расходы будут добавлены к вашему счету
+      amount: Суммарная стоимость выбранных услуг
+      post_shipping: <p>Выслать выполненный заказ <br>по почте</p>
+      urgent_letter_shipping: <p>Выслать срочным письмом</p>
+      courier_shipping: <p>Выслать курьером</p>
+      your_email: Ваш email
+      original:
+        name: Имя
+        address: Адрес
+        index: Индекс
+      sum_to_pay: 'Сумма к оплате:'
+      payer_info: Информация о плательщике
 
 #step two
   select_at_last_one_date: Выберете, пожалуйста, хотя бы одну дату

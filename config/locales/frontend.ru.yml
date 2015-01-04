@@ -38,6 +38,7 @@ ru:
       profile: Профиль
       balance: Баланс
       partners_clients: Мои клиенты
+      settings: Настройки
 
     profile:
       is_active: Активный
@@ -120,6 +121,9 @@ ru:
       native_language: Ваш родной язык
       edit: Редактировать
       add_language: Добавить язык
+
+    settings:
+      title: Настройки
 
     translations:
       preview: Предпросмотр

@@ -8,7 +8,16 @@ class @ConfirmCalendar
     $('.arrow.right').click @next_week
     $('.arrow.left').click @prev_week
     $('#edit_order').submit @validate_form
+    $('.attention-text span').hover ->
+      $(this).parent().next().fadeIn()
+    , ->
+      $(this).parent().next().fadeOut()
     @rerender()
+    $('.inavailable').hover ->
+      $(this).find('.inavailable-tooltip').fadeIn()
+    , ->
+      $(this).find('.inavailable-tooltip').fadeOut()
+    @recount_sum()
     return
   show_hide_dropdown: (object)=>
     if $(object.target).closest('td.empty').length > 0
@@ -34,13 +43,14 @@ class @ConfirmCalendar
       @recount_price $(object.target).closest('td.active'), $(object.target).closest('td.active').find('span b').html()
       return
     if $(object.target).closest('td.active').length > 0
-      $('.dropdown').fadeOut(500)
-      $("td[data-date='#{$(object.target).closest('td.active').data('date')}']").removeClass('choosen')
-      $("td[data-date='#{$(object.target).closest('td.active').data('date')}']").find('input').attr('disabled', true)
-      $(object.target).closest('td.active').find('input.destroy').val('0')
-      $(object.target).closest('td.active').find('input').attr('disabled', false)
-      $(object.target).closest('td.active').addClass('choosen')
-      @recount_price $(object.target).closest('td.active'), $(object.target).closest('td.active').find('span b').html()
+      unless $(object.target).closest('td.active').hasClass('inavailable')
+        $('.dropdown').fadeOut(500)
+        $("td[data-date='#{$(object.target).closest('td.active').data('date')}']").removeClass('choosen')
+        $("td[data-date='#{$(object.target).closest('td.active').data('date')}']").find('input').attr('disabled', true)
+        $(object.target).closest('td.active').find('input.destroy').val('0')
+        $(object.target).closest('td.active').find('input').attr('disabled', false)
+        $(object.target).closest('td.active').addClass('choosen')
+        @recount_price $(object.target).closest('td.active'), $(object.target).closest('td.active').find('span b').html()
       return
     $('.dropdown').fadeOut(500)
 
@@ -50,23 +60,28 @@ class @ConfirmCalendar
       return false
     return true
 
-  recount_price: (object, hours)->
+  recount_price: (object, hours)=>
     price = parseFloat $(object).data('cost')
     hours = parseInt hours
-    $(object).find('.cost').html("#{price * 8 + 1.5 * price * (hours - 8)} Eur")
+    $(object).find('.cost').html("#{Math.round(100*(price * 8 + 1.5 * price * (hours - 8)))/100} Eur")
+    @recount_sum()
+    return
+
+  recount_sum: ->
     sum = 0
     cost_str = ''
     $('.choosen').each (i)->
       cost_str += "#{$(this).find('.cost').html()} + "
       sum += parseFloat $(this).find('.cost').html()
     cost_str = cost_str.substring(0, cost_str.length - 2)
-    cost_str += "= <span class='bold pink-bright'>#{sum} Eur</span>"
+    cost_str += "= <span class='bold pink-bright'>#{Math.round(sum*100)/100} Eur</span>"
     $('.bordered-block p').html cost_str
     return
 
+
   next_week: =>
     date = @first_date
-    for i in [1..7]
+    for i in [1..6]
       date = $(date).next()
     if date.next().is('.date-cont')
       $('td.date-cont').fadeOut(500)

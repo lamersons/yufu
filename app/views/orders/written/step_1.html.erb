@@ -1,7 +1,7 @@
 <!-- Раздел с формой -->
 <div class="section-form section-form-written section-form-written-step-1 step-1">
 <!-- Бекграунд модального окна -->
-<% if @show_modal != 'false'%>
+<% if false %>
 <div class="modal-bg" ></div>
 <div class="modal modal-lang clearfix" ng-hide="hideModals">
   <%= form_for @order, url: url_for(controller: 'orders', action: 'add_available_languages'), method: :post,  html: {id: 'add_languages'} do |al| %>
@@ -28,7 +28,7 @@
 
 <%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update') do |f| %>
 <%= f.hidden_field :_type%>
-
+<%= f.hidden_field :step, value: 2%>
 <div class="container clearfix">
   <div class="languages_wrap">
   <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=@order.model_name.human%></span></h1>
@@ -36,15 +36,15 @@
     <p class="title"><%=ts(:translation_params)%></p>
     <!-- Колонка -->
         <div class="col-1">
-            <p><%=ts(:original_language)%></p>
+            <p><%=Order::Written.human_attribute_name(:original_language)%></p>
             <div class="custom-select">
-                <%=f.select :original_language_id, @order.available_languages.map {|l| [l.name, l.id]}, include_blank: true%>
+                <%=f.select :original_language_id, Language.all.map {|l| [l.name, l.id]}, include_blank: true%>
             </div>
         </div>
     <!-- /Колонка -->
     <!-- Колонка -->
     <div class="col-1 translation_lang_wrap" >
-        <p><%=ts(:translation_language)%></p>
+        <p><%=Order::Written.human_attribute_name(:translation_language)%></p>
         <div class="custom-select">
           <select name="order[translation_language_ids][]" id="order_translation_language_ids"  class='select_translation_language'>
             <option></option>
@@ -58,13 +58,13 @@
     <div class="clear"></div>
     <!-- Колонка -->
     <div class="col-1">
-        <p><%=ts(:translation_type)%></p>
+        <p><%=Order::Written.human_attribute_name(:translation_type)%></p>
         <div class="custom-select">
-          <%=f.select :translation_type, Order::Written::TYPES.map {|l| [I18n.t(l, scope: 'enums.order/written.types'), l]}%>
+          <%=f.select :level, Order::Written::TYPES.map {|l| [I18n.t(l, scope: 'enums.order/written.types'), l]}%>
         </div>
     </div>
     <div class="col-1 last">
-      <p>Число слов</p>
+      <p><%=Order::Written.human_attribute_name(:words_number)%></p>
       <%=f.text_field :words_number, required: true%>
     </div>
     <% @order.translation_language_ids.each_with_index do |lang_id, i| %>
@@ -110,7 +110,7 @@
     <!-- Колонка -->
     <div class="col-1 level_1">
         <label class="radio no-left clearfix">
-            <%=f.radio_button :level, Order::Written::LEVELS[0], required: true%>
+            <%=f.radio_button :second_level, Order::Written::LEVELS[0], required: true%>
             <em></em>
             <p>
                 <span class="semi-bold">Перевод + корретировка</span>
@@ -132,7 +132,7 @@
     <!-- Колонка -->
     <div class="col-1 level_2">
         <label class="radio no-left clearfix">
-          <%=f.radio_button :level, Order::Written::LEVELS[1], required: true%>
+          <%=f.radio_button :second_level, Order::Written::LEVELS[1], required: true%>
             <em></em>
             <p>
                 <span class="semi-bold">Перевод</span>

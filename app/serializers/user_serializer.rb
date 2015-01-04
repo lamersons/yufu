@@ -1,6 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :email, :translator_profile_id, :is_translator, :is_partner, :is_client, :partner_profile_id,
-             :can_manage_localizations, :localizations, :avatar_url
+             :can_manage_localizations, :localizations, :avatar_url, :duplicate_messages_on_email,
+             :duplicate_messages_on_sms
 
   def avatar_url
     @object.avatar.url

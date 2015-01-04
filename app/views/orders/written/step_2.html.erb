@@ -2,16 +2,17 @@
 <!--<form class="section-form written written-step-2" action="test.php" method="post" enctype="multipart/form-data" ng-init="step=2">-->
 <%= form_for @order, as: :order, url: url_for(controller: 'orders', action: 'update'), html: {class: "section-form step-1"} do |f| %>
     <%= f.hidden_field :_type%>
+    <%= f.hidden_field :step, value: 3%>
     <div class="container clearfix">
-        <h1 class="main">Разместить заказ на <span class="pink-bright">Письменный перевод</span></h1>
+        <h1 class="main"><%=ts(:make_order_for)%> <span class="pink-bright"><%=@order.model_name.human%></span></h1>
         <div class="height-3"></div>
         <p class="title">Отправка файла</p>
         <!-- Колонка -->
         <div class="col-1 position-relative">
-            <p>Загрузите файл для перевода</p>
+            <p><%=ts('order.written.upload')%>  <%=Order::Written.human_attribute_name(:file)%></p>
             <label class="file">
                 <%=f.file_field :file%>
-                <em>Выбрать...</em>
+                <em><%=ts('order.written.choose')%></em>
                 <span class="tooltip-icon-small js-tooltip rel-js-tooltip-file" data-target=".js-tooltip-file"></span>
             </label>
             <div class="height-5"></div>
@@ -23,95 +24,94 @@
         <!-- /Колонка -->
         <!-- Колонка -->
         <div class="col-2 last drop" nv-file-drop uploader="fileUploader">
-            Или перетащите мышкой сюда
+          <%=ts('order.written.or_drop_here')%>
         </div>
         <!-- /Колонка -->
         <div class="clear"></div>
         <div class="height-20"></div>
-        <p class="title">Получение перевода</p>
+        <p class="title"><%=Order::Written.human_attribute_name(:get_translation)%></p>
         <%=f.fields_for :get_translation do |t|%>
         <!-- Колонка -->
-        <div class="col-1">
-            <p>Email получателя</p>
-          <%=t.email_field :email, required: true, placeholder: I18n.t(:your_email)%>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-2 last position-relative">
-            <p>Дополнительная информация <span class="tooltip-icon-small js-tooltip rel-js-tooltip-additional" data-target=".js-tooltip-additional"></span></p>
-            <div class="hover-tooltip js-tooltip-additional" show-tooltip yu-parent="rel-js-tooltip-additional">
-                <span class="icon"></span>
-                <p>Введите дополнительную уточняющую информацию к заказу, если имеются особые пожелания.</p>
-                <p>Например, если заказ срочный.</p>
+            <div class="col-1">
+              <p><%=Order::GetTranslation.human_attribute_name(:email)%></p>
+              <%=t.email_field :email, required: true, placeholder: I18n.t('order.written.your_email')%>
             </div>
-            <%=t.text_area :additional%>
-        </div>
+            <!-- /Колонка -->
+            <!-- Колонка -->
+            <div class="col-2 last position-relative">
+                <p><%=Order::GetTranslation.human_attribute_name(:additional)%> <span class="tooltip-icon-small js-tooltip rel-js-tooltip-additional" data-target=".js-tooltip-additional"></span></p>
+                <div class="hover-tooltip js-tooltip-additional" show-tooltip yu-parent="rel-js-tooltip-additional">
+                    <span class="icon"></span>
+                    <%=ts('order.written.additional_info_hint')%>
+                </div>
+                <%=t.text_area :additional%>
+            </div>
         <%end%>
         <!-- /Колонка -->
         <%=f.fields_for :get_original do |o|%>
-        <div class="clear"></div>
-        <p class="title">Получение оригинала</p>
+            <div class="clear"></div>
+              <p class="title"><%=Order::Written.human_attribute_name(:get_original)%></p>
+            <div class="height-10"></div>
+            <!-- Колонка -->
+            <div class="col-1">
+                <label class="checkbox no-left long clearfix">
+                    <%=o.radio_button :type, Order::GetOriginal::TYPES[0] %>
+                    <em></em>
+                    <%=ts('order.written.post_shipping')%>
+                </label>
+            </div>
+            <!-- /Колонка -->
+            <!-- Колонка -->
+            <div class="col-1">
+                <label class="checkbox no-left clearfix">
+                  <%=o.radio_button :type, Order::GetOriginal::TYPES[1]%>
+                    <em></em>
+                    <%=ts('order.written.urgent_letter_shipping')%>
+                </label>
+            </div>
+            <!-- /Колонка -->
+            <!-- Колонка -->
+            <div class="col-1 last">
+                <label class="checkbox no-left clearfix">
+                  <%=o.radio_button :type, Order::GetOriginal::TYPES[2]%>
+                    <em></em>
+                    <%=ts('order.written.courier_shipping')%>
+                </label>
+            </div>
+            <!-- /Колонка -->
+            <div class="clearfix"></div>
+            <div class="height-10"></div>
+            <!-- Колонка -->
+            <div class="col-1">
+                <p><%=Order::GetOriginal.human_attribute_name(:name)%></p>
+              <%=o.text_field :name, required: true, placeholder: I18n.t('order.written.original.name')%>
+            </div>
+            <!-- /Колонка -->
+            <!-- Колонка -->
+            <div class="col-1">
+                <p><%=Order::GetOriginal.human_attribute_name(:address)%></p>
+              <%=o.text_field :address, required: true, placeholder: I18n.t('order.written.original.address')%>
+            </div>
+            <!-- /Колонка -->
+            <!-- Колонка -->
+            <div class="col-1 last">
+                <p><%=Order::GetOriginal.human_attribute_name(:index)%></p>
+                <%=o.text_field :index, required: true, placeholder: I18n.t('order.written.original.index')%>
+            </div>
+            <!-- /Колонка -->
+            <div class="clearfix"></div>
+            <div class="height-20"></div>
+            <p class="big-tooltip short-text">
+                <span class="icon"></span>
+                <%=ts('order.written.shipping_cost_add')%>
+            </p>
+        <%end%>
         <div class="height-10"></div>
-        <!-- Колонка -->
-        <div class="col-1">
-            <label class="checkbox no-left long clearfix">
-                <%=o.radio_button :type, Order::GetOriginal::TYPES[0] %>
-                <em></em>
-                <p>Выслать выполненный заказ <br>по почте</p>
-            </label>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1">
-            <label class="checkbox no-left clearfix">
-              <%=o.radio_button :type, Order::GetOriginal::TYPES[1]%>
-                <em></em>
-                <p>Выслать срочным письмом</p>
-            </label>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1 last">
-            <label class="checkbox no-left clearfix">
-              <%=o.radio_button :type, Order::GetOriginal::TYPES[2]%>
-                <em></em>
-                <p>Выслать курьером</p>
-            </label>
-        </div>
-        <!-- /Колонка -->
-        <div class="clearfix"></div>
-        <div class="height-10"></div>
-        <!-- Колонка -->
-        <div class="col-1">
-            <p>Имя получателя</p>
-          <%=o.text_field :name, required: true, placeholder: I18n.t(:name)%>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1">
-            <p>Адрес получателя</p>
-          <%=o.text_field :address, required: true, placeholder: I18n.t(:address)%>
-        </div>
-        <!-- /Колонка -->
-        <!-- Колонка -->
-        <div class="col-1 last">
-            <p>Почтовый индекс</p>
-            <%=o.text_field :index, required: true, placeholder: I18n.t(:index)%>
-        </div>
-        <!-- /Колонка -->
-        <div class="clearfix"></div>
-        <div class="height-20"></div>
-        <p class="big-tooltip short-text">
-            <span class="icon"></span>
-            Внимание! Почтовые расходы будут добавлены к вашему счету
-        </p>
-      <%end%>
-        <div class="height-10"></div>
-        <p style="padding-left: 10px;">Суммарная стоимость выбранных услуг</p>
+        <p style="padding-left: 10px;"><%=ts('order.written.amount')%></p>
         <div class="bordered-block thin">
           <p>
           <%@order.translation_languages.each_with_index do |l, i|%>
-           <%=Price.with_markup(l.languages_group.written_cost(@order.level))*@order.words_number%><%=' +' unless i == @order.translation_languages.count-1%>
+           <%=(Price.with_markup(l.languages_group.written_cost(@order.level)*@order.words_number))%><%=' +' unless i == @order.translation_languages.count-1%>
           <%end%>
           = <span class="bold pink-bright"><%=@order.price%></span></p>
         </div>

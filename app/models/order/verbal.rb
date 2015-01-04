@@ -52,6 +52,7 @@ module Order
     def cost_price(currency = nil)
       general_cost(currency) + additional_cost(currency)
     end
+    alias :cost :cost_price
 
     def price(currency = nil)
       Price.with_markup cost_price(currency)

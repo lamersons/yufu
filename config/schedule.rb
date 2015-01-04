@@ -19,8 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
-job_type :job, "cd :path && :environment_variable=:environment bundle exec script/sidekiq_pusher.rb :task :output"
+set :output, 'log/whenever.log'
 
-every 1.day, at: '00:01 am' do
-  job 'OrderCleanerWorker'
+job_type :sidekiq,  "cd :path && RAILS_ENV=:environment bundle exec sidekiq-client :task :output"
+
+every 1.day, at: '02:15 am' do
+  sidekiq 'push OrderCleanerWorker'
 end
