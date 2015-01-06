@@ -29,6 +29,7 @@ gem 'ransack', github: 'Zhomart/ransack', branch: 'mongoid'
 
 # Admin tool
 gem 'rails_admin'
+gem "rails_admin_mongoid_localize_field", "~> 0.1.2"
 gem 'ckeditor'
 
 # Authentication & Authorization
