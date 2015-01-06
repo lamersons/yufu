@@ -57,7 +57,7 @@ Feature: create verbal order
 
 
     @javascript
-    Scenario: fulfil the form on step three
+    Scenario: fulfil the form on step three. Bank payment
       Given user with email "user@example.com" client profile has name "Vasya", "Pupking"
       And   an empty order_verbal for user "user@example.com"
       And   order in on step "3"
@@ -94,7 +94,8 @@ Feature: create verbal order
       And   I check box name: "agree"
       And   I submit the form "edit_order"
       Then order should have one relation "client_info" with "first_name, last_name, country, company, birthday" as "Petja, Klushking, Svaziland, Nimfa, 1950-01-01 00:00:00 UTC"
-      Then order should have one relation "airport_pick_up" with "need_car, flight_number, airport_name, arriving_date" as "true, 100500, Vnukovo, 1950-01-01 00:00:00 UTC"
-      Then order should have one relation "car_rent" with relation "car" class name "Order::Car" with field "name" as "Zaporozhets"
-      Then order should have one relation "car_rent" with "duration" as "5"
+      And order should have one relation "airport_pick_up" with "need_car, flight_number, airport_name, arriving_date" as "true, 100500, Vnukovo, 1950-01-01 00:00:00 UTC"
+      And order should have one relation "car_rent" with relation "car" class name "Order::Car" with field "name" as "Zaporozhets"
+      And order should have one relation "car_rent" with "duration" as "5"
       And order should have fields "pay_way" as "bank"
+      And "user@example.com" should receive an email
