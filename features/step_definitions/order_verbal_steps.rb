@@ -9,8 +9,8 @@ And(/^object of "(.*?)" with name: "(.*?)"$/) do |model, name|
 end
 
 And(/^default locales$/) do
-  Localization.create name: 'ru', enable: true
-  Localization.create name: 'en', enable: true
+  Localization.create! name: 'ru', enable: true, language: Language.first
+  Localization.create! name: 'en', enable: true, language: Language.last
 end
 
 And(/^today is "(.*?)"$/) do |today|
@@ -63,10 +63,10 @@ And(/^I select in confirm calendar date: "(.*?)" for "(.*?)" hours$/) do |date, 
   page.find(".#{date}").click
 end
 
-Then(/^order should have fields "(.*?)" as "(.*?)"$/) do |fields, values|
+Then(/^"(.*?)" should have fields "(.*?)" as "(.*?)"$/) do |klass, fields, values|
   fields_list = fields.split(', ')
   values_list = values.split(', ')
-  order = Order::Verbal.last
+  order = klass.camelize.constantize.last
   fields_list.each_with_index do |field, i|
     expect(order.send(field).to_s).to eq(values_list[i])
   end
@@ -81,55 +81,55 @@ Given(/^an empty order_verbal for user "(.*?)"$/) do |email|
   FactoryGirl.create :order_verbal, reservation_dates: [],reserve_language_criterions: [], owner: User.where(email: email).first.profiles.where(_type: 'Profile::Client').first
 end
 
-And(/^order should have one relation "(.*?)" with "(.*?)" as "(.*?)"$/) do |relations, fields, values|
+And(/^"(.*?)" should have one relation "(.*?)" with "(.*?)" as "(.*?)"$/) do |klass, relations, fields, values|
   relations_list = relations.split(', ')
   fields_list = fields.split(', ')
   values_list = values.split(', ')
-  order = Order::Verbal.last
+  order = klass.camelize.constantize.last
   relations_list.each_with_index do |relation, i|
     expect(order.send(relation).send(fields_list[i]).to_s).to eq(values_list[i])
   end
 end
 
-And(/^order should have relation "(.*?)" with relation "(.*?)" with field "(.*?)" as "(.*?)"$/) do |first_relation, second_relation, field, value|
-  order = Order::Verbal.last
+And(/^"(.*?)" should have relation "(.*?)" with relation "(.*?)" with field "(.*?)" as "(.*?)"$/) do |klass, first_relation, second_relation, field, value|
+  order = klass.camelize.constantize.last
   sec_rel_id = second_relation.camelize.constantize.where(field => value).first.id
   expect(order.send(first_relation).where("#{second_relation}_id"=> sec_rel_id).count).to eq(1)
 end
 
-And(/^order should have one relation "(.*?)" with relation "(.*?)" class name "(.*?)" with field "(.*?)" as "(.*?)"$/) do |first_relation, second_relation, klass, field, value|
-  order = Order::Verbal.last
+And(/^"(.*?)" should have one relation "(.*?)" with relation "(.*?)" class name "(.*?)" with field "(.*?)" as "(.*?)"$/) do |order_klass, first_relation, second_relation, klass, field, value|
+  order = order_klass.camelize.constantize.last
   sec_rel_id = klass.constantize.where(field => value).first.id
   expect(order.send(first_relation).send(second_relation).id).to eq(sec_rel_id)
 end
 
-And(/^order should have relations "(.*?)" with fields "(.*?)" as "(.*?)"$/) do |relations, fields, values|
+And(/^"(.*?)" should have relations "(.*?)" with fields "(.*?)" as "(.*?)"$/) do |klass, relations, fields, values|
   relations_list = relations.split(', ')
   fields_list = fields.split(', ')
   values_list = values.split(', ')
-  order = Order::Verbal.last
+  order = klass.camelize.constantize.last
   relations_list.each_with_index do |rel, i|
     expect(order.send(rel).where(fields_list[i] => values_list[i]).count).to eq(1)
   end
 end
 
-Given(/^order in on step "(.*?)"$/) do |step|
-  Order::Verbal.last.update_attribute :step, step
+Given(/^"(.*?)" is on step "(.*?)"$/) do |klass, step|
+  klass.camelize.constantize.last.update_attribute :step, step
 end
 
 And(/^order has a language criterion$/) do
   Order::Verbal.last.main_language_criterion.update_attributes language_id: Language.first.id, level: 1
 end
 
-And(/^order has relation of "(.*?)" with "(.*?)" as "(.*?)"$/) do |relation, fields, values|
+And(/^"(.*?)" has relation of "(.*?)" with "(.*?)" as "(.*?)"$/) do |klass, relation, fields, values|
   params = {}
   values_list = values.split(', ')
   fields.split(', ').each_with_index do |field, i|
     params[field] = values_list[i]
   end
-  Order::Verbal.last.send(relation).create params
+  klass.camelize.constantize.last.send(relation).create params
 
-  Order::Verbal.last.save
+  klass.camelize.constantize.last.save
 end
 
 When(/^I go for edit order$/) do
@@ -143,11 +143,11 @@ Then(/^I should see in price preview "(.*?)" date price for "(.*?)" hours$/) do 
   expect(page).to have_css('span.pink-bright', text: "#{price} Eur")
 end
 
-And(/^order should not have relations "(.*?)" with fields "(.*?)" as "(.*?)"$/) do |relations, fields, values|
+And(/^"(.*?)" should not have relations "(.*?)" with fields "(.*?)" as "(.*?)"$/) do |klass, relations, fields, values|
   relations_list = relations.split(', ')
   fields_list = fields.split(', ')
   values_list = values.split(', ')
-  order = Order::Verbal.last
+  order = klass.camelize.constantize.last
   relations_list.each_with_index do |rel, i|
     expect(order.send(rel).where(fields_list[i] => values_list[i]).count).to eq(0)
   end

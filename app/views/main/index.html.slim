@@ -64,58 +64,58 @@
             = ts('make_order')
   .container.writing.clearfix
     .item.first
-      .icon
+      .icon class='law'
         span.writing.ur
       p
         = ts('main.written_translate.block1')
-      .over class='law'
-        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'law'}), class: 'create_order', method: :post do
+      .over
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', level: 'law'}), class: 'law create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .item
-      .icon
+      .icon class='technical'
         span.writing.tech
       p
         = ts('main.written_translate.block2')
-      .over class='technical'
-        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'technical'}), class: 'create_order', method: :post do
+      .over
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', level: 'technical'}), class: 'technical create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .item.third
-      .icon
+      .icon class='standard'
         span.writing.st
       p
         = ts('main.written_translate.block3')
-      .over class='standard'
-        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'standard'}), class: 'create_order', method: :post do
+      .over
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', level: 'standard'}), class: 'standard create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .clear
     .item.first
-      .icon
+      .icon class='artistic'
         span.writing.hud
       p
         = ts('main.written_translate.block4')
-      .over class='artistic'
-        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'artistic'}), class: 'create_order', method: :post do
+      .over
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', level: 'artistic'}), class: 'artistic create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .item
-      .icon
+      .icon class='site_localisation'
         span.writing.loc
       p
         = ts('main.written_translate.block5')
-      .over class='site_localisation'
-        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'site_localisation'}), class: 'create_order', method: :post do
+      .over
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', level: 'site_localisation'}), class: 'site_localisation create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .item.third
-      .icon
+      .icon class='language_localisation'
         span.writing.lang
       p
         = ts('main.written_translate.block6')
-      .over class='language_localisation'
-        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', translation_type: 'language_localisation'}), class: 'create_order', method: :post do
+      .over
+        = link_to url_for(controller: :orders, action: :create, order: {_type:  'Order::Written', level: 'language_localisation'}), class: 'language_localisation create_order', method: :post do
           p.zakaz
             = ts('make_order')
     .clear.height-10
