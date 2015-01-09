@@ -16,6 +16,7 @@ Feature: Cash flow for verbal orders
     And a senior translator form "NewVasjuki" with email "senior_french_translator@example.com", native_language: "French"
     And the translator with email "french_translator@example.com" support language: "French" with level "guide"
     And the translator with email "senior_french_translator@example.com" support language: "French" with level "guide"
+    And I signed with email "client@exmaple.com"
 
 
   Scenario: 1a. English language and need chinese.

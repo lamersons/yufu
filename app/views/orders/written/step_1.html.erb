@@ -108,9 +108,9 @@
     <div class="clear height-10"></div>
     <p class="title">Стоимость</p>
     <!-- Колонка -->
-    <div class="col-1 level_1">
+    <div class="col-1 level_1 translate_and_correct">
         <label class="radio no-left clearfix">
-            <%=f.radio_button :second_level, Order::Written::LEVELS[0], required: true%>
+            <%=f.radio_button :translation_type, Order::Written::LEVELS[0], required: true%>
             <em></em>
             <p>
                 <span class="semi-bold">Перевод + корретировка</span>
@@ -130,9 +130,9 @@
     </div>
     <!-- /Колонка -->
     <!-- Колонка -->
-    <div class="col-1 level_2">
+    <div class="col-1 level_2 translate">
         <label class="radio no-left clearfix">
-          <%=f.radio_button :second_level, Order::Written::LEVELS[1], required: true%>
+          <%=f.radio_button :translation_type, Order::Written::LEVELS[1], required: true%>
             <em></em>
             <p>
                 <span class="semi-bold">Перевод</span>
