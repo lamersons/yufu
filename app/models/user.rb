@@ -56,6 +56,7 @@ class User
   has_and_belongs_to_many :localizations
 
   embeds_many :permissions
+  embeds_many :notifications
   accepts_nested_attributes_for :permissions, :profiles
 
   alias :name :email
