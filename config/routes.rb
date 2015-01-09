@@ -26,6 +26,7 @@ Yufu::Application.routes.draw do
       resources :users,         only: [:index, :show, :update, :create]
       resources :banners,       only: [:index, :show, :update, :create]
       resources :messages,      only: [:index, :show, :create]
+      resources :notifications, only: :index
       resources :profiles
       resources :translations, constraints: { id: /[0-z\.]+/ }
       resources :verbal_translation_levels, only: :index
@@ -37,7 +38,6 @@ Yufu::Application.routes.draw do
       resources :reservation_dates, only: [:index]
       get 'languages_groups_price', to: 'languages_groups#price'
       # end subresource of profile
-
     end
   end
 
