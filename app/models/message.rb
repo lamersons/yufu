@@ -1,6 +1,7 @@
 class Message
   include Mongoid::Document
   include Mongoid::Timestamps::Created
+  include Notificable
 
   field :body
 
@@ -18,7 +19,9 @@ class Message
   validates_presence_of :body, :sender
   validates_associated :attachments
 
-  after_create :send_dublicates
+  after_create :send_dublicates, :notify
+
+  acts_as_notificable users_scope: :recipient, message: I18n.t('notifications.new_messages')
 
   def from_backoffice?
     sender.is_a? Admin
